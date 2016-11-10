@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Debugging: {{ site.title || "Mystery Site" }}</title>
+        <link rel="stylesheet" href="@root/theme.css">
+        <link rel="stylesheet" href="@root/pygments.css">
+    </head>
+    <body>
+        <h1>{{{ node }}}</h1>
+
+        {% if inc.menu %}{{ inc.menu }}<hr>{% endif %}
+        {% if inc.menu_upper %}{{ inc.menu_upper }}<hr>{% endif %}
+        {% if inc.menu_lower %}{{ inc.menu_lower }}<hr>{% endif %}
+
+        <h2>Parent</h2>
+        <ul>
+            {% if node.parent %}
+                <li>
+                    <a href="{{ node.parent.url }}">{{{ node.parent }}}</a>
+                </li>
+            {% else %}
+                <li>None.</li>
+            {% endif %}
+        </ul>
+        <hr>
+
+        <h2>Subnodes</h2>
+        <ul>
+            {% for node in subnodes %}
+                <li><a href="{{ node.url }}">{{{ node }}}</a></li>
+            {% empty %}
+                <li>Empty.</li>
+            {% endfor %}
+        </ul>
+        <hr>
+
+        <h2>Index</h2>
+        <ul>
+            {% for node in index %}
+            <li><a href="{{ node.url }}">{{{ node }}}</a></li>
+            {% empty %}
+                <li>Empty.</li>
+            {% endfor %}
+        </ul>
+        <hr>
+
+        {% if flags.is_paged %}
+            <h2>Paging: {{ paging.page }} of {{ paging.total }}</h2>
+            <ul>
+                <li><a href="{{ paging.first_url }}">First</a></li>
+                {% if paging.prev_url %}
+                    <li><a href="{{ paging.prev_url }}">Previous</a></li>
+                {% endif %}
+                {% if paging.next_url %}
+                    <li><a href="{{ paging.next_url }}">Next</a></li>
+                {% endif %}
+                <li><a href="{{ paging.last_url }}">Last</a></li>
+            </ul>
+            <hr>
+        {% endif %}
+
+        <h2>Node</h2>
+        <pre>{{ node.data|pprint|pygmentize:'python' }}</pre>
+
+        <h2>Page</h2>
+        <pre>{{ context.stack|index:2|pprint|pygmentize:'python' }}</pre>
+    </body>
+</html>

@@ -1,0 +1,612 @@
+/*
+    Reset
+*/
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+form, fieldset, legend {
+    margin: 0;
+    padding: 0;
+}
+
+button, input, select, textarea, label {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/*
+    Typography
+*/
+
+html {
+    font-size: 15px;
+}
+
+body {
+    font-family: "Georgia", serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    line-height: 1.25;
+}
+
+h1 {
+    color: black;
+    font-size: 32px;
+    font-weight: normal;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    margin: 2.7rem 0 1.7rem
+}
+
+h2 {
+    color: black;
+    font-size: 24px;
+    font-weight: normal;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    margin: 2.7rem 0 1.7rem
+}
+
+h3 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 2.3rem 0 1.3rem
+}
+
+h4, h5, h6 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 2rem 0 1.3rem
+}
+
+p {
+    margin: 1rem 0;
+    padding: 0;
+    text-align: justify;
+}
+
+blockquote {
+    margin: 2rem 0.7rem;
+    padding: 0 1.3rem;
+    border-left: 3px solid #e8e8e8;
+    color: #666;
+    font-style: italic;
+}
+
+pre, code {
+    font-size: 13px;
+    font-family: Consolas, monospace;
+    color: #222;
+}
+
+code {
+    margin: 0 2px;
+    padding: 1px 5px;
+    white-space: nowrap;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
+pre {
+    margin: 1.5rem 0;
+    padding: .7rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+    overflow: auto;
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+sup, sub {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    bottom: 1ex;
+}
+
+sub {
+    top: .5ex;
+}
+
+small {
+    font-size: 75%;
+}
+
+big {
+    font-size: 125%;
+}
+
+/*
+    Elements
+*/
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px dotted #ddd;
+    margin: 2.5rem 3rem;
+    padding: 0;
+}
+
+ul, ol {
+    margin: 1.3rem 0;
+    padding: 0 0 0 1.3rem;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+    margin: 0.7rem;
+}
+
+li {
+    margin: 5px 0;
+    padding: 0;
+}
+
+dl {
+    margin: 2rem 0;
+    padding: 0;
+}
+
+dt {
+    margin: 1.5rem 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+dd {
+    margin: 1.3rem 0.7rem;
+    padding: 0 1.3rem;
+    border-left: 3px solid #e8e8e8;
+}
+
+img {
+    border: 0;
+    max-width: 100%;
+    margin: 1.3rem auto;
+    display: block;
+}
+
+/*
+    Links
+*/
+
+a {
+    color: #4183C4;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+a:hover {
+    border-bottom: 1px solid;
+}
+
+/*
+    Layout
+*/
+
+body {
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.main {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 45px 50px 60px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ddd;
+}
+
+/*
+    Site Header
+*/
+
+.head {
+    text-align: right;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 25px 50px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.head ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.head ul ul {
+    display: none;
+}
+
+.head li {
+    margin: 0;
+    display: inline-block;
+}
+
+.head li:before {
+    content: "\A0│\A0\A0";
+}
+
+.head li:first-child:before {
+    content: none;
+}
+
+.head a {
+    border: none;
+    color: #aaa;
+    transition: color 0.5s;
+}
+.head a:hover {
+    border: none;
+    color: #4183C4;
+    transition: color 0.3s;
+}
+
+/*
+    Site Footer
+*/
+
+.foot {
+    text-align: center;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 25px 50px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.foot p {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.foot ul {
+    list-style: none;
+    margin: 5px 0;
+    padding: 0;
+}
+
+.foot ul ul {
+    display: none;
+}
+
+.foot li {
+    margin: 0;
+    display: inline-block;
+}
+
+.foot li:before {
+    content: "\A0·\A0\A0";
+}
+
+.foot li:first-child:before {
+    content: none;
+}
+
+.foot a {
+    border: none;
+    color: #aaa;
+    transition: color 0.5s;
+}
+.foot a:hover {
+    border: none;
+    color: #4183C4;
+    transition: color 0.3s;
+}
+
+/*
+    Content
+*/
+
+h1 + ul {
+    margin-top: 2rem;
+}
+.main > :first-child {
+    margin-top: 0;
+}
+.main > :last-child {
+    margin-bottom: 0;
+}
+
+/*
+    Alert Boxes
+*/
+
+.stx-alert {
+    margin: 2rem;
+    border: 1px solid;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+.stx-info {
+    color: #224466;
+    border-color: #bac6d3;
+    background-color: #e2eef9;
+}
+
+.stx-warning {
+    color: #4c4a42;
+    border-color: #dfd8c2;
+    background-color: #fff9ea;
+}
+
+.stx-error {
+    color: #991111;
+    border-color: #d2b2b2;
+    background-color: #fcdede;
+}
+
+/*
+    Tables
+*/
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 2.5rem auto;
+    width: 80%;
+    font-size: 14px;
+}
+
+thead, tfoot {
+    background-color: #eee;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    text-align: left;
+}
+
+table .stx-left {
+    text-align: left;
+}
+
+table .stx-center {
+    text-align: center;
+}
+
+table .stx-right {
+    text-align: right;
+}
+
+/*
+    Utility Styles
+*/
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*
+    Checkbox Hack
+*/
+
+#menu-check {
+    display: none;
+}
+
+#menu-label {
+    display: none;
+}
+
+/*
+    Media Queries
+*/
+
+/*
+    Does the same thing as:
+
+        <meta name="viewport" content="width=device-width">
+
+    but in the future W3C standard way. -ms- prefix is required for IE10+ to
+    render responsive styling in Windows 8 "snapped" views; IE10+ does not
+    honor the meta tag.
+*/
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+
+/*
+    Tablet & Landscape Phone
+*/
+
+@media screen and (max-width: 840px) {
+    html {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4, h5, h6 {
+        font-size: 14px;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    pre, code {
+        font-size: 12px;
+    }
+
+    .main {
+        border: none;
+        box-shadow: none;
+        padding: 0 50px 50px
+    }
+
+    .head {
+        font-size: 13px;
+    }
+
+    .foot {
+        display: none;
+    }
+}
+
+/*
+    Portrait Phone
+*/
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    h4, h5, h6 {
+        font-size: 13px;
+    }
+
+    pre, code {
+        font-size: 11px;
+    }
+
+    .main {
+        padding: 15px 30px 40px;
+    }
+
+    .head {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .head a {
+        border: none;
+        color: #333;
+    }
+
+    .head a:hover {
+        border: none;
+        color: #4183C4;
+    }
+
+    #menu-label {
+        display: inline-block;
+        padding: 0 20px;
+        height: 50px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        line-height: 50px;
+        color: #333;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    #menu-label:hover, #menu-label:focus {
+        border: 1px solid #bbb;
+    }
+
+    #menu-label .icon {
+        padding-right: 8px;
+    }
+
+    #menu-check ~ label .close {
+        display: none;
+    }
+
+    #menu-check ~ label .open {
+        display: inline-block;
+    }
+
+    #menu-check:checked ~ label .close {
+        display: inline-block;
+    }
+
+    #menu-check:checked ~ label .open {
+        display: none;
+    }
+
+    #menu-check ~ ul {
+        display: none;
+    }
+
+    #menu-check:checked ~ ul {
+        display: block;
+        margin: 40px 20px 10px;
+    }
+
+    .head li {
+        display: block;
+        border-bottom: 1px dotted #ccc;
+    }
+
+    .head li:first-child {
+        border-top: 1px dotted #ccc;
+    }
+
+    .head li:before {
+        content: none;
+    }
+
+    .head li a {
+        display: block;
+        padding: 15px 0;
+    }
+}

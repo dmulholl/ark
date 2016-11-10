@@ -1,0 +1,15 @@
+{% extends "base.ibis" %}
+
+{% block title %}
+    {{ node.meta_title || node.title || node.html|firsth|striptags }}
+{% endblock %}
+
+{% block main %}
+    <article id="main" class="main">
+        {% if node.title %}
+            <h1>{{ node.title }}</h1>
+        {% endif %}
+
+        {{ node.html }}
+    </article>
+{% endblock %}

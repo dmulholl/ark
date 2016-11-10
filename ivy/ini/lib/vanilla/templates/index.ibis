@@ -1,0 +1,12 @@
+{% extends "base.ibis" %}
+
+{% block title %}
+    Not Supported
+{% endblock %}
+
+{% block main %}
+    <main id="main" class="main">
+        <h1>Not Supported</h1>
+        <p>This theme does not support index pages.</p>
+    </main>
+{% endblock %}

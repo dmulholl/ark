@@ -1,0 +1,250 @@
+# --------------------------------------------------------------------------
+# This module creates and caches the parse-tree of Node instances.
+# --------------------------------------------------------------------------
+
+import pathlib
+import datetime as dt
+
+from . import slugs
+from . import hooks
+from . import renderers
+from . import loader
+from . import site
+
+
+# Stores the parse tree of Node instances.
+tree = None
+
+
+# Return the site's root node. Parses the root directory and assembles the
+# node tree on first call.
+def root():
+    global tree
+    if tree is None:
+        tree = Node()
+        parse_node_directory(tree, site.src())
+        hooks.event('init_tree', tree.init())
+    return tree
+
+
+# Return the node corresponding to the specified path. Returns None if the
+# node does not exist.
+def node(*slugs):
+    node = root()
+    for slug in slugs:
+        if not slug in node.subnodes:
+            return None
+        node = node.subnodes[slug]
+    return node
+
+
+# A Node instance represents a directory or text file (or both) in the
+# site's source directory.
+class Node:
+
+    def __init__(self):
+        self.data = {}
+        self.parent = None
+        self.subnodes = {}
+        self.stem = ''
+        self.slug = ''
+        self.format = ''
+
+        # Default attributes.
+        self.data['text'] = ''
+        self.data['html'] = ''
+        self.data['date'] = dt.datetime.now()
+
+    # ----------------------------------------------------------------------
+    # Support for dictionary-style access with attribute inheritance.
+    # ----------------------------------------------------------------------
+
+    # Dictionary-style read access with attribute inheritance.
+    def __getitem__(self, key):
+        while self is not None:
+            if key in self.data:
+                return self.data[key]
+            self = self.parent
+        raise KeyError(key)
+
+    # Dictionary-style write access.
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    # Dictionary-style 'in' support with attribute inheritance.
+    def __contains__(self, key):
+        while self is not None:
+            if key in self.data:
+                return True
+            self = self.parent
+        return False
+
+    # Dictionary-style 'get' support with attribute inheritance.
+    def get(self, key, default=None):
+        while self is not None:
+            if key in self.data:
+                return self.data[key]
+            self = self.parent
+        return default
+
+    # Update the node with data from a dictionary.
+    def update(self, data):
+        self.data.update(data)
+
+    # ----------------------------------------------------------------------
+    # Public methods.
+    # ----------------------------------------------------------------------
+
+    # Initialize the node. This method is called on each node in the parse
+    # tree once the entire tree has been assembled.
+    def init(self):
+
+        # Determine the node's url.
+        self['url'] = self.url()
+
+        # Filter the node's text on the 'node_text' hook.
+        self['text'] = hooks.filter('node_text', self['text'], self)
+
+        # Render the filtered text into html.
+        html = renderers.render(self['text'], self.format)
+
+        # Filter the node's html on the 'node_html' hook.
+        self['html'] = hooks.filter('node_html', html, self)
+
+        # Initialize the node's subnodes.
+        for node in self.subnodes.values():
+            node.init()
+
+        # Fire the 'init_node' event. This fires 'bottom up', i.e. when this
+        # event fires on a node, all its subnodes have already been
+        # initialized.
+        hooks.event('init_node', self)
+
+        # Enable chaining.
+        return self
+
+    # Return the node's path, i.e. the list of slugs that uniquely identify
+    # its location in the parse tree.
+    def path(self):
+        sluglist = []
+        while self.parent is not None:
+            sluglist.append(self.slug)
+            self = self.parent
+        sluglist.reverse()
+        return sluglist
+
+    # Return the node's default url. Append arguments.
+    def url(self, *append):
+        sluglist = self.path() + list(append)
+        if sluglist:
+            return '@root/' + '/'.join(sluglist) + '//'
+        else:
+            return '@root/'
+
+    # Return the node's index url. Append arguments.
+    def index_url(self, *append):
+        return self.url(*append).replace('//', '///')
+
+    # Return the node's paged index url for the specified page number.
+    def paged_url(self, page=1, total=None):
+        total = total or page
+        if page == 1:
+            return self.index_url()
+        elif 2 <= page <= total:
+            return self.url(slugs.paged(page))
+        else:
+            return ''
+
+    # Call the specified function on the node and all its descendants.
+    def walk(self, callback):
+        for node in self.subnodes.values():
+            node.walk(callback)
+        callback(self)
+
+    # Return a list of child nodes ordered by slug.
+    def children(self):
+        return [self.subnodes[slug] for slug in sorted(self.subnodes)]
+
+    # Return a list of all descendent nodes. (Undefined order.)
+    def descendants(self):
+        descendent_nodes = []
+        for subnode in self.subnodes.values():
+            descendent_nodes.append(subnode)
+            descendent_nodes.extend(subnode.descendants())
+        return descendent_nodes
+
+    # Return a list of all descendent leaf nodes. (Undefined order)
+    def leaves(self):
+        leaf_nodes = []
+        for subnode in self.subnodes.values():
+            if subnode.subnodes:
+                leaf_nodes.extend(subnode.leaves())
+            else:
+                leaf_nodes.append(subnode)
+        return leaf_nodes
+
+    # Return a printable tree showing the node and its descendants.
+    def str(self, depth=0):
+        out = ["·  " * depth + '/' + '/'.join(self.path())]
+        for slug in sorted(self.subnodes):
+            out.append(self.subnodes[slug].str(depth + 1))
+        return '\n'.join(out)
+
+    # String representation of the Node instance.
+    def __repr__(self):
+        return "<Node /%s>" % '/'.join(self.path())
+
+
+# Parse the contents of a source directory.
+#
+# Args:
+#   dirnode (Node): Node instance for the directory.
+#   dirpath (str/Path): Path to the directory as a string or Path instance.
+def parse_node_directory(dirnode, dirpath):
+
+    # Loop over the directory's subdirectories.
+    for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_dir()]:
+        slug = slugs.slugify(path.stem)
+        subnode = Node()
+        subnode.slug = slug
+        subnode.stem = path.stem
+        subnode.parent = dirnode
+        dirnode.subnodes[slug] = subnode
+        parse_node_directory(subnode, path)
+
+    # Loop over the directory's files. We skip dotfiles and file types for
+    # which we don't have a registered rendering-engine callback.
+    for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_file()]:
+        if path.stem.startswith('.'):
+            continue
+        if path.suffix.strip('.') not in renderers.callbacks:
+            continue
+        parse_node_file(dirnode, path)
+
+
+# Parse a source file.
+#
+# Args:
+#   dirnode (Node): Node instance for the directory containing the file.
+#   filepath (Path): Filepath as a Path instance.
+def parse_node_file(dirnode, filepath):
+
+    # Check if the file is coterminous with an existing node before creating
+    # a new one.
+    slug = slugs.slugify(filepath.stem)
+    if slug == 'index':
+        filenode = dirnode
+    else:
+        filenode = node(*dirnode.path(), slug) or Node()
+        filenode.slug = slug
+        filenode.stem = filepath.stem
+        filenode.parent = dirnode
+        dirnode.subnodes[slug] = filenode
+
+    # Update the new or existing node with the file's text and metadata.
+    filenode['text'], meta = loader.load(filepath)
+    filenode.update(meta)
+
+    # The file's extension determines the rendering engine we use to
+    # transform its text into html.
+    filenode.format = filepath.suffix.strip('.')

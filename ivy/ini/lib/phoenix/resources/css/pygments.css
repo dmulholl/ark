@@ -1,0 +1,78 @@
+/**
+ * -------------------------------------------------------------------------
+ * Syntax highlighting styles for Pygmentized code samples.
+ * -------------------------------------------------------------------------
+ */
+
+pre .bp  { color: #cccccc }         /* Name.Builtin.Pseudo */
+pre .c   { color: #8D9684 }         /* Comment */
+pre .c1  { color: #8D9684 }         /* Comment.Single */
+pre .cm  { color: #8D9684 }         /* Comment.Multiline */
+pre .cp  { color: #A082BD }         /* Comment.Preproc */
+pre .cs  { color: #cccccc }         /* Comment.Special */
+pre .err { color: red }             /* Error */
+pre .g   { color: #cccccc }         /* Generic */
+pre .gd  { color: #cccccc }         /* Generic.Deleted */
+pre .ge  { color: #cccccc }         /* Generic.Emph */
+pre .gr  { color: #cccccc }         /* Generic.Error */
+pre .gh  { color: #cccccc }         /* Generic.Heading */
+pre .gi  { color: #cccccc }         /* Generic.Inserted */
+pre .go  { color: #cccccc }         /* Generic.Output */
+pre .gp  { color: #cccccc }         /* Generic.Prompt */
+pre .gs  { color: #cccccc }         /* Generic.Strong */
+pre .gu  { color: #cccccc }         /* Generic.Subheading */
+pre .gt  { color: #cccccc }         /* Generic.Traceback */
+pre .il  { color: #cccccc }         /* Literal.Number.Integer.Long */
+pre .k   { color: #93C763 }         /* Keyword */
+pre .kc  { color: #cccccc }         /* Keyword.Constant */
+pre .kd  { color: #cccccc }         /* Keyword.Declaration */
+pre .kn  { color: #A082BD }         /* Keyword.Namespace */
+pre .kp  { color: #cccccc }         /* Keyword.Pseudo */
+pre .kr  { color: #cccccc }         /* Keyword.Reserved */
+pre .kt  { color: #cccccc }         /* Keyword.Type */
+pre .l   { color: #cccccc }         /* Literal */
+pre .ld  { color: #cccccc }         /* Literal.Date */
+pre .m   { color: #FFCD22 }         /* Literal.Number */
+pre .mf  { color: #FFCD22 }         /* Literal.Number.Float */
+pre .mh  { color: #FFCD22 }         /* Literal.Number.Hex */
+pre .mi  { color: #FFCD22 }         /* Literal.Number.Integer */
+pre .mo  { color: #FFCD22 }         /* Literal.Number.Oct */
+pre .na  { color: #cccccc }         /* Name.Attribute */
+pre .nb  { color: #cccccc }         /* Name.Builtin */
+pre .nc  { color: #678CB1 }         /* Name.Class */
+pre .no  { color: #cccccc }         /* Name.Constant */
+pre .nd  { color: #A082BD }         /* Name.Decorator */
+pre .ni  { color: #cccccc }         /* Name.Entity */
+pre .ne  { color: #cccccc }         /* Name.Exception */
+pre .nf  { color: #678CB1 }         /* Name.Function */
+pre .nl  { color: #cccccc }         /* Name.Label */
+pre .nn  { color: #cccccc }         /* Name.Namespace */
+pre .nt  { color: #66747B }         /* Name.Tag */
+pre .nv  { color: #cccccc }         /* Name.Variable */
+pre .nx  { color: #cccccc }         /* Name.Other */
+pre .o   { color: #cccccc }         /* Operator */
+pre .ow  { color: #cccccc }         /* Operator.Word */
+pre .p   { color: #cccccc }         /* Punctuation */
+pre .py  { color: #cccccc }         /* Name.Property */
+pre .s   { color: #D39745 }         /* Literal.String */
+pre .s1  { color: #D39745 }         /* Literal.String.Single */
+pre .s2  { color: #D39745 }         /* Literal.String.Double */
+pre .sb  { color: #cccccc }         /* Literal.String.Backtick */
+pre .sc  { color: #cccccc }         /* Literal.String.Char */
+pre .sd  { color: #8D9684 }         /* Literal.String.Doc */
+pre .se  { color: #cccccc }         /* Literal.String.Escape */
+pre .sh  { color: #cccccc }         /* Literal.String.Heredoc */
+pre .si  { color: #cccccc }         /* Literal.String.Interpol */
+pre .sr  { color: #cccccc }         /* Literal.String.Regex */
+pre .ss  { color: #cccccc }         /* Literal.String.Symbol */
+pre .sx  { color: #cccccc }         /* Literal.String.Other */
+pre .vc  { color: #cccccc }         /* Name.Variable.Class */
+pre .vg  { color: #cccccc }         /* Name.Variable.Global */
+pre .vi  { color: #cccccc }         /* Name.Variable.Instance */
+pre .x   { color: #cccccc }         /* Other */
+pre .w   { color: #cccccc }         /* Text.Whitespace */
+
+/**
+ * Make HTML angle-brackets match the tag colour.
+ */
+pre.lang-html .p { color: #66747B }

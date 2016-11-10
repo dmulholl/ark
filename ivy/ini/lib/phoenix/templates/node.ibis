@@ -1,0 +1,15 @@
+{% extends "base.ibis" %}
+
+{% block title %}
+	{{ node.meta_title || node.title }}
+{% endblock %}
+
+{% block banner %}
+	<h1 id="banner">{{ node.title }}</h1>
+{% endblock %}
+
+{% block nodes %}
+	<article class="article">
+		{{ node.html }}
+	</article>
+{% endblock %}
