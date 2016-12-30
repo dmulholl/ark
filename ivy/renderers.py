@@ -12,6 +12,7 @@ callbacks = {
     'css': lambda s: s,
     'html': lambda s: s,
     'js': lambda s: s,
+    'meta': lambda s: s,
     'txt': lambda s: s,
     '': lambda s: s,
 }
