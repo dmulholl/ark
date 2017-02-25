@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# This module processes files from the site's 'includes' directory.
+# This module loads and renders files from the site's 'inc' directory.
 # --------------------------------------------------------------------------
 
 import os
@@ -14,7 +14,7 @@ from . import site
 cache = None
 
 
-# Return a dictionary of rendered files from the 'includes' directory.
+# Return a dictionary of rendered files from the 'inc' directory.
 def load():
 
     # Load and cache the directory's contents.

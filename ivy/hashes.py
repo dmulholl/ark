@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# This module handles the file hashing mechanism.
+# This module handles Ivy's file hashing mechanism.
 #
 # Before writing a page file to disk we check if there is an existing
 # file of the same name left over from a previous build. If there is,

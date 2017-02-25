@@ -37,7 +37,7 @@ def register(ext):
     return register_callback
 
 
-# Render the supplied page object into html.
+# Render a Page instance into html.
 def render(page):
 
     # Cache a list of the theme's template files for future calls.

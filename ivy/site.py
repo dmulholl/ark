@@ -56,7 +56,7 @@ def load_site_config():
 
 
 # Attempt to determine the path to the site's home directory. We check for
-# the presence of either an 'site.py' file or both 'src' and 'out' directories.
+# the presence of either a 'site.py' file or both 'src' and 'out' directories.
 # Returns an empty string if the home directory cannot be located.
 def find_home():
     path = os.getcwd()

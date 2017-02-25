@@ -24,7 +24,7 @@ class Index:
     # Page instances.
     def init(self):
 
-        # Discard any nodes that lack the requisite order attribute.
+        # Discard any nodes that lack the requisite order_by attribute.
         nodes = [node for node in self.nodes if self.order_by in node]
 
         # Sort the nodes.

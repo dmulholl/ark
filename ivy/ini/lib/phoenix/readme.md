@@ -1,12 +1,7 @@
 
 # Phoenix
 
-A flexible, mobile-friendly theme for [Ark][].
-
-* [Theme Demo][demo]
-
-[ark]: http://mulholland.xyz/docs/ark/
-[demo]: http://ark.mulholland.xyz/phoenix/
+A flexible, mobile-friendly theme.
 
 
 
