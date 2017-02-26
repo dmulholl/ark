@@ -1,10 +1,30 @@
-{% extends "base.ibis" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {{ node.meta_title || node.title || node.html|firsth|striptags }}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="@root/css/theme.css">
+    <link rel="stylesheet" href="@root/css/pygments.css">
+    <!--[if lt IE 9]>
+        <script src="@root/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
 
-{% block title %}
-    {{ node.meta_title || node.title || node.html|firsth|striptags }}
-{% endblock %}
+<body class="{{{ classes }}}">
 
-{% block main %}
+    <header id="head" class="head">
+        <input id="menu-check" type="checkbox"/>
+        <label id="menu-label" for="menu-check" class="unselectable">
+            <span class="icon close">✕</span>
+            <span class="icon open">☰</span>
+            <span class="text">MENU</span>
+        </label>
+        {{ inc.menu }}
+    </header>
+
     <article id="main" class="main">
         {% if node.title %}
             <h1>{{ node.title }}</h1>
@@ -12,4 +32,10 @@
 
         {{ node.html }}
     </article>
-{% endblock %}
+
+    <footer id="foot" class="foot">
+        {{ inc.menu }}
+    </footer>
+
+</body>
+</html>

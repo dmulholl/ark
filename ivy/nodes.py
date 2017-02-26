@@ -133,27 +133,13 @@ class Node:
         sluglist.reverse()
         return sluglist
 
-    # Return the node's default url. Append arguments.
+    # Return the node's url. Append arguments.
     def url(self, *append):
         sluglist = self.path() + list(append)
         if sluglist:
             return '@root/' + '/'.join(sluglist) + '//'
         else:
             return '@root/'
-
-    # Return the node's index url. Append arguments.
-    def index_url(self, *append):
-        return self.url(*append).replace('//', '///')
-
-    # Return the node's paged index url for the specified page number.
-    def paged_url(self, page=1, total=None):
-        total = total or page
-        if page == 1:
-            return self.index_url()
-        elif 2 <= page <= total:
-            return self.url(slugs.paged(page))
-        else:
-            return ''
 
     # Call the specified function on the node and all its descendants.
     def walk(self, callback):
@@ -195,11 +181,11 @@ class Node:
         return "<Node /%s>" % '/'.join(self.path())
 
 
-# Parse the contents of a source directory.
+# Parse a source directory.
 #
 # Args:
-#   dirnode (Node): Node instance for the directory.
-#   dirpath (str/Path): Path to the directory as a string or Path instance.
+#   dirnode (Node): the Node instance for the directory.
+#   dirpath (str/Path): path to the directory as a string or Path instance.
 def parse_node_directory(dirnode, dirpath):
 
     # Loop over the directory's subdirectories.
@@ -225,8 +211,8 @@ def parse_node_directory(dirnode, dirpath):
 # Parse a source file.
 #
 # Args:
-#   dirnode (Node): Node instance for the directory containing the file.
-#   filepath (Path): Filepath as a Path instance.
+#   dirnode (Node): the Node instance for the directory containing the file.
+#   filepath (Path): path to the file as a Path instance.
 def parse_node_file(dirnode, filepath):
 
     # Check if the file is coterminous with an existing node before creating

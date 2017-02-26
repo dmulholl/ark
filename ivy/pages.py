@@ -24,19 +24,7 @@ class Page(dict):
         self['site'] = site.config
         self['node'] = node
         self['children'] = node.children()
-        self['index'] = []
-        self['flags'] = {
-            'is_index': False,
-            'is_paged': False,
-        }
-        self['paging'] = {
-            'page': 1,
-            'total': 1,
-            'prev_url': '',
-            'next_url': '',
-            'first_url': '',
-            'last_url': '',
-        }
+        self['flags'] = {}
 
     # Render the page into html and write the html to disk.
     def render(self):
@@ -70,26 +58,19 @@ class Page(dict):
 
     # Determine the output filepath for the page.
     def get_filepath(self):
-        sluglist, suffix = self['node'].path(), site.config['extension']
-
-        if self['flags']['is_index']:
-            if self['paging']['page'] == 1:
-                sluglist.append('index')
-            else:
-                sluglist.append(slugs.paged(self['paging']['page']))
-
-        if len(sluglist) == 0:
-            sluglist.append('index')
+        slugs = self['node'].path() or ['index']
+        suffix = site.config['extension']
 
         if suffix == '/':
-            if sluglist[-1] == 'index':
-                sluglist[-1] += '.html'
+            if slugs[-1] == 'index':
+                slugs[-1] += '.html'
             else:
-                sluglist.append('index.html')
+                slugs.append('index.html')
         else:
-            sluglist[-1] = sluglist[-1] + suffix
+            slugs[-1] += suffix
 
-        return site.out(*sluglist)
+        filepath = site.out(*slugs)
+        return hooks.filter('page_path', filepath, self)
 
     # Regex for locating @root/ urls for rewriting. Note that we only
     # rewrite urls enclosed in quotes or angle brackets.
@@ -119,14 +100,7 @@ class Page(dict):
                 else:
                     url = prefix + 'index' + suffix
 
-            # The link points to a generated index.
-            elif url.endswith('///'):
-                if suffix == '/':
-                    url = prefix + url.rstrip('/') + '/'
-                else:
-                    url = prefix + url.rstrip('/') + '/index' + suffix
-
-            # The link points to a generated node page.
+            # The link points to a node page.
             elif url.endswith('//'):
                 if suffix == '/':
                     url = prefix + url.strip('/') + '/'
@@ -143,21 +117,15 @@ class Page(dict):
         # Replace each match with the return value of the callback.
         return self.re_url.sub(callback, html)
 
-    # Assemble a list of slugs by joining and then repeatedly truncating
-    # the page's path.
+    # Assemble a list of path slugs.
     def get_slug_list(self):
-        output = []
+        slugs, stack = [], ['node'] + self['node'].path()
 
-        if self['flags']['is_index']:
-            slugs = ['index'] + self['node'].path()
-        else:
-            slugs = ['node'] + self['node'].path()
+        while stack:
+            slugs.append('-'.join(stack))
+            stack.pop()
 
-        while slugs:
-            output.append('-'.join(slugs))
-            slugs.pop()
-
-        return output
+        return hooks.filter('page_slugs', slugs, self)
 
     # Assemble a list of potential template names for the page.
     def get_template_list(self):

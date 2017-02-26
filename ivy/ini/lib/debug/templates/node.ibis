@@ -27,38 +27,13 @@
 
         <h2>Children</h2>
         <ul>
-            {% for node in subnodes %}
-                <li><a href="{{ node.url }}">{{{ node }}}</a></li>
+            {% for child in children %}
+                <li><a href="{{ child.url }}">{{{ child }}}</a></li>
             {% empty %}
                 <li>Empty.</li>
             {% endfor %}
         </ul>
         <hr>
-
-        <h2>Index</h2>
-        <ul>
-            {% for node in index %}
-                <li><a href="{{ node.url }}">{{{ node }}}</a></li>
-            {% empty %}
-                <li>Empty.</li>
-            {% endfor %}
-        </ul>
-        <hr>
-
-        {% if flags.is_paged %}
-            <h2>Paging: {{ paging.page }} of {{ paging.total }}</h2>
-            <ul>
-                <li><a href="{{ paging.first_url }}">First</a></li>
-                {% if paging.prev_url %}
-                    <li><a href="{{ paging.prev_url }}">Previous</a></li>
-                {% endif %}
-                {% if paging.next_url %}
-                    <li><a href="{{ paging.next_url }}">Next</a></li>
-                {% endif %}
-                <li><a href="{{ paging.last_url }}">Last</a></li>
-            </ul>
-            <hr>
-        {% endif %}
 
         <h2>Node</h2>
         <pre>{{ node.data|pprint|pygmentize:'python' }}</pre>

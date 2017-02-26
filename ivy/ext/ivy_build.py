@@ -6,7 +6,7 @@
 import os
 import sys
 
-from ivy import hooks, site, utils, nodes, pages, indexes
+from ivy import hooks, site, utils, nodes, pages
 
 
 # Register our build callback on the 'main_build' event hook.
@@ -31,15 +31,4 @@ def build_site():
 
 # This function will be called on each node in the parse tree.
 def build_node(node):
-    if node.subnodes and node.get('indexed'):
-        indexes.LeafIndex(node).render()
-    else:
-        pages.Page(node).render()
-
-
-# Register a callback on the 'init_node' event hook to override the default
-# url for nodes we'll be turning into blog-style indexes.
-@hooks.register('init_node')
-def set_index_url(node):
-    if node.subnodes and node.get('indexed'):
-        node['url'] = node.index_url()
+    pages.Page(node).render()

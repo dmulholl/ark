@@ -19,9 +19,3 @@ def slugify(arg):
     out = re.sub(r'--+', '-', out)
     out = out.strip('-')
     return hooks.filter('slugify', out, arg)
-
-
-# Default paged-slug function.
-def paged(num):
-    out = 'page-%s' % num
-    return hooks.filter('paging_slug', out, num)

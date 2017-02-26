@@ -6,7 +6,9 @@
 callbacks = {}
 
 
-# Decorator function for registering event and filter callbacks.
+# Decorator function for registering event and filter callbacks, i.e.
+# handler functions which will be called when the corresponding event or
+# filter hook is fired.
 #
 # Event callbacks accept zero or more arguments depending on the specific
 # hook. They may modify their arguments in place but have no return value.
