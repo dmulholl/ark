@@ -46,12 +46,7 @@ def tag_index_url(node, tagname):
 class TagIndex(indexes.Index):
 
     def __init__(self, node, nodes):
-        super().__init__(node, nodes)
-
-        if 'per_tag_index' in node:
-            self.per_page = node['per_tag_index']
-
-        self.init()
+        super().__init__(node, nodes, node.get('per_tag_index'))
         self.set_flag('is_tag_index', True)
 
 
@@ -64,10 +59,10 @@ def build_tag_indexes():
 # If a node (/node) has the 'tagged' attribute, we create a phantom 'tags'
 # node just below it (/node/tags), and then a phantom tag-index node
 # (/node/tags/tagname) for each individual tag found among the original
-# tag's descendants.
+# node's descendants.
 def node_callback(node):
     if node.data.get('tagged'):
-        tags_node = Node()
+        tags_node = nodes.Node()
         tags_node.parent = node
         tags_node.slug = node.get('tag_slug', 'tags')
 
@@ -78,7 +73,7 @@ def node_callback(node):
                     tag_map.setdefault(tag_obj.name, []).append(descendant)
 
         for tag_name, tag_list in tag_map:
-            tag_node = Node()
+            tag_node = nodes.Node()
             tag_node.parent = tags_node
             tag_node.slug = slugs.slugify(tag_name)
             tag_node['title'] = tag_name

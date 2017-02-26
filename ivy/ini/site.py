@@ -12,7 +12,7 @@
 
 # Choose the theme to use when building your site. This attribute should
 # specify the name of a theme directory in your site's 'lib' folder.
-theme = "ivytest"
+theme = "phoenix"
 
 # --------------------------------------------------------------------------
 # Theme Settings
@@ -22,7 +22,7 @@ theme = "ivytest"
 title = "Site Title"
 
 # The default theme displays the 'tagline' string in the site's header.
-tagline = "Just another Ark site"
+tagline = "Just another Ivy site"
 
 # The default theme displays the 'copyright' string in the site's footer.
 copyright = "Copyright &copy; 2016 Foobar Industries"

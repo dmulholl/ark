@@ -186,8 +186,8 @@ class Node:
     # Return a printable tree showing the node and its descendants.
     def str(self, depth=0):
         out = ["·  " * depth + '/' + '/'.join(self.path())]
-        for slug in sorted(self.subnodes):
-            out.append(self.subnodes[slug].str(depth + 1))
+        for child in self.children():
+            out.append(child.str(depth + 1))
         return '\n'.join(out)
 
     # String representation of the Node instance.

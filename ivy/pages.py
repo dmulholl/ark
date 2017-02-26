@@ -23,7 +23,7 @@ class Page(dict):
         self['inc'] = includes.load()
         self['site'] = site.config
         self['node'] = node
-        self['subnodes'] = node.children()
+        self['children'] = node.children()
         self['index'] = []
         self['flags'] = {
             'is_index': False,
@@ -91,21 +91,17 @@ class Page(dict):
 
         return site.out(*sluglist)
 
-    # Determine the output file's relative depth from the output directory.
-    def get_page_depth(self):
-        relpath = os.path.relpath(self['filepath'], site.out())
-        elements = relpath.replace('\\', '/').split('/')
-        return len(elements)
-
     # Regex for locating @root/ urls for rewriting. Note that we only
     # rewrite urls enclosed in quotes or angle brackets.
     re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
 
     # Rewrite @root/ urls to their final form.
     def rewrite_urls(self, html):
-        depth = self.get_page_depth()
+        relpath = os.path.relpath(self['filepath'], site.out())
+        depth = len(relpath.replace('\\', '/').split('/'))
+
         prefix = site.config.get('root') or '../' * (depth - 1)
-        suffix = site.config['extension']
+        suffix = site.config.get('extension')
 
         # Each matched url is replaced with the output of this callback.
         def callback(match):

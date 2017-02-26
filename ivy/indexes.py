@@ -13,31 +13,25 @@ class Index:
     # Every Index is initialized with an associated Node instance. This
     # node's location in the parse tree determines the output path for
     # the Index's individual Page instances.
-    def __init__(self, node, nodes):
-        self.node = node
-        self.nodes = nodes
-        self.order_by = node.get('order_by', 'date')
-        self.per_page = node.get('per_index', 10)
-        self.reverse = node.get('reverse', True)
+    def __init__(self, node, nodes, per_page=None):
 
-    # Initialize the index by creating the required number of individual
-    # Page instances.
-    def init(self):
-
-        # Discard any nodes that lack the requisite order_by attribute.
-        nodes = [node for node in self.nodes if self.order_by in node]
-
-        # Sort the nodes.
-        nodes.sort(key=lambda n: n[self.order_by], reverse=self.reverse)
+        # Filter and sort the node list.
+        order_by = node.get('order_by', 'date')
+        reverse = node.get('reverse', True)
+        nodes = [node for node in nodes if order_by in node]
+        nodes.sort(key=lambda node: node[order_by], reverse=reverse)
 
         # How many pages do we need?
-        per_page = self.per_page or len(nodes) or 1
+        if per_page is None:
+            per_page = node.get('per_index', 10)
+        if per_page == 0:
+            per_page = len(nodes) or 1
         total = math.ceil(float(len(nodes)) / per_page)
 
         # Create the required number of pages.
         self.pages = []
         for i in range(1, total + 1):
-            page = pages.Page(self.node)
+            page = pages.Page(node)
             self.pages.append(page)
 
             page['index'] = nodes[per_page * (i - 1) : per_page * i]
@@ -46,10 +40,10 @@ class Index:
 
             page['paging']['page'] = i
             page['paging']['total'] = total
-            page['paging']['first_url'] = self.node.paged_url(1, total)
-            page['paging']['prev_url'] = self.node.paged_url(i - 1, total)
-            page['paging']['next_url'] = self.node.paged_url(i + 1, total)
-            page['paging']['last_url'] = self.node.paged_url(total, total)
+            page['paging']['first_url'] = node.paged_url(1, total)
+            page['paging']['prev_url'] = node.paged_url(i - 1, total)
+            page['paging']['next_url'] = node.paged_url(i + 1, total)
+            page['paging']['last_url'] = node.paged_url(total, total)
 
     # Render each page in the index into html and write it to disk.
     def render(self):
@@ -68,5 +62,4 @@ class LeafIndex(Index):
 
     def __init__(self, node):
         super().__init__(node, node.leaves())
-        self.init()
         self.set_flag('is_leaf_index', True)
