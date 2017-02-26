@@ -1,8 +1,5 @@
 ---
-title: Second Sample Post
-author: John Doe
-date: 2015-01-02
-tags: bar, baz, bam
+title: Child One
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

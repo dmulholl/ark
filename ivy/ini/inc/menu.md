@@ -4,4 +4,6 @@
 
 * [Home](@root/)
 * [About](@root/about//)
-* [Posts](@root/posts//)
+* [Parent](@root/parent//)
+    * [Child One](@root/parent/child-1//)
+    * [Child Two](@root/parent/child-2//)

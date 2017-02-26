@@ -1,8 +1,5 @@
 ---
-title: First Sample Post
-author: John Doe
-date: 2015-01-01
-tags: foo, bar, baz
+title: Child Two
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
