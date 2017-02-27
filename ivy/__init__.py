@@ -43,7 +43,7 @@ from . import slugs
 from . import theme
 
 
-# The main() function is the application's entry point. Calling main()
+# The main() function provides the application's entry point. Calling main()
 # initializes the site model, loads the site's plugins, and fires a series of
 # event hooks. All the application's functionality is handled by callbacks
 # registered on these hooks.

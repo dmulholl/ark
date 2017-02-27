@@ -29,8 +29,8 @@ _hashes = { 'old': {}, 'new': {} }
 def cachefile():
     if not 'cachefile' in _hashes:
         name = hashlib.sha1(site.home().encode()).hexdigest() + '.pickle'
-        user = os.path.expanduser('~')
-        _hashes['cachefile'] = os.path.join(user, '.cache', 'ivy', name)
+        home = os.path.expanduser('~')
+        _hashes['cachefile'] = os.path.join(home, '.cache', 'ivy', name)
     return _hashes['cachefile']
 
 

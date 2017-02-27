@@ -1,9 +1,7 @@
 
 # Ivy
 
-Ivy is an experimental static website generator. It's powerful, flexible, and elegant.
-
-Ivy is built in Python and runs on the command line:
+A simple static website generator built in Python:
 
     $ ivy --help
 
@@ -25,10 +23,6 @@ Ivy is built in Python and runs on the command line:
 
     Command Help:
       help <command>      Print the specified command's help text and exit.
-
-Ivy is a successor to [Ark][]. Note that Ark is a mature, stable, and documented application; Ivy is unstable and undocumented. Breaking changes are guaranteed.
-
-[ark]: https://github.com/dmulholland/ark
 
 
 
