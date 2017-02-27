@@ -8,17 +8,17 @@ import ivy
 
 @ivy.hooks.register('init_tree')
 def generate_breadcrumb_trail(tree):
-    tree.walk(node_callback)
+    tree.walk(callback)
 
 
-def node_callback(node):
+def callback(node):
 
     # Assemble separate trails of names and links.
     names, links, current = [], [], node
 
     # Stop when 'current' is the root node.
     while current.parent is not None:
-        name = current.data.get('title') or current.stem
+        name = current.get('title') or current.stem
         link = '<a href="%s">%s</a>' % (current['url'], name)
         names.append(name)
         links.append(link)

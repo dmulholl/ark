@@ -40,7 +40,7 @@ def node(*slugs):
 
 # A Node instance represents a directory or text file (or both) in the
 # site's source directory.
-class Node:
+class Node():
 
     def __init__(self):
         self.data = {}
@@ -51,49 +51,40 @@ class Node:
         self.format = ''
 
         # Default attributes.
-        self.data['text'] = ''
-        self.data['html'] = ''
-        self.data['date'] = dt.datetime.now()
+        self['text'] = ''
+        self['html'] = ''
+        self['date'] = dt.datetime.now()
 
-    # ----------------------------------------------------------------------
-    # Support for dictionary-style access with attribute inheritance.
-    # ----------------------------------------------------------------------
+    # String representation of the Node instance.
+    def __repr__(self):
+        return "<Node /%s>" % '/'.join(self.path())
 
-    # Dictionary-style read access with attribute inheritance.
+    # Dictionary-style read access.
     def __getitem__(self, key):
-        while self is not None:
-            if key in self.data:
-                return self.data[key]
-            self = self.parent
-        raise KeyError(key)
+        return self.data[key]
 
     # Dictionary-style write access.
     def __setitem__(self, key, value):
         self.data[key] = value
 
-    # Dictionary-style 'in' support with attribute inheritance.
+    # Dictionary-style 'in' support.
     def __contains__(self, key):
-        while self is not None:
-            if key in self.data:
-                return True
-            self = self.parent
-        return False
+        return key in self.data
 
-    # Dictionary-style 'get' support with attribute inheritance.
+    # Dictionary-style 'get' support.
     def get(self, key, default=None):
-        while self is not None:
-            if key in self.data:
-                return self.data[key]
-            self = self.parent
-        return default
+        return self.data.get(key, default)
 
-    # Update the node with data from a dictionary.
-    def update(self, data):
-        self.data.update(data)
+    # Dictionary-style 'update' support.
+    def update(self, other):
+        self.data.update(other)
 
-    # ----------------------------------------------------------------------
-    # Public methods.
-    # ----------------------------------------------------------------------
+    # Return a printable tree showing the node and its descendants.
+    def str(self, depth=0):
+        out = ["·  " * depth + '/' + '/'.join(self.path())]
+        for child in self.children():
+            out.append(child.str(depth + 1))
+        return '\n'.join(out)
 
     # Initialize the node. This method is called on each node in the parse
     # tree once the entire tree has been assembled.
@@ -169,16 +160,13 @@ class Node:
                 leaf_nodes.append(subnode)
         return leaf_nodes
 
-    # Return a printable tree showing the node and its descendants.
-    def str(self, depth=0):
-        out = ["·  " * depth + '/' + '/'.join(self.path())]
-        for child in self.children():
-            out.append(child.str(depth + 1))
-        return '\n'.join(out)
-
-    # String representation of the Node instance.
-    def __repr__(self):
-        return "<Node /%s>" % '/'.join(self.path())
+    # Dictionary-style 'get' with attribute inheritance.
+    def inheriget(self, key, default=None):
+        while self is not None:
+            if key in self.data:
+                return self.data[key]
+            self = self.parent
+        return default
 
 
 # Parse a source directory.

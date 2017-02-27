@@ -8,8 +8,8 @@ import ivy
 
 # Register a callback on the 'page_classes' filter.
 @ivy.hooks.register('page_classes')
-def custom_classes_callback(classes, page):
-    if 'classes' in page['node'].data:
-        for item in str(page['node'].data['classes']).split(','):
-            classes.append(item.strip())
-    return classes
+def custom_classes_callback(class_list, page):
+    if 'classes' in page['node']:
+        for item in str(page['node']['classes']).split(','):
+            class_list.append(item.strip())
+    return class_list
