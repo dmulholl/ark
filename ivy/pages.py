@@ -24,7 +24,9 @@ class Page(dict):
         self['site'] = site.config
         self['node'] = node
         self['children'] = node.children()
-        self['flags'] = {}
+        self['flags'] = {
+            'is_homepage': node['url'] == '@root/',
+        }
 
     # Render the page into html and write the html to disk.
     def render(self):
