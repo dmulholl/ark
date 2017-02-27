@@ -18,13 +18,13 @@ theme = "debug"
 # Theme Settings
 # --------------------------------------------------------------------------
 
-# The default theme displays the 'title' string as the site's title.
+# Site title - how this is displayed depends on the theme.
 title = "Site Title"
 
-# The default theme displays the 'tagline' string in the site's header.
+# Site tagline - how this is displayed depends on the theme.
 tagline = "Just another Ivy site"
 
-# The default theme displays the 'copyright' string in the site's footer.
+# Site copyright notice - how this is displayed depends on the theme.
 copyright = "Copyright &copy; 2016 Foobar Industries"
 
 # --------------------------------------------------------------------------
