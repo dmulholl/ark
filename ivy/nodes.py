@@ -5,7 +5,7 @@
 import pathlib
 import datetime as dt
 
-from . import slugs
+from . import utils
 from . import hooks
 from . import renderers
 from . import loader
@@ -190,7 +190,7 @@ def parse_node_directory(dirnode, dirpath):
 
     # Loop over the directory's subdirectories.
     for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_dir()]:
-        slug = slugs.slugify(path.stem)
+        slug = utils.slugify(path.stem)
         subnode = Node()
         subnode.slug = slug
         subnode.stem = path.stem
@@ -217,7 +217,7 @@ def parse_node_file(dirnode, filepath):
 
     # Check if the file is coterminous with an existing node before creating
     # a new one.
-    slug = slugs.slugify(filepath.stem)
+    slug = utils.slugify(filepath.stem)
     if slug == 'index':
         filenode = dirnode
     else:

@@ -9,7 +9,6 @@ from . import site
 from . import includes
 from . import hooks
 from . import utils
-from . import slugs
 from . import templates
 from . import hashes
 

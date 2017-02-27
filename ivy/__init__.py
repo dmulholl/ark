@@ -39,7 +39,6 @@ from . import nodes
 from . import pages
 from . import renderers
 from . import site
-from . import slugs
 from . import theme
 
 
