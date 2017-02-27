@@ -75,6 +75,14 @@ class Node():
     def get(self, key, default=None):
         return self.data.get(key, default)
 
+    # Dictionary-style 'get' with attribute inheritance.
+    def inheriget(self, key, default=None):
+        while self is not None:
+            if key in self.data:
+                return self.data[key]
+            self = self.parent
+        return default
+
     # Dictionary-style 'update' support.
     def update(self, other):
         self.data.update(other)
@@ -159,14 +167,6 @@ class Node():
             else:
                 leaf_nodes.append(subnode)
         return leaf_nodes
-
-    # Dictionary-style 'get' with attribute inheritance.
-    def inheriget(self, key, default=None):
-        while self is not None:
-            if key in self.data:
-                return self.data[key]
-            self = self.parent
-        return default
 
 
 # Parse a source directory.
