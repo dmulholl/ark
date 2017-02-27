@@ -1,6 +1,5 @@
 # --------------------------------------------------------------------------
-# Default site building routine. Builds a page or leaf index for each node
-# in the parse tree.
+# Default build routine. Builds a page for each node in the parse tree.
 # --------------------------------------------------------------------------
 
 import os
@@ -25,10 +24,5 @@ def build_site():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Run the build_node callback on each node in the parse tree.
-    nodes.root().walk(build_node)
-
-
-# This function will be called on each node in the parse tree.
-def build_node(node):
-    pages.Page(node).render()
+    # Walk the parse tree and render a page for each node.
+    nodes.root().walk(lambda node: pages.Page(node).render())
