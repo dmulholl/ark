@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds support for custom templates.
+# This extension adds support for custom page templates.
 # --------------------------------------------------------------------------
 
 import ivy

@@ -3,7 +3,7 @@
 Ivy
 ===
 
-Ivy is an experimental static site generator. It's powerful, flexible, and elegant.
+Ivy is a static website generator. It's powerful, flexible, and elegant.
 
 * `Github Homepage <https://github.com/dmulholland/ivy>`_
 
@@ -61,7 +61,7 @@ setup(
     author = 'Darren Mulholland',
     url='https://github.com/dmulholland/ivy',
     license = 'Public Domain',
-    description = 'An experimental static site generator.',
+    description = 'A static website generator.',
     long_description = __doc__,
     classifiers = [
         'Programming Language :: Python :: 3',
