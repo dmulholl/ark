@@ -3,17 +3,16 @@
 # --------------------------------------------------------------------------
 
 import os
-import clio
 import sys
+
+import clio
+import ivy
 
 from . import build
 from . import init
 from . import clear
 from . import serve
 from . import watch
-
-from .. import meta
-from .. import hooks
 
 
 # We want the root ArgParser instance to be available to plugins.
@@ -50,7 +49,7 @@ def parse():
     global parser
 
     # Root parser.
-    parser = clio.ArgParser(helptext, meta.__version__)
+    parser = clio.ArgParser(helptext, ivy.__version__)
 
     # Register the 'build' command.
     cmd_build = parser.add_cmd("build", build.helptext, build.callback)
@@ -87,7 +86,7 @@ def parse():
 
     # Fire the 'cli' event. Plugins can use this event to register their own
     # custom commands and options.
-    hooks.event('cli', parser)
+    ivy.hooks.event('cli', parser)
 
     # Parse the application's command line arguments.
     parser.parse()

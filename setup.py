@@ -31,7 +31,7 @@ with io.open(manpath, 'w', encoding='utf-8') as manfile:
 
 
 # Load the package's metadata into the meta dict.
-metapath = os.path.join(os.path.dirname(__file__), 'ivy', 'meta.py')
+metapath = os.path.join(os.path.dirname(__file__), 'ivy', '__init__.py')
 with io.open(metapath, encoding='utf-8') as metafile:
     regex = r'''^__([a-z]+)__ = ["'](.*)["']'''
     meta = dict(re.findall(regex, metafile.read(), flags=re.MULTILINE))

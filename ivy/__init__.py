@@ -8,6 +8,10 @@
 import sys
 
 
+# Application version number.
+__version__ = '0.2.1'
+
+
 # Ivy requires at least Python 3.5.
 if sys.version_info < (3, 5):
     sys.exit('Error: Ivy requires Python >= 3.5.')
