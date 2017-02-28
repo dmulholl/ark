@@ -132,8 +132,8 @@ class Page(dict):
     def get_template_list(self):
         template_list = self.get_slug_list()
 
-        if 'template' in page['node']:
-            template_list.insert(0, page['node']['template'])
+        if 'template' in self['node']:
+            template_list.insert(0, self['node']['template'])
 
         return hooks.filter('page_templates', template_list, self)
 
@@ -141,8 +141,8 @@ class Page(dict):
     def get_class_list(self):
         class_list = self.get_slug_list()
 
-        if 'classes' in page['node']:
-            for item in str(page['node']['classes']).split(','):
+        if 'classes' in self['node']:
+            for item in str(self['node']['classes']).split(','):
                 class_list.append(item.strip())
 
         return hooks.filter('page_classes', class_list, self)
