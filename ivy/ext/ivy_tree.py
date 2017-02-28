@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds a 'debug' command to Ivy's CLI.
+# This extension adds a 'tree' command to Ivy's CLI.
 # --------------------------------------------------------------------------
 
 import ivy
@@ -10,9 +10,9 @@ import os
 
 # Command help text.
 helptext = """
-Usage: %s debug [FLAGS]
+Usage: %s tree [FLAGS]
 
-  Print debug information for the current site.
+  Print the site's node tree.
 
 Flags:
   --help                Print this command's help text and exit.
@@ -23,7 +23,7 @@ Flags:
 # Register our new command on the 'cli' event hook.
 @ivy.hooks.register('cli')
 def register_tree_command(parser):
-    parser.add_cmd("debug", helptext, callback)
+    parser.add_cmd("tree", helptext, callback)
 
 
 # Command callback.
