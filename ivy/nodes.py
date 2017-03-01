@@ -27,7 +27,8 @@ def root():
     return tree
 
 
-# Return the node corresponding to the specified path. Returns None if the
+# Return the node corresponding to the specified path, i.e. the sequence of
+# slugs uniquely identifying the node in the parse tree. Returns None if the
 # node does not exist.
 def node(*slugs):
     node = root()
