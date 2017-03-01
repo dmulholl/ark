@@ -72,43 +72,43 @@ def find_home():
 # Return the path to the site's home directory or an empty string if the
 # home directory cannot be located. Append arguments.
 def home(*append):
-    path = config.get('home') or config.setdefault('home', find_home())
+    path = cache.get('home') or cache.setdefault('home', find_home())
     return join(path, *append)
 
 
 # Return the path to the source directory. Append arguments.
 def src(*append):
-    path = config.get('src') or config.setdefault('src', home('src'))
+    path = cache.get('src') or cache.setdefault('src', home('src'))
     return join(path, *append)
 
 
 # Return the path to the output directory. Append arguments.
 def out(*append):
-    path = config.get('out') or config.setdefault('out', home('out'))
+    path = cache.get('out') or cache.setdefault('out', home('out'))
     return join(path, *append)
 
 
 # Return the path to the theme-library directory. Append arguments.
 def lib(*append):
-    path = config.get('lib') or config.setdefault('lib', home('lib'))
+    path = cache.get('lib') or cache.setdefault('lib', home('lib'))
     return join(path, *append)
 
 
 # Return the path to the extensions directory. Append arguments.
 def ext(*append):
-    path = config.get('ext') or config.setdefault('ext', home('ext'))
+    path = cache.get('ext') or cache.setdefault('ext', home('ext'))
     return join(path, *append)
 
 
 # Return the path to the includes directory. Append arguments.
 def inc(*append):
-    path = config.get('inc') or config.setdefault('inc', home('inc'))
+    path = cache.get('inc') or cache.setdefault('inc', home('inc'))
     return join(path, *append)
 
 
 # Return the path to the resources directory. Append arguments.
 def res(*append):
-    path = config.get('res') or config.setdefault('res', home('res'))
+    path = cache.get('res') or cache.setdefault('res', home('res'))
     return join(path, *append)
 
 

@@ -41,11 +41,11 @@ def callback(parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
 
-    if parser['out']: site.config['out'] = parser['out']
-    if parser['src']: site.config['src'] = parser['src']
-    if parser['lib']: site.config['lib'] = parser['lib']
-    if parser['inc']: site.config['inc'] = parser['inc']
-    if parser['res']: site.config['res'] = parser['res']
+    if parser['out']: site.cache['out'] = parser['out']
+    if parser['src']: site.cache['src'] = parser['src']
+    if parser['lib']: site.cache['lib'] = parser['lib']
+    if parser['inc']: site.cache['inc'] = parser['inc']
+    if parser['res']: site.cache['res'] = parser['res']
 
     if parser['theme']:
         site.config['theme'] = parser['theme']
