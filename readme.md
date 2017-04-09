@@ -1,7 +1,7 @@
 
 # Ivy
 
-A simple static website generator built in Python:
+A static website generator built in Python:
 
     $ ivy --help
 
