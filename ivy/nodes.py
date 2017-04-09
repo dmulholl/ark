@@ -77,7 +77,7 @@ class Node():
         return self.data.get(key, default)
 
     # Dictionary-style 'get' with attribute inheritance.
-    def inheriget(self, key, default=None):
+    def inherit(self, key, default=None):
         while self is not None:
             if key in self.data:
                 return self.data[key]
