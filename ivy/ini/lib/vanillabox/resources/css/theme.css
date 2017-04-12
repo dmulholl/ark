@@ -153,7 +153,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px dotted #bbb;
+    border-top: 1px dotted #ddd;
     margin: 2.5rem 3rem;
     padding: 0;
 }
@@ -205,7 +205,6 @@ a {
     text-decoration: none;
     border-bottom: 1px dotted;
 }
-
 a:hover {
     border-bottom: 1px solid;
 }
@@ -214,10 +213,17 @@ a:hover {
     Layout
 */
 
+body {
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
 .main {
     max-width: 740px;
     margin: 0 auto;
-    padding: 0px 50px 80px;
+    padding: 45px 50px 60px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ddd;
 }
 
 /*
@@ -261,8 +267,59 @@ a:hover {
     color: #aaa;
     transition: color 0.5s;
 }
-
 .head a:hover {
+    border: none;
+    color: #4183C4;
+    transition: color 0.3s;
+}
+
+/*
+    Site Footer
+*/
+
+.foot {
+    text-align: center;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 25px 50px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.foot p {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.foot ul {
+    list-style: none;
+    margin: 5px 0;
+    padding: 0;
+}
+
+.foot ul ul {
+    display: none;
+}
+
+.foot li {
+    margin: 0;
+    display: inline-block;
+}
+
+.foot li:before {
+    content: "\A0·\A0\A0";
+}
+
+.foot li:first-child:before {
+    content: none;
+}
+
+.foot a {
+    border: none;
+    color: #aaa;
+    transition: color 0.5s;
+}
+.foot a:hover {
     border: none;
     color: #4183C4;
     transition: color 0.3s;
@@ -275,11 +332,9 @@ a:hover {
 h1 + ul {
     margin-top: 2rem;
 }
-
 .main > :first-child {
     margin-top: 0;
 }
-
 .main > :last-child {
     margin-bottom: 0;
 }
@@ -400,7 +455,7 @@ table .stx-right {
     Tablet & Landscape Phone
 */
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 840px) {
     html {
         font-size: 14px;
     }
@@ -430,7 +485,9 @@ table .stx-right {
     }
 
     .main {
-        padding: 0 50px 60px
+        border: none;
+        box-shadow: none;
+        padding: 0 50px 50px
     }
 
     .head {
@@ -472,7 +529,7 @@ table .stx-right {
     }
 
     .main {
-        padding: 0px 30px 40px;
+        padding: 15px 30px 40px;
     }
 
     .head {

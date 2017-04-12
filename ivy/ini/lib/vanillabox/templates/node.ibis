@@ -33,5 +33,9 @@
         {{ node.html }}
     </article>
 
+    <footer id="foot" class="foot">
+        {{ inc.menu }}
+    </footer>
+
 </body>
 </html>
