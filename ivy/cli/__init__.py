@@ -33,9 +33,9 @@ Flags:
 Commands:
   build               Build the site.
   clear               Clear the output directory.
-  tree                Print the site's node tree.
   init                Initialize a new site directory.
   serve               Run a web server on the site's output directory.
+  tree                Print the site's node tree.
   watch               Monitor the site directory and rebuild on changes.
 
 Command Help:

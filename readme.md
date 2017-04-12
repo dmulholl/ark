@@ -19,6 +19,7 @@ A static website generator built in Python:
       clear               Clear the output directory.
       init                Initialize a new site directory.
       serve               Run a web server on the site's output directory.
+      tree                Print the site's node tree.
       watch               Monitor the site directory and rebuild on changes.
 
     Command Help:
