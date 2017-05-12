@@ -3,7 +3,6 @@
 # --------------------------------------------------------------------------
 
 import pathlib
-import datetime as dt
 
 from . import utils
 from . import hooks
@@ -54,7 +53,6 @@ class Node():
         # Default attributes.
         self['text'] = ''
         self['html'] = ''
-        self['date'] = dt.datetime.now()
 
     # String representation of the Node instance.
     def __repr__(self):
