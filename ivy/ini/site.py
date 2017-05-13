@@ -25,7 +25,7 @@ title = "Site Title"
 tagline = "Just another Ivy site"
 
 # Site copyright notice - how this is displayed depends on the theme.
-copyright = "Copyright &copy; 2016 Foobar Industries"
+copyright = "Copyright &copy; 1901 Foobar Industries"
 
 # --------------------------------------------------------------------------
 # Root URL
