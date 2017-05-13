@@ -1,7 +1,7 @@
 
 # Ivy
 
-A static website generator built in Python:
+Ivy is a minimalist static website generator built in Python. It transforms a directory of text files into a self-contained website.
 
     $ ivy --help
 
@@ -25,18 +25,6 @@ A static website generator built in Python:
     Command Help:
       help <command>      Print the specified command's help text and exit.
 
+See the [documentation][docs] for details.
 
-
-## Installation
-
-Install directly from the Python Package Index using `pip`:
-
-    $ pip install ivy
-
-Ivy requires Python 3.5 or later.
-
-
-
-## License
-
-This work has been placed in the public domain.
+[docs]: http://mulholland.xyz/docs/ivy/
