@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        Themes
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/pygments.css">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body class="node-themes node">
+
+    <header id="head" class="head">
+        <input id="menu-check" type="checkbox"/>
+        <label id="menu-label" for="menu-check" class="unselectable">
+            <span class="icon close">✕</span>
+            <span class="icon open">☰</span>
+            <span class="text">MENU</span>
+        </label>
+        <ul>
+<li>
+<a href="index.html">Ivy</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="extensions.html">Extensions</a>
+</li>
+</ul>
+
+    </header>
+
+    <article id="main" class="main">
+        
+            <h1>Themes</h1>
+        
+
+        <p>
+A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's <code>lib</code> folder, and the name of the active theme directory specified in the site's configuration file.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;vanilla&quot;</span>
+</pre>
+<p>
+Ivy ships with two bundled themes: <code>vanilla</code>, a simple documentation theme, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
+</p>
+<p>
+Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:
+</p>
+<pre>
+$ ivy build --theme debug
+</pre>
+<p>
+Ivy searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the <code>$IVY_THEMES</code> environment variable. Finally it searches among the default themes bundled with Ivy itself.
+</p>
+<h3 id="structure">
+Structure
+</h3>
+<p>
+Ivy looks for three subdirectories within the theme directory: <code>resources</code>, <code>extensions</code>, and <code>templates</code>.
+</p>
+<ul>
+<li>
+<p>
+The content of the <code>resources</code> directory is copied to the output directory during building.
+</p>
+</li>
+<li>
+<p>
+Themes can bundle extensions for Ivy by placing Python modules or packages in the <code>extensions</code> directory.
+</p>
+</li>
+<li>
+<p>
+The <code>templates</code> directory is where Ivy looks for the theme's template files.
+</p>
+</li>
+</ul>
+<p>
+Ivy has builtin support for templates written in <a href="http://jinja.pocoo.org">Jinja</a> (using a <code>.jinja</code> extension) and <a href="https://github.com/dmulholland/ibis">Ibis</a> (using a <code>.ibis</code> extension). Support for other template languages can be added via plugins.
+</p>
+<h3 id="templates">
+Templates
+</h3>
+<p>
+When Ivy generates a HTML page it searches for the appropriate template file to use in reverse order of specificity.
+</p>
+<p>
+For example, the node file:
+</p>
+<pre>
+/src/foo/bar/baz.md
+</pre>
+<p>
+corresponds to the node:
+</p>
+<pre>
+&lt;Node /foo/bar/baz&gt;
+</pre>
+<p>
+Ivy will search for a template file for this node in the following order:
+</p>
+<pre>
+1. node-foo-bar-baz
+2. node-foo-bar
+3. node-foo
+4. node
+</pre>
+<p>
+A node can override this process by specifying a custom template file in its header:
+</p>
+<pre>
+---
+template: my-custom-template
+---
+</pre>
+<p>
+Note that the file extension should be omitted from the template name.
+</p>
+
+    </article>
+
+</body>
+</html>

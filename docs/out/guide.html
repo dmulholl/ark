@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        Guide
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/pygments.css">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body class="node-guide node">
+
+    <header id="head" class="head">
+        <input id="menu-check" type="checkbox"/>
+        <label id="menu-label" for="menu-check" class="unselectable">
+            <span class="icon close">✕</span>
+            <span class="icon open">☰</span>
+            <span class="text">MENU</span>
+        </label>
+        <ul>
+<li>
+<a href="index.html">Ivy</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="extensions.html">Extensions</a>
+</li>
+</ul>
+
+    </header>
+
+    <article id="main" class="main">
+        
+            <h1>Guide</h1>
+        
+
+        <ul class="stx-toc">
+<li>
+<a href="#command-line-interface">Command Line Interface</a>
+</li>
+<li>
+<a href="#site-structure">Site Structure</a>
+</li>
+<li>
+<a href="#nodes">Nodes</a>
+</li>
+<li>
+<a href="#links">Links</a>
+</li>
+<li>
+<a href="#includes">Includes</a>
+</li>
+<li>
+<a href="#extension-options">Extension Options</a>
+<ul>
+<li>
+<a href="#markdown">Markdown</a>
+</li>
+<li>
+<a href="#jinja">Jinja</a>
+</li>
+<li>
+<a href="#shortcodes">Shortcodes</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#dependencies">Dependencies</a>
+</li>
+</ul>
+<h2 id="command-line-interface">
+Command Line Interface
+</h2>
+<p>
+To initialize a new site, create a site directory, <code>cd</code> into it, and run the <code>init</code> command:
+</p>
+<pre>
+$ ivy init
+</pre>
+<p>
+To build an existing site, run the <code>build</code> command from the site directory or any of its subdirectories:
+</p>
+<pre>
+$ ivy build
+</pre>
+<p>
+Use the <code>ivy --help</code> flag to view the full command-line help text:
+</p>
+<pre>
+Usage: ivy [FLAGS] [COMMAND]
+
+  Ivy is a static website generator. It transforms a directory of text
+  files into a self-contained website.
+
+Flags:
+  --help              Print the application's help text and exit.
+  --version           Print the application's version number and exit.
+
+Commands:
+  build               Build the site.
+  clear               Clear the output directory.
+  init                Initialize a new site directory.
+  serve               Run a web server on the site's output directory.
+  tree                Print the site's node tree.
+  watch               Monitor the site directory and rebuild on changes.
+
+Command Help:
+  help &lt;command&gt;      Print the specified command's help text and exit.
+</pre>
+<p>
+Run <code>ivy help &lt;command&gt;</code> to view the help text for a specific command.
+</p>
+<h2 id="site-structure">
+Site Structure
+</h2>
+<p>
+Initializing a new site creates the following directory structure:
+</p>
+<pre>
+site/
+    site.py      # site configuration file
+    ext/         # extensions directory for plugins
+    inc/         # includes directory for menus, etc.
+    lib/         # library directory for themes
+    out/         # output directory for html files
+    res/         # resources directory for static assets
+    src/         # source directory for text files
+</pre>
+<p>
+The site configuration file can be deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ivy requires the presence of either a <code>site.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
+</p>
+<p>
+Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
+</p>
+<h2 id="nodes">
+Nodes
+</h2>
+<p>
+A node is a text file or a directory stored in a site's <code>src</code> directory. Ivy parses the <code>src</code> directory into a tree of nodes which it then renders into a website, generating a single HTML page in the <code>out</code> directory for each node in the tree.
+</p>
+<p>
+A node file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> header specifying metadata for the node:
+</p>
+<pre>
+---
+title: My Important Document
+author: John Doe
+date: 1901-07-21
+---
+
+Content begins here.
+</pre>
+<p>
+Node content can be written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> or <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. (Ivy can be extended via plugins to support other formats and extensions.)
+</p>
+<p>
+Note that the files
+</p>
+<pre>
+/src/sampledir/samplenode.md
+/src/sampledir/samplenode/index.md
+</pre>
+<p>
+and the directory
+</p>
+<pre>
+/src/sampledir/samplenode
+</pre>
+<p>
+all correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
+</p>
+<h2 id="links">
+Links
+</h2>
+<p>
+Ivy generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
+</p>
+<p>
+First, you can specify a root url in your site configuration file. Specify an explicit domain for absolute urls or a single forward slash <code>"/"</code> for site-relative urls.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
+</pre>
+<p>
+Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension or specify a single forward slash <code>"/"</code> to generate directory-style urls.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.html&quot;</span>
+</pre>
+<p>
+To link to files within your site from nodes or templates use site-relative urls prefixed by <code>@root/</code>, e.g.
+</p>
+<pre>
+@root/scripts/jquery.js
+</pre>
+<p>
+Ivy will automatically rewrite these urls in the appropriate format.
+</p>
+<p>
+Use two trailing slashes when linking to pages generated by Ivy itself - this tells Ivy to rewrite the ending to suit your extension settings.
+</p>
+<pre>
+@root/posts/my-post//
+</pre>
+<p>
+Linking to the homepage is a special case: a simple <code>@root/</code> will always suffice.
+</p>
+<h2 id="includes">
+Includes
+</h2>
+<p>
+The includes directory, <code>inc</code>, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntex depending on their extension and the resulting HTML made available for inclusion in template files via the <code>inc.&lt;name&gt;</code> attribute.
+</p>
+<p>
+For example, a menu can be constructed in Markdown using nested lists:
+</p>
+<pre>
+* [Home](@root/)
+* [About](@root/about//)
+* [Posts](@root/posts/index//)
+    * [Cats](@root/posts/cats/index//)
+    * [Dogs](@root/posts/dogs/index//)
+</pre>
+<p>
+If this menu was contained in a file named <code>menu.md</code> then the rendered HTML would be available in templates via the <code>inc.menu</code> attribute. (Note that filenames are converted to lower case and spaces and hyphens are converted to underscores.)
+</p>
+<p>
+Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</code> extension will have their contents preserved as-is.
+</p>
+<h2 id="extension-options">
+Extension Options
+</h2>
+<h3 id="markdown">
+Markdown
+</h3>
+<p>
+Ivy uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render record files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a <code>markdown</code> attribute, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
+</pre>
+<p>
+See the package's <a href="https://pythonhosted.org/Markdown/">documentation</a> for details of its available options.
+</p>
+<h3 id="jinja">
+Jinja
+</h3>
+<p>
+Ivy uses the <a href="http://jinja.pocoo.org">Jinja2</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
+</p>
+<h3 id="shortcodes">
+Shortcodes
+</h3>
+<p>
+Ivy uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
+</p>
+<h2 id="dependencies">
+Dependencies
+</h2>
+<p>
+Installing Ivy via <code>pip</code> automatically installs the following required dependencies:
+</p>
+<ul>
+<li>
+<p>
+<a href="https://pypi.python.org/pypi/libclio">Clio</a>
+</p>
+</li>
+</ul>
+<p>
+Installing via <code>pip</code> also automatically installs the following optional dependencies:
+</p>
+<ul>
+<li>
+<a href="https://pypi.python.org/pypi/ibis">Ibis</a>
+</li>
+<li>
+<a href="https://pypi.python.org/pypi/Jinja2">Jinja</a>
+</li>
+<li>
+<a href="https://pypi.python.org/pypi/Markdown">Markdown</a>
+</li>
+<li>
+<a href="https://pypi.python.org/pypi/Pygments">Pygments</a>
+</li>
+<li>
+<a href="https://pypi.python.org/pypi/PyYAML">PyYAML</a>
+</li>
+<li>
+<a href="https://pypi.python.org/pypi/shortcodes">Shortcodes</a>
+</li>
+<li>
+<a href="https://pypi.python.org/pypi/syntex">Syntex</a>
+</li>
+</ul>
+<p>
+Ivy will run without any of these optional dependencies installed but the associated functionality will not be available.
+</p>
+
+    </article>
+
+</body>
+</html>
