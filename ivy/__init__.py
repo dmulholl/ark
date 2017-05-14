@@ -9,7 +9,7 @@ import sys
 
 
 # Application version number.
-__version__ = '0.2.5'
+__version__ = '0.2.6'
 
 
 # Ivy requires at least Python 3.5.
