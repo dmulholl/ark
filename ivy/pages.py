@@ -70,8 +70,7 @@ class Page(dict):
         else:
             slugs[-1] += suffix
 
-        filepath = site.out(*slugs)
-        return hooks.filter('page_path', filepath, self)
+        return hooks.filter('page_path', site.out(*slugs), self)
 
     # Regex for locating @root/ urls for rewriting. Note that we only
     # rewrite urls enclosed in quotes or angle brackets.

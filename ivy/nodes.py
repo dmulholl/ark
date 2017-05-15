@@ -12,18 +12,18 @@ from . import site
 
 
 # Stores the parse tree of Node instances.
-tree = None
+cache = None
 
 
 # Return the site's root node. Parses the root directory and assembles the
 # node tree on first call.
 def root():
-    global tree
-    if tree is None:
-        tree = Node()
-        parse_node_directory(tree, site.src())
-        hooks.event('init_tree', tree.init())
-    return tree
+    global cache
+    if cache is None:
+        cache = Node()
+        parse_node_directory(cache, site.src())
+        hooks.event('init_tree', cache.init())
+    return cache
 
 
 # Return the node corresponding to the specified path, i.e. the sequence of
