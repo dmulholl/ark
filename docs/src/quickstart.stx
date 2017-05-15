@@ -40,6 +40,6 @@ This command will start the test server and automatically launch the default web
 
 Ivy defaults to building the site using its `debug` theme, which is useful but not particularly pretty. Try rebuilding the site using the `vanilla` theme to add some basic styling:
 
-    $ ivy build -t vanilla
+    $ ivy build --theme vanilla
 
 You can run `ivy --help` to see a list of all the commands available. Note that you can get help for a specific command by running `ivy help <command>`.
