@@ -47,8 +47,44 @@
             <h1>Extensions</h1>
         
 
-        <p>
-The site extensions directory <code>ext</code> is intended for plugins that extend or enhance Ivy's functionality. Python modules placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
+        <ul class="stx-toc">
+<li>
+<a href="#installing-plugins">Installing Plugins</a>
+</li>
+<li>
+<a href="#event-amp-filter-hooks">Event &amp; Filter Hooks</a>
+<ul>
+<li>
+<a href="#events">Events</a>
+</li>
+<li>
+<a href="#filters">Filters</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#rendering-amp-parsing-engines">Rendering &amp; Parsing Engines</a>
+<ul>
+<li>
+<a href="#templates">Templates</a>
+</li>
+<li>
+<a href="#node-content">Node Content</a>
+</li>
+<li>
+<a href="#node-meta">Node Meta</a>
+</li>
+<li>
+<a href="#shortcodes">Shortcodes</a>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="installing-plugins">
+Installing Plugins
+</h2>
+<p>
+The site extensions directory <code>ext</code> is intended for plugins that extend Ivy's functionality. Python modules placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
 </p>
 <p>
 Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an <code>extensions</code> list in the site's configuration file:
@@ -148,6 +184,26 @@ Ivy has builtin support for node files written in <a href="https://en.wikipedia.
 </pre>
 <p>
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
+</p>
+<h3 id="node-meta">
+Node Meta
+</h3>
+<p>
+Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the <code>file_text</code> filter hook.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ivy</span>
+
+<span class="nd">@ivy.hooks.register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">parse_toml</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">meta</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">text</span>
+</pre>
+<p>
+This filter fires each time a node file is loaded; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
+</p>
+<p>
+The <code>file_text</code> hook can be found in the <code>ivy/loader.py</code> file.
 </p>
 <h3 id="shortcodes">
 Shortcodes

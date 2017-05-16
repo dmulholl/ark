@@ -2,7 +2,12 @@
 title: Extensions
 ---
 
-The site extensions directory `ext` is intended for plugins that extend or enhance Ivy's functionality. Python modules placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
+:insert toc
+
+
+## Installing Plugins
+
+The site extensions directory `ext` is intended for plugins that extend Ivy's functionality. Python modules placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
 
 Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an `extensions` list in the site's configuration file:
 
@@ -107,6 +112,24 @@ Ivy has builtin support for node files written in [Markdown][] and [Syntex][]. P
 
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
 
+
+
+### Node Meta
+
+Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the `file_text` filter hook.
+
+::: python
+
+    import ivy
+
+    @ivy.hooks.register('file_text')
+    def parse_toml(text, meta):
+        ...
+        return text
+
+This filter fires each time a node file is loaded; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
+
+The `file_text` hook can be found in the `ivy/loader.py` file.
 
 
 ### Shortcodes
