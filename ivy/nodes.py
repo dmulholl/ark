@@ -56,7 +56,7 @@ class Node():
 
     # String representation of the Node instance.
     def __repr__(self):
-        return "<Node /%s>" % '/'.join(self.path())
+        return "<Node /%s>" % '/'.join(self.path)
 
     # Dictionary-style read access.
     def __getitem__(self, key):
@@ -88,17 +88,14 @@ class Node():
 
     # Return a printable tree showing the node and its descendants.
     def str(self, depth=0):
-        out = ["·  " * depth + '/' + '/'.join(self.path())]
-        for child in self.children():
+        out = ["·  " * depth + '/' + '/'.join(self.path)]
+        for child in self.children:
             out.append(child.str(depth + 1))
         return '\n'.join(out)
 
     # Initialize the node. This method is called on each node in the parse
     # tree once the entire tree has been assembled.
     def init(self):
-
-        # Determine the node's url.
-        self['url'] = self.url()
 
         # Filter the node's text on the 'node_text' hook.
         self['text'] = hooks.filter('node_text', self['text'], self)
@@ -121,48 +118,52 @@ class Node():
         # Enable chaining.
         return self
 
-    # Return the node's path, i.e. the list of slugs that uniquely identify
-    # its location in the parse tree.
-    def path(self):
-        sluglist = []
-        while self.parent is not None:
-            sluglist.append(self.slug)
-            self = self.parent
-        sluglist.reverse()
-        return sluglist
-
-    # Return the node's url. Append arguments.
-    def url(self, *append):
-        sluglist = self.path() + list(append)
-        if sluglist:
-            return '@root/' + '/'.join(sluglist) + '//'
-        else:
-            return '@root/'
-
     # Call the specified function on the node and all its descendants.
     def walk(self, callback):
         for node in self.subnodes.values():
             node.walk(callback)
         callback(self)
 
+    # Return the node's path, i.e. the list of slugs that uniquely identify
+    # its location in the parse tree.
+    @property
+    def path(self):
+        slugs = []
+        while self.parent is not None:
+            slugs.append(self.slug)
+            self = self.parent
+        slugs.reverse()
+        return slugs
+
+    # Return the node's url.
+    @property
+    def url(self):
+        if self.parent:
+            return '@root/' + '/'.join(self.path) + '//'
+        else:
+            return '@root/'
+
     # Return a list of child nodes ordered by slug.
+    @property
     def children(self):
         return [self.subnodes[slug] for slug in sorted(self.subnodes)]
 
-    # Return a list of all descendent nodes. (Undefined order.)
+    # Return a list of descendent nodes. (Undefined order.)
+    @property
     def descendants(self):
         descendent_nodes = []
         for subnode in self.subnodes.values():
             descendent_nodes.append(subnode)
-            descendent_nodes.extend(subnode.descendants())
+            descendent_nodes.extend(subnode.descendants)
         return descendent_nodes
 
-    # Return a list of all descendent leaf nodes. (Undefined order)
+    # Return a list of descendent leaf nodes. (Undefined order)
+    @property
     def leaves(self):
         leaf_nodes = []
         for subnode in self.subnodes.values():
             if subnode.subnodes:
-                leaf_nodes.extend(subnode.leaves())
+                leaf_nodes.extend(subnode.leaves)
             else:
                 leaf_nodes.append(subnode)
         return leaf_nodes
@@ -208,7 +209,7 @@ def parse_node_file(dirnode, filepath):
     if slug == 'index':
         filenode = dirnode
     else:
-        filenode = node(*dirnode.path(), slug) or Node()
+        filenode = node(*dirnode.path, slug) or Node()
         filenode.slug = slug
         filenode.stem = filepath.stem
         filenode.parent = dirnode

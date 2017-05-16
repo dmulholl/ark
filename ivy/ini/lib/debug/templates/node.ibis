@@ -27,10 +27,10 @@
 
         <h2>Children</h2>
         <ul>
-            {% for child in children %}
+            {% for child in node.children %}
                 <li><a href="{{ child.url }}">{{{ child }}}</a></li>
             {% empty %}
-                <li>Empty.</li>
+                <li>None.</li>
             {% endfor %}
         </ul>
         <hr>

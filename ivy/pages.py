@@ -22,10 +22,7 @@ class Page(dict):
         self['inc'] = includes.load()
         self['site'] = site.config
         self['node'] = node
-        self['children'] = node.children()
-        self['flags'] = {
-            'is_homepage': node['url'] == '@root/',
-        }
+        self['flags'] = {'is_homepage': node.parent is None}
 
     # Render the page into html and write the html to disk.
     def render(self):
@@ -59,7 +56,7 @@ class Page(dict):
 
     # Determine the output filepath for the page.
     def get_filepath(self):
-        slugs = self['node'].path() or ['index']
+        slugs = self['node'].path or ['index']
         suffix = site.config['extension']
 
         if suffix == '/':
@@ -119,7 +116,7 @@ class Page(dict):
 
     # Assemble a list of path slugs.
     def get_slug_list(self):
-        slugs, stack = [], ['node'] + self['node'].path()
+        slugs, stack = [], ['node'] + self['node'].path
 
         while stack:
             slugs.append('-'.join(stack))
