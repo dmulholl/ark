@@ -18,6 +18,6 @@ def print_stats():
     average = time / rendered if rendered else 0
 
     # Print stats.
-    report =  "Rendered: %5d  |  Written: %5d  |  "
-    report += "Time: %5.2f sec  |  Avg: %.4f sec/page"
+    report =  "Rendered: %5d  ·  Written: %5d  ·  "
+    report += "Time: %5.2f sec  ·  Avg: %.4f sec/page"
     print(report % (rendered, written, time, average))
