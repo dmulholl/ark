@@ -63,12 +63,12 @@ def callback(parser):
     address = server.socket.getsockname()
     cols, _ = shutil.get_terminal_size()
 
-    print("-" * cols)
+    print("─" * cols)
     print("Root: %s" % site.out())
     print("Host: %s"  % address[0])
     print("Port: %s" % address[1])
     print("Stop: Ctrl-C")
-    print("-" * cols)
+    print("─" * cols)
 
     if not parser['no-browser']:
         webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
@@ -76,7 +76,7 @@ def callback(parser):
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\n" + "-" * cols)
+        print("\n" + "─" * cols)
         print("Stopping server...")
-        print("-" * cols)
+        print("─" * cols)
         server.server_close()

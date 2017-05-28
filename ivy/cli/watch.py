@@ -74,14 +74,14 @@ def callback(parser):
     cols, _ = shutil.get_terminal_size()
 
     # Print a header showing the site location.
-    print("-" * cols)
+    print("─" * cols)
     print("Site: %s" % home)
     print("Stop: Ctrl-C")
-    print("-" * cols)
+    print("─" * cols)
 
     # Build the site with the 'firstwatch' flag.
     subprocess.call(args + ['firstwatch'])
-    print("-" * cols)
+    print("─" * cols)
 
     # Create a hash digest of the site directory.
     oldhash = hashsite(home)
@@ -99,9 +99,9 @@ def callback(parser):
         pass
 
     # Build the site with the 'lastwatch' flag.
-    print("\n" + "-" * cols)
+    print("\n" + "─" * cols)
     subprocess.call(args + ['lastwatch'])
-    print("-" * cols)
+    print("─" * cols)
 
 
 # Return a hash digest of the site directory.
