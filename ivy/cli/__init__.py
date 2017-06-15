@@ -73,6 +73,7 @@ def parse():
     cmd_serve.add_str("directory d", None)
     cmd_serve.add_str("host h", "localhost")
     cmd_serve.add_int("port p", 0)
+    cmd_serve.add_str("b browser", None)
 
     # Register the 'watch' command.
     cmd_watch = parser.add_cmd("watch", watch.helptext, watch.callback)

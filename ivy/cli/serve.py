@@ -25,6 +25,7 @@ Usage: %s serve [FLAGS] [OPTIONS]
   that port numbers below 1024 require root authorization.
 
 Options:
+  -b, --browser <str>       Specify a browser to open by name.
   -d, --directory <path>    Specify a custom directory to serve.
   -h, --host <str>          Host IP address. Defaults to localhost.
   -p, --port <int>          Port number. Defaults to 0, i.e. random.
@@ -61,17 +62,23 @@ def callback(parser):
         sys.exit("Error: address already in use. Choose a different port.")
 
     address = server.socket.getsockname()
-    cols, _ = shutil.get_terminal_size()
 
+    if parser['browser']:
+        try:
+            browser = webbrowser.get(parser['browser'])
+        except webbrowser.Error:
+            sys.exit("Error: cannot locate browser '%s'." % parser['browser'])
+        browser.open("http://%s:%s" % (parser['host'], address[1]))
+    elif not parser['no-browser']:
+        webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
+
+    cols, _ = shutil.get_terminal_size()
     print("─" * cols)
     print("Root: %s" % site.out())
     print("Host: %s"  % address[0])
     print("Port: %s" % address[1])
     print("Stop: Ctrl-C")
     print("─" * cols)
-
-    if not parser['no-browser']:
-        webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
 
     try:
         server.serve_forever()
