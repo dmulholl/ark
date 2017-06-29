@@ -84,6 +84,7 @@ def parse():
     cmd_watch.add_str("inc i", None)
     cmd_watch.add_str("res r", None)
     cmd_watch.add_str("theme t", None)
+    cmd_watch.add_flag("view v")
 
     # Fire the 'cli' event. Plugins can use this event to register their own
     # custom commands and options.

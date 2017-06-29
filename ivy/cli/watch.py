@@ -32,6 +32,7 @@ Options:
 Flags:
   -c, --clear           Clear the output directory before each build.
       --help            Print this command's help text and exit.
+  -v, --view            View the site in the default web browser.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -45,21 +46,21 @@ def callback(parser):
         sys.exit("Error: cannot locate the site's home directory.")
 
     # Assemble a list of arguments for the subprocess call.
-    args = []
+    base = []
 
     # We need to check if the `ivy` package has been executed:
     # 1. Directly, as `python3 /path/to/ivy/package`.
     # 2. As an installed package on the import path, `python3 -m ivy`.
     # 3. Via an entry script, `ivy`.
     if os.path.isdir(sys.argv[0]):
-        args += ['python3', sys.argv[0]]
+        base += ['python3', sys.argv[0]]
     elif os.path.isfile(sys.argv[0]) and sys.argv[0].endswith('__main__.py'):
-        args += ['python3', sys.argv[0]]
+        base += ['python3', sys.argv[0]]
     elif os.path.isfile(sys.argv[0]):
-        args.append(sys.argv[0])
+        base.append(sys.argv[0])
 
     # Append the 'build' command, a 'watching' flag, and any user arguments.
-    args += ['build', 'watching'] + parser.get_args()
+    args = base + ['build', 'watching'] + parser.get_args()
 
     # Add direct support for the 'build' command's options and flags.
     if parser['out']: args += ['--out', parser['out']]
@@ -85,6 +86,15 @@ def callback(parser):
 
     # Create a hash digest of the site directory.
     oldhash = hashsite(home)
+
+    # Run the webserver in a child process. It should run silently in the
+    # background and automatically shut down when the watch process exits.
+    if parser["view"]:
+        subprocess.Popen(
+            base + ['serve'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
 
     # Loop until the user hits Ctrl-C.
     try:
