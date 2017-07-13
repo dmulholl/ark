@@ -38,7 +38,7 @@ def load_site_config():
 
     # Default settings.
     config['root'] = ''
-    config['theme'] = 'debug'
+    config['theme'] = 'graphite'
     config['extension'] = '.html'
 
     # Load the site configuration file.

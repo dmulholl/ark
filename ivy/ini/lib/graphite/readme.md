@@ -1,5 +1,5 @@
 
-# Vanilla
+# Graphite
 
 A simple Ivy theme designed for generating project documentation.
 

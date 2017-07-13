@@ -10,9 +10,9 @@
 # Theme
 # --------------------------------------------------------------------------
 
-# Choose the theme to use when building your site. This attribute should
+# Choose the theme to use when building your site. This variable should
 # specify the name of a theme directory in your site's 'lib' folder.
-theme = "debug"
+theme = "graphite"
 
 # --------------------------------------------------------------------------
 # Theme Settings
@@ -23,9 +23,6 @@ title = "Site Title"
 
 # Site tagline - how this is displayed depends on the theme.
 tagline = "Just another Ivy site"
-
-# Site copyright notice - how this is displayed depends on the theme.
-copyright = "Copyright &copy; 1901 Foobar Industries"
 
 # --------------------------------------------------------------------------
 # Root URL
