@@ -1,6 +1,9 @@
-/*
-    Syntax highlighting styles for Pygmentized code samples.
-*/
+/**
+ * -------------------------------------------------------------------------
+ *  Pygments Theme
+ * -------------------------------------------------------------------------
+ */
+
 
 pre .bp { color: #3465a4 }                      /* Name.Builtin.Pseudo */
 pre .c  { color: #8f5902; font-style: italic }  /* Comment */

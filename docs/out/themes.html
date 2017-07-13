@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>
-        Themes
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/pygments.css">
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-    <![endif]-->
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Themes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="theme.css">
+        <link rel="stylesheet" href="pygments.css">
+    </head>
+    <body class="node-themes node">
+        <header class="masthead">
+            <h1>
+                <a href="index.html">Ivy</a>
+            </h1>
 
-<body class="node-themes node">
+            
+                <p class="tagline">Ivy is a static website generator built in Python.
+It transforms a directory of text files into a self-contained website.</p>
+            
 
-    <header id="head" class="head">
-        <input id="menu-check" type="checkbox"/>
-        <label id="menu-label" for="menu-check" class="unselectable">
-            <span class="icon close">✕</span>
-            <span class="icon open">☰</span>
-            <span class="text">MENU</span>
-        </label>
-        <ul>
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
 <li>
-<a href="index.html">Ivy</a>
+<a href="index.html">Home</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -40,21 +44,23 @@
 </li>
 </ul>
 
-    </header>
+            </nav>
+        </header>
 
-    <article id="main" class="main">
-        
-            <h1>Themes</h1>
-        
-
-        <p>
+        <article class="main">
+            <header class="title">
+                <h1>Themes</h1>
+                
+                <hr>
+            </header>
+            <p>
 A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's <code>lib</code> folder, and the name of the active theme directory specified in the site's configuration file.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;vanilla&quot;</span>
+<span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;graphite&quot;</span>
 </pre>
 <p>
-Ivy ships with two bundled themes: <code>vanilla</code>, a simple documentation theme, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
+Ivy ships with a small collection of bundled themes including <code>graphite</code>, a simple documentation theme, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
 </p>
 <p>
 Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:
@@ -130,7 +136,6 @@ template: my-custom-template
 Note that the file extension should be omitted from the template name.
 </p>
 
-    </article>
-
-</body>
+        </article>
+    </body>
 </html>

@@ -48,7 +48,7 @@ This callback is registered on the `exit` event hook which fires just before the
 
 ### Filters
 
-*Filter callbacks* accept at least one argument - the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
+*Filter callbacks* accept at least one argument --- the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
 
 Here's a simple filter callback that changes every instance of the word *foo* in node content to *bar*:
 

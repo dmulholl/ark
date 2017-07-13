@@ -36,10 +36,14 @@ Run the `build` command and take a look at the output. You can open the HTML fil
 
     $ ivy serve
 
-This command will start the test server and automatically launch the default web browser to view the site. Use Ctrl-C when you want to shut the server down.
+This command will start the test server and automatically launch the default web browser to view the site. Hit Ctrl-C when you want to shut the server down.
 
-Ivy defaults to building the site using its `debug` theme, which is useful but not particularly pretty. Try rebuilding the site using the `vanilla` theme to add some basic styling:
+Ivy will build the site using its default `graphite` theme, which you can find in the `lib` folder. Try rebuilding the site using the `debug` theme which is less pretty but provides a lot of useful information that can help you when building or customizing your own themes:
 
-    $ ivy build --theme vanilla
+    $ ivy build --theme debug
 
-You can run `ivy --help` to see a list of all the commands available. Note that you can get help for a specific command by running `ivy help <command>`.
+You can run `ivy --help` to see a list of all the available commands. Note that you can get help for a specific command by running
+
+    $ ivy help <command>
+
+replacing `<command>` with the command name.

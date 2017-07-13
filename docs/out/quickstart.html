@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>
-        Quickstart
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/pygments.css">
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-    <![endif]-->
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Quickstart</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="theme.css">
+        <link rel="stylesheet" href="pygments.css">
+    </head>
+    <body class="node-quickstart node">
+        <header class="masthead">
+            <h1>
+                <a href="index.html">Ivy</a>
+            </h1>
 
-<body class="node-quickstart node">
+            
+                <p class="tagline">Ivy is a static website generator built in Python.
+It transforms a directory of text files into a self-contained website.</p>
+            
 
-    <header id="head" class="head">
-        <input id="menu-check" type="checkbox"/>
-        <label id="menu-label" for="menu-check" class="unselectable">
-            <span class="icon close">✕</span>
-            <span class="icon open">☰</span>
-            <span class="text">MENU</span>
-        </label>
-        <ul>
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
 <li>
-<a href="index.html">Ivy</a>
+<a href="index.html">Home</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -40,14 +44,16 @@
 </li>
 </ul>
 
-    </header>
+            </nav>
+        </header>
 
-    <article id="main" class="main">
-        
-            <h1>Quickstart</h1>
-        
-
-        <p>
+        <article class="main">
+            <header class="title">
+                <h1>Quickstart</h1>
+                
+                <hr>
+            </header>
+            <p>
 Install Ivy from the Python Package Index using <code>pip</code>:
 </p>
 <pre>
@@ -95,19 +101,24 @@ Run the <code>build</code> command and take a look at the output. You can open t
 $ ivy serve
 </pre>
 <p>
-This command will start the test server and automatically launch the default web browser to view the site. Use Ctrl-C when you want to shut the server down.
+This command will start the test server and automatically launch the default web browser to view the site. Hit Ctrl-C when you want to shut the server down.
 </p>
 <p>
-Ivy defaults to building the site using its <code>debug</code> theme, which is useful but not particularly pretty. Try rebuilding the site using the <code>vanilla</code> theme to add some basic styling:
+Ivy will build the site using its default <code>graphite</code> theme, which you can find in the <code>lib</code> folder. Try rebuilding the site using the <code>debug</code> theme which is less pretty but provides a lot of useful information that can help you when building or customizing your own themes:
 </p>
 <pre>
-$ ivy build --theme vanilla
+$ ivy build --theme debug
 </pre>
 <p>
-You can run <code>ivy --help</code> to see a list of all the commands available. Note that you can get help for a specific command by running <code>ivy help &lt;command&gt;</code>.
+You can run <code>ivy --help</code> to see a list of all the available commands. Note that you can get help for a specific command by running
+</p>
+<pre>
+$ ivy help &lt;command&gt;
+</pre>
+<p>
+replacing <code>&lt;command&gt;</code> with the command name.
 </p>
 
-    </article>
-
-</body>
+        </article>
+    </body>
 </html>

@@ -6,9 +6,9 @@ A theme is a collection of templates, styles, and scripts that together provide 
 
 ::: python
 
-    theme = "vanilla"
+    theme = "graphite"
 
-Ivy ships with two bundled themes: `vanilla`, a simple documentation theme, and `debug`, a diagnostic theme useful when designing themes or debugging sites.
+Ivy ships with a small collection of bundled themes including `graphite`, a simple documentation theme, and `debug`, a diagnostic theme useful when designing themes or debugging sites.
 
 Note that you can override the currently active theme with the `build` command's `--theme` flag:
 

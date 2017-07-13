@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>
-        Extensions
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/pygments.css">
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-    <![endif]-->
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Extensions</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="theme.css">
+        <link rel="stylesheet" href="pygments.css">
+    </head>
+    <body class="node-extensions node">
+        <header class="masthead">
+            <h1>
+                <a href="index.html">Ivy</a>
+            </h1>
 
-<body class="node-extensions node">
+            
+                <p class="tagline">Ivy is a static website generator built in Python.
+It transforms a directory of text files into a self-contained website.</p>
+            
 
-    <header id="head" class="head">
-        <input id="menu-check" type="checkbox"/>
-        <label id="menu-label" for="menu-check" class="unselectable">
-            <span class="icon close">✕</span>
-            <span class="icon open">☰</span>
-            <span class="text">MENU</span>
-        </label>
-        <ul>
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
 <li>
-<a href="index.html">Ivy</a>
+<a href="index.html">Home</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -40,14 +44,16 @@
 </li>
 </ul>
 
-    </header>
+            </nav>
+        </header>
 
-    <article id="main" class="main">
-        
-            <h1>Extensions</h1>
-        
-
-        <ul class="stx-toc">
+        <article class="main">
+            <header class="title">
+                <h1>Extensions</h1>
+                
+                <hr>
+            </header>
+            <ul class="stx-toc">
 <li>
 <a href="#installing-plugins">Installing Plugins</a>
 </li>
@@ -127,7 +133,7 @@ This callback is registered on the <code>exit</code> event hook which fires just
 Filters
 </h3>
 <p>
-<em>Filter callbacks</em> accept at least one argument - the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
+<em>Filter callbacks</em> accept at least one argument &mdash; the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
 </p>
 <p>
 Here's a simple filter callback that changes every instance of the word <em>foo</em> in node content to <em>bar</em>:
@@ -250,7 +256,6 @@ Positional and keyword arguments are passed as strings. The handler function its
 Note that shortcodes are processed <em>before</em> node text is rendered into HTML.
 </p>
 
-    </article>
-
-</body>
+        </article>
+    </body>
 </html>
