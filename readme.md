@@ -1,7 +1,7 @@
 
 # Ivy
 
-Ivy is a minimalist static website generator built in Python. It transforms a directory of text files into a self-contained website.
+Ivy is a static website generator built in Python. It transforms a directory of text files into a self-contained website.
 
     $ ivy --help
 
@@ -25,6 +25,5 @@ Ivy is a minimalist static website generator built in Python. It transforms a di
     Command Help:
       help <command>      Print the specified command's help text and exit.
 
-See the [documentation][docs] for details.
-
-[docs]: http://mulholland.xyz/docs/ivy/
+* [Documentation](http://mulholland.xyz/docs/ivy/)
+* [Demo Site](http://ivy.mulholland.xyz/graphite/)
