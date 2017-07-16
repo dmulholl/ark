@@ -137,6 +137,9 @@ class Page(dict):
     def get_class_list(self):
         class_list = self.get_slug_list()
 
+        if self['flags']['is_homepage']:
+            class_list.append('homepage')
+
         if 'classes' in self['node']:
             for item in str(self['node']['classes']).split(','):
                 class_list.append(item.strip())
