@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="@root/fonts.css">
     <link rel="stylesheet" href="@root/theme.css">
     <link rel="stylesheet" href="@root/pygments.css">
+    {{ inc.head }}
   </head>
   <body class="{{{ classes }}}">
 
@@ -41,5 +42,6 @@
       {{ node.html }}
     </article>
 
+    {{ inc.foot }}
   </body>
 </html>
