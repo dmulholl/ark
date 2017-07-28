@@ -3,7 +3,7 @@ title: Home
 meta title: Ivy
 ---
 
-Ivy is a static website generator built in Python. It transforms a directory of text files into a self-contained website.
+Ivy is a static website generator built in Python. It's small, elegant, and easy to use.
 
     $ ivy --help
 
@@ -28,7 +28,7 @@ Ivy is a static website generator built in Python. It transforms a directory of 
     Command Help:
       help <command>      Print the command's help text.
 
-Ivy is small, elegant, and easy to use. It's also free and open source. You can find its source files on [Github](https://github.com/dmulholland/ivy).
+Ivy is free and open source. You can find its source files on [Github](https://github.com/dmulholland/ivy).
 
 You can build any kind of website using Ivy but it's particularly suited to building project documentation like the documentation you're looking at right now.
 

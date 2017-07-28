@@ -167,7 +167,7 @@ dl {
 }
 
 dt {
-    margin: 35px 0 25px;
+    margin: 45px 0 25px;
     padding: 0;
     font-weight: bold;
 }
@@ -175,7 +175,7 @@ dt {
 dd {
     margin: 25px 0px;
     padding: 0 25px;
-    border-left: 3px solid #ddd;
+    border-left: 1px solid #ddd;
 }
 
 /**
@@ -378,16 +378,36 @@ th, td {
     text-align: left;
 }
 
-table .stx-left {
+/**
+ * Utility Styles
+ */
+
+.small {
+    font-size: 16px;
+}
+
+.left {
     text-align: left;
 }
 
-table .stx-center {
+.right {
+    text-align: right;
+}
+
+.center {
     text-align: center;
 }
 
-table .stx-right {
-    text-align: right;
+.justify {
+    text-align: justify;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
 }
 
 /**
@@ -582,5 +602,9 @@ table .stx-right {
 
     .masthead {
         padding-top: 0;
+    }
+
+    .small {
+        font-size: 15px;
     }
 }
