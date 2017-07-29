@@ -12,9 +12,7 @@
   <body class="{{{ classes }}}">
 
     <header class="masthead">
-      <h1>
-        <a href="@root/">{{ site.title || "Site Title" }}</a>
-      </h1>
+      <h1><a href="@root/">{{ site.title || "Site Title" }}</a></h1>
 
       {% if site.tagline %}
         <p class="tagline">{{ site.tagline.strip() }}</p>
