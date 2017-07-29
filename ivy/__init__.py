@@ -14,7 +14,7 @@ __version__ = '0.4.6'
 
 # Ivy requires at least Python 3.5.
 if sys.version_info < (3, 5):
-    sys.exit('Error: Ivy requires Python >= 3.5.')
+    sys.exit('Error: Ivy requires Python 3.5 or later.')
 
 
 # Template for error messages informing the user of any missing dependencies.
