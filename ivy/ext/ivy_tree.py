@@ -1,5 +1,7 @@
 # --------------------------------------------------------------------------
-# This extension adds a 'tree' command to Ivy's CLI.
+# This extension adds a 'tree' command to Ivy's command line interface. We
+# implement the command here rather than in the ivy/cli package to provide
+# an example of an extension registering a custom command.
 # --------------------------------------------------------------------------
 
 import ivy
@@ -36,8 +38,8 @@ def callback(parser):
 
         cols, _ = shutil.get_terminal_size()
 
-        print('-' * cols)
+        print('─' * cols)
         print('Site: %s' % ivy.site.home())
-        print('-' * cols)
+        print('─' * cols)
         print(ivy.nodes.root().str())
-        print('-' * cols)
+        print('─' * cols)
