@@ -1,5 +1,5 @@
 /*
-    Reset
+    Micro Reset
 */
 
 html {
@@ -41,7 +41,7 @@ html {
 body {
     font-family: "Georgia", serif;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -55,7 +55,7 @@ h1 {
     font-weight: normal;
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
-    margin: 3.2rem 0 1.7rem
+    margin: 3.5rem 0 2rem
 }
 
 h2 {
@@ -64,29 +64,29 @@ h2 {
     font-weight: normal;
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
-    margin: 3.2rem 0 1.7rem
+    margin: 3.5rem 0 2rem
 }
 
 h3 {
     font-size: 17px;
     font-weight: bold;
-    margin: 2.6rem 0 1.3rem
+    margin: 3rem 0 1.5rem
 }
 
 h4, h5, h6 {
     font-size: 15px;
     font-weight: bold;
-    margin: 2rem 0 1.3rem
+    margin: 2.5rem 0 1.5rem
 }
 
 p {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     padding: 0;
     text-align: justify;
 }
 
 blockquote {
-    margin: 2rem 0.7rem;
+    margin: 2.5rem 0.7rem;
     padding: 0 1.3rem;
     border-left: 3px solid #e8e8e8;
     color: #666;
@@ -109,12 +109,13 @@ code {
 }
 
 pre {
-    margin: 1.5rem 0;
+    margin: 2.25rem 0;
     padding: .7rem 1rem;
     border: 1px solid #ccc;
     border-radius: 3px;
     background-color: #f8f8f8;
     overflow: auto;
+    line-height: 1.4;
 }
 
 abbr[title] {
@@ -154,12 +155,12 @@ hr {
     height: 1px;
     border: 0;
     border-top: 1px dotted #bbb;
-    margin: 2.5rem 3rem;
+    margin: 3.5rem 3rem;
     padding: 0;
 }
 
 ul, ol {
-    margin: 1.3rem 0;
+    margin: 2rem 0;
     padding: 0 0 0 1.3rem;
 }
 
@@ -173,18 +174,18 @@ li {
 }
 
 dl {
-    margin: 2rem 0;
+    margin: 2.5rem 0;
     padding: 0;
 }
 
 dt {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     padding: 0;
     font-weight: bold;
 }
 
 dd {
-    margin: 1.3rem 0.7rem;
+    margin: 2rem 0.7rem;
     padding: 0 1.3rem;
     border-left: 3px solid #e8e8e8;
 }
@@ -192,7 +193,7 @@ dd {
 img {
     border: 0;
     max-width: 100%;
-    margin: 1.3rem auto;
+    margin: 2.5rem auto;
     display: block;
 }
 
@@ -289,10 +290,12 @@ h1 + ul {
 */
 
 .stx-alert {
-    margin: 2rem;
+    margin: 2.5rem 1rem;
     border: 1px solid;
     padding: 5px 20px;
     border-radius: 3px;
+    padding: .15rem 2rem;
+
 }
 
 .stx-info {
@@ -339,15 +342,15 @@ th, td {
     text-align: left;
 }
 
-table .stx-left {
+table .left {
     text-align: left;
 }
 
-table .stx-center {
+table .center {
     text-align: center;
 }
 
-table .stx-right {
+table .right {
     text-align: right;
 }
 
@@ -379,12 +382,12 @@ table .stx-right {
 */
 
 /*
-    Does the same thing as:
+    The @viewport tag does the same thing as
 
-        <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width">
 
-    but in the future W3C standard way. -ms- prefix is required for IE10+ to
-    render responsive styling in Windows 8 "snapped" views; IE10+ does not
+    but in the future W3C standard way. The -ms- prefix is required for IE10+
+    to render responsive styling in Windows 8 "snapped" views; IE10+ does not
     honor the meta tag.
 */
 
