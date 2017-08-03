@@ -15,4 +15,6 @@ This theme supports the following include files:
 
 ## License
 
-This work has been placed in the public domain.
+* All code and CSS has been placed in the public domain.
+
+* The bundled Crimson Text font is distributed under the Open Font License.

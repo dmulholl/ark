@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="@root/pygments.css">
     {{ inc.head }}
   </head>
+
   <body class="{{{ classes }}}">
 
     <header class="masthead">
       <h1><a href="@root/">{{ site.title || "Site Title" }}</a></h1>
-
       {% if site.tagline %}
         <p class="tagline">{{ site.tagline.strip() }}</p>
       {% endif %}
-
       <nav class="menu">
         <input id="menu-check" type="checkbox"/>
         <label id="menu-label" for="menu-check" class="unselectable">
@@ -41,5 +40,6 @@
     </article>
 
     {{ inc.foot }}
+
   </body>
 </html>
