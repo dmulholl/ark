@@ -18,7 +18,7 @@ callbacks = {}
 # callbacks modify and return the value of their first argument.
 #
 # The @register decorator accepts an optional order parameter with a default
-# value of 0. Callbacks with lower order fire before callbacks with
+# integer value of 0. Callbacks with lower order fire before callbacks with
 # higher order.
 def register(hook, order=0):
 
@@ -42,3 +42,18 @@ def filter(hook, value, *args):
         for func in callbacks[hook][order]:
             value = func(value, *args)
     return value
+
+
+# Clear all callbacks registered on a hook.
+def clear(hook):
+    callbacks[hook] = {}
+
+
+# Deregister a callback from a hook.
+def deregister(hook, callback, order=None):
+    if order is None:
+        for order in callbacks.get(hook, {}):
+            if callback in callbacks[hook][order]:
+                callbacks[hook][order].remove(callback)
+    elif order in callbacks[hook] and callback in callbacks[hook][order]:
+        callbacks[hook][order].remove(callback)
