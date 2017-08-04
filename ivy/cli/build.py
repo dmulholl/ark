@@ -7,6 +7,8 @@ import sys
 
 from .. import site
 from .. import hooks
+from .. import nodes
+from .. import pages
 from .. import utils
 
 
@@ -58,3 +60,24 @@ def callback(parser):
         hooks.event('init_build')
         hooks.event('main_build')
         hooks.event('exit_build')
+
+
+# Default build routine. Creates a single output page for each node in the
+# parse tree.
+@hooks.register('main_build')
+def builder():
+
+    # Make sure we have a valid theme directory.
+    if not site.theme():
+        sys.exit("Error: cannot locate theme '%s'." % site.config['theme'])
+
+    # Copy the theme's resource files to the output directory.
+    if os.path.isdir(site.theme('resources')):
+        utils.copydir(site.theme('resources'), site.out())
+
+    # Copy the site's resource files to the output directory.
+    if os.path.exists(site.res()):
+        utils.copydir(site.res(), site.out())
+
+    # Walk the parse tree and render a single page for each node.
+    nodes.root().walk(lambda node: pages.Page(node).render())
