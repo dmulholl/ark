@@ -24,7 +24,7 @@
           <span class="icon open-icon">☰</span>
           <span class="text">Menu</span>
         </label>
-        {{ inc.menu }}
+        {{ inc.menu || automenu }}
       </nav>
     </header>
 

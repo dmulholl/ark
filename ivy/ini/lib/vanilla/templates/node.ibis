@@ -23,7 +23,7 @@
             <span class="icon open">☰</span>
             <span class="text">MENU</span>
         </label>
-        {{ inc.menu }}
+        {{ inc.menu || automenu }}
     </header>
 
     <article id="main" class="main">
