@@ -32,9 +32,9 @@ def root():
 def node(*slugs):
     node = root()
     for slug in slugs:
-        if not slug in node.subnodes:
+        if not slug in node.children:
             return None
-        node = node.subnodes[slug]
+        node = node.children[slug]
     return node
 
 
@@ -45,7 +45,7 @@ class Node():
     def __init__(self):
         self.data = {}
         self.parent = None
-        self.subnodes = {}
+        self.children = {}
         self.stem = ''
         self.slug = ''
         self.format = ''
@@ -107,7 +107,7 @@ class Node():
         self['html'] = hooks.filter('node_html', html, self)
 
         # Initialize the node's subnodes.
-        for node in self.subnodes.values():
+        for node in self.children.values():
             node.init()
 
         # Fire the 'init_node' event. This fires 'bottom up', i.e. when this
@@ -120,7 +120,7 @@ class Node():
 
     # Call the specified function on the node and all its descendants.
     def walk(self, callback):
-        for node in self.subnodes.values():
+        for node in self.children.values():
             node.walk(callback)
         callback(self)
 
@@ -146,7 +146,7 @@ class Node():
     # Return a list of child nodes ordered by slug.
     @property
     def childlist(self):
-        return [self.subnodes[slug] for slug in sorted(self.subnodes)]
+        return [self.children[slug] for slug in sorted(self.children)]
 
 
 # Parse a source directory.
@@ -159,12 +159,12 @@ def parse_node_directory(dirnode, dirpath):
     # Loop over the directory's subdirectories.
     for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_dir()]:
         slug = utils.slugify(path.stem)
-        subnode = Node()
-        subnode.slug = slug
-        subnode.stem = path.stem
-        subnode.parent = dirnode
-        dirnode.subnodes[slug] = subnode
-        parse_node_directory(subnode, path)
+        childnode = Node()
+        childnode.slug = slug
+        childnode.stem = path.stem
+        childnode.parent = dirnode
+        dirnode.children[slug] = childnode
+        parse_node_directory(childnode, path)
 
     # Loop over the directory's files. We skip dotfiles and file types for
     # which we don't have a registered rendering-engine callback.
@@ -193,7 +193,7 @@ def parse_node_file(dirnode, filepath):
         filenode.slug = slug
         filenode.stem = filepath.stem
         filenode.parent = dirnode
-        dirnode.subnodes[slug] = filenode
+        dirnode.children[slug] = filenode
 
     # Update the new or existing node with the file's text and metadata.
     filenode['text'], meta = loader.load(filepath)
