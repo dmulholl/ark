@@ -148,26 +148,6 @@ class Node():
     def children(self):
         return [self.subnodes[slug] for slug in sorted(self.subnodes)]
 
-    # Return a list of descendent nodes. (Undefined order.)
-    @property
-    def descendants(self):
-        descendent_nodes = []
-        for subnode in self.subnodes.values():
-            descendent_nodes.append(subnode)
-            descendent_nodes.extend(subnode.descendants)
-        return descendent_nodes
-
-    # Return a list of descendent leaf nodes. (Undefined order)
-    @property
-    def leaves(self):
-        leaf_nodes = []
-        for subnode in self.subnodes.values():
-            if subnode.subnodes:
-                leaf_nodes.extend(subnode.leaves)
-            else:
-                leaf_nodes.append(subnode)
-        return leaf_nodes
-
 
 # Parse a source directory.
 #
