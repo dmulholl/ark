@@ -284,13 +284,6 @@ body {
     content: "•\00a\000a0\00a0"
 }
 
-.unselectable {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 #menu-check {
     display: none;
 }
@@ -408,6 +401,13 @@ th, td {
 
 .italic {
     font-style: italic;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /**
