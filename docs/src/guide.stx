@@ -76,17 +76,17 @@ A node file can begin with a [YAML][] header specifying metadata for the node:
 
 Node content can be written in [Markdown][] or [Syntex][]. Files with a `.md` extension are rendered as Markdown, files with a `.stx` extension are rendered as Syntex. (Ivy can be extended via plugins to support other formats and extensions.)
 
-Note that the files
+Note that the file
 
     /src/foo/bar.md
-    /src/foo/bar/index.md
 
 and the directory
 
     /src/foo/bar/
 
-all correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
+correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
 
+Files named `index` are special-cased and correspond to the same node as their parent directory.
 
 [Markdown]: http://daringfireball.net/projects/markdown/
 [Syntex]: https://github.com/dmulholland/syntex
@@ -209,7 +209,7 @@ The bundled Automenu extension automatically generates a menu containing links t
 
 * If a node has a `menu_title` attribute, its value will be used in the menu in place of the node's title.
 
-* By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer `menu_order` attribute with lower orders coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+* By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer `menu_order` attribute with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
 
 
 

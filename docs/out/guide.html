@@ -178,11 +178,10 @@ Content begins here.
 Node content can be written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> or <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. (Ivy can be extended via plugins to support other formats and extensions.)
 </p>
 <p>
-Note that the files
+Note that the file
 </p>
 <pre>
 /src/foo/bar.md
-/src/foo/bar/index.md
 </pre>
 <p>
 and the directory
@@ -191,7 +190,10 @@ and the directory
 /src/foo/bar/
 </pre>
 <p>
-all correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
+correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
+</p>
+<p>
+Files named <code>index</code> are special-cased and correspond to the same node as their parent directory.
 </p>
 <h2 id="node-meta">
 Node Meta
@@ -335,7 +337,7 @@ If a node has a <code>menu_title</code> attribute, its value will be used in the
 </li>
 <li>
 <p>
-By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute with lower orders coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
 </p>
 </li>
 </ul>
