@@ -6,10 +6,10 @@
         {{ node.meta_title || node.title || node.html|firsth|striptags }}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="@root/css/theme.css">
-    <link rel="stylesheet" href="@root/css/pygments.css">
+    <link rel="stylesheet" href="@root/theme.css">
+    <link rel="stylesheet" href="@root/pygments.css">
     <!--[if lt IE 9]>
-        <script src="@root/js/html5shiv.js"></script>
+        <script src="@root/html5shiv.js"></script>
     <![endif]-->
     {{ inc.head }}
 </head>
