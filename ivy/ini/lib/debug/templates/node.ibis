@@ -8,10 +8,8 @@
     </head>
     <body>
         <h1>{{{ node }}}</h1>
-
-        {% if inc.menu %}{{ inc.menu }}<hr>{% endif %}
-        {% if inc.menu_upper %}{{ inc.menu_upper }}<hr>{% endif %}
-        {% if inc.menu_lower %}{{ inc.menu_lower }}<hr>{% endif %}
+        {{ automenu }}
+        <hr>
 
         <h2>Parent</h2>
         <ul>
