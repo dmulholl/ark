@@ -63,6 +63,9 @@ It transforms a directory of text files into a self-contained website.</p>
 <a href="#nodes">Nodes</a>
 </li>
 <li>
+<a href="#node-meta">Node Meta</a>
+</li>
+<li>
 <a href="#links">Links</a>
 </li>
 <li>
@@ -79,6 +82,9 @@ It transforms a directory of text files into a self-contained website.</p>
 </li>
 <li>
 <a href="#shortcodes">Shortcodes</a>
+</li>
+<li>
+<a href="#automenu">Automenu</a>
 </li>
 </ul>
 </li>
@@ -154,7 +160,7 @@ Static assets such as image files should be placed in the site's resources direc
 Nodes
 </h2>
 <p>
-A node is a text file or a directory stored in a site's <code>src</code> directory. Ivy parses the <code>src</code> directory into a tree of nodes which it then renders into a website, generating a single HTML page in the <code>out</code> directory for each node in the tree.
+A node is a text file or directory stored in a site's <code>src</code> directory. Ivy parses the <code>src</code> directory into a tree of nodes which it then renders into a website, generating a single HTML page in the <code>out</code> directory for each node in the tree.
 </p>
 <p>
 A node file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> header specifying metadata for the node:
@@ -187,6 +193,49 @@ and the directory
 <p>
 all correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
 </p>
+<h2 id="node-meta">
+Node Meta
+</h2>
+<p>
+Ivy has builtin support for node metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via extensions. Note that a node file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute
+</p>
+<pre>
+---
+Date of Birth: 1901-02-28
+---
+</pre>
+<p>
+would be accessible in template files as <code>node.date_of_birth</code>.
+</p>
+<p>
+All nodes have the following default attributes:
+</p>
+<dl>
+<dt>
+<code>html</code>
+</dt>
+<dd>
+<p>
+The node's text content rendered into html.
+</p>
+</dd>
+<dt>
+<code>text</code>
+</dt>
+<dd>
+<p>
+The node's raw text content.
+</p>
+</dd>
+<dt>
+<code>url</code>
+</dt>
+<dd>
+<p>
+The node's url.
+</p>
+</dd>
+</dl>
 <h2 id="links">
 Links
 </h2>
@@ -272,6 +321,24 @@ Shortcodes
 <p>
 Ivy uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
 </p>
+<h3 id="automenu">
+Automenu
+</h3>
+<p>
+The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via the <code>automenu</code> attribute. This menu can be customized in two ways:
+</p>
+<ul>
+<li>
+<p>
+If a node has a <code>menu_title</code> attribute, its value will be used in the menu in place of the node's title.
+</p>
+</li>
+<li>
+<p>
+By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute with lower orders coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+</p>
+</li>
+</ul>
 <h2 id="dependencies">
 Dependencies
 </h2>

@@ -62,7 +62,7 @@ Static assets such as image files should be placed in the site's resources direc
 
 ## Nodes
 
-A node is a text file or a directory stored in a site's `src` directory. Ivy parses the `src` directory into a tree of nodes which it then renders into a website, generating a single HTML page in the `out` directory for each node in the tree.
+A node is a text file or directory stored in a site's `src` directory. Ivy parses the `src` directory into a tree of nodes which it then renders into a website, generating a single HTML page in the `out` directory for each node in the tree.
 
 A node file can begin with a [YAML][] header specifying metadata for the node:
 
@@ -91,6 +91,34 @@ all correspond to a single node in the parse tree. Node files provide content an
 [Markdown]: http://daringfireball.net/projects/markdown/
 [Syntex]: https://github.com/dmulholland/syntex
 [YAML]: http://en.wikipedia.org/wiki/YAML
+
+
+
+## Node Meta
+
+Ivy has builtin support for node metadata in [YAML][] format; support for additional formats can be added via extensions. Note that a node file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute
+
+    ---
+    Date of Birth: 1901-02-28
+    ---
+
+would be accessible in template files as `node.date_of_birth`.
+
+All nodes have the following default attributes:
+
+|| `html` ||
+
+    The node's text content rendered into html.
+
+
+|| `text` ||
+
+    The node's raw text content.
+
+
+|| `url` ||
+
+    The node's url.
 
 
 
@@ -172,6 +200,16 @@ Ivy uses the [Jinja2][jinja] package to render template files with a `.jinja` ex
 Ivy uses the [Shortcodes][shortcodes] package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
 
 [shortcodes]: https://github.com/dmulholland/shortcodes
+
+
+
+### Automenu
+
+The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via the `automenu` attribute. This menu can be customized in two ways:
+
+* If a node has a `menu_title` attribute, its value will be used in the menu in place of the node's title.
+
+* By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer `menu_order` attribute with lower orders coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
 
 
 
