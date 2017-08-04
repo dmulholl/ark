@@ -27,7 +27,7 @@
 
         <h2>Children</h2>
         <ul>
-            {% for child in node.children %}
+            {% for child in node.childlist %}
                 <li><a href="{{ child.url }}">{{{ child }}}</a></li>
             {% empty %}
                 <li>None.</li>

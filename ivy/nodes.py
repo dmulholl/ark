@@ -89,7 +89,7 @@ class Node():
     # Return a printable tree showing the node and its descendants.
     def str(self, depth=0):
         out = ["·  " * depth + '/' + '/'.join(self.path)]
-        for child in self.children:
+        for child in self.childlist:
             out.append(child.str(depth + 1))
         return '\n'.join(out)
 
@@ -145,7 +145,7 @@ class Node():
 
     # Return a list of child nodes ordered by slug.
     @property
-    def children(self):
+    def childlist(self):
         return [self.subnodes[slug] for slug in sorted(self.subnodes)]
 
 
