@@ -30,7 +30,6 @@
         {% if node.title %}
             <h1>{{ node.title }}</h1>
         {% endif %}
-
         {{ node.html }}
     </article>
 
