@@ -143,10 +143,15 @@ class Node():
         else:
             return '@root/'
 
-    # Return a list of child nodes ordered by slug.
+    # Return a list of child nodes ordered by stem.
     @property
     def childlist(self):
-        return [self.children[slug] for slug in sorted(self.children)]
+        return [self.children[stem] for stem in sorted(self.children)]
+
+    # True if the node has child nodes.
+    @property
+    def has_children(self):
+        return len(self.children) > 0
 
 
 # Parse a source directory.
