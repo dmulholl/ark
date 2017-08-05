@@ -89,7 +89,7 @@ def slugify(string):
 # problem characters are replaced with ascii equivalents; any other
 # unprintable characters are replaced with a '?'.
 def safeprint(*objects, sep=' ', end='\n', file=sys.stdout):
-    if file.encoding == 'UTF-8':
+    if file.encoding.lower() == 'utf-8':
         print(*objects, sep=sep, end=end, file=file)
     else:
         strings, enc = [], file.encoding
