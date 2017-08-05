@@ -9,6 +9,7 @@ import webbrowser
 import shutil
 
 from .. import site
+from .. import utils
 
 
 # Command help text.
@@ -73,17 +74,17 @@ def callback(parser):
         webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
 
     cols, _ = shutil.get_terminal_size()
-    print("─" * cols)
-    print("Root: %s" % site.out())
-    print("Host: %s"  % address[0])
-    print("Port: %s" % address[1])
-    print("Stop: Ctrl-C")
-    print("─" * cols)
+    utils.safeprint("─" * cols)
+    utils.safeprint("Root: %s" % site.out())
+    utils.safeprint("Host: %s"  % address[0])
+    utils.safeprint("Port: %s" % address[1])
+    utils.safeprint("Stop: Ctrl-C")
+    utils.safeprint("─" * cols)
 
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\n" + "─" * cols)
-        print("Stopping server...")
-        print("─" * cols)
+        utils.safeprint("\n" + "─" * cols)
+        utils.safeprint("Stopping server...")
+        utils.safeprint("─" * cols)
         server.server_close()

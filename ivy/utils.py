@@ -6,6 +6,7 @@ import os
 import shutil
 import unicodedata
 import re
+import sys
 
 from . import hooks
 
@@ -74,10 +75,26 @@ def writefile(path, content):
 # supplied string. This function is used to sanitize url components, etc.
 def slugify(string):
     out = unicodedata.normalize('NFKD', string)
-    out = out.encode('ascii', 'ignore').decode('ascii')
+    out = out.encode('ascii', errors='ignore').decode('ascii')
     out = out.lower()
     out = out.replace("'", '')
     out = re.sub(r'[^a-z0-9-]+', '-', out)
     out = re.sub(r'--+', '-', out)
     out = out.strip('-')
     return hooks.filter('slugify', out, string)
+
+
+# A drop-in replacement for the print function that won't choke when
+# attempting to print unicode characters to a non-unicode terminal. Known
+# problem characters are replaced with ascii equivalents; any other
+# unprintable characters are replaced with a '?'.
+def safeprint(*objects, sep=' ', end='\n', file=sys.stdout):
+    if file.encoding == 'UTF-8':
+        print(*objects, sep=sep, end=end, file=file)
+    else:
+        strings, enc = [], file.encoding
+        for obj in objects:
+            string = str(obj).replace('─', '-').replace('·', '|')
+            string = string.encode(enc, errors='replace').decode(enc)
+            strings.append(string)
+        print(*strings, sep=sep, end=end, file=file)

@@ -2,7 +2,7 @@
 # This extension prints a simple stats report at the end of each build run.
 # --------------------------------------------------------------------------
 
-from ivy import hooks, site
+from ivy import hooks, site, utils
 
 
 # Register a callback on the 'exit_build' event hook.
@@ -20,4 +20,4 @@ def print_stats():
     # Print stats.
     report =  "Rendered: %5d  ·  Written: %5d  ·  "
     report += "Time: %5.2f sec  ·  Avg: %.4f sec/page"
-    print(report % (rendered, written, time, average))
+    utils.safeprint(report % (rendered, written, time, average))
