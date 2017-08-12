@@ -41,6 +41,9 @@ It transforms a directory of text files into a self-contained website.</p>
 <li>
 <a href="extensions.html">Extensions</a>
 </li>
+<li>
+<a href="changelog.html">Changelog</a>
+</li>
 </ul>
 
       </nav>
@@ -142,7 +145,7 @@ Initializing a new site creates the following directory structure:
 </p>
 <pre>
 site/
-    site.py      # site configuration file
+    config.py    # site configuration file
     ext/         # extensions directory for plugins
     inc/         # includes directory for menus, etc.
     lib/         # library directory for themes
@@ -151,7 +154,7 @@ site/
     src/         # source directory for text files
 </pre>
 <p>
-The site configuration file can be deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ivy requires the presence of either a <code>site.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
+The site configuration file can be deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ivy requires the presence of either a <code>config.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
 </p>
 <p>
 Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.

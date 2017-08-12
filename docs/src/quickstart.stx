@@ -24,7 +24,7 @@ Initialize the site directory using the `init` command:
 Ivy will create the following directory structure for your site:
 
     mysite/
-        site.py      # site configuration file
+        config.py    # site configuration file
         ext/         # extensions directory for plugins
         inc/         # includes directory for menus, etc.
         lib/         # library directory for themes

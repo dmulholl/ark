@@ -1,0 +1,10 @@
+---
+title: Changelog
+---
+
+### 0.6.0
+
+* The site configuration file has been renamed from `site.py` to `config.py`.
+  Old `site.py` files will continue to be recognised.
+
+  Some Python installations were confusing the `site.py` file with the standard library's `site` module, causing the interpreter to crash when Ivy was run from the site directory.
