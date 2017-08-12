@@ -9,7 +9,7 @@ import sys
 
 
 # Application version number.
-__version__ = '0.5.3'
+__version__ = '0.6.0'
 
 
 # Ivy requires at least Python 3.5.
@@ -54,7 +54,8 @@ def main():
     # Initialize the site model.
     site.init()
 
-    # Load plugins.
+    # Load bundled plugins, plugins in the site extensions directory, and
+    # plugins listed in the site configuration file.
     extensions.load()
 
     # Process the application's command-line arguments.

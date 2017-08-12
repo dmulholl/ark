@@ -42,7 +42,10 @@ def load_site_config():
     config['extension'] = '.html'
 
     # Load the site configuration file.
-    if home() and isfile(home('site.py')):
+    if home() and isfile(home('config.py')):
+        with open(home('config.py'), encoding='utf-8') as file:
+            exec(file.read(), config)
+    elif home() and isfile(home('site.py')):
         with open(home('site.py'), encoding='utf-8') as file:
             exec(file.read(), config)
 
@@ -55,13 +58,14 @@ def load_site_config():
         config['root'] += '/'
 
 
-# Attempt to determine the path to the site's home directory. We check for
-# the presence of either a 'site.py' file or both 'src' and 'out' directories.
+# Attempt to determine and return the path to the site's home directory.
 # Returns an empty string if the home directory cannot be located.
 def find_home():
     path = os.getcwd()
     while isdir(path):
-        if isfile(join(path, 'site.py')):
+        if isfile(join(path, 'config.py')):
+            return os.path.abspath(path)
+        elif isfile(join(path, 'site.py')):
             return os.path.abspath(path)
         elif isdir(join(path, 'src')) and isdir(join(path, 'out')):
             return os.path.abspath(path)
