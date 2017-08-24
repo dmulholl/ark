@@ -15,11 +15,10 @@
 import os
 import sys
 
-
 # Python doesn't automatically add the package's parent directory to the
 # module search path so we need to do so manually before we can import `ivy`.
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-
-
 import ivy
+sys.path.pop(0)
+
 ivy.main()
