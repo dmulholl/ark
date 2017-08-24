@@ -69,26 +69,32 @@ class Page(dict):
 
         return hooks.filter('page_path', site.out(*slugs), self)
 
-    # Regex for locating @root/ urls for rewriting. Note that we only
-    # rewrite urls enclosed in quotes or angle brackets.
-    re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
+    # Regex for locating @root/ urls for rewriting.
+    re_url = re.compile(r'''
+        (\\)?
+        @root
+        ([-\w+&@/%?=~|\[\]\(\)!:,\.;]*[-\w+&@/%=~|\[\]])
+        ([#][-\w]*)?
+    ''', re.VERBOSE)
 
     # Rewrite @root/ urls to their final form.
     def rewrite_urls(self, html):
         relpath = os.path.relpath(self['filepath'], site.out())
         depth = len(relpath.replace('\\', '/').split('/'))
-
         prefix = site.config.get('root') or '../' * (depth - 1)
         suffix = site.config.get('extension')
 
         # Each matched url is replaced with the output of this callback.
         def callback(match):
-            quote = match.group(1) if match.group(1) in ('"', "'") else ''
             url = match.group(2).lstrip('/')
             fragment = match.group(3) or ''
 
-            # The link points to the homepage.
-            if url == '':
+            # 1. We have an escaped url.
+            if match.group(1):
+                return match.group(0).lstrip('\\')
+
+            # 2. We have a link to the homepage.
+            elif url == '':
                 if suffix == '/':
                     if depth == 1:
                         url = '' if fragment else '#'
@@ -97,19 +103,18 @@ class Page(dict):
                 else:
                     url = prefix + 'index' + suffix
 
-            # The link points to a node page.
+            # 3. We have a link to a generated node page.
             elif url.endswith('//'):
                 if suffix == '/':
-                    url = prefix + url.strip('/') + '/'
+                    url = prefix + url.rstrip('/') + '/'
                 else:
-                    url = prefix + url.strip('/') + suffix
+                    url = prefix + url.rstrip('/') + suffix
 
-            # The link points to a static asset or directory.
+            # 4. We have a link to a static asset or directory.
             else:
                 url = prefix + url
 
-            # Assemble the url inside its original quotes.
-            return '%s%s%s%s' % (quote, url, fragment, quote)
+            return url + fragment
 
         # Replace each match with the return value of the callback.
         return self.re_url.sub(callback, html)
