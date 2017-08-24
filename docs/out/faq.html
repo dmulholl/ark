@@ -122,7 +122,7 @@ YAML supports lists so we can implement galleries in a similar manner by adding 
 Why do I get an error when I add a url to a Yaml header?
 </h3>
 <p>
-Yaml doesn't support values that begin with an <code>@</code> symbol so you'll get a scary looking error message if you add an unquoted <code>@root/</code> url to a Yaml header, e.g.
+Yaml doesn't support unquoted values that begin with an <code>@</code> symbol so you'll get a scary looking error message if you add a bare <code>@root/</code> url to a Yaml header, e.g.
 </p>
 <pre>
 ---
@@ -137,6 +137,9 @@ Quoting the url solves the problem:
 image: "@root/images/photo.jpg"
 ---
 </pre>
+<p>
+And yes, I think it's ugly too.
+</p>
 
     </article>
 
