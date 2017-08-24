@@ -1,6 +1,5 @@
 ---
 title: FAQ
-value: foobar/baz.jpg
 ---
 
 :insert toc
@@ -20,6 +19,7 @@ As an example, assume we have a file named `photo.jpg` stored in a directory nam
 This file will be copied to the output directory and can be accessed in templates and node files via the url:
 
     \\@root/images/photo.jpg
+
 
 
 ### Does Ivy support featured images or image galleries?
