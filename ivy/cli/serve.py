@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Logic for the 'serve' command.
+# This module contains the logic for the 'serve' command.
 # --------------------------------------------------------------------------
 
 import sys

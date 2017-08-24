@@ -1,5 +1,6 @@
 # --------------------------------------------------------------------------
-# This module handles text-to-html rendering-engine callbacks.
+# This module handles rendering-engine callbacks. Rendering engines like
+# Markdown are responsible for converting raw text input into html.
 # --------------------------------------------------------------------------
 
 import sys

@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Logic for the 'watch' command.
+# This module contains the logic for the 'watch' command.
 # --------------------------------------------------------------------------
 
 import sys

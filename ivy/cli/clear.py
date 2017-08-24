@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Logic for the 'clear' command.
+# This module contains the logic for the 'clear' command.
 # --------------------------------------------------------------------------
 
 import sys

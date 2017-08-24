@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Utility functions.
+# This module contains utility functions used throughout the application.
 # --------------------------------------------------------------------------
 
 import os

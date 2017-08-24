@@ -89,7 +89,7 @@ class Page(dict):
             url = match.group(2).lstrip('/')
             fragment = match.group(3) or ''
 
-            # 1. We have an escaped url.
+            # 1. We have a backslash-escaped url.
             if match.group(1):
                 return match.group(0).lstrip('\\')
 

@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Loads, processes, and stores the site's configuration data.
+# This module loads, processes, and caches the site's configuration data.
 # --------------------------------------------------------------------------
 
 import os

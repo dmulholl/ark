@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# This module loads and preprocesses source files.
+# This module is responsible for loading and preprocessing source files.
 # --------------------------------------------------------------------------
 
 from . import hooks

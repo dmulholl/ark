@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Event and filter hooks.
+# This module implements Ivy's system of event and filter hooks.
 # --------------------------------------------------------------------------
 
 # Maps hook names to lists of callback functions indexed by order.

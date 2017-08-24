@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Logic for the 'build' command.
+# This module contains the logic for the 'build' command.
 # --------------------------------------------------------------------------
 
 import os

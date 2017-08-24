@@ -4,7 +4,8 @@
 
 # This is a sample site configuration file. You can use this file to
 # customise how Ivy builds your site. Variables you set here will also be
-# available to themes and plugins.
+# available to themes and plugins. Note that you can safely delete this file
+# if your site does not require custom settings.
 
 # --------------------------------------------------------------------------
 # Theme
@@ -30,7 +31,8 @@ tagline = "Just another Ivy site"
 
 # Your root url can be an explicit domain ("http://example.com/") for
 # absolute urls, a single forward slash ("/") for site-relative urls, or an
-# empty string (the default) for page-relative urls.
+# empty string (the default) for page-relative urls. Unless you have a
+# specific reason for changing it, the default option is the most flexible.
 root = ""
 
 # --------------------------------------------------------------------------
