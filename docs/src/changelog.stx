@@ -2,6 +2,14 @@
 title: Changelog
 ---
 
+
+### 0.7.0
+
+* The algorithm for locating and rewriting `\\@root/` urls has been changed.
+  Previously only `\\@root/` urls enclosed in quotes or angle brackets were rewritten; now all `\\@root/` urls are rewritten unless escaped by a preceeding backslash.
+
+
+
 ### 0.6.0
 
 * The site configuration file has been renamed from `site.py` to `config.py`.

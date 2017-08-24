@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="pygments.css">
+    
+  </head>
+
+  <body class="node-faq node">
+
+    <header class="masthead">
+      <h1><a href="index.html">Ivy</a></h1>
+      
+        <p class="tagline">Ivy is a static website generator built in Python.
+It transforms a directory of text files into a self-contained website.</p>
+      
+      <nav class="menu">
+        <input id="menu-check" type="checkbox"/>
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="extensions.html">Extensions</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+<li>
+<a href="changelog.html">Changelog</a>
+</li>
+</ul>
+
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+        <h1>FAQ</h1>
+        
+        <hr>
+      </header>
+      <ul class="stx-toc">
+<li>
+<a href="#where-do-i-put-my-image-files">Where do I put my image files?</a>
+</li>
+<li>
+<a href="#does-ivy-support-featured-images-or-image-galleries">Does Ivy support featured images or image galleries?</a>
+</li>
+<li>
+<a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a url to a Yaml header?</a>
+</li>
+</ul>
+<h3 id="where-do-i-put-my-image-files">
+Where do I put my image files?
+</h3>
+<p>
+Image files, along with any other static assets, should be stored in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
+</p>
+<p>
+As an example, assume we have a file named <code>photo.jpg</code> stored in a directory named <code>images</code> within the <code>res</code> directory, i.e.
+</p>
+<pre>
+site/
+|-- res/
+    |-- images/
+        |-- photo.jpg
+</pre>
+<p>
+This file will be copied to the output directory and can be accessed in templates and node files via the url:
+</p>
+<pre>
+@root/images/photo.jpg
+</pre>
+<h3 id="does-ivy-support-featured-images-or-image-galleries">
+Does Ivy support featured images or image galleries?
+</h3>
+<p>
+Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
+</p>
+<pre class="lang-yaml pygments" data-lang="yaml">
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Page Title</span>
+<span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">photo.jpg</span>
+<span class="nn">---</span>
+</pre>
+<p>
+We can then check for the presence of a featured image in the appropriate template file:
+</p>
+<pre class="lang-django pygments" data-lang="django">
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">node.image</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;img src=&quot;@root/images/</span><span class="cp">{{</span><span class="nv">node.image</span><span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</pre>
+<p>
+YAML supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
+</p>
+<pre class="lang-django pygments" data-lang="django">
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">image</span> <span class="k">in</span> <span class="nv">node.gallery</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;img src=&quot;@root/images/</span><span class="cp">{{</span><span class="nv">image</span><span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</pre>
+<h3 id="why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">
+Why do I get an error when I add a url to a Yaml header?
+</h3>
+<p>
+Yaml doesn't support values that begin with an <code>@</code> symbol so you'll get a scary looking error message if you add an unquoted <code>@root/</code> url to a Yaml header, e.g.
+</p>
+<pre>
+---
+image: @root/images/photo.jpg
+---
+</pre>
+<p>
+Quoting the url solves the problem:
+</p>
+<pre>
+---
+image: "@root/images/photo.jpg"
+---
+</pre>
+
+    </article>
+
+    
+
+  </body>
+</html>

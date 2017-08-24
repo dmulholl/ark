@@ -1,0 +1,66 @@
+---
+title: FAQ
+value: foobar/baz.jpg
+---
+
+:insert toc
+
+
+### Where do I put my image files?
+
+Image files, along with any other static assets, should be stored in the site's resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
+
+As an example, assume we have a file named `photo.jpg` stored in a directory named `images` within the `res` directory, i.e.
+
+    site/
+    |-- res/
+        |-- images/
+            |-- photo.jpg
+
+This file will be copied to the output directory and can be accessed in templates and node files via the url:
+
+    \\@root/images/photo.jpg
+
+
+### Does Ivy support featured images or image galleries?
+
+Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
+
+::: yaml
+
+    ---
+    title: Page Title
+    image: photo.jpg
+    ---
+
+We can then check for the presence of a featured image in the appropriate template file:
+
+::: django
+
+    {% if node.image %}
+        <img src="\\@root/images/{{node.image}}">
+    {% endif %}
+
+YAML supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
+
+::: django
+
+    {% for image in node.gallery %}
+        <img src="\\@root/images/{{image}}">
+    {% endfor %}
+
+
+
+### Why do I get an error when I add a url to a Yaml header?
+
+Yaml doesn't support values that begin with an `@` symbol so you'll get a scary looking error message if you add an unquoted `\\@root/` url to a Yaml header, e.g.
+
+    ---
+    image: \\@root/images/photo.jpg
+    ---
+
+Quoting the url solves the problem:
+
+    ---
+    image: "\\@root/images/photo.jpg"
+    ---
