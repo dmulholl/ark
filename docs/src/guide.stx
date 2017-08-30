@@ -219,7 +219,7 @@ The bundled Automenu extension automatically generates a menu containing links t
 
 Installing Ivy via `pip` automatically installs the following required dependencies:
 
-* [Clio](https://pypi.python.org/pypi/libclio)
+* [Janus](https://pypi.python.org/pypi/libjanus)
 
 Installing via `pip` also automatically installs the following optional dependencies:
 
