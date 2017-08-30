@@ -56,7 +56,7 @@ setup(
         'syntex',
         'ibis >= 1.6.0, < 2.0.0',
         'shortcodes >= 2.1.0, < 3.0.0',
-        'libclio >= 2.0.0, < 3.0.0',
+        'libjanus',
     ],
     author = 'Darren Mulholland',
     url='https://github.com/dmulholland/ivy',

@@ -10,6 +10,7 @@ import shutil
 
 from .. import site
 from .. import utils
+from .. import hooks
 
 
 # Command help text.
@@ -36,6 +37,17 @@ Flags:
       --no-browser          Do not launch the default web browser.
 
 """ % os.path.basename(sys.argv[0])
+
+
+# Register the command on the 'cli' event hook.
+@hooks.register('cli')
+def register_command(parser):
+    cmd = parser.new_cmd("serve", helptext, callback)
+    cmd.new_flag("no-browser")
+    cmd.new_str("directory d")
+    cmd.new_str("host h", fallback="localhost")
+    cmd.new_int("port p", fallback=0)
+    cmd.new_str("b browser")
 
 
 # Command callback.

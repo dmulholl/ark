@@ -9,7 +9,7 @@ import sys
 
 
 # Application version number.
-__version__ = '0.7.1'
+__version__ = '0.8.0.dev'
 
 
 # Ivy requires at least Python 3.5.
@@ -25,9 +25,9 @@ error = """Error: Ivy requires the %s library. Try:
 
 # Check that the application's dependencies are available.
 try:
-    import clio
+    import janus
 except ImportError:
-    sys.exit(error % ('Clio', 'libclio'))
+    sys.exit(error % ('Janus', 'libjanus'))
 
 
 # We import the package's modules so users can access 'ivy.foo' via a simple

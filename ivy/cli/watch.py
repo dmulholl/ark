@@ -12,6 +12,7 @@ import shutil
 
 from .. import site
 from .. import utils
+from .. import hooks
 
 
 # Command help text.
@@ -35,6 +36,20 @@ Flags:
   -v, --view            View the site in the default web browser.
 
 """ % os.path.basename(sys.argv[0])
+
+
+# Register the command on the 'cli' event hook.
+@hooks.register('cli')
+def register_command(parser):
+    cmd = parser.new_cmd("watch", helptext, callback)
+    cmd.new_flag("clear c")
+    cmd.new_flag("view v")
+    cmd.new_str("out o")
+    cmd.new_str("src s")
+    cmd.new_str("lib l")
+    cmd.new_str("inc i")
+    cmd.new_str("res r")
+    cmd.new_str("theme t")
 
 
 # Callback for the watch command. Python doesn't have a builtin file system

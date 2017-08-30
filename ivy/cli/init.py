@@ -6,6 +6,7 @@ import os
 import sys
 
 from .. import utils
+from .. import hooks
 
 
 # Command help text.
@@ -23,6 +24,12 @@ Flags:
   --help              Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
+
+
+# Register the command on the 'cli' event hook.
+@hooks.register('cli')
+def register_command(parser):
+    parser.new_cmd("init", helptext, callback)
 
 
 # Command callback.

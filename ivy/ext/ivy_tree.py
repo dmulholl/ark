@@ -22,10 +22,10 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
-# Register our new command on the 'cli' event hook.
+# Register our command on the 'cli' event hook.
 @ivy.hooks.register('cli')
-def register_tree_command(parser):
-    parser.add_cmd("tree", helptext, callback)
+def register_command(parser):
+    parser.new_cmd("tree", helptext, callback)
 
 
 # Command callback.

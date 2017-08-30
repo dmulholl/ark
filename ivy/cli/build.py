@@ -38,6 +38,19 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
+# Register the command on the 'cli' event hook.
+@hooks.register('cli')
+def register_command(parser):
+    cmd = parser.new_cmd("build", helptext, callback)
+    cmd.new_flag("clear c")
+    cmd.new_str("out o")
+    cmd.new_str("src s")
+    cmd.new_str("lib l")
+    cmd.new_str("inc i")
+    cmd.new_str("res r")
+    cmd.new_str("theme t")
+
+
 # Command callback.
 def callback(parser):
     if not site.home():
