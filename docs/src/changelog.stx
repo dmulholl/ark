@@ -3,11 +3,15 @@ title: Changelog
 ---
 
 
-
 ### 0.8.0
 
-* The argument-parsing library for the command line interface has been switched
-  to [Janus](http://mulholland.xyz/docs/janus/).
+* The argument-parsing library for the command line interface has been changed
+  from [Clio][] to [Janus][].
+
+* The default `graphite` theme now supports a meta description tag.
+
+[clio]: http://mulholland.xyz/docs/clio/
+[janus]: http://mulholland.xyz/docs/janus/
 
 
 
