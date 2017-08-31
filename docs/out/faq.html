@@ -112,7 +112,7 @@ We can then check for the presence of a featured image in the appropriate templa
 <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
 </pre>
 <p>
-YAML supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
+Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
 </p>
 <pre class="lang-django pygments" data-lang="django">
 <span class="cp">{%</span> <span class="k">for</span> <span class="nv">image</span> <span class="k">in</span> <span class="nv">node.gallery</span> <span class="cp">%}</span><span class="x"></span>
