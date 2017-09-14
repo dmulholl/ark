@@ -17,7 +17,7 @@ Usage: %s clear [FLAGS]
   Clear the output directory.
 
 Flags:
-  --help              Print this command's help text and exit.
+  -h, --help          Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 

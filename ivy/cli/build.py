@@ -33,7 +33,7 @@ Options:
 
 Flags:
   -c, --clear           Clear the output directory before building.
-      --help            Print this command's help text and exit.
+  -h, --help            Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 
