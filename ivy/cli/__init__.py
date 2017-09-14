@@ -27,8 +27,8 @@ Usage: %s [FLAGS] [COMMAND]
   into a self-contained website.
 
 Flags:
-  --help              Print the application's help text and exit.
-  --version           Print the application's version number and exit.
+  -h, --help          Print the application's help text and exit.
+  -v, --version       Print the application's version number and exit.
 
 Commands:
   build               Build the site.
@@ -57,3 +57,5 @@ def parse():
 
     # Parse the application's command line arguments.
     parser.parse()
+    if not parser.has_cmd():
+        parser.exit_help()
