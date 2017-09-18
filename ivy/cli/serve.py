@@ -22,7 +22,7 @@ Usage: %s serve [FLAGS] [OPTIONS]
   default web browser is automatically launched to view the site.
 
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
-  only on that address or '0.0.0.0' to serve on all available IPs.
+  only on that address or 0.0.0.0 to serve on all available IPs.
 
   Port number defaults to 0 which randomly selects an available port above
   1024. Note that port numbers below 1024 require root authorization.
