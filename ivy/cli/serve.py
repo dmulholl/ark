@@ -27,9 +27,9 @@ Usage: %s serve [FLAGS] [OPTIONS]
   that port numbers below 1024 require root authorization.
 
 Options:
-  -b, --browser <str>       Specify a browser to open by name.
+  -b, --browser <name>      Specify a browser to open by name.
   -d, --directory <path>    Specify a custom directory to serve.
-  -h, --host <str>          Host IP address. Defaults to localhost.
+  -h, --host <addr>         Host IP address. Defaults to localhost.
   -p, --port <int>          Port number. Defaults to 0, i.e. random.
 
 Flags:

@@ -86,7 +86,7 @@ def slugify(string):
 
 # A drop-in replacement for the print function that won't choke when
 # attempting to print unicode characters to a non-unicode terminal. Known
-# problem characters are replaced with ascii equivalents; any other
+# problem characters are replaced with ascii alternatives; any other
 # unprintable characters are replaced with a '?'.
 def safeprint(*objects, sep=' ', end='\n', file=sys.stdout):
     if file.encoding.lower() == 'utf-8':
