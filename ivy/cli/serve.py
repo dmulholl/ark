@@ -32,7 +32,7 @@ Options:
   -d, --directory <path>    Specify a custom directory to serve.
   -h, --host <addr>         Host IP address. Defaults to localhost.
   -p, --port <int>          Port number. Defaults to 0, i.e. random.
-  -c, --ssl-cert <path>     SSL certificate file. (Enables SSL.)
+  -c, --ssl-cert <path>     SSL certificate file. (Enables HTTPS.)
   -k, --ssl-key <path>      SSL key file if separate from certificate.
 
 Flags:
