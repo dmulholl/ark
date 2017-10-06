@@ -5,7 +5,9 @@ title: Changelog
 
 ### 0.9.0
 
-* Ivy has been updated to support Monk 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
+* Ivy has been updated to support [Monk][] 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
+
+[Monk]: http://mulholland.xyz/docs/monk/
 
 
 
