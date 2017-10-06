@@ -1,6 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds support for source files in Syntex format. Files with
-# a .stx extension will be rendered as Syntex.
+# This extension adds support for source files in Syntex format.
 # --------------------------------------------------------------------------
 
 import ivy

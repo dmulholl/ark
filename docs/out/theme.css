@@ -312,24 +312,24 @@ body {
  * Alert Boxes
  */
 
-.stx-alert {
+.alertbox {
     margin: 40px 20px;
     border: 1px solid;
     padding: 0 25px;
     border-radius: 3px;
 }
 
-.stx-info {
+.alertbox.info {
     border-color: #bac6d3;
     background-color: #e2eef9;
 }
 
-.stx-warning {
+.alertbox.warning {
     border-color: #dfd8c2;
     background-color: #fff9ea;
 }
 
-.stx-error {
+.alertbox.error {
     border-color: #d2b2b2;
     background-color: #fcdede;
 }

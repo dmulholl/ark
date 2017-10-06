@@ -55,6 +55,7 @@ setup(
         'pygments >= 2.1.3, < 3.0.0',
         'pyyaml >= 3.11, < 4.0',
         'jinja2 >= 2.8, < 3.0',
+        'libmonk >= 1.0.0, < 2.0.0',
         'syntex',
         'ibis >= 1.6.0, < 2.0.0',
         'shortcodes >= 2.1.0, < 3.0.0',

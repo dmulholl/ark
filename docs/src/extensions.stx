@@ -96,10 +96,10 @@ A template-engine callback should accept a `Page` object and a template filename
 
 ### Node Content
 
-Ivy has builtin support for node files written in [Markdown][] and [Syntex][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for node files written in [Markdown][] and [Monk][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 [markdown]: https://en.wikipedia.org/wiki/Markdown
-[syntex]: https://github.com/dmulholland/syntex
+[monk]: http://mulholland.xyz/docs/monk/
 
 ::: python
 

@@ -1,6 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds support for source files in Markdown format. Files
-# with a .md extension will be rendered as Markdown.
+# This extension adds support for source files in Markdown format.
 # --------------------------------------------------------------------------
 
 import ivy
