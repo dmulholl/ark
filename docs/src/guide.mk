@@ -74,7 +74,7 @@ A node file can begin with a [YAML][] header specifying metadata for the node:
 
     Content begins here.
 
-Node content can be written in [Markdown][] or [Monk][]. Files with a `.md` extension are rendered as Markdown, files with a `.monk` extension are rendered as Monk. (Ivy can be extended via plugins to support other formats and extensions.)
+Node content can be written in [Markdown][] or [Monk][]. Files with a `.md` extension are rendered as Markdown, files with a `.mk` extension are rendered as Monk. (Ivy can be extended via plugins to support other formats and extensions.)
 
 Note that the file
 
