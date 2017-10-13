@@ -24,11 +24,11 @@ cache = None
 def add_automenu(page):
     global cache
     if cache is None:
-        cache = assemble_menu()
+        cache = get_pagelist()
     page['automenu'] = cache
 
 
-def assemble_menu():
+def get_pagelist():
     menu = ['<ul>\n']
 
     root = ivy.nodes.root()
