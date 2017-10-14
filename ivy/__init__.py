@@ -1,15 +1,15 @@
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Ivy: a static website generator.
 #
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import sys
 
 
 # Application version number.
-__version__ = '0.9.2'
+__version__ = '1.0.0.dev'
 
 
 # Ivy requires at least Python 3.5.

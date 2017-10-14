@@ -3,11 +3,21 @@ title: Changelog
 ---
 
 
+### 1.0.0
+
+* First stable release. Future releases will adhere to [semantic versioning][semver].
+
+* Adds support for Monk files with a `.mk` extension.
+
+[semver]: http://semver.org
+
+
+
 ### 0.9.0
 
 * Ivy has been updated to support [Monk][] 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
 
-[Monk]: http://mulholland.xyz/docs/monk/
+[monk]: http://mulholland.xyz/docs/monk/
 
 
 

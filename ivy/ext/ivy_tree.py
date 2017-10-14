@@ -1,8 +1,8 @@
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # This extension adds a 'tree' command to Ivy's command line interface. We
 # implement the command here rather than in the cli package to provide an
 # example of an extension registering a custom command.
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import ivy
 import sys

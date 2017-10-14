@@ -1,4 +1,4 @@
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # This module makes the `ivy` package directly executable.
 #
 # To run an `ivy` package located on Python's import search path:
@@ -10,7 +10,7 @@
 #   $ python /path/to/ivy/package
 #
 # This latter form can be used for running development versions of Ivy.
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import os
 import sys

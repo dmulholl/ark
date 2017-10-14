@@ -1,4 +1,4 @@
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # This extension automatically generates a html menu containing links to
 # every node in the site. The menu can be accessed in templates via an
 # 'automenu' attribute.
@@ -10,7 +10,7 @@
 # be customized by giving nodes an integer 'menu_order' attribute with
 # lower orders coming first. The default order value is 0. (Note that the
 # homepage is an exception and will always be the first entry in the menu.)
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import ivy
 
