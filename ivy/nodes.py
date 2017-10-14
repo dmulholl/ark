@@ -48,7 +48,7 @@ class Node():
         self.children = {}
         self.stem = ''
         self.slug = ''
-        self.format = ''
+        self.ext = ''
 
         # Default attributes.
         self['text'] = ''
@@ -101,7 +101,7 @@ class Node():
         self['text'] = hooks.filter('node_text', self['text'], self)
 
         # Render the filtered text into html.
-        html = renderers.render(self['text'], self.format)
+        html = renderers.render(self['text'], self.ext)
 
         # Filter the node's html on the 'node_html' hook.
         self['html'] = hooks.filter('node_html', html, self)
@@ -206,4 +206,4 @@ def parse_node_file(dirnode, filepath):
 
     # The file's extension determines the rendering engine we use to
     # transform its text into html.
-    filenode.format = filepath.suffix.strip('.')
+    filenode.ext = filepath.suffix.strip('.')
