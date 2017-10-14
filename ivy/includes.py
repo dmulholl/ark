@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module loads and renders files from the site's 'inc' directory.
+# This module loads and renders source files from the site's 'inc' directory.
 # ------------------------------------------------------------------------------
 
 import os

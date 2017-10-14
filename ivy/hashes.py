@@ -1,11 +1,10 @@
 # ------------------------------------------------------------------------------
 # This module handles Ivy's file hashing mechanism.
 #
-# Before writing a page file to disk we check if there is an existing
-# file of the same name left over from a previous build. If there is,
-# we compare the hash of the new page's content with the cached hash
-# of the old page's content. If they are identical, we skip writing the
-# new page to disk.
+# Before writing a page file to disk we check if there is an existing file of
+# the same name left over from a previous build. If there is, we compare the 
+# hash of the new page's content with the cached hash of the old page's
+# content. If they are identical, we skip writing the new page to disk.
 #
 # This has two effects:
 #
