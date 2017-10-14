@@ -72,7 +72,7 @@ class Page(dict):
     # Regex for locating @root/ urls for rewriting.
     re_url = re.compile(r'''
         (\\)?
-        @root
+        @root/
         ([-\w+&@/%?=~|\[\]\(\)!:,\.;]*[-\w+&@/%=~|\[\]])
         ([#][-\w]*)?
     ''', re.VERBOSE)
