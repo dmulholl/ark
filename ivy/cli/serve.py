@@ -24,14 +24,15 @@ Usage: %s serve [FLAGS] [OPTIONS]
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
   only on that address or 0.0.0.0 to serve on all available IPs.
 
-  Port number defaults to 0 which randomly selects an available port above
-  1024. Note that port numbers below 1024 require root authorization.
+  Port number defaults to 8080. Setting the port number to 0 will randomly
+  select an available port above 1024. Note that port numbers below 1024
+  require root authorization.
 
 Options:
   -b, --browser <name>      Specify a browser to open by name.
   -d, --directory <path>    Specify a custom directory to serve.
   -h, --host <addr>         Host IP address. Defaults to localhost.
-  -p, --port <int>          Port number. Defaults to 0, i.e. random.
+  -p, --port <int>          Port number. Defaults to 8080.
   -c, --ssl-cert <path>     SSL certificate file. (Enables HTTPS.)
   -k, --ssl-key <path>      SSL key file if separate from certificate.
 
@@ -49,7 +50,7 @@ def register_command(parser):
     cmd.new_flag("no-browser")
     cmd.new_str("directory d")
     cmd.new_str("host h", fallback="localhost")
-    cmd.new_int("port p", fallback=0)
+    cmd.new_int("port p", fallback=8080)
     cmd.new_str("browser b")
     cmd.new_str("ssl-cert c")
     cmd.new_str("ssl-key k")
@@ -92,7 +93,7 @@ def callback(parser):
     except PermissionError:
         sys.exit("Error: use 'sudo' to run on a port below 1024.")
     except OSError:
-        sys.exit("Error: address already in use. Choose a different port.")
+        sys.exit("Error: port already in use. Choose a different port.")
 
     if certfile:
         server.socket = ssl.wrap_socket(

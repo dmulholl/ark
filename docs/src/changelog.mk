@@ -9,6 +9,8 @@ title: Changelog
 
 * Adds support for Monk files with a `.mk` extension.
 
+* The default port for the `serve` command has been changed from `0` to `8080`.
+
 [semver]: http://semver.org
 
 
