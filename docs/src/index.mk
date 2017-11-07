@@ -47,6 +47,14 @@ Ivy requires Python 3.5 or later.
 
 
 
+### Buy it for life
+
+Attention-seeking tools are an annoyance. I've built Ivy as a solid, simple tool that I can use without thinking about for the next twenty years.
+
+Ivy is highly extensible so updates to the core application will be few and far between. Maintaining backwards compatibility will always have the highest priority.
+
+
+
 ### Links
 
 * [Demo Site](http://ivy.mulholland.xyz/graphite/)

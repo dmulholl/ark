@@ -7,7 +7,7 @@ title: Extensions
 
 ## Installing Plugins
 
-The site extensions directory `ext` is intended for plugins that extend Ivy's functionality. Python modules placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
+The site extensions directory `ext` is intended for plugins that enhance Ivy's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
 
 Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an `extensions` list in the site's configuration file:
 
@@ -18,7 +18,7 @@ Alternatively, extension modules installed on Python's standard import path can 
         'extension_two',
     ]
 
-This method can be used to load extensions installed from the package index using `pip`.
+This method can be used to enable extensions installed from the package index using `pip`.
 
 
 

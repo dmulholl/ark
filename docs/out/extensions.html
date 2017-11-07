@@ -96,7 +96,7 @@ It transforms a directory of text files into a self-contained website.</p>
 Installing Plugins
 </h2>
 <p>
-The site extensions directory <code>ext</code> is intended for plugins that extend Ivy's functionality. Python modules placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
+The site extensions directory <code>ext</code> is intended for plugins that enhance Ivy's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
 </p>
 <p>
 Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an <code>extensions</code> list in the site's configuration file:
@@ -108,7 +108,7 @@ Alternatively, extension modules installed on Python's standard import path can 
 <span class="p">]</span>
 </pre>
 <p>
-This method can be used to load extensions installed from the package index using <code>pip</code>.
+This method can be used to enable extensions installed from the package index using <code>pip</code>.
 </p>
 <h2 id="event-amp-filter-hooks">
 Event &amp; Filter Hooks
