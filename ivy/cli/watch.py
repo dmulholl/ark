@@ -19,8 +19,10 @@ from .. import hooks
 helptext = """
 Usage: %s watch [FLAGS] [ARGUMENTS]
 
-  Monitor the site directory and automatically rebuild when file changes are
-  detected.
+  Monitor the site directory and automatically rebuild the site when file
+  changes are detected.
+
+  The test server is automatically launched to view the site.
 
 Options:
   -i, --inc <path>      Override the default 'inc' directory.
@@ -33,7 +35,7 @@ Options:
 Flags:
   -c, --clear           Clear the output directory before each build.
   -h, --help            Print this command's help text and exit.
-  -v, --view            View the site in the default web browser.
+      --no-server       Do not launch the test server.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -43,7 +45,7 @@ Flags:
 def register_command(parser):
     cmd = parser.new_cmd("watch", helptext, callback)
     cmd.new_flag("clear c")
-    cmd.new_flag("view v")
+    cmd.new_flag("no-server")
     cmd.new_str("out o")
     cmd.new_str("src s")
     cmd.new_str("lib l")
@@ -104,7 +106,7 @@ def callback(parser):
 
     # Run the webserver in a child process. It should run silently in the
     # background and automatically shut down when the watch process exits.
-    if parser["view"]:
+    if not parser["no-server"]:
         subprocess.Popen(
             base + ['serve'],
             stdout=subprocess.PIPE,

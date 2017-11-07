@@ -5,11 +5,13 @@ title: Changelog
 
 ### 1.0.0
 
-* First stable release. Future releases will adhere to [semantic versioning][semver].
+* First stable release. Future releases will adhere to [semantic versioning][semver] for changes which affect the theme or plugin API.
 
-* Adds support for Monk files with a `.mk` extension.
+* This release adds support for Monk files with a `.mk` extension.
 
 * The default port for the `serve` command has been changed from `0` to `8080`.
+
+* The `watch` command now automatically launches the test server to view the site.
 
 [semver]: http://semver.org
 
