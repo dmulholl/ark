@@ -51,7 +51,7 @@ Ivy requires Python 3.5 or later.
 
 Attention-seeking tools are an annoyance. I've built Ivy as a solid, simple tool that I can use without thinking about for the next twenty years.
 
-Ivy is highly extensible so updates to the core application will be few and far between. Maintaining backwards compatibility will always have a higher priority than adding new features.
+Ivy is highly extensible so updates to its core will be few and far between. Maintaining backwards compatibility will always have a higher priority than adding new features.
 
 
 
