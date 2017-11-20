@@ -12,7 +12,7 @@ Note that Ivy requires Python 3.5 or later. You can check your Python version us
 
 Depending on how your system has been configured, `pip` may be hardwired to use Python 2 and you may have to explicitly specify `pip3` instead.
 
-Once Ivy has installed, create a new directory for your site and `cd` into it:
+Once Ivy is installed, create a new directory for your site and `cd` into it:
 
     $ mkdir mysite
     $ cd mysite
