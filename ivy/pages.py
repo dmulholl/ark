@@ -16,8 +16,8 @@ from . import hashes
 # A Page instance represents a single html page in the rendered site.
 class Page(dict):
 
-    # Every Page is initialized with an associated Node instance. This
-    # node's location in the parse tree determines the page's output path.
+    # Every Page is initialized with an associated Node instance. This node's
+    # location in the parse tree determines output filepath for the page.
     def __init__(self, node):
         self['inc'] = includes.load()
         self['site'] = site.config
