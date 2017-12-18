@@ -72,8 +72,8 @@ class Page(dict):
     # Regex for locating @root/ urls for rewriting.
     re_url = re.compile(r'''
         (@@?)
-        root
-        ([-\w+&@/%?=~|\[\]\(\)!:,\.;]*[-\w+&@/%=~|\[\]])
+        root/
+        ([-\w+&@/%?=~|\[\]\(\)!:,\.;]*[-\w+&@/%=~|\[\]])?
         ([#][-\w]*)?
     ''', re.VERBOSE)
 
@@ -86,7 +86,7 @@ class Page(dict):
 
         # Each matched url is replaced with the output of this callback.
         def callback(match):
-            url = match.group(2).lstrip('/')
+            url = match.group(2).lstrip('/') if match.group(2) else ''
             fragment = match.group(3) or ''
 
             # 1. We have an @@root/ escaped url.
