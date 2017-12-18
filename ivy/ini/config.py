@@ -7,6 +7,7 @@
 # available to themes and plugins. Note that you can safely delete this file
 # if your site does not require custom settings.
 
+
 # ------------------------------------------------------------------------------
 # Theme
 # ------------------------------------------------------------------------------
@@ -14,6 +15,7 @@
 # Choose the theme to use when building your site. This variable should
 # specify the name of a theme directory in your site's 'lib' folder.
 theme = "graphite"
+
 
 # ------------------------------------------------------------------------------
 # Theme Settings
@@ -25,6 +27,7 @@ title = "Site Title"
 # Site tagline - how this is displayed depends on the theme.
 tagline = "Just another Ivy site"
 
+
 # ------------------------------------------------------------------------------
 # Root URL
 # ------------------------------------------------------------------------------
@@ -34,6 +37,7 @@ tagline = "Just another Ivy site"
 # empty string (the default) for page-relative urls. Unless you have a
 # specific reason for changing it, the default option is the most flexible.
 root = ""
+
 
 # ------------------------------------------------------------------------------
 # File Extension
