@@ -69,6 +69,9 @@ It transforms a directory of text files into a self-contained website.</p>
 <li>
 <a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a url to a Yaml header?</a>
 </li>
+<li>
+<a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
+</li>
 </ul>
 <h3 id="where-do-i-put-my-image-files">
 Where do I put my image files?
@@ -140,6 +143,21 @@ image: "@root/images/photo.jpg"
 </pre>
 <p>
 And yes, I think it's ugly too.
+</p>
+<h3 id="can-i-build-a-blog-using-ivy">
+Can I build a blog using Ivy?
+</h3>
+<p>
+Sure, but you'll have to write some code to do it.
+</p>
+<p>
+Ivy is actually a stripped-down version of an older static website generator that I worked on for years called <a href="http://mulholland.xyz/docs/malt/">Malt</a>, which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, general-purpose static-site-plus-blog engine &mdash; it just ends up being a WordPress-style rat's nest of options and switches.
+</p>
+<p>
+It's actually quite easy to build a blog on top of Ivy by adding a simple plugin to assemble indexes, etc. &mdash; at least, it's easy to do it for <em>one specific site</em>. I've certainly thought about releasing a general-purpose blog plugin, but it inevitably turns into its own mini rat's nest of options and switches all over again.
+</p>
+<p>
+I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at <a href="http://mulholland.xyz/docs/malt/">Malt</a> for inspiration.
 </p>
 
     </article>
