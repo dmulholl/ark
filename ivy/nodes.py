@@ -15,7 +15,7 @@ from . import site
 cache = None
 
 
-# Return the site's root node. Parses the root directory and assembles the
+# Returns the site's root node. Parses the root directory and assembles the
 # node tree on first call.
 def root():
     global cache
@@ -26,8 +26,8 @@ def root():
     return cache
 
 
-# Return the node corresponding to the specified path, i.e. the sequence of
-# slugs uniquely identifying the node in the parse tree. Returns None if the
+# Returns the node corresponding to the specified path, i.e. the sequence of
+# slugs that uniquely identifies the node in the parse tree. Returns None if the
 # node does not exist.
 def node(*slugs):
     node = root()
@@ -124,7 +124,7 @@ class Node():
             node.walk(callback)
         callback(self)
 
-    # Return the node's path, i.e. the list of slugs that uniquely identify
+    # Returns the node's path, i.e. the list of slugs that uniquely identify
     # its location in the parse tree.
     @property
     def path(self):
@@ -135,7 +135,7 @@ class Node():
         slugs.reverse()
         return slugs
 
-    # Return the node's url.
+    # Returns the node's url.
     @property
     def url(self):
         if self.parent:
@@ -143,7 +143,7 @@ class Node():
         else:
             return '@root/'
 
-    # Return a list of child nodes ordered by stem.
+    # Returns a list of child nodes ordered by stem.
     @property
     def childlist(self):
         return [self.children[stem] for stem in sorted(self.children)]
