@@ -71,8 +71,8 @@ class Page(dict):
 
     # Regex for locating @root/ urls for rewriting.
     re_url = re.compile(r'''
-        (\\)?
-        @root
+        (@@?)
+        root
         ([-\w+&@/%?=~|\[\]\(\)!:,\.;]*[-\w+&@/%=~|\[\]])
         ([#][-\w]*)?
     ''', re.VERBOSE)
@@ -89,9 +89,9 @@ class Page(dict):
             url = match.group(2).lstrip('/')
             fragment = match.group(3) or ''
 
-            # 1. We have a backslash-escaped url.
-            if match.group(1):
-                return match.group(0).lstrip('\\')
+            # 1. We have an @@root/ escaped url.
+            if match.group(1) == '@@':
+                return '@' + match.group(0).lstrip('@')
 
             # 2. We have a link to the homepage.
             elif url == '':

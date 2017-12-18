@@ -41,7 +41,7 @@ When Ivy generates a HTML page it searches for the appropriate template file to 
 
 For example, the node file:
 
-    /src/foo/bar/baz.md
+    src/foo/bar/baz.md
 
 corresponds to the node:
 

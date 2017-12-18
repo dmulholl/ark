@@ -18,7 +18,7 @@ As an example, assume we have a file named `photo.jpg` stored in a directory nam
 
 This file will be copied to the output directory and can be accessed in templates and node files via the url:
 
-    \\@root/images/photo.jpg
+    @@root/images/photo.jpg
 
 
 
@@ -38,7 +38,7 @@ We can then check for the presence of a featured image in the appropriate templa
 ::: django
 
     {% if node.image %}
-        <img src="\\@root/images/{{node.image}}">
+        <img src="@@root/images/{{node.image}}">
     {% endif %}
 
 Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
@@ -46,23 +46,23 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 ::: django
 
     {% for image in node.gallery %}
-        <img src="\\@root/images/{{image}}">
+        <img src="@@root/images/{{image}}">
     {% endfor %}
 
 
 
 ### Why do I get an error when I add a url to a Yaml header?
 
-Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get a scary looking error message if you add a bare `\\@root/` url to a Yaml header, e.g.
+Annoyingly, Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get a scary looking error message if you add a bare `@@root/` url to a Yaml header, e.g.
 
     ---
-    image: \\@root/images/photo.jpg
+    image: @@root/images/photo.jpg
     ---
 
 Quoting the url solves the problem:
 
     ---
-    image: "\\@root/images/photo.jpg"
+    image: "@@root/images/photo.jpg"
     ---
 
 And yes, I think it's ugly too.
@@ -73,9 +73,9 @@ And yes, I think it's ugly too.
 
 Sure, but you'll have to write some code to do it.
 
-Ivy is actually a stripped-down version of an older static website generator that I worked on for years called [Malt][], which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, general-purpose static-site-plus-blog engine --- it just ends up being a WordPress-style rat's nest of options and switches.
+Ivy is actually a stripped-down version of an older static website generator that I worked on for years called [Malt][], which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, *general-purpose* static-site-plus-blog engine --- it just ends up being a WordPress-style rat's nest of options and switches.
 
-It's actually quite easy to build a blog on top of Ivy by adding a simple plugin to assemble indexes, etc. --- at least, it's easy to do it for *one specific site*. I've certainly thought about releasing a general-purpose blog plugin, but it inevitably turns into its own mini rat's nest of options and switches all over again.
+It's actually quite easy to build a blog on top of Ivy by adding a simple plugin to assemble indexes, etc. --- at least, it's easy to do it for *one specific site*. I've certainly thought about building a general-purpose blog plugin, but it inevitably turns into its own mini rat's nest of options and switches all over again.
 
 I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at [Malt][] for inspiration.
 

@@ -83,6 +83,11 @@ The default port for the <code>serve</code> command has been changed from <code>
 The <code>watch</code> command now automatically launches the test server to view the site.
 </p>
 </li>
+<li>
+<p>
+New escaping mechanism for <code>@root/</code> urls. Backslashes get eaten by the Markdown and Monk parsers and so have to be doubled, which is confusing. Urls are now escaped by doubling the <code>@</code> symbol instead, i.e. <code>@@root/</code>.
+</p>
+</li>
 </ul>
 <h3 id="-9-0">
 0.9.0
