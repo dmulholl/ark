@@ -18,7 +18,7 @@ As an example, assume we have a file named `photo.jpg` stored in a directory nam
 
 This file will be copied to the output directory and can be accessed in templates and node files via the url:
 
-    @@root/images/photo.jpg
+    @root/images/photo.jpg
 
 
 
@@ -38,7 +38,7 @@ We can then check for the presence of a featured image in the appropriate templa
 ::: django
 
     {% if node.image %}
-        <img src="@@root/images/{{node.image}}">
+        <img src="@root/images/{{node.image}}">
     {% endif %}
 
 Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
@@ -46,23 +46,27 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 ::: django
 
     {% for image in node.gallery %}
-        <img src="@@root/images/{{image}}">
+        <img src="@root/images/{{image}}">
     {% endfor %}
 
 
 
 ### Why do I get an error when I add a url to a Yaml header?
 
-Annoyingly, Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get a scary looking error message if you add a bare `@@root/` url to a Yaml header, e.g.
+Annoyingly, Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get a scary looking error message if you add a bare `@root/` url to a Yaml header, e.g.
+
+::: 
 
     ---
-    image: @@root/images/photo.jpg
+    image: @root/images/photo.jpg
     ---
 
 Quoting the url solves the problem:
 
+::: yaml
+
     ---
-    image: "@@root/images/photo.jpg"
+    image: "@root/images/photo.jpg"
     ---
 
 And yes, I think it's ugly too.

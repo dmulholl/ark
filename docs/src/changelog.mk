@@ -13,7 +13,7 @@ title: Changelog
 
 * The `watch` command now automatically launches the test server to view the site.
 
-* New escaping mechanism for `@@root/` urls. Backslashes get eaten by the Markdown and Monk parsers and so have to be doubled, which is confusing. Urls are now escaped by doubling the `@` symbol instead, i.e. `@@@root/`.
+* We revert to the original algorithm for locating and rewriting `@root/` urls, i.e. only urls enclosed in quotes or angle brackets will be rewritten. (Quotes are preserved, angle bracktes evaporate.)
 
 [semver]: http://semver.org
 
@@ -41,8 +41,8 @@ title: Changelog
 
 ### 0.7.0
 
-* The algorithm for locating and rewriting `@@root/` urls has been changed.
-  Previously only `@@root/` urls enclosed in quotes or angle brackets were rewritten; now all `@@root/` urls are rewritten unless escaped by a preceeding backslash.
+* The algorithm for locating and rewriting `@root/` urls has been changed.
+  Previously only `@root/` urls enclosed in quotes or angle brackets were rewritten; now all `@root/` urls are rewritten unless escaped by a preceeding backslash.
 
 
 

@@ -69,13 +69,9 @@ class Page(dict):
 
         return hooks.filter('page_path', site.out(*slugs), self)
 
-    # Regex for locating @root/ urls for rewriting.
-    re_url = re.compile(r'''
-        (@@?)
-        root/
-        ([-\w+&@/%?=~|\[\]\(\)!:,\.;]*[-\w+&@/%=~|\[\]])?
-        ([#][-\w]*)?
-    ''', re.VERBOSE)
+    # Regex for locating @root/ urls for rewriting. We only rewrite urls
+    # inside quotes (which are preserved) or angle brackets (which evaporate).
+    re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
 
     # Rewrite @root/ urls to their final form.
     def rewrite_urls(self, html):
@@ -86,15 +82,12 @@ class Page(dict):
 
         # Each matched url is replaced with the output of this callback.
         def callback(match):
+            quote = match.group(1) if match.group(1) in ('"', "'") else ''
             url = match.group(2).lstrip('/') if match.group(2) else ''
             fragment = match.group(3) or ''
 
-            # 1. We have an @@root/ escaped url.
-            if match.group(1) == '@@':
-                return '@' + match.group(0).lstrip('@')
-
-            # 2. We have a link to the homepage.
-            elif url == '':
+            # 1. We have a link to the homepage.
+            if url == '':
                 if suffix == '/':
                     if depth == 1:
                         url = '' if fragment else '#'
@@ -103,18 +96,18 @@ class Page(dict):
                 else:
                     url = prefix + 'index' + suffix
 
-            # 3. We have a link to a generated node page.
+            # 2. We have a link to a generated node page.
             elif url.endswith('//'):
                 if suffix == '/':
                     url = prefix + url.rstrip('/') + '/'
                 else:
                     url = prefix + url.rstrip('/') + suffix
 
-            # 4. We have a link to a static asset or directory.
+            # 3. We have a link to a static asset or directory.
             else:
                 url = prefix + url
 
-            return url + fragment
+            return '%s%s%s%s' % (quote, url, fragment, quote)
 
         # Replace each match with the return value of the callback.
         return self.re_url.sub(callback, html)

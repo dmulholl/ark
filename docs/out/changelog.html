@@ -85,7 +85,7 @@ The <code>watch</code> command now automatically launches the test server to vie
 </li>
 <li>
 <p>
-New escaping mechanism for <code>@root/</code> urls. Backslashes get eaten by the Markdown and Monk parsers and so have to be doubled, which is confusing. Urls are now escaped by doubling the <code>@</code> symbol instead, i.e. <code>@@root/</code>.
+We revert to the original algorithm for locating and rewriting <code>@root/</code> urls, i.e. only urls enclosed in quotes or angle brackets will be rewritten. (Quotes are preserved, angle bracktes evaporate.)
 </p>
 </li>
 </ul>
