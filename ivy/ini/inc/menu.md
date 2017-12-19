@@ -1,5 +1,5 @@
 ---
-# This is a sample include file.
+# This is a sample menu file.
 ---
 
 * [Home](@root/)

@@ -17,7 +17,7 @@ Usage: %s tree [FLAGS]
   Print the site's node tree.
 
 Flags:
-  --help                Print this command's help text and exit.
+  -h, --help            Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -37,7 +37,6 @@ def callback(parser):
             sys.exit("Error: cannot locate the site's home directory.")
 
         cols, _ = shutil.get_terminal_size()
-
         print('─' * cols)
         print('Site: %s' % ivy.site.home())
         print('─' * cols)

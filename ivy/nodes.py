@@ -93,8 +93,9 @@ class Node():
             out.append(child.str(depth + 1))
         return '\n'.join(out)
 
-    # Initialize the node. This method is called on each node in the parse
-    # tree once the entire tree has been assembled.
+    # Initialize the node. This method is called on the root node once the
+    # parse tree has been assembled. It recursively calls itself on all
+    # subnodes.
     def init(self):
 
         # Filter the node's text on the 'node_text' hook.
@@ -106,12 +107,12 @@ class Node():
         # Filter the node's html on the 'node_html' hook.
         self['html'] = hooks.filter('node_html', html, self)
 
-        # Initialize the node's subnodes.
+        # Initialize any subnodes.
         for node in self.children.values():
             node.init()
 
         # Fire the 'init_node' event. This fires 'bottom up', i.e. when this
-        # event fires on a node, all its subnodes have already been
+        # event fires on a node, all its descendants have already been
         # initialized.
         hooks.event('init_node', self)
 
