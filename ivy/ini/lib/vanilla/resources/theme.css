@@ -289,7 +289,7 @@ h1 + ul {
     Alert Boxes
 */
 
-.stx-alert {
+.alertbox {
     margin: 2.5rem 1rem;
     border: 1px solid;
     padding: 5px 20px;
@@ -298,19 +298,19 @@ h1 + ul {
 
 }
 
-.stx-info {
+.alertbox.info {
     color: #224466;
     border-color: #bac6d3;
     background-color: #e2eef9;
 }
 
-.stx-warning {
+.alertbox.warning {
     color: #4c4a42;
     border-color: #dfd8c2;
     background-color: #fff9ea;
 }
 
-.stx-error {
+.alertbox.error {
     color: #991111;
     border-color: #d2b2b2;
     background-color: #fcdede;
