@@ -13,7 +13,7 @@ title: Changelog
 
 * The `watch` command now automatically launches the test server to view the site.
 
-* We revert to the original algorithm for locating and rewriting `@root/` urls, i.e. only urls enclosed in quotes or angle brackets will be rewritten. (Quotes are preserved, angle bracktes evaporate.)
+* We revert to the original algorithm for locating and rewriting `@root/` urls, i.e. only urls enclosed in quotes or angle brackets will be rewritten. (Quotes are preserved, angle brackets evaporate.)
 
 [semver]: http://semver.org
 
