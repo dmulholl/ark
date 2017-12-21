@@ -5,6 +5,26 @@ title: FAQ
 :insert toc
 
 
+### Why won't Ivy install?
+
+Every installation problem I've heard about has turned out to be a Python 2 issue, *even when people are convinced they're installing using Python 3*. If you're having problems installing Ivy, try this sequence of steps:
+
+First, make sure you have Python 3 installed:
+
+    $ python3 --version
+
+Next, install Ivy using the copy of `pip` associated with your Python 3 installation:
+
+    $ python3 -m pip install ivy
+
+Check that Ivy has installed properly:
+
+    $ python3 -m ivy --version
+
+You should now be able to run the application simply by typing `ivy`, but if you're still having problems try `python3 -m ivy` as a fallback.
+
+
+
 ### Where do I put my image files?
 
 Image files, along with any other static assets, should be stored in the site's resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
@@ -55,7 +75,7 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 
 Annoyingly, Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get a scary looking error message if you add a bare `@root/` url to a Yaml header, e.g.
 
-::: 
+:::
 
     ---
     image: @root/images/photo.jpg

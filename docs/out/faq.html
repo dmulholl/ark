@@ -61,6 +61,9 @@ It transforms a directory of text files into a self-contained website.</p>
       </header>
       <ul class="stx-toc">
 <li>
+<a href="#why-wont-ivy-install">Why won't Ivy install?</a>
+</li>
+<li>
 <a href="#where-do-i-put-my-image-files">Where do I put my image files?</a>
 </li>
 <li>
@@ -73,6 +76,33 @@ It transforms a directory of text files into a self-contained website.</p>
 <a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
 </li>
 </ul>
+<h3 id="why-wont-ivy-install">
+Why won't Ivy install?
+</h3>
+<p>
+Every installation problem I've heard about has turned out to be a Python 2 issue, <em>even when people are convinced they're installing using Python 3</em>. If you're having problems installing Ivy, try this sequence of steps:
+</p>
+<p>
+First, make sure you have Python 3 installed:
+</p>
+<pre>
+$ python3 --version
+</pre>
+<p>
+Next, install Ivy using the copy of <code>pip</code> associated with your Python 3 installation:
+</p>
+<pre>
+$ python3 -m pip install ivy
+</pre>
+<p>
+Check that Ivy has installed properly:
+</p>
+<pre>
+$ python3 -m ivy --version
+</pre>
+<p>
+You should now be able to run the application simply by typing <code>ivy</code>, but if you're still having problems try <code>python3 -m ivy</code> as a fallback.
+</p>
 <h3 id="where-do-i-put-my-image-files">
 Where do I put my image files?
 </h3>
