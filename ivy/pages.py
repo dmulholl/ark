@@ -11,6 +11,7 @@ from . import hooks
 from . import utils
 from . import templates
 from . import hashes
+from . import urls
 
 
 # A Page instance represents a single html page in the rendered site.
@@ -47,7 +48,7 @@ class Page(dict):
         html = hooks.filter('page_html', html, self)
 
         # Rewrite all @root/ urls.
-        html = self.rewrite_urls(html)
+        html = urls.rewrite(html, self['filepath'])
 
         # Write the page to disk. Avoid overwriting identical files.
         if not hashes.match(self['filepath'], html):
@@ -68,49 +69,6 @@ class Page(dict):
             slugs[-1] += suffix
 
         return hooks.filter('page_path', site.out(*slugs), self)
-
-    # Regex for locating @root/ urls for rewriting. We only rewrite urls
-    # inside quotes (which are preserved) or angle brackets (which evaporate).
-    re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
-
-    # Rewrite @root/ urls to their final form.
-    def rewrite_urls(self, html):
-        relpath = os.path.relpath(self['filepath'], site.out())
-        depth = len(relpath.replace('\\', '/').split('/'))
-        prefix = site.config.get('root') or '../' * (depth - 1)
-        suffix = site.config.get('extension')
-
-        # Each matched url is replaced with the output of this callback.
-        def callback(match):
-            quote = match.group(1) if match.group(1) in ('"', "'") else ''
-            url = match.group(2).lstrip('/') if match.group(2) else ''
-            fragment = match.group(3) or ''
-
-            # 1. We have a link to the homepage.
-            if url == '':
-                if suffix == '/':
-                    if depth == 1:
-                        url = '' if fragment else '#'
-                    else:
-                        url = prefix
-                else:
-                    url = prefix + 'index' + suffix
-
-            # 2. We have a link to a generated node page.
-            elif url.endswith('//'):
-                if suffix == '/':
-                    url = prefix + url.rstrip('/') + '/'
-                else:
-                    url = prefix + url.rstrip('/') + suffix
-
-            # 3. We have a link to a static asset or directory.
-            else:
-                url = prefix + url
-
-            return '%s%s%s%s' % (quote, url, fragment, quote)
-
-        # Replace each match with the return value of the callback.
-        return self.re_url.sub(callback, html)
 
     # Assemble a list of path slugs.
     def get_slug_list(self):
