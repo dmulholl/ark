@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 1.1.0
+
+* Refactor url rewriting as a separate module.
+
+
+
 ### 1.0.0
 
 * First stable release. Future releases will adhere to [semantic versioning][semver] for changes which affect the theme or plugin API.
