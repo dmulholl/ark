@@ -3,7 +3,7 @@ title: Changelog
 ---
 
 
-### 1.1.0
+### 1.1.0.dev
 
 * Refactor url rewriting as a separate module.
 
@@ -48,7 +48,7 @@ title: Changelog
 ### 0.7.0
 
 * The algorithm for locating and rewriting `@root/` urls has been changed.
-  Previously only `@root/` urls enclosed in quotes or angle brackets were rewritten; now all `@root/` urls are rewritten unless escaped by a preceeding backslash.
+  Previously only `@root/` urls enclosed in quotes or angle brackets were rewritten; now all `@root/` urls are rewritten unless escaped by a preceding backslash.
 
 
 

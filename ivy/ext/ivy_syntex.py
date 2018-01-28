@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 # This extension adds support for source files in Syntex format. Syntex has
-# been renamed Monk - this file is retained for backwards compatability. It
+# been renamed Monk - this file is retained for backwards compatibility. It
 # will be removed in a future release.
 # ------------------------------------------------------------------------------
 
