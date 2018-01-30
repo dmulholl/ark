@@ -97,7 +97,7 @@ And yes, I think it's ugly too.
 
 Sure, but you'll have to write some code to do it.
 
-Ivy is actually a stripped-down version of an older static website generator that I worked on for years called [Malt][], which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, *general-purpose* static-site-plus-blog engine --- it just ends up being a WordPress-style rat's nest of options and switches.
+Ivy is actually a stripped-down version of an older static website generator that I tinkered with for years called [Malt][], which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, *general-purpose* static-website-plus-blog engine --- it just ends up being a WordPress-style rat's nest of options and switches.
 
 It's actually quite easy to build a blog on top of Ivy by adding a simple plugin to assemble indexes, etc. --- at least, it's easy to do it for *one specific site*. I've certainly thought about building a general-purpose blog plugin, but it inevitably turns into its own mini rat's nest of options and switches all over again.
 
