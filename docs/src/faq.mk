@@ -7,7 +7,7 @@ title: FAQ
 
 ### Why won't Ivy install?
 
-Every installation problem I've heard about has turned out to be a Python 2 issue, *even when people are convinced they're installing using Python 3*. If you're having problems installing Ivy, try this sequence of steps:
+Ivy requires Python 3. Every installation problem I've heard about has turned out to be a Python 2 issue, *even when people are convinced they're installing using Python 3*. If you're having problems installing Ivy, try this sequence of steps:
 
 First, make sure you have Python 3 installed:
 

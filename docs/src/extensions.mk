@@ -26,6 +26,13 @@ This method can be used to enable extensions installed from the package index us
 
 Ivy exports a flexible framework of event and filter hooks. Plugins can extend Ivy by registering callback functions on these hooks.
 
+Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
+
+You can find these bundled plugins in the `ivy/ext/` directory which you can view on Github [here][extdir].
+
+[extdir]: https://github.com/dmulholland/ivy/tree/master/ivy/ext
+
+
 
 
 ### Events

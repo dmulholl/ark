@@ -19,23 +19,24 @@ Use the `ivy --help` flag to view the full command-line help text:
 
     Usage: ivy [FLAGS] [COMMAND]
 
-      Ivy is a static website generator. It transforms a directory of text
-      files into a self-contained website.
+      Ivy is a static website generator. It transforms a
+      directory of text files into a self-contained website.
 
     Flags:
-      --help              Print the application's help text and exit.
-      --version           Print the application's version number and exit.
+      -h, --help          Print the application's help text.
+      -v, --version       Print the application's version.
 
     Commands:
       build               Build the site.
       clear               Clear the output directory.
       init                Initialize a new site directory.
-      serve               Run a web server on the site's output directory.
+      serve               Run a server on the output directory.
       tree                Print the site's node tree.
-      watch               Monitor the site directory and rebuild on changes.
+      watch               Monitor the site directory and
+    					  automatically rebuild on changes.
 
     Command Help:
-      help <command>      Print the specified command's help text and exit.
+      help <command>      Print the command's help text.
 
 Run `ivy help <command>` to view the help text for a specific command.
 
@@ -56,7 +57,7 @@ Initializing a new site creates the following directory structure:
 
 The site configuration file can be deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ivy requires the presence of either a `config.py` file or both `src` and `out` directories to identify a site's home directory.)
 
-Static assets such as image files should be placed in the site's resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
+Static assets such as image files should be placed in the resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
 
 
 
@@ -69,7 +70,7 @@ A node file can begin with a [YAML][] header specifying metadata for the node:
     ---
     title: My Important Document
     author: John Doe
-    date: 1901-07-21
+    date: 1979-02-28
     ---
 
     Content begins here.

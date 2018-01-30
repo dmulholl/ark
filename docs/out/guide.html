@@ -120,23 +120,24 @@ Use the <code>ivy --help</code> flag to view the full command-line help text:
 <pre>
 Usage: ivy [FLAGS] [COMMAND]
 
-  Ivy is a static website generator. It transforms a directory of text
-  files into a self-contained website.
+  Ivy is a static website generator. It transforms a
+  directory of text files into a self-contained website.
 
 Flags:
-  --help              Print the application&#x27;s help text and exit.
-  --version           Print the application&#x27;s version number and exit.
+  -h, --help          Print the application&#x27;s help text.
+  -v, --version       Print the application&#x27;s version.
 
 Commands:
   build               Build the site.
   clear               Clear the output directory.
   init                Initialize a new site directory.
-  serve               Run a web server on the site&#x27;s output directory.
+  serve               Run a server on the output directory.
   tree                Print the site&#x27;s node tree.
-  watch               Monitor the site directory and rebuild on changes.
+  watch               Monitor the site directory and
+                      automatically rebuild on changes.
 
 Command Help:
-  help &lt;command&gt;      Print the specified command&#x27;s help text and exit.
+  help &lt;command&gt;      Print the command&#x27;s help text.
 </pre>
 <p>
 Run <code>ivy help &lt;command&gt;</code> to view the help text for a specific command.
@@ -161,7 +162,7 @@ site/
 The site configuration file can be deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ivy requires the presence of either a <code>config.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
 </p>
 <p>
-Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
+Static assets such as image files should be placed in the resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
 </p>
 <h2 id="nodes">
 Nodes
@@ -176,7 +177,7 @@ A node file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a
 ---
 title: My Important Document
 author: John Doe
-date: 1901-07-21
+date: 1979-02-28
 ---
 
 Content begins here.

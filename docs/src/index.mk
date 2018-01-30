@@ -16,8 +16,8 @@ Ivy is a static website generator built in Python. It's small, elegant, and easy
       directory of text files into a self-contained website.
 
     Flags:
-      --help              Print the application's help text.
-      --version           Print the application's version.
+      -h, --help          Print the application's help text.
+      -v, --version       Print the application's version.
 
     Commands:
       build               Build the site.
