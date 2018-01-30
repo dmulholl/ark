@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------------------
-# This extension prints a simple stats report at the end of each build run.
+# This extension prints a count of pages rendered and pages written to disk at
+# the end of each build run.
 # ------------------------------------------------------------------------------
 
 from ivy import hooks, site, utils

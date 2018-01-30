@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
-# This extension automatically generates a html menu containing links to
-# every node in the site. The menu can be accessed in templates via an
-# 'automenu' attribute.
+# This extension automatically generates a menu containing links to every node
+# in the site. The menu can be accessed in templates via the 'automenu'
+# attribute.
 #
 # If a node has a 'menu_title' attribute, its value will be used in the
 # menu in place of the node's title.
