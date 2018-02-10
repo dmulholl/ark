@@ -7,6 +7,10 @@ title: Changelog
 
 * Refactor url rewriting as a separate module.
 
+* Fix a Windows bug in the algorithm for finding the site's home directory.
+
+* Remove deprecated pre-1.0 support for `site.py` site configuration files. These files should be renamed to `config.py`.
+
 
 
 ### 1.0.0
