@@ -3,7 +3,7 @@ title: Changelog
 ---
 
 
-### 1.1.0.dev
+### 1.1.0
 
 * Refactor url rewriting as a separate module.
 
