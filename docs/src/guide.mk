@@ -171,6 +171,8 @@ If this menu was contained in a file named `menu.md` then the rendered HTML woul
 
 Files with a `.html`/`.js`/`.css`/`.txt` extension will have their contents preserved as-is.
 
+Note that included files are available for use in *templates* (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Monk files). To include elements in node content consider making use of [shortcodes](@root/extensions//#shortcodes).
+
 
 
 ## Extension Options
