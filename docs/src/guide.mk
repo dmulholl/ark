@@ -180,7 +180,7 @@ Note that included files are available for use in *templates* (e.g. Jinja or Ibi
 
 ### Markdown
 
-Ivy uses the [Markdown][mddocs] package to render record files with a `.md` extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a `markdown` attribute, e.g.
+Ivy uses the [Markdown][mddocs] package to render node files with a `.md` extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a `markdown` attribute, e.g.
 
 ::: python
 
@@ -202,7 +202,7 @@ Ivy uses the [Jinja2][jinja] package to render template files with a `.jinja` ex
 
 ### Shortcodes
 
-Ivy uses the [Shortcodes][shortcodes] package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
+Ivy uses the [Shortcodes][shortcodes] package to process shortcodes in node files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
 
 [shortcodes]: https://github.com/dmulholland/shortcodes
 
