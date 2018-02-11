@@ -61,10 +61,10 @@ def load_site_config():
 # Attempt to determine and return the path to the site's home directory.
 # We use the presence of either a 'config.py' file or both 'src' and 'out'
 # directories to identify the home directory. We first test the current
-# working directory, then its ancestor directories in sequence until we hit
+# working directory, then its ancestor directories in sequence until we reach
 # the system root. If we make it all the way to the system root without
-# finding a home directory then we are not inside an initialized Ivy site and
-# we return an empty string.
+# finding a home directory then we must not be inside an initialized Ivy site;
+# in this case we return an empty string.
 def find_home():
     path = os.path.abspath(os.getcwd())
     while True:
