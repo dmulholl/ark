@@ -33,7 +33,7 @@ Use the `ivy --help` flag to view the full command-line help text:
       serve               Run a server on the output directory.
       tree                Print the site's node tree.
       watch               Monitor the site directory and
-    					  automatically rebuild on changes.
+                          automatically rebuild on changes.
 
     Command Help:
       help <command>      Print the command's help text.
