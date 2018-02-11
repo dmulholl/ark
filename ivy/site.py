@@ -45,9 +45,6 @@ def load_site_config():
     if home() and isfile(home('config.py')):
         with open(home('config.py'), encoding='utf-8') as file:
             exec(file.read(), config)
-    elif home() and isfile(home('site.py')):
-        with open(home('site.py'), encoding='utf-8') as file:
-            exec(file.read(), config)
 
     # Delete the __builtins__ attribute as it pollutes variable dumps.
     if '__builtins__' in config:
