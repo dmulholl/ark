@@ -37,8 +37,8 @@ def callback(parser):
             sys.exit("Error: cannot locate the site's home directory.")
 
         cols, _ = shutil.get_terminal_size()
-        print('─' * cols)
-        print('Site: %s' % ivy.site.home())
-        print('─' * cols)
-        print(ivy.nodes.root().str())
-        print('─' * cols)
+        ivy.utils.safeprint('─' * cols)
+        ivy.utils.safeprint('Site: %s' % ivy.site.home())
+        ivy.utils.safeprint('─' * cols)
+        ivy.utils.safeprint(ivy.nodes.root().str())
+        ivy.utils.safeprint('─' * cols)
