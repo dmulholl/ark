@@ -31,7 +31,7 @@ if shortcodes:
             msg =  "-------------------\n"
             msg += "  Shortcode Error  \n"
             msg += "-------------------\n\n"
-            msg += "  Node: %s\n\n" % node.path()
+            msg += "  %s\n\n" % node
             msg += "  %s: %s" % (err.__class__.__name__, err)
             if err.__context__:
                 cause = err.__context__
