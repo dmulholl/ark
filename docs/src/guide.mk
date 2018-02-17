@@ -171,7 +171,23 @@ If this menu was contained in a file named `menu.md` then the rendered HTML woul
 
 Files with a `.html`/`.js`/`.css`/`.txt` extension will have their contents preserved as-is.
 
-Note that included files are available for use in *templates* (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Monk files). To include elements in node content consider making use of [shortcodes](@root/extensions//#shortcodes).
+Note that included files are available for use in *templates* (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Monk files). To include elements in node content consider making use of shortcodes.
+
+
+
+## Shortcodes
+
+Ivy has builtin support for WordPress-style shortcodes with space-separated positional and keyword arguments:
+
+    \[% tag arg1 key=arg2 %] ... \[% endtag %]
+
+Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
+
+Shortcodes are registered by [plugins](@root/extensions//). When you create a new site using the `init` command, Ivy adds a sample plugin to your site's `ext` directory that registers an `\[% include %]` shortcode. You can use this shortcode to inject the content of files from your site's `inc` directory directly into a node's text, e.g.
+
+    \[% include foobar.md %]
+
+Just supply the shortcode with the name of the file to include. You can learn more about registering custom shortcodes of your own [here](@root/extensions//#shortcodes).
 
 
 

@@ -139,11 +139,23 @@ This filter fires each time a node file is loaded; it passes the raw file text a
 The `file_text` hook can be found in the `ivy/loader.py` file.
 
 
-### Shortcodes
+## Shortcodes
 
-Ivy has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
+Ivy has builtin support for WordPress-style [shortcodes][scdocs] with space-separated positional and keyword arguments:
 
-    \[% tag arg1 key=arg2 %] ... \[% endtag %]
+    \[% tag arg1 key=arg2 %]
+
+Arguments containing spaces can be enclosed in quotes:
+
+    \[% tag "arg 1" key="arg 2" %]
+
+Shortcodes can be atomic, as above, or can enclose a block of content between opening and closing tags:
+
+    \[% tag %] ... \[% endtag %]
+
+Block-scoped shortcodes can be nested to any depth. Innermost shortcodes are processed first:
+
+    \[% tag %] ... content with \[% more %] shortcodes ... \[% endtag %]
 
 Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
 
@@ -164,9 +176,11 @@ Handler functions should accept four arguments:
 3. A list of positional arguments.
 4. A dictionary of keyword arguments.
 
-Positional and keyword arguments are passed as strings. The handler function itself should return a string.
+Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
 
 Note that shortcodes are processed *before* node text is rendered into HTML.
 
-[shortcodes]: http://mulholland.xyz/dev/shortcodes/
-[pygments]: http://pygments.org
+Shortcodes are processed using the [shortcodes][scgithub] library. You can find the full documentation for this package [here][scdocs].
+
+[scdocs]: http://mulholland.xyz/dev/shortcodes/
+[scgithub]: https://github.com/dmulholland/shortcodes

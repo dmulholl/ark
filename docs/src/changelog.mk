@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 1.2.0
+
+* Add a sample plugin to the skeleton site's `ext` directory that registers an `\[% include %]` shortcode.
+
+
+
 ### 1.1.0
 
 * Refactor url rewriting as a separate module.

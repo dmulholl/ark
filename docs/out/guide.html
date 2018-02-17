@@ -79,6 +79,9 @@ It transforms a directory of text files into a self-contained website.</p>
 <a href="#includes">Includes</a>
 </li>
 <li>
+<a href="#shortcodes">Shortcodes</a>
+</li>
+<li>
 <a href="#extension-options">Extension Options</a>
 <ul>
 <li>
@@ -88,7 +91,7 @@ It transforms a directory of text files into a self-contained website.</p>
 <a href="#jinja">Jinja</a>
 </li>
 <li>
-<a href="#shortcodes">Shortcodes</a>
+<a href="#shortcodes-2">Shortcodes</a>
 </li>
 <li>
 <a href="#automenu">Automenu</a>
@@ -308,7 +311,28 @@ If this menu was contained in a file named <code>menu.md</code> then the rendere
 Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</code> extension will have their contents preserved as-is.
 </p>
 <p>
-Note that included files are available for use in <em>templates</em> (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Monk files). To include elements in node content consider making use of <a href="extensions.html#shortcodes">shortcodes</a>.
+Note that included files are available for use in <em>templates</em> (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Monk files). To include elements in node content consider making use of shortcodes.
+</p>
+<h2 id="shortcodes">
+Shortcodes
+</h2>
+<p>
+Ivy has builtin support for WordPress-style shortcodes with space-separated positional and keyword arguments:
+</p>
+<pre>
+[% tag arg1 key=arg2 %] ... [% endtag %]
+</pre>
+<p>
+Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
+</p>
+<p>
+Shortcodes are registered by <a href="extensions.html">plugins</a>. When you create a new site using the <code>init</code> command, Ivy adds a sample plugin to your site's <code>ext</code> directory that registers an <code>[% include %]</code> shortcode. You can use this shortcode to inject the content of files from your site's <code>inc</code> directory directly into a node's text, e.g.
+</p>
+<pre>
+[% include foobar.md %]
+</pre>
+<p>
+Just supply the shortcode with the name of the file to include. You can learn more about registering custom shortcodes of your own <a href="extensions.html#shortcodes">here</a>.
 </p>
 <h2 id="extension-options">
 Extension Options
@@ -331,7 +355,7 @@ Jinja
 <p>
 Ivy uses the <a href="http://jinja.pocoo.org">Jinja2</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
 </p>
-<h3 id="shortcodes">
+<h3 id="shortcodes-2">
 Shortcodes
 </h3>
 <p>

@@ -86,10 +86,10 @@ It transforms a directory of text files into a self-contained website.</p>
 <li>
 <a href="#node-meta">Node Meta</a>
 </li>
+</ul>
+</li>
 <li>
 <a href="#shortcodes">Shortcodes</a>
-</li>
-</ul>
 </li>
 </ul>
 <h2 id="installing-plugins">
@@ -223,14 +223,32 @@ This filter fires each time a node file is loaded; it passes the raw file text a
 <p>
 The <code>file_text</code> hook can be found in the <code>ivy/loader.py</code> file.
 </p>
-<h3 id="shortcodes">
+<h2 id="shortcodes">
 Shortcodes
-</h3>
+</h2>
 <p>
 Ivy has builtin support for WordPress-style <a href="http://mulholland.xyz/dev/shortcodes/">shortcodes</a> with space-separated positional and keyword arguments:
 </p>
 <pre>
-[% tag arg1 key=arg2 %] ... [% endtag %]
+[% tag arg1 key=arg2 %]
+</pre>
+<p>
+Arguments containing spaces can be enclosed in quotes:
+</p>
+<pre>
+[% tag &quot;arg 1&quot; key=&quot;arg 2&quot; %]
+</pre>
+<p>
+Shortcodes can be atomic, as above, or can enclose a block of content between opening and closing tags:
+</p>
+<pre>
+[% tag %] ... [% endtag %]
+</pre>
+<p>
+Block-scoped shortcodes can be nested to any depth. Innermost shortcodes are processed first:
+</p>
+<pre>
+[% tag %] ... content with [% more %] shortcodes ... [% endtag %]
 </pre>
 <p>
 Plugins can register shortcode tags using the <code>@shortcodes.register()</code> decorator:
@@ -262,10 +280,13 @@ A dictionary of keyword arguments.
 </li>
 </ol>
 <p>
-Positional and keyword arguments are passed as strings. The handler function itself should return a string.
+Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
 </p>
 <p>
 Note that shortcodes are processed <em>before</em> node text is rendered into HTML.
+</p>
+<p>
+Shortcodes are processed using the <a href="https://github.com/dmulholland/shortcodes">shortcodes</a> library. You can find the full documentation for this package <a href="http://mulholland.xyz/dev/shortcodes/">here</a>.
 </p>
 
     </article>
