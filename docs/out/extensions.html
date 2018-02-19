@@ -262,6 +262,15 @@ Plugins can register shortcode tags using the <code>@shortcodes.register()</code
     <span class="k">return</span> <span class="n">replacement_text</span>
 </pre>
 <p>
+Specifying a closing tag in the decorator gives the new shortcode block scope:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="nd">@shortcodes.register</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;endtag&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">replacement_text</span>
+</pre>
+<p>
 Handler functions should accept four arguments:
 </p>
 <ol>

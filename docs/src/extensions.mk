@@ -168,6 +168,15 @@ Plugins can register shortcode tags using the `@shortcodes.register()` decorator
         ...
         return replacement_text
 
+Specifying a closing tag in the decorator gives the new shortcode block scope:
+
+::: python
+
+    @shortcodes.register("tag", "endtag")
+    def handler(node, content, pargs, kwargs):
+        ...
+        return replacement_text
+
 Handler functions should accept four arguments:
 
 1. The `Node` instance containing the shortcode.
