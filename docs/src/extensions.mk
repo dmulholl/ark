@@ -189,7 +189,7 @@ Positional and keyword arguments are passed as strings. The handler function its
 
 Note that shortcodes are processed *before* node text is rendered into HTML.
 
-Shortcodes are processed using the [shortcodes][scgithub] library. You can find the full documentation for this package [here][scdocs].
+You can find the full documentation for the Shortcodes library [here][scdocs].
 
-[scdocs]: http://mulholland.xyz/dev/shortcodes/
+[scdocs]: http://mulholland.xyz/docs/shortcodes/
 [scgithub]: https://github.com/dmulholland/shortcodes
