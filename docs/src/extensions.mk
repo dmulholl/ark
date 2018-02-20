@@ -172,7 +172,7 @@ Specifying a closing tag in the decorator gives the new shortcode block scope:
 
 ::: python
 
-    @shortcodes.register("tag", "endtag")
+    @shortcodes.register('tag', 'endtag')
     def handler(node, content, pargs, kwargs):
         ...
         return replacement_text
