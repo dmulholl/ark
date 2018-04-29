@@ -1,4 +1,3 @@
-
 * [Home](@root/)
 * [Quickstart](@root/quickstart//)
 * [Guide](@root/guide//)
