@@ -59,12 +59,11 @@ setup(
         'ibis >= 1.6.0, < 2.0.0',
         'shortcodes >= 2.1.0, < 3.0.0',
         'libjanus >= 1.0.0, < 2.0.0',
-        'syntex',
     ],
     author = 'Darren Mulholland',
     url='https://github.com/dmulholland/ivy',
     license = 'Public Domain',
-    description = 'A minimalist static website generator.',
+    description = 'A static website generator.',
     long_description = __doc__,
     classifiers = [
         'Programming Language :: Python :: 3',
