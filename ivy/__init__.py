@@ -9,7 +9,7 @@ import sys
 
 
 # Application version number.
-__version__ = '1.2.1'
+__version__ = '1.3.0-dev'
 
 
 # Ivy requires at least Python 3.5.
@@ -28,6 +28,10 @@ try:
     import janus
 except ImportError:
     sys.exit(error % ('Janus', 'libjanus'))
+try:
+    import shortcodes
+except ImportError:
+    sys.exit(error % ('Shortcodes', 'shortcodes'))
 
 
 # We import the package's modules so users can access 'ivy.foo' via a simple

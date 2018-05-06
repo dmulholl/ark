@@ -239,6 +239,7 @@ The bundled Automenu extension automatically generates a menu containing links t
 Installing Ivy via `pip` automatically installs the following required dependencies:
 
 * [Janus](https://pypi.python.org/pypi/libjanus)
+* [Shortcodes](https://pypi.python.org/pypi/shortcodes)
 
 Installing via `pip` also automatically installs the following optional dependencies:
 
@@ -247,7 +248,6 @@ Installing via `pip` also automatically installs the following optional dependen
 * [Markdown](https://pypi.python.org/pypi/Markdown)
 * [Pygments](https://pypi.python.org/pypi/Pygments)
 * [PyYAML](https://pypi.python.org/pypi/PyYAML)
-* [Shortcodes](https://pypi.python.org/pypi/shortcodes)
 * [Monk](https://pypi.python.org/pypi/libmonk)
 
 Ivy will run without any of these optional dependencies installed but the associated functionality will not be available.

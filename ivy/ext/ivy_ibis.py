@@ -14,7 +14,7 @@ except ImportError:
 # The ibis package is an optional dependency.
 if ibis:
 
-    # Initialize our Ibis template loader on the 'init' event hook.
+    # Initialize our template loader on the 'init' event hook.
     @hooks.register('init')
     def init():
         ibis.config.loader = ibis.loaders.FileLoader(site.theme('templates'))

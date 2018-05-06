@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 1.3.0
+
+* Remove deprecated support for source files in Syntex format.
+
+
+
 ### 1.2.0
 
 * Add a sample plugin to the skeleton site's `ext` directory that registers an `\[% include %]` shortcode.
@@ -15,7 +21,7 @@ title: Changelog
 
 * Fix a Windows bug in the algorithm for finding the site's home directory.
 
-* Remove deprecated pre-1.0 support for `site.py` site configuration files. These files should be renamed to `config.py`.
+* Remove deprecated support for `site.py` site configuration files. These files should be renamed to `config.py`.
 
 
 
