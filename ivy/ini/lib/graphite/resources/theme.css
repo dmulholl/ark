@@ -446,7 +446,7 @@ th, td {
     .masthead {
         width: auto;
         float: none;
-        padding: 20px 20px 60px;
+        padding: 20px 60px 20px 60px;
         text-align: center;
         margin-left: 40px;
         margin-right: 40px;
@@ -467,6 +467,11 @@ th, td {
 
     .masthead .tagline {
         text-align: center;
+        display: none;
+    }
+
+    .homepage .masthead .tagline {
+        display: block;
     }
 
     .masthead .menu {
