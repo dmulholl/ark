@@ -403,6 +403,11 @@ th, td {
     font-style: italic;
 }
 
+.indent {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 .unselectable {
     -webkit-user-select: none;
     -moz-user-select: none;
