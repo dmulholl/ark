@@ -25,5 +25,5 @@ Ivy is a static website generator built in Python. It's small, elegant, and easy
     Command Help:
       help <command>      Print the specified command's help text and exit.
 
-* [Documentation](http://mulholland.xyz/docs/ivy/)
-* [Demo Site](http://ivy.mulholland.xyz/graphite/)
+* [Documentation](https://darrenmulholland.com/docs/ivy/)
+* [Demo Site](https://darrenmulholland.com/demos/ivy/)
