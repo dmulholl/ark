@@ -57,10 +57,10 @@ Ivy is highly extensible so updates to its core will be few and far between. Mai
 
 ### Links
 
-* [Demo Site](http://ivy.mulholland.xyz/graphite/)
+* [Demo Site](https://darrenmulholland.com/demos/ivy/)
 * [Github Homepage](https://github.com/dmulholland/ivy)
 * [Python Package Index](https://pypi.python.org/pypi/ivy/)
-* [Online Documentation](http://mulholland.xyz/docs/ivy/)
+* [Online Documentation](https://darrenmulholland.com/docs/ivy/)
 
 
 
