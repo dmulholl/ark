@@ -7,6 +7,8 @@ title: Changelog
 
 * Remove deprecated support for source files in Syntex format.
 
+* Minor improvements to Graphite theme styles.
+
 
 
 ### 1.2.0
