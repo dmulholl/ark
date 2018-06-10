@@ -5,7 +5,7 @@
 #
 # To use it, just supply the name of the file you want to include:
 #
-#   [% include filename.md %]
+#   [% include file.md %]
 #
 # Note that shortcodes are processed *before* a node's text is rendered into
 # HTML so the format of the included file should be compatible with the format
