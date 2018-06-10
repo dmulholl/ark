@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 1.4.0-dev
+
+* Remove the Vanilla theme from the default distribution.
+
+
+
 ### 1.3.0
 
 * Remove deprecated support for source files in Syntex format.
