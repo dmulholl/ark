@@ -107,17 +107,18 @@ would be accessible in template files as `node.date_of_birth`.
 
 All nodes have the following default attributes:
 
-|| `html` ||
+
+[[ `html` ]]
 
     The node's text content rendered into html.
 
 
-|| `text` ||
+[[ `text` ]]
 
     The node's raw text content.
 
 
-|| `url` ||
+[[ `url` ]]
 
     The node's url.
 
