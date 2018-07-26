@@ -46,4 +46,4 @@ def render(text: str, ext: str) -> str:
     if ext in callbacks:
         return callbacks[ext](text)
     else:
-        sys.exit("Error: no registered renderer for '.%s'." % ext)
+        sys.exit(f"Error: no registered renderer for '.{ext}'.")
