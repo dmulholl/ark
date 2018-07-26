@@ -13,7 +13,7 @@ from typing import Dict, List, Callable, Any, Optional
 
 
 # Stores registered template-engine callbacks indexed by file extension.
-callbacks: Dict[str, Callable[['pages.Page', str], str]]= {}
+callbacks: Dict[str, Callable[['pages.Page', str], str]] = {}
 
 
 # Caches a list of the theme's template files.
