@@ -13,6 +13,8 @@ from . import templates
 from . import hashes
 from . import urls
 
+from typing import List
+
 
 # A Page instance represents a single html page in the rendered site.
 class Page(dict):
@@ -56,7 +58,7 @@ class Page(dict):
             site.written(1)
 
     # Determine the output filepath for the page.
-    def get_filepath(self):
+    def get_filepath(self) -> str:
         slugs = self['node'].path or ['index']
         suffix = site.config['extension']
 
@@ -71,7 +73,7 @@ class Page(dict):
         return hooks.filter('page_path', site.out(*slugs), self)
 
     # Assemble a list of path slugs.
-    def get_slug_list(self):
+    def get_slug_list(self) -> List[str]:
         slugs, stack = [], ['node'] + self['node'].path
 
         while stack:
@@ -81,7 +83,7 @@ class Page(dict):
         return hooks.filter('page_slugs', slugs, self)
 
     # Assemble a list of potential template names for the page.
-    def get_template_list(self):
+    def get_template_list(self) -> List[str]:
         template_list = self.get_slug_list()
 
         if 'template' in self['node']:
@@ -90,7 +92,7 @@ class Page(dict):
         return hooks.filter('page_templates', template_list, self)
 
     # Assemble a list of CSS classes for the page's <body> element.
-    def get_class_list(self):
+    def get_class_list(self) -> List[str]:
         class_list = self.get_slug_list()
 
         if self['flags']['is_homepage']:

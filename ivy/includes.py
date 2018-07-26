@@ -9,13 +9,15 @@ from . import loader
 from . import renderers
 from . import site
 
+from typing import Dict, Optional
 
-# Dictionary of rendered files indexed by (normalized) filename.
-cache = None
+
+# Cached dictionary of rendered files indexed by normalized filename.
+cache: Optional[Dict[str, str]] = None
 
 
 # Return a dictionary of rendered files from the 'inc' directory.
-def load():
+def load() -> Dict[str, str]:
     global cache
     if cache is None:
         cache = {}

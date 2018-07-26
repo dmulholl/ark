@@ -62,7 +62,7 @@ def load_site_config():
 # the system root. If we make it all the way to the system root without
 # finding a home directory then we must not be inside an initialized Ivy site;
 # in this case we return an empty string.
-def find_home():
+def find_home() -> str:
     path = os.path.abspath(os.getcwd())
     while True:
         if isfile(join(path, 'config.py')):
@@ -77,43 +77,43 @@ def find_home():
 
 # Return the path to the site's home directory or an empty string if the
 # home directory cannot be located. Append arguments.
-def home(*append):
+def home(*append: str) -> str:
     path = cache.get('home') or cache.setdefault('home', find_home())
     return join(path, *append)
 
 
 # Return the path to the source directory. Append arguments.
-def src(*append):
+def src(*append: str) -> str:
     path = cache.get('src') or cache.setdefault('src', home('src'))
     return join(path, *append)
 
 
 # Return the path to the output directory. Append arguments.
-def out(*append):
+def out(*append: str) -> str:
     path = cache.get('out') or cache.setdefault('out', home('out'))
     return join(path, *append)
 
 
 # Return the path to the theme-library directory. Append arguments.
-def lib(*append):
+def lib(*append: str) -> str:
     path = cache.get('lib') or cache.setdefault('lib', home('lib'))
     return join(path, *append)
 
 
 # Return the path to the extensions directory. Append arguments.
-def ext(*append):
+def ext(*append: str) -> str:
     path = cache.get('ext') or cache.setdefault('ext', home('ext'))
     return join(path, *append)
 
 
 # Return the path to the includes directory. Append arguments.
-def inc(*append):
+def inc(*append: str) -> str:
     path = cache.get('inc') or cache.setdefault('inc', home('inc'))
     return join(path, *append)
 
 
 # Return the path to the resources directory. Append arguments.
-def res(*append):
+def res(*append: str) -> str:
     path = cache.get('res') or cache.setdefault('res', home('res'))
     return join(path, *append)
 
@@ -121,7 +121,7 @@ def res(*append):
 # Attempt to determine the path to the theme directory corresponding to
 # the specified theme name. Returns an empty string if the theme directory
 # cannot be located.
-def find_theme(name):
+def find_theme(name: str) -> str:
 
     # A directory in the site's theme library?
     if isdir(lib(name)):
@@ -145,24 +145,24 @@ def find_theme(name):
 
 
 # Return the path to the theme directory. Append arguments.
-def theme(*append):
+def theme(*append: str) -> str:
     if 'themepath' not in cache:
         cache['themepath'] = find_theme(config['theme'])
     return join(cache['themepath'], *append)
 
 
 # Return the application runtime in seconds.
-def runtime():
+def runtime() -> float:
     return time.time() - cache['start']
 
 
 # Increment the count of pages rendered by n and return the new value.
-def rendered(n=0):
+def rendered(n: int = 0) -> int:
     cache['rendered'] += n
     return cache['rendered']
 
 
 # Increment the count of pages written by n and return the new value.
-def written(n=0):
+def written(n: int = 0) -> int:
     cache['written'] += n
     return cache['written']

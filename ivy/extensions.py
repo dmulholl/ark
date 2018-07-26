@@ -14,14 +14,14 @@ loaded = {}
 
 
 # Load the named Python module from the specified directory.
-def load_module(directory, name):
+def load_module(directory: str, name: str):
     sys.path.insert(0, directory)
     loaded[name] = importlib.import_module(name)
     sys.path.pop(0)
 
 
 # Load a directory of Python modules.
-def load_directory(directory):
+def load_directory(directory: str):
     for name in os.listdir(directory):
         if name.startswith('.'):
             continue

@@ -2,8 +2,11 @@
 # This module implements Ivy's system of event and filter hooks.
 # ------------------------------------------------------------------------------
 
+from typing import Callable, Any, Optional, Dict, List
+
+
 # Maps hook names to lists of callback functions indexed by order.
-callbacks = {}
+callbacks: Dict[str, Dict[int, List[Callable]]] = {}
 
 
 # Decorator function for registering event and filter callbacks, i.e. handler
@@ -20,9 +23,9 @@ callbacks = {}
 # The @register decorator accepts an optional order parameter with a default
 # integer value of 0. Callbacks with lower order fire before callbacks with
 # higher order.
-def register(hook, order=0):
+def register(hook: str, order: int = 0) -> Callable:
 
-    def register_callback(func):
+    def register_callback(func: Callable) -> Callable:
         callbacks.setdefault(hook, {}).setdefault(order, []).append(func)
         return func
 
@@ -30,14 +33,14 @@ def register(hook, order=0):
 
 
 # Fires an event hook.
-def event(hook, *args):
+def event(hook: str, *args: Any):
     for order in sorted(callbacks.get(hook, {})):
         for func in callbacks[hook][order]:
             func(*args)
 
 
 # Fires a filter hook.
-def filter(hook, value, *args):
+def filter(hook: str, value: Any, *args: Any) -> Any:
     for order in sorted(callbacks.get(hook, {})):
         for func in callbacks[hook][order]:
             value = func(value, *args)
@@ -45,12 +48,12 @@ def filter(hook, value, *args):
 
 
 # Clear all callbacks registered on a hook.
-def clear(hook):
+def clear(hook: str):
     callbacks[hook] = {}
 
 
 # Deregister a callback from a hook.
-def deregister(hook, callback, order=None):
+def deregister(hook: str, callback: Callable, order: Optional[int] = None):
     if order is None:
         for order in callbacks.get(hook, {}):
             if callback in callbacks[hook][order]:

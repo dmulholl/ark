@@ -7,14 +7,17 @@ import pathlib
 
 from . import site
 from . import utils
+from . import pages
+
+from typing import Dict, List, Callable, Any, Optional
 
 
 # Stores registered template-engine callbacks indexed by file extension.
-callbacks = {}
+callbacks: Dict[str, Callable[['pages.Page', str], str]]= {}
 
 
 # Caches a list of the theme's template files.
-cache = None
+cache: Optional[List[pathlib.Path]] = None
 
 
 # Decorator function for registering template-engine callbacks. A template-
@@ -28,9 +31,9 @@ cache = None
 #       ...
 #       return html
 #
-def register(ext):
+def register(ext: str) -> Callable:
 
-    def register_callback(callback):
+    def register_callback(callback: Callable[['pages.Page', str], str]):
         callbacks[ext] = callback
         return callback
 
@@ -38,7 +41,7 @@ def register(ext):
 
 
 # Render a Page instance into html.
-def render(page):
+def render(page: 'pages.Page') -> str:
 
     # Cache a list of the theme's template files for future calls.
     global cache

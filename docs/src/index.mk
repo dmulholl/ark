@@ -43,7 +43,7 @@ Install Ivy from the Python Package Index using `pip`:
 
     $ pip install ivy
 
-Ivy requires Python 3.5 or later.
+Ivy requires Python 3.6 or later.
 
 
 

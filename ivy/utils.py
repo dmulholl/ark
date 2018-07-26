@@ -12,7 +12,7 @@ from . import hooks
 
 
 # Clear the contents of a directory.
-def cleardir(dirpath):
+def cleardir(dirpath: str):
     if os.path.isdir(dirpath):
         for name in os.listdir(dirpath):
             path = os.path.join(dirpath, name)
@@ -25,7 +25,7 @@ def cleardir(dirpath):
 # Copy the contents of 'srcdir' to 'dstdir'. The destination directory will be
 # created if it does not already exist. If 'noclobber' is true, existing files
 # will not be overwritten.
-def copydir(srcdir, dstdir, noclobber=False):
+def copydir(srcdir: str, dstdir: str, noclobber: bool = False):
 
     if not os.path.exists(srcdir):
         return
@@ -50,7 +50,7 @@ def copydir(srcdir, dstdir, noclobber=False):
 # will not be overwritten. This function attempts to avoid unnecessarily
 # overwriting existing files with identical copies. If 'dst' exists and has
 # the same size and mtime as 'src', the copy will be aborted.
-def copyfile(src, dst, noclobber=False):
+def copyfile(src: str, dst: str, noclobber: bool = False):
     if os.path.isfile(dst):
         if noclobber:
             return
@@ -61,7 +61,7 @@ def copyfile(src, dst, noclobber=False):
 
 
 # Write a string to a file. Creates parent directories if required.
-def writefile(path, content):
+def writefile(path: str, content: str):
     path = os.path.abspath(path)
 
     if not os.path.isdir(os.path.dirname(path)):
@@ -73,7 +73,7 @@ def writefile(path, content):
 
 # Default slug-preparation function; returns a slugified version of the
 # supplied string. This function is used to sanitize url components, etc.
-def slugify(string):
+def slugify(string: str) -> str:
     out = unicodedata.normalize('NFKD', string)
     out = out.encode('ascii', errors='ignore').decode('ascii')
     out = out.lower()

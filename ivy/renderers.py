@@ -4,6 +4,7 @@
 # ------------------------------------------------------------------------------
 
 import sys
+from typing import Dict, Callable
 
 
 # This dictionary maps text formats to registered rendering-engine
@@ -11,7 +12,7 @@ import sys
 # file extensions. (These can be overridden by plugins if desired.) A null
 # renderer will simply pass the text straight through without making any
 # changes.
-callbacks = {
+callbacks: Dict[str, Callable[[str], str]] = {
     'css': lambda s: s,
     'html': lambda s: s,
     'js': lambda s: s,
@@ -32,9 +33,9 @@ callbacks = {
 #       ...
 #       return rendered
 #
-def register(ext):
+def register(ext: str) -> Callable:
 
-    def register_callback(callback):
+    def register_callback(callback: Callable[[str], str]):
         callbacks[ext] = callback
         return callback
 
@@ -42,7 +43,7 @@ def register(ext):
 
 
 # Render a string and return the result.
-def render(text, ext):
+def render(text: str, ext: str) -> str:
     if ext in callbacks:
         return callbacks[ext](text)
     else:

@@ -14,7 +14,7 @@ re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
 
 
 # Rewrite all @root/ urls to their final form.
-def rewrite(html, filepath):
+def rewrite(html: str, filepath: str):
     relpath = os.path.relpath(filepath, site.out())
     depth = len(relpath.replace('\\', '/').split('/'))
     prefix = site.config.get('root') or '../' * (depth - 1)
