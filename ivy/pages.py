@@ -12,6 +12,7 @@ from . import utils
 from . import templates
 from . import hashes
 from . import urls
+from . import nodes
 
 from typing import List
 
@@ -21,7 +22,7 @@ class Page(dict):
 
     # Every Page is initialized with an associated Node instance. This node's
     # location in the parse tree determines output filepath for the page.
-    def __init__(self, node):
+    def __init__(self, node: nodes.Node):
         self['inc'] = includes.load()
         self['site'] = site.config
         self['node'] = node
