@@ -7,11 +7,10 @@ import sys
 from typing import Dict, Callable
 
 
-# This dictionary maps text formats to registered rendering-engine
-# callbacks. We include a default set of null renderers for various common
-# file extensions. (These can be overridden by plugins if desired.) A null
-# renderer will simply pass the text straight through without making any
-# changes.
+# This dictionary maps text formats to registered rendering-engine callbacks.
+# We include a default set of null renderers for various common file
+# extensions. (These can be overridden by plugins if desired.) A null renderer
+#  will simply pass the text straight through without making any changes.
 callbacks: Dict[str, Callable[[str], str]] = {
     'css': lambda s: s,
     'html': lambda s: s,
