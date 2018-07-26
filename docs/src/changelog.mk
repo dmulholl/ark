@@ -7,7 +7,7 @@ title: Changelog
 
 * Remove the Vanilla theme from the default distribution.
 
-* Add type hints.
+* Add Python 3.6 type hints throughout the codebase.
 
 * Update the minimum required Python version to 3.6.
 
