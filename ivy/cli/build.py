@@ -56,14 +56,14 @@ def callback(parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
 
-    if parser['out']: site.cache['out'] = parser['out']
-    if parser['src']: site.cache['src'] = parser['src']
-    if parser['lib']: site.cache['lib'] = parser['lib']
-    if parser['inc']: site.cache['inc'] = parser['inc']
-    if parser['res']: site.cache['res'] = parser['res']
+    if parser['out']: site.setcache('out', parser['out'])
+    if parser['src']: site.setcache('src', parser['src'])
+    if parser['lib']: site.setcache('lib', parser['lib'])
+    if parser['inc']: site.setcache('inc', parser['inc'])
+    if parser['res']: site.setcache('res', parser['res'])
 
     if parser['theme']:
-        site.config['theme'] = parser['theme']
+        site.setconfig('theme', parser['theme'])
 
     if parser['clear']:
         utils.cleardir(site.out())
@@ -82,7 +82,8 @@ def builder():
 
     # Make sure we have a valid theme directory.
     if not site.theme():
-        sys.exit("Error: cannot locate theme '%s'." % site.config['theme'])
+        theme_name =  site.config('theme')
+        sys.exit(f"Error: cannot locate theme '{theme_name}'.")
 
     # Copy the theme's resource files to the output directory.
     if os.path.isdir(site.theme('resources')):

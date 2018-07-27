@@ -33,24 +33,6 @@ def cachefile() -> str:
     return _hashes['cachefile']
 
 
-# Load cached page hashes from the last build run.
-@hooks.register('init_build')
-def load():
-    if os.path.isfile(cachefile()):
-        with open(cachefile(), 'rb') as file:
-            _hashes['old'] = pickle.load(file)
-
-
-# Cache page hashes to disk for the next build run.
-@hooks.register('exit_build')
-def save():
-    if _hashes['new'] and _hashes['new'] != _hashes['old']:
-        if not os.path.isdir(os.path.dirname(cachefile())):
-            os.makedirs(os.path.dirname(cachefile()))
-        with open(cachefile(), 'wb') as file:
-            pickle.dump(_hashes['new'], file)
-
-
 # Returns true if filepath is an existing file whose hash matches that of
 # the content string. We use the relative filepath as the key to avoid
 # leaking potentially sensitive information.
@@ -61,3 +43,21 @@ def match(filepath: str, content: str) -> bool:
         return _hashes['old'].get(key) == _hashes['new'][key]
     else:
         return False
+
+
+# Load cached page hashes from the last build run.
+@hooks.register('init_build')
+def _load():
+    if os.path.isfile(cachefile()):
+        with open(cachefile(), 'rb') as file:
+            _hashes['old'] = pickle.load(file)
+
+
+# Cache page hashes to disk for the next build run.
+@hooks.register('exit_build')
+def _save():
+    if _hashes['new'] and _hashes['new'] != _hashes['old']:
+        if not os.path.isdir(os.path.dirname(cachefile())):
+            os.makedirs(os.path.dirname(cachefile()))
+        with open(cachefile(), 'wb') as file:
+            pickle.dump(_hashes['new'], file)

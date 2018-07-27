@@ -5,8 +5,8 @@
 from typing import Callable, Any, Optional, Dict, List
 
 
-# Maps hook names to lists of callback functions indexed by order.
-callbacks: Dict[str, Dict[int, List[Callable]]] = {}
+# Dictionary mapping hook names to lists of callback functions indexed by order.
+_callbacks: Dict[str, Dict[int, List[Callable]]] = {}
 
 
 # Decorator function for registering event and filter callbacks, i.e. handler
@@ -26,7 +26,7 @@ callbacks: Dict[str, Dict[int, List[Callable]]] = {}
 def register(hook: str, order: int = 0) -> Callable:
 
     def register_callback(func: Callable) -> Callable:
-        callbacks.setdefault(hook, {}).setdefault(order, []).append(func)
+        _callbacks.setdefault(hook, {}).setdefault(order, []).append(func)
         return func
 
     return register_callback
@@ -34,29 +34,29 @@ def register(hook: str, order: int = 0) -> Callable:
 
 # Fires an event hook.
 def event(hook: str, *args: Any):
-    for order in sorted(callbacks.get(hook, {})):
-        for func in callbacks[hook][order]:
+    for order in sorted(_callbacks.get(hook, {})):
+        for func in _callbacks[hook][order]:
             func(*args)
 
 
 # Fires a filter hook.
 def filter(hook: str, value: Any, *args: Any) -> Any:
-    for order in sorted(callbacks.get(hook, {})):
-        for func in callbacks[hook][order]:
+    for order in sorted(_callbacks.get(hook, {})):
+        for func in _callbacks[hook][order]:
             value = func(value, *args)
     return value
 
 
 # Clear all callbacks registered on a hook.
 def clear(hook: str):
-    callbacks[hook] = {}
+    _callbacks[hook] = {}
 
 
 # Deregister a callback from a hook.
 def deregister(hook: str, callback: Callable, order: Optional[int] = None):
     if order is None:
-        for order in callbacks.get(hook, {}):
-            if callback in callbacks[hook][order]:
-                callbacks[hook][order].remove(callback)
-    elif order in callbacks[hook] and callback in callbacks[hook][order]:
-        callbacks[hook][order].remove(callback)
+        for order in _callbacks.get(hook, {}):
+            if callback in _callbacks[hook][order]:
+                _callbacks[hook][order].remove(callback)
+    elif order in _callbacks[hook] and callback in _callbacks[hook][order]:
+        _callbacks[hook][order].remove(callback)

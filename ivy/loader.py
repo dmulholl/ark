@@ -14,12 +14,9 @@ def load(path: Union[str, Path]) -> Tuple[str, Dict[str, Any]]:
     with open(str(path), encoding='utf-8') as file:
         text, meta = file.read(), {}
     text = hooks.filter('file_text', text, meta)
-    return text, normalize(meta)
-
-
-# Normalize a metadata dictionary's keys.
-def normalize(meta: Dict[str, Any]) -> Dict[str, Any]:
-    output = {}
-    for key, value in meta.items():
-        output[key.lower().replace(' ', '_').replace('-', '_')] = value
-    return output
+    for key, value in list(meta.items()):
+        normalized_key = key.lower().replace(' ', '_').replace('-', '_')
+        if normalized_key != key:
+            del meta[key]
+            meta[normalized_key] = value
+    return text, meta

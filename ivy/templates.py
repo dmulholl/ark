@@ -10,14 +10,15 @@ from . import utils
 from . import pages
 
 from typing import Dict, List, Callable, Any, Optional
+from pathlib import Path
 
 
 # Stores registered template-engine callbacks indexed by file extension.
-callbacks: Dict[str, Callable[['pages.Page', str], str]] = {}
+_callbacks: Dict[str, Callable[['pages.Page', str], str]] = {}
 
 
-# Caches a list of the theme's template files.
-cache: Optional[List[pathlib.Path]] = None
+# Caches a list of the active theme's template files.
+_cache: Optional[List[Path]] = None
 
 
 # Decorator function for registering template-engine callbacks. A template-
@@ -34,7 +35,7 @@ cache: Optional[List[pathlib.Path]] = None
 def register(ext: str) -> Callable:
 
     def register_callback(callback: Callable[['pages.Page', str], str]):
-        callbacks[ext] = callback
+        _callbacks[ext] = callback
         return callback
 
     return register_callback
@@ -44,17 +45,17 @@ def register(ext: str) -> Callable:
 def render(page: 'pages.Page') -> str:
 
     # Cache a list of the theme's template files for future calls.
-    global cache
-    if cache is None:
+    global _cache
+    if _cache is None:
         root = site.theme('templates')
-        cache = [p for p in pathlib.Path(root).iterdir() if p.is_file()]
+        _cache = [p for p in Path(root).iterdir() if p.is_file()]
 
     # Find the first template file matching the page's template list.
     for name in page['templates']:
-        for path in cache:
+        for path in _cache:
             if name == path.stem:
-                if path.suffix.strip('.') in callbacks:
-                    return callbacks[path.suffix.strip('.')](page, path.name)
+                if path.suffix.strip('.') in _callbacks:
+                    return _callbacks[path.suffix.strip('.')](page, path.name)
                 else:
                     msg = "Error: unrecognised template extension '%s'."
                     sys.exit(msg % path.suffix)

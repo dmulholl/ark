@@ -12,20 +12,20 @@ from . import site
 from typing import Dict, Optional
 
 
-# Cached dictionary of rendered files indexed by normalized filename.
-cache: Optional[Dict[str, str]] = None
+# Dictionary of rendered files indexed by normalized filename.
+_cache: Optional[Dict[str, str]] = None
 
 
 # Return a dictionary of rendered files from the 'inc' directory.
 def load() -> Dict[str, str]:
-    global cache
-    if cache is None:
-        cache = {}
+    global _cache
+    if _cache is None:
+        _cache = {}
         if os.path.isdir(site.inc()):
             for path in pathlib.Path(site.inc()).iterdir():
                 stem, ext = path.stem, path.suffix.strip('.')
-                if ext in renderers.callbacks:
+                if renderers.is_registered_ext(ext):
                     text, _ = loader.load(path)
                     key = stem.lower().replace(' ', '_').replace('-', '_')
-                    cache[key] = renderers.render(text, ext)
-    return cache
+                    _cache[key] = renderers.render(text, ext)
+    return _cache

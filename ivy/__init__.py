@@ -9,7 +9,7 @@ import sys
 
 
 # Application version number.
-__version__ = '1.4.0-dev'
+__version__ = '2.0.0-dev'
 
 
 # Ivy requires at least Python 3.6.
@@ -18,7 +18,7 @@ if sys.version_info < (3, 6):
 
 
 # Template for error messages informing the user of any missing dependencies.
-error = """Error: Ivy requires the %s library. Try:
+errorstr = """Error: Ivy requires the %s library. Try:
 
     $ pip install %s"""
 
@@ -27,11 +27,11 @@ error = """Error: Ivy requires the %s library. Try:
 try:
     import janus
 except ImportError:
-    sys.exit(error % ('Janus', 'libjanus'))
+    sys.exit(errorstr % ('Janus', 'libjanus'))
 try:
     import shortcodes
 except ImportError:
-    sys.exit(error % ('Shortcodes', 'shortcodes'))
+    sys.exit(errorstr % ('Shortcodes', 'shortcodes'))
 
 
 # We import the package's modules so users can access 'ivy.foo' via a simple

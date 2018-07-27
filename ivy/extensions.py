@@ -10,13 +10,13 @@ from . import site
 
 
 # Dictionary of loaded extension modules indexed by name.
-loaded = {}
+_loaded = {}
 
 
 # Load the named Python module from the specified directory.
 def load_module(directory: str, name: str):
     sys.path.insert(0, directory)
-    loaded[name] = importlib.import_module(name)
+    _loaded[name] = importlib.import_module(name)
     sys.path.pop(0)
 
 
@@ -42,8 +42,8 @@ def load_site_extensions():
 
 # Load installed extensions listed in the site's configuration file.
 def load_installed_extensions():
-    for name in site.config.get('extensions', []):
-        loaded[name] = importlib.import_module(name)
+    for name in site.config('extensions', []):
+        _loaded[name] = importlib.import_module(name)
 
 
 # Load bundled, installed, and site-directory extensions.

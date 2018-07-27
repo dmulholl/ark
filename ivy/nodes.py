@@ -14,30 +14,7 @@ from typing import Optional, Dict, List, Callable, Any, Union
 
 
 # Cached parse tree of Node instances.
-cache: Optional['Node'] = None
-
-
-# Returns the site's root node. Parses the root directory and assembles the
-# node tree on first call.
-def root() -> 'Node':
-    global cache
-    if cache is None:
-        cache = Node()
-        parse_node_directory(cache, site.src())
-        hooks.event('init_tree', cache.init())
-    return cache
-
-
-# Returns the node corresponding to the specified path, i.e. the sequence of
-# slugs that uniquely identifies the node in the parse tree. Returns None if the
-# node does not exist.
-def node(*slugs: str) -> Optional['Node']:
-    node = root()
-    for slug in slugs:
-        if not slug in node.children:
-            return None
-        node = node.children[slug]
-    return node
+_root: Optional['Node'] = None
 
 
 # A Node instance represents a directory or text file (or both) in the
@@ -157,12 +134,35 @@ class Node():
         return len(self.children) > 0
 
 
+# Returns the site's root node. Parses the root directory and assembles the
+# node tree on first call.
+def root() -> Node:
+    global _root
+    if _root is None:
+        _root = Node()
+        _parse_node_directory(_root, site.src())
+        hooks.event('init_tree', _root.init())
+    return _root
+
+
+# Returns the node corresponding to the specified path, i.e. the sequence of
+# slugs that uniquely identifies the node in the parse tree. Returns None if the
+# node does not exist.
+def node(*slugs: str) -> Optional[Node]:
+    node = root()
+    for slug in slugs:
+        if not slug in node.children:
+            return None
+        node = node.children[slug]
+    return node
+
+
 # Parse a source directory.
 #
 # Args:
 #   dirnode (Node): the Node instance for the directory.
 #   dirpath (str/Path): path to the directory as a string or Path instance.
-def parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
+def _parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
 
     # Loop over the directory's subdirectories.
     for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_dir()]:
@@ -172,16 +172,16 @@ def parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
         childnode.stem = path.stem
         childnode.parent = dirnode
         dirnode.children[slug] = childnode
-        parse_node_directory(childnode, path)
+        _parse_node_directory(childnode, path)
 
     # Loop over the directory's files. We skip dotfiles and file types for
     # which we don't have a registered rendering-engine callback.
     for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_file()]:
         if path.stem.startswith('.'):
             continue
-        if path.suffix.strip('.') not in renderers.callbacks:
+        if not renderers.is_registered_ext(path.suffix.strip('.')):
             continue
-        parse_node_file(dirnode, path)
+        _parse_node_file(dirnode, path)
 
 
 # Parse a source file.
@@ -189,7 +189,7 @@ def parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
 # Args:
 #   dirnode (Node): the Node instance for the directory containing the file.
 #   filepath (Path): path to the file as a Path instance.
-def parse_node_file(dirnode: Node, filepath: pathlib.Path):
+def _parse_node_file(dirnode: Node, filepath: pathlib.Path):
 
     # Check if the file is coterminous with an existing node before creating
     # a new one.

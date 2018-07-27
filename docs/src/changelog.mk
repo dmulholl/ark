@@ -3,13 +3,15 @@ title: Changelog
 ---
 
 
-### 1.4.0-dev
-
-* Remove the Vanilla theme from the default distribution.
+### 2.0.0-dev
 
 * Add Python 3.6 type hints throughout the codebase.
 
 * Update the minimum required Python version to 3.6.
+
+* Remove the Vanilla theme from the default distribution.
+
+* Refactor modules to clarify the distinction between public and private interfaces. Private methods and variables now have names beginning with an underscore.
 
 
 

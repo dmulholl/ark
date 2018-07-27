@@ -11,7 +11,7 @@ from typing import Dict, Callable
 # We include a default set of null renderers for various common file
 # extensions. (These can be overridden by plugins if desired.) A null renderer
 # will simply pass the text straight through without making any changes.
-callbacks: Dict[str, Callable[[str], str]] = {
+_callbacks: Dict[str, Callable[[str], str]] = {
     'css': lambda s: s,
     'html': lambda s: s,
     'js': lambda s: s,
@@ -35,7 +35,7 @@ callbacks: Dict[str, Callable[[str], str]] = {
 def register(ext: str) -> Callable:
 
     def register_callback(func: Callable[[str], str]) -> Callable[[str], str]:
-        callbacks[ext] = func
+        _callbacks[ext] = func
         return func
 
     return register_callback
@@ -43,7 +43,13 @@ def register(ext: str) -> Callable:
 
 # Render a string and return the result.
 def render(text: str, ext: str) -> str:
-    if ext in callbacks:
-        return callbacks[ext](text)
+    if ext in _callbacks:
+        return _callbacks[ext](text)
     else:
         sys.exit(f"Error: no registered renderer for '.{ext}'.")
+
+
+# Return true if a rendering-engine callback has been registered for the
+# specified file extension.
+def is_registered_ext(ext: str) -> bool:
+    return ext in _callbacks
