@@ -34,9 +34,9 @@ callbacks: Dict[str, Callable[[str], str]] = {
 #
 def register(ext: str) -> Callable:
 
-    def register_callback(callback: Callable[[str], str]):
-        callbacks[ext] = callback
-        return callback
+    def register_callback(func: Callable[[str], str]) -> Callable[[str], str]:
+        callbacks[ext] = func
+        return func
 
     return register_callback
 
