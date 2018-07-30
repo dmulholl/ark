@@ -2,8 +2,6 @@
 # This module creates and caches the parse-tree of Node instances.
 # ------------------------------------------------------------------------------
 
-import pathlib
-
 from . import utils
 from . import hooks
 from . import renderers
@@ -11,6 +9,7 @@ from . import loader
 from . import site
 
 from typing import Optional, Dict, List, Callable, Any, Union
+from pathlib import Path
 
 
 # Cached parse tree of Node instances.
@@ -162,10 +161,10 @@ def node(*slugs: str) -> Optional[Node]:
 # Args:
 #   dirnode (Node): the Node instance for the directory.
 #   dirpath (str/Path): path to the directory as a string or Path instance.
-def _parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
+def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
 
     # Loop over the directory's subdirectories.
-    for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_dir()]:
+    for path in [p for p in Path(dirpath).iterdir() if p.is_dir()]:
         slug = utils.slugify(path.stem)
         childnode = Node()
         childnode.slug = slug
@@ -176,7 +175,7 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
 
     # Loop over the directory's files. We skip dotfiles and file types for
     # which we don't have a registered rendering-engine callback.
-    for path in [p for p in pathlib.Path(dirpath).iterdir() if p.is_file()]:
+    for path in [p for p in Path(dirpath).iterdir() if p.is_file()]:
         if path.stem.startswith('.'):
             continue
         if not renderers.is_registered_ext(path.suffix.strip('.')):
@@ -189,7 +188,7 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, pathlib.Path]):
 # Args:
 #   dirnode (Node): the Node instance for the directory containing the file.
 #   filepath (Path): path to the file as a Path instance.
-def _parse_node_file(dirnode: Node, filepath: pathlib.Path):
+def _parse_node_file(dirnode: Node, filepath: Path):
 
     # Check if the file is coterminous with an existing node before creating
     # a new one.
