@@ -8,12 +8,13 @@ from . import renderers
 from . import loader
 from . import site
 
-from typing import Optional, Dict, List, Callable, Any, Union
 from pathlib import Path
+from typing import Dict, List, Callable, Any, Union
+from typing import Optional as Opt
 
 
 # Cached parse tree of Node instances.
-_root: Optional['Node'] = None
+_root: Opt['Node'] = None
 
 
 # A Node instance represents a directory or text file (or both) in the
@@ -22,7 +23,7 @@ class Node():
 
     def __init__(self):
         self.data: Dict[str, Any] = {}
-        self.parent: Optional['Node'] = None
+        self.parent: Opt['Node'] = None
         self.children: Dict[str, 'Node'] = {}
         self.stem: str = ''
         self.slug: str = ''
@@ -147,7 +148,7 @@ def root() -> Node:
 # Returns the node corresponding to the specified path, i.e. the sequence of
 # slugs that uniquely identifies the node in the parse tree. Returns None if the
 # node does not exist.
-def node(*slugs: str) -> Optional[Node]:
+def node(*slugs: str) -> Opt[Node]:
     node = root()
     for slug in slugs:
         if not slug in node.children:
