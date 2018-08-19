@@ -106,7 +106,7 @@ A template-engine callback should accept a `Page` object and a template filename
 Ivy has builtin support for node files written in [Markdown][] and [Monk][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 [markdown]: https://en.wikipedia.org/wiki/Markdown
-[monk]: http://mulholland.xyz/docs/monk/
+[monk]: https://darrenmulholland.com/docs/monk/
 
 ::: python
 
@@ -191,5 +191,5 @@ Note that shortcodes are processed *before* node text is rendered into HTML.
 
 You can find the full documentation for the Shortcodes library [here][scdocs].
 
-[scdocs]: http://mulholland.xyz/docs/shortcodes/
+[scdocs]: https://darrenmulholland.com/docs/shortcodes/
 [scgithub]: https://github.com/dmulholland/shortcodes

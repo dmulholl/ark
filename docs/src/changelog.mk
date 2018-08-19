@@ -59,7 +59,7 @@ title: Changelog
 
 * Ivy has been updated to support [Monk][] 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
 
-[monk]: http://mulholland.xyz/docs/monk/
+[monk]: https://darrenmulholland.com/docs/monk/
 
 
 
@@ -70,8 +70,8 @@ title: Changelog
 
 * The default `graphite` theme now supports a meta description tag.
 
-[clio]: http://mulholland.xyz/docs/clio/
-[janus]: http://mulholland.xyz/docs/janus/
+[clio]: https://darrenmulholland.com/docs/clio/
+[janus]: https://darrenmulholland.com/docs/janus/
 
 
 

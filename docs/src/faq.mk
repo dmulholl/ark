@@ -103,4 +103,4 @@ It's actually quite easy to build a blog on top of Ivy by adding a simple plugin
 
 I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at [Malt][] for inspiration.
 
-[malt]: http://mulholland.xyz/docs/malt/
+[malt]: https://darrenmulholland.com/docs/malt/
