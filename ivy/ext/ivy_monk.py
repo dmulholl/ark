@@ -9,7 +9,6 @@ try:
 except ImportError:
     monk = None
 
-
 # The monk package is an optional dependency.
 if monk:
 
