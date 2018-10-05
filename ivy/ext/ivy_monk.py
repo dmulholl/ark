@@ -11,7 +11,6 @@ except ImportError:
 
 # The monk package is an optional dependency.
 if monk:
-
     @ivy.renderers.register('mk', 'monk')
     def render(text):
         return monk.render(text, pygmentize=True)
