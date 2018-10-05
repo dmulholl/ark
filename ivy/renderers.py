@@ -22,20 +22,22 @@ _callbacks: Dict[str, Callable[[str], str]] = {
 
 
 # Decorator function for registering rendering-engine callbacks. A rendering-
-# engine callback should accept an input string and return a string containing
-# the rendered html.
+# engine callback should accept an input string containing the text to be
+# rendered and return an output string containing the rendered html.
 #
-# Callbacks are registered per file extension, e.g.
+# Callbacks are registered per file extension. More than one file extension can
+# be specified, e.g.
 #
-#   @ivy.renderers.register('md')
+#   @ivy.renderers.register('md', 'mdk')
 #   def callback(text):
 #       ...
 #       return rendered
 #
-def register(ext: str) -> Callable:
+def register(*extensions: str) -> Callable:
 
     def register_callback(func: Callable[[str], str]) -> Callable[[str], str]:
-        _callbacks[ext] = func
+        for extension in extensions:
+            _callbacks[extension] = func
         return func
 
     return register_callback
