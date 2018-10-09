@@ -11,70 +11,42 @@ from typing import Any
 
 
 # Storage for the site's configuration data.
-_config = {}
+config = {}
 
 
 # Storage for temporary data generated during the build process.
-_cache = {}
+cache = {}
 
 
 # Initialize the site model.
 def init():
 
     # Record the start time.
-    _cache['start'] = time.time()
+    cache['start'] = time.time()
 
     # Initialize a count of the number of pages rendered.
-    _cache['rendered'] = 0
+    cache['rendered'] = 0
 
     # Initialize a count of the number of pages written to disk.
-    _cache['written'] = 0
+    cache['written'] = 0
 
     # Default site configuration settings.
-    _config['root'] = ''
-    _config['theme'] = 'graphite'
-    _config['extension'] = '.html'
+    config['root'] = ''
+    config['theme'] = 'graphite'
+    config['extension'] = '.html'
 
     # Load the site configuration file.
     if home() and isfile(home('config.py')):
         with open(home('config.py'), encoding='utf-8') as file:
-            exec(file.read(), _config)
+            exec(file.read(), config)
 
     # Delete the __builtins__ attribute as it pollutes variable dumps.
-    if '__builtins__' in _config:
-        del _config['__builtins__']
+    if '__builtins__' in config:
+        del config['__builtins__']
 
     # If 'root' isn't an empty string, make sure it ends in a slash.
-    if _config['root'] and not _config['root'].endswith('/'):
-        _config['root'] += '/'
-
-
-# Returns the dictionary containing the site's configuration data. If a key is
-# specified, this function returns the value of the corresponding entry or the
-# default value if the entry does not exist.
-def config(key: str = None, default: Any = None) -> Any:
-    if key:
-        return _config.get(key, default)
-    return _config
-
-
-# Set a value in the site's configuration dictionary.
-def setconfig(key: str, value: Any):
-    _config[key] = value
-
-
-# Returns the dictionary containing the site's cached data. If a key is
-# specified, this function returns the value of the corresponding entry or the
-# default value if the entry does not exist.
-def cache(key: str = None, default: Any = None) -> Any:
-    if key:
-        return _cache.get(key, default)
-    return _cache
-
-
-# Set a value in the site's cache dictionary.
-def setcache(key: str, value: Any):
-    _cache[key] = value
+    if config['root'] and not config['root'].endswith('/'):
+        config['root'] += '/'
 
 
 # Attempt to determine and return the path to the site's home directory.
@@ -100,43 +72,43 @@ def _find_home() -> str:
 # Return the path to the site's home directory or an empty string if the
 # home directory cannot be located. Append arguments.
 def home(*append: str) -> str:
-    path = _cache.get('home') or _cache.setdefault('home', _find_home())
+    path = cache.get('home') or cache.setdefault('home', _find_home())
     return join(path, *append)
 
 
 # Return the path to the source directory. Append arguments.
 def src(*append: str) -> str:
-    path = _cache.get('src') or _cache.setdefault('src', home('src'))
+    path = cache.get('src') or cache.setdefault('src', home('src'))
     return join(path, *append)
 
 
 # Return the path to the output directory. Append arguments.
 def out(*append: str) -> str:
-    path = _cache.get('out') or _cache.setdefault('out', home('out'))
+    path = cache.get('out') or cache.setdefault('out', home('out'))
     return join(path, *append)
 
 
 # Return the path to the theme-library directory. Append arguments.
 def lib(*append: str) -> str:
-    path = _cache.get('lib') or _cache.setdefault('lib', home('lib'))
+    path = cache.get('lib') or cache.setdefault('lib', home('lib'))
     return join(path, *append)
 
 
 # Return the path to the extensions directory. Append arguments.
 def ext(*append: str) -> str:
-    path = _cache.get('ext') or _cache.setdefault('ext', home('ext'))
+    path = cache.get('ext') or cache.setdefault('ext', home('ext'))
     return join(path, *append)
 
 
 # Return the path to the includes directory. Append arguments.
 def inc(*append: str) -> str:
-    path = _cache.get('inc') or _cache.setdefault('inc', home('inc'))
+    path = cache.get('inc') or cache.setdefault('inc', home('inc'))
     return join(path, *append)
 
 
 # Return the path to the resources directory. Append arguments.
 def res(*append: str) -> str:
-    path = _cache.get('res') or _cache.setdefault('res', home('res'))
+    path = cache.get('res') or cache.setdefault('res', home('res'))
     return join(path, *append)
 
 
@@ -169,23 +141,23 @@ def _find_theme(name: str) -> str:
 # Return the path to the theme directory or an empty string if the theme
 # directory cannot be located. Append arguments.
 def theme(*append: str) -> str:
-    if 'themepath' not in _cache:
-        _cache['themepath'] = _find_theme(_config['theme'])
-    return join(_cache['themepath'], *append)
+    if 'themepath' not in cache:
+        cache['themepath'] = _find_theme(config['theme'])
+    return join(cache['themepath'], *append)
 
 
 # Return the application runtime in seconds.
 def runtime() -> float:
-    return time.time() - _cache['start']
+    return time.time() - cache['start']
 
 
 # Increment the count of pages rendered by n and return the new value.
 def rendered(n: int = 0) -> int:
-    _cache['rendered'] += n
-    return _cache['rendered']
+    cache['rendered'] += n
+    return cache['rendered']
 
 
 # Increment the count of pages written by n and return the new value.
 def written(n: int = 0) -> int:
-    _cache['written'] += n
-    return _cache['written']
+    cache['written'] += n
+    return cache['written']

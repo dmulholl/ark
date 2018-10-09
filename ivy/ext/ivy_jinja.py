@@ -28,7 +28,7 @@ if jinja2:
         }
 
         # Check the site's config file for any custom settings.
-        settings.update(site.config('jinja', {}))
+        settings.update(site.config.get('jinja', {}))
 
         # Initialize an Environment instance.
         global env

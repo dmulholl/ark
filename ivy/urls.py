@@ -17,8 +17,8 @@ re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
 def rewrite(html: str, filepath: str):
     relpath = os.path.relpath(filepath, site.out())
     depth = len(relpath.replace('\\', '/').split('/'))
-    prefix = site.config('root') or '../' * (depth - 1)
-    suffix = site.config('extension')
+    prefix = site.config.get('root') or '../' * (depth - 1)
+    suffix = site.config.get('extension')
 
     # Each matched url is replaced with the output of this callback.
     def callback(match):

@@ -39,7 +39,7 @@ def load_site_extensions():
 
 # Load installed extensions listed in the site's configuration file.
 def load_installed_extensions():
-    for name in site.config('extensions', []):
+    for name in site.config.get('extensions', []):
         importlib.import_module(name)
 
 

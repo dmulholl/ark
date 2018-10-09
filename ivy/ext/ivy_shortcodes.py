@@ -8,7 +8,7 @@ import shortcodes
 
 
 # Check the config file for custom settings for the shortcode parser.
-settings = ivy.site.config('shortcodes', {})
+settings = ivy.site.config.get('shortcodes', {})
 
 
 # Initialize a single parser instance.

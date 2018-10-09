@@ -24,7 +24,7 @@ class Page(dict):
     # location in the parse tree determines output filepath for the page.
     def __init__(self, node: Node):
         self['inc'] = includes.load()
-        self['site'] = site.config()
+        self['site'] = site.config
         self['node'] = node
         self['flags'] = {'is_homepage': node.parent is None}
 
@@ -61,7 +61,7 @@ class Page(dict):
     # Determine the output filepath for the page.
     def get_filepath(self) -> str:
         slugs = self['node'].path or ['index']
-        suffix = site.config('extension')
+        suffix = site.config['extension']
 
         if suffix == '/':
             if slugs[-1] == 'index':

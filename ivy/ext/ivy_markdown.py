@@ -14,7 +14,7 @@ except ImportError:
 if markdown:
 
     # Check the config file for custom settings for the markdown renderer.
-    settings = ivy.site.config('markdown', {})
+    settings = ivy.site.config.get('markdown', {})
 
     # Initialize a markdown renderer.
     renderer = markdown.Markdown(**settings)
