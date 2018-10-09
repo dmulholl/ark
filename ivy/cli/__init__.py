@@ -21,7 +21,7 @@ parser = None
 
 # Application help text.
 helptext = """
-Usage: %s [FLAGS] [COMMAND]
+Usage: %s [command]
 
   Ivy is a static website generator. It transforms a directory of text files
   into a self-contained website.

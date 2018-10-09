@@ -12,7 +12,7 @@ from .. import hooks
 
 # Command help text.
 helptext = """
-Usage: %s clear [FLAGS]
+Usage: %s clear
 
   Clear the output directory.
 

@@ -14,7 +14,7 @@ from .. import utils
 
 # Command help text.
 helptext = """
-Usage: %s build [FLAGS] [OPTIONS]
+Usage: %s build
 
   Build the current site. This command can be run from the site directory or
   any of its subdirectories.

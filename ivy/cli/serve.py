@@ -16,7 +16,7 @@ from .. import hooks
 
 # Command help text.
 helptext = """
-Usage: %s serve [FLAGS] [OPTIONS]
+Usage: %s serve
 
   Serve the site's output directory using Python's builtin web server. The
   default web browser is automatically launched to view the site.

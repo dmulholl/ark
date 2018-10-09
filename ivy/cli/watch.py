@@ -17,7 +17,7 @@ from .. import hooks
 
 # Command help text.
 helptext = """
-Usage: %s watch [FLAGS] [ARGUMENTS]
+Usage: %s watch
 
   Monitor the site directory and automatically rebuild the site when file
   changes are detected.

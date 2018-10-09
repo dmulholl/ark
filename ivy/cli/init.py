@@ -11,7 +11,7 @@ from .. import hooks
 
 # Command help text.
 helptext = """
-Usage: %s init [FLAGS] [ARGUMENTS]
+Usage: %s init
 
   Initialize a new site directory. If a directory path is specified, that
   directory will be created and initialized. Otherwise, the current directory
