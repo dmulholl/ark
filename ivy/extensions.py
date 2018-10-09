@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------------------
-# This module loads extension modules and packages.
+# This module loads extensions, i.e. Python modules and packages which use
+# Ivy's plugin architecture to extend its functionality.
 # ------------------------------------------------------------------------------
 
 import os
@@ -9,14 +10,10 @@ import importlib
 from . import site
 
 
-# Dictionary of loaded extension modules indexed by name.
-_loaded = {}
-
-
 # Load the named Python module from the specified directory.
 def load_module(directory: str, name: str):
     sys.path.insert(0, directory)
-    _loaded[name] = importlib.import_module(name)
+    importlib.import_module(name)
     sys.path.pop(0)
 
 
@@ -29,7 +26,7 @@ def load_directory(directory: str):
         load_module(directory, base)
 
 
-# Load Ivy's default set of extension modules.
+# Load Ivy's default set of bundled extensions.
 def load_bundled_extensions():
     load_directory(os.path.join(os.path.dirname(__file__), 'ext'))
 
@@ -43,7 +40,7 @@ def load_site_extensions():
 # Load installed extensions listed in the site's configuration file.
 def load_installed_extensions():
     for name in site.config('extensions', []):
-        _loaded[name] = importlib.import_module(name)
+        importlib.import_module(name)
 
 
 # Load bundled, installed, and site-directory extensions.
