@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 # Stores registered template-engine callbacks indexed by file extension.
-_callbacks: Dict[str, Callable[['pages.Page', str], str]] = {}
+_callbacks: Dict[str, Callable] = {}
 
 
 # Caches a list of the active theme's template files.
@@ -34,7 +34,7 @@ _cache: Optional[List[Path]] = None
 #
 def register(ext: str) -> Callable:
 
-    def register_callback(callback: Callable[['pages.Page', str], str]):
+    def register_callback(callback: Callable) -> Callable:
         _callbacks[ext] = callback
         return callback
 

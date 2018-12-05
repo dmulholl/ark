@@ -11,7 +11,7 @@ from typing import Dict, Callable
 # We include a default set of null renderers for various common file
 # extensions. (These can be overridden by plugins if desired.) A null renderer
 # will simply pass the text straight through without making any changes.
-_callbacks: Dict[str, Callable[[str], str]] = {
+_callbacks: Dict[str, Callable] = {
     'css': lambda s: s,
     'html': lambda s: s,
     'js': lambda s: s,
@@ -35,7 +35,7 @@ _callbacks: Dict[str, Callable[[str], str]] = {
 #
 def register(*extensions: str) -> Callable:
 
-    def register_callback(func: Callable[[str], str]) -> Callable[[str], str]:
+    def register_callback(func: Callable) -> Callable:
         for extension in extensions:
             _callbacks[extension] = func
         return func
