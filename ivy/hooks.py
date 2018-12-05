@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module implements Ivy's system of event and filter hooks.
+# This module implements Ivy's extension API of event and filter hooks.
 # ------------------------------------------------------------------------------
 
 from typing import Callable, Any, Optional, Dict, List
