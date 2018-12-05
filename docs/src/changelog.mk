@@ -13,7 +13,7 @@ title: Changelog
 
 * Refactor modules to clarify the distinction between public and private interfaces. Private methods and variables now have names beginning with an underscore.
 
-* The default build process now skips empty nodes, i.e. nodes that lack an associated source file.
+* The default build process now skips empty nodes, i.e. nodes that correspond to a directory without an associated source file.
 
 * Add Windows support for the `watch` command.
 

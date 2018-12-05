@@ -6,7 +6,7 @@ Install Ivy from the Python Package Index using `pip`:
 
     $ pip install ivy
 
-Note that Ivy requires Python 3.5 or later. You can check your Python version using the `--version` flag:
+Note that Ivy requires Python 3.6 or later. You can check your Python version using the `--version` flag:
 
         $ python --version
 
