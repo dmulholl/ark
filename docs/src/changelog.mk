@@ -15,6 +15,8 @@ title: Changelog
 
 * The default build process now skips empty nodes, i.e. nodes that lack an associated source file.
 
+* Add Windows support for the `watch` command.
+
 
 
 ### 1.3.0
