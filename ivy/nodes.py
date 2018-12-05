@@ -28,6 +28,7 @@ class Node():
         self.stem: str = ''
         self.slug: str = ''
         self.ext: str = ''
+        self.empty: bool = True
 
         # Default attributes.
         self['text'] = ''
@@ -210,3 +211,6 @@ def _parse_node_file(dirnode: Node, filepath: Path):
     # The file's extension determines the rendering engine we use to
     # transform its text into html.
     filenode.ext = filepath.suffix.strip('.')
+
+    # Flip the empty bit so we know this node has content.
+    filenode.empty = False

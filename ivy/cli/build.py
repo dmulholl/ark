@@ -93,5 +93,11 @@ def builder():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Walk the parse tree and render a single page for each node.
-    nodes.root().walk(lambda node: pages.Page(node).render())
+    # Callback to render a single node instance.
+    def render(node):
+        if not node.empty:
+            page = pages.Page(node)
+            page.render()
+
+    # Walk the parse tree and pass each node to the render callback.
+    nodes.root().walk(render)
