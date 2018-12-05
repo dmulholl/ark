@@ -13,6 +13,8 @@ title: Changelog
 
 * Refactor modules to clarify the distinction between public and private interfaces. Private methods and variables now have names beginning with an underscore.
 
+* The default build process now skips empty nodes, i.e. nodes that lack an associated source file.
+
 
 
 ### 1.3.0
