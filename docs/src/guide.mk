@@ -55,7 +55,7 @@ Initializing a new site creates the following directory structure:
         res/         # resources directory for static assets
         src/         # source directory for text files
 
-The site configuration file can be deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ivy requires the presence of either a `config.py` file or both `src` and `out` directories to identify a site's home directory.)
+Unused directories can be safely deleted. Ivy uses the presence of either a `config.py` file or a hidden `.ivy` file to identify a site's home directory.
 
 Static assets such as image files should be placed in the resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
 

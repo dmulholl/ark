@@ -17,6 +17,8 @@ title: Changelog
 
 * Add Windows support for the `watch` command.
 
+* Ivy now uses the presence of either a `config.py` file or a hidden `.ivy` file to identify a site's home directory.
+
 
 
 ### 1.3.0

@@ -4,8 +4,7 @@
 
 # This is a sample site configuration file. You can use this file to customise
 # how Ivy builds your site. Variables you set here will also be available to
-# themes and plugins. Note that you can safely delete this file if your site
-# does not require custom settings.
+# themes and plugins.
 
 
 # ------------------------------------------------------------------------------
@@ -21,10 +20,10 @@ theme = "graphite"
 # Theme Settings
 # ------------------------------------------------------------------------------
 
-# Site title - how this is displayed depends on the theme.
+# Site title - how this is displayed depends on your theme.
 title = "Site Title"
 
-# Site tagline - how this is displayed depends on the theme.
+# Site tagline - how this is displayed depends on your theme.
 tagline = "Just another Ivy site."
 
 

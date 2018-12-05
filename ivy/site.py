@@ -49,19 +49,16 @@ def init():
         config['root'] += '/'
 
 
-# Attempt to determine and return the path to the site's home directory.
-# We use the presence of either a 'config.py' file or both 'src' and 'out'
-# directories to identify the home directory. We first test the current
-# working directory, then its ancestor directories in sequence until we reach
-# the system root. If we make it all the way to the system root without
-# finding a home directory then we must not be inside an initialized Ivy site;
-# in this case we return an empty string.
+# Attempt to determine and return the path to the site's home directory. We use
+# the presence of either a 'config.py' or '.ivy' file to identify the home
+# directory. We first test the current working directory, then its ancestor
+# directories in sequence until we reach the system root. If we make it all the
+# way to the system root without finding a home directory then we must not be
+# inside an initialized Ivy site; in this case we return an empty string.
 def _find_home() -> str:
     path = os.path.abspath(os.getcwd())
     while True:
-        if isfile(join(path, 'config.py')):
-            return path
-        elif isdir(join(path, 'src')) and isdir(join(path, 'out')):
+        if isfile(join(path, 'config.py')) or isfile(join(path, '.ivy')):
             return path
         path, tail = os.path.split(path)
         if tail == '':
