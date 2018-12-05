@@ -22,15 +22,29 @@ _root: Opt['Node'] = None
 class Node():
 
     def __init__(self):
+
+        # Stores the node's attributes, including metadata.
         self.data: Dict[str, Any] = {}
+
+        # Stores a reference to the node's parent node.
         self.parent: Opt['Node'] = None
+
+        # Stores the node's child nodes indexed by slug.
         self.children: Dict[str, 'Node'] = {}
+
+        # Stores the node's filepath stem, i.e. basename minus extension.
         self.stem: str = ''
-        self.slug: str = ''
+
+        # Stores the node's filepath extension, stripped of its leading '.'.
         self.ext: str = ''
+
+        # Stores the node's 'slugified' filepath stem.
+        self.slug: str = ''
+
+        # A node is empty until we process an associated source file.
         self.empty: bool = True
 
-        # Default attributes.
+        # Default attributes. The node's raw text content and processed html.
         self['text'] = ''
         self['html'] = ''
 
@@ -212,5 +226,5 @@ def _parse_node_file(dirnode: Node, filepath: Path):
     # transform its text into html.
     filenode.ext = filepath.suffix.strip('.')
 
-    # Flip the empty bit so we know this node has content.
+    # Flip the empty bit so we know this node has an associated source file.
     filenode.empty = False
