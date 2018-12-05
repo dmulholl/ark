@@ -3,7 +3,7 @@ title: Changelog
 ---
 
 
-### 2.0.0-dev
+### 2.0.0
 
 * Add Python 3.6 type hints throughout the codebase.
 
