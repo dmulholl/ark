@@ -121,7 +121,7 @@ def callback(parser):
                 subprocess.call(args)
                 newhash = hashsite(home)
             oldhash = newhash
-            time.sleep(0.5)
+            time.sleep(0.25)
     except KeyboardInterrupt:
         pass
 
