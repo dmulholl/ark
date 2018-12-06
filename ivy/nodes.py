@@ -41,14 +41,14 @@ class Node():
         # Stores the node's 'slugified' filepath stem.
         self.slug: str = ''
 
-        # A node is empty until we process an associated source file.
-        self.empty: bool = True
-
         # Stores the node's raw text content.
         self.text: str = ''
 
         # Stores the node's processed html content.
         self.html: str = ''
+
+        # A node is empty until we process an associated source file.
+        self.empty: bool = True
 
     # String representation of the Node instance.
     def __repr__(self) -> str:
