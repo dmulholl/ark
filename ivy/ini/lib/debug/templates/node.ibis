@@ -33,8 +33,20 @@
     </ul>
     <hr>
 
-    <h2>Node</h2>
-    <pre>{{ node.data|pprint|pygmentize:'python' }}</pre>
+    <h2>URL</h2>
+    <ul>
+      <li><code>{{ node.url }}</code></li>
+    </ul>
+    <hr>
+
+    <h2>Meta</h2>
+    <pre>{{ node.meta|pprint|pygmentize:'python' }}</pre>
+
+    <h2>Text</h2>
+    <pre>{{ node.text|pprint|pygmentize:'python' }}</pre>
+
+    <h2>HTML</h2>
+    <pre>{{ node.html|pprint|pygmentize:'python' }}</pre>
 
     <h2>Page</h2>
     <pre>{{ context.stack|index:2|pprint|pygmentize:'python' }}</pre>
