@@ -35,7 +35,7 @@ class Node():
         # Stores the node's filepath stem, i.e. basename minus extension.
         self.stem: str = ''
 
-        # Stores the node's filepath extension, stripped of its leading '.'.
+        # Stores the node's filepath extension, stripped of its leading dot.
         self.ext: str = ''
 
         # Stores the node's 'slugified' filepath stem.
