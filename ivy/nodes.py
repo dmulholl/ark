@@ -23,8 +23,8 @@ class Node():
 
     def __init__(self):
 
-        # Stores the node's attributes, including metadata.
-        self.data: Dict[str, Any] = {}
+        # Stores the node's metadata.
+        self.meta: Dict[str, Any] = {}
 
         # Stores a reference to the node's parent node.
         self.parent: Opt['Node'] = None
@@ -44,9 +44,11 @@ class Node():
         # A node is empty until we process an associated source file.
         self.empty: bool = True
 
-        # Default attributes. The node's raw text content and processed html.
-        self['text'] = ''
-        self['html'] = ''
+        # Stores the node's raw text content.
+        self.text: str = ''
+
+        # Stores the node's processed html content.
+        self.html: str = ''
 
     # String representation of the Node instance.
     def __repr__(self) -> str:
@@ -54,31 +56,31 @@ class Node():
 
     # Dictionary-style read access.
     def __getitem__(self, key: str) -> Any:
-        return self.data[key]
+        return self.meta[key]
 
     # Dictionary-style write access.
     def __setitem__(self, key: str, value: Any):
-        self.data[key] = value
+        self.meta[key] = value
 
     # Dictionary-style 'in' support.
     def __contains__(self, key: str) -> bool:
-        return key in self.data
+        return key in self.meta
 
     # Dictionary-style 'get' support.
     def get(self, key: str, default: Any = None) -> Any:
-        return self.data.get(key, default)
+        return self.meta.get(key, default)
 
     # Dictionary-style 'get' with attribute inheritance.
     def inherit(self, key: str, default: Any = None) -> Any:
         while self is not None:
-            if key in self.data:
-                return self.data[key]
+            if key in self.meta:
+                return self.meta[key]
             self = self.parent
         return default
 
     # Dictionary-style 'update' support.
     def update(self, other: Dict[str, Any]):
-        self.data.update(other)
+        self.meta.update(other)
 
     # Return a printable tree showing the node and its descendants.
     def str(self, depth: int = 0) -> str:
@@ -93,13 +95,13 @@ class Node():
     def init(self) -> 'Node':
 
         # Filter the node's text on the 'node_text' hook.
-        self['text'] = hooks.filter('node_text', self['text'], self)
+        self.text = hooks.filter('node_text', self.text, self)
 
         # Render the filtered text into html.
-        html = renderers.render(self['text'], self.ext)
+        html = renderers.render(self.text, self.ext)
 
         # Filter the node's html on the 'node_html' hook.
-        self['html'] = hooks.filter('node_html', html, self)
+        self.html = hooks.filter('node_html', html, self)
 
         # Initialize any subnodes.
         for node in self.children.values():
@@ -219,7 +221,7 @@ def _parse_node_file(dirnode: Node, filepath: Path):
         dirnode.children[slug] = filenode
 
     # Update the new or existing node with the file's text and metadata.
-    filenode['text'], meta = loader.load(filepath)
+    filenode.text, meta = loader.load(filepath)
     filenode.update(meta)
 
     # The file's extension determines the rendering engine we use to
