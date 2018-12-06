@@ -9,7 +9,9 @@ title: Changelog
 
 * Update the minimum required Python version to 3.6.
 
-* Remove the Vanilla theme from the default distribution.
+* Remove the `vanilla` theme from the default distribution.
+
+* Update the `debug` theme.
 
 * Refactor modules to clarify the distinction between public and private interfaces. Private methods and variables now have names beginning with an underscore.
 
