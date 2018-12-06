@@ -43,10 +43,10 @@
     <pre>{{ node.meta|pprint|pygmentize:'python' }}</pre>
 
     <h2>Text</h2>
-    <pre>{{ node.text|pprint|pygmentize:'python' }}</pre>
+    <pre>{{ node.text|escape }}</pre>
 
     <h2>HTML</h2>
-    <pre>{{ node.html|pprint|pygmentize:'python' }}</pre>
+    <pre>{{ node.html|escape }}</pre>
 
     <h2>Page</h2>
     <pre>{{ context.stack|index:2|pprint|pygmentize:'python' }}</pre>

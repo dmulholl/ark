@@ -33,7 +33,7 @@ h1 {
 }
 h2 {
     margin: 16px 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -81,8 +81,9 @@ code {
 }
 pre {
     margin: 32px 0;
-    padding: 16px;
-    border: 1px solid #ccc;
+    padding: 18px 24px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     overflow: auto;
 }
 
