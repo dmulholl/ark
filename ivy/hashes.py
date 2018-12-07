@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+# ··············································································
 # This module handles Ivy's file hashing mechanism.
 #
 # Before writing a page file to disk we check if there is an existing file of
@@ -10,7 +10,7 @@
 #
 #   * We save on disk IO, which is more expensive than comparing hashes.
 #   * We avoid unnecessarily bumping the file modification time.
-# ------------------------------------------------------------------------------
+# ··············································································
 
 import os
 import hashlib
