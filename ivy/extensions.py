@@ -43,8 +43,7 @@ def load_installed_extensions():
         importlib.import_module(name)
 
 
-# Load bundled, installed, and site-directory extensions.
-def load():
-    load_bundled_extensions()
-    load_installed_extensions()
-    load_site_extensions()
+# Load extensions bundled with the active theme.
+def load_theme_extensions():
+    if site.theme() and os.path.isdir(site.theme('extensions')):
+        load_directory(site.theme('extensions'))

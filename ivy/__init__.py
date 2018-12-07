@@ -9,7 +9,7 @@ import sys
 
 
 # Application version number.
-__version__ = '2.0.2'
+__version__ = '2.0.3'
 
 
 # Ivy requires at least Python 3.6.
@@ -47,28 +47,29 @@ from . import nodes
 from . import pages
 from . import renderers
 from . import site
-from . import theme
 
 
 # Application entry point. Calling main() initializes the site model, loads
-# the site's plugins, and fires a sequence of event hooks. All of Ivy's
+# the site's plugins, and then fires a sequence of event hooks. All of Ivy's
 # functionality is handled by callbacks registered on these hooks.
 def main():
 
     # Initialize the site model.
     site.init()
 
-    # Load bundled plugins, plugins in the site extensions directory, and
-    # plugins listed in the site configuration file.
-    extensions.load()
+    # Load bundled plugins, plugins listed in the site's configuration file,
+    # and plugins in the site's 'ext' directory.
+    extensions.load_bundled_extensions()
+    extensions.load_installed_extensions()
+    extensions.load_site_extensions()
 
     # Process the application's command-line arguments.
     cli.parse()
 
     # Load any plugins bundled with the active theme.
-    theme.load()
+    extensions.load_theme_extensions()
 
-    # Fire the sequence of event hooks.
+    # Fire the primary sequence of event hooks.
     hooks.event('init')
     hooks.event('main')
     hooks.event('exit')
