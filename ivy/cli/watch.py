@@ -14,6 +14,8 @@ from .. import site
 from .. import utils
 from .. import hooks
 
+from os.path import isfile, isdir
+
 
 # Command help text.
 helptext = """
@@ -68,15 +70,12 @@ def callback(parser):
     # We need to check if the `ivy` package has been executed:
     # 1. Directly, as `python3 /path/to/ivy/package`.
     # 2. As an installed package on the import path, `python3 -m ivy`.
-    # 3. Via an entry script, `ivy`.
-    # 4. Via a Windows executable `ivy.exe`
-    if os.path.isdir(sys.argv[0]):
+    # 3. Via an entry script, `ivy`, or a Windows executable `ivy.exe`.
+    if isdir(sys.argv[0]):
         base += ['python3', sys.argv[0]]
-    elif os.path.isfile(sys.argv[0]) and sys.argv[0].endswith('__main__.py'):
+    elif isfile(sys.argv[0]) and sys.argv[0].endswith('__main__.py'):
         base += ['python3', sys.argv[0]]
-    elif os.path.isfile(sys.argv[0]):
-        base.append(sys.argv[0])
-    elif os.name == 'nt' and os.path.isfile(sys.argv[0] + '.exe'):
+    elif isfile(sys.argv[0]) or isfile(sys.argv[0] + '.exe'):
         base.append(sys.argv[0])
 
     # Append the 'build' command, a 'watching' flag, and any user arguments.
