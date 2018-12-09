@@ -54,23 +54,23 @@ class Node():
     def __repr__(self) -> str:
         return "<Node /%s>" % '/'.join(self.path)
 
-    # Dictionary-style read access.
+    # Allow dictionary-style read access to the node's metadata.
     def __getitem__(self, key: str) -> Any:
         return self.meta[key]
 
-    # Dictionary-style write access.
+    # Allow dictionary-style write access to the node's metadata.
     def __setitem__(self, key: str, value: Any):
         self.meta[key] = value
 
-    # Dictionary-style 'in' support.
+    # Dictionary-style 'in' support for metadata.
     def __contains__(self, key: str) -> bool:
         return key in self.meta
 
-    # Dictionary-style 'get' support.
+    # Dictionary-style 'get' support for metadata.
     def get(self, key: str, default: Any = None) -> Any:
         return self.meta.get(key, default)
 
-    # Dictionary-style 'get' with attribute inheritance.
+    # Dictionary-style 'get' with inheritance for metadata.
     def inherit(self, key: str, default: Any = None) -> Any:
         while self is not None:
             if key in self.meta:
@@ -78,7 +78,7 @@ class Node():
             self = self.parent
         return default
 
-    # Dictionary-style 'update' support.
+    # Dictionary-style 'update' support for metadata.
     def update(self, other: Dict[str, Any]):
         self.meta.update(other)
 
