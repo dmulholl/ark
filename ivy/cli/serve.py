@@ -6,7 +6,6 @@ import sys
 import os
 import http.server
 import webbrowser
-import shutil
 import ssl
 
 from .. import site
@@ -116,18 +115,18 @@ def callback(parser):
     elif not parser['no-browser']:
         webbrowser.open("%s://%s:%s" % (protocol, parser['host'], address[1]))
 
-    cols, _ = shutil.get_terminal_size()
-    utils.safeprint("─" * cols)
-    utils.safeprint("Root: %s" % site.out())
-    utils.safeprint("Host: %s"  % address[0])
-    utils.safeprint("Port: %s" % address[1])
-    utils.safeprint("Stop: Ctrl-C")
-    utils.safeprint("─" * cols)
+    utils.termline()
+    print("Root: %s" % site.out())
+    print("Host: %s"  % address[0])
+    print("Port: %s" % address[1])
+    print("Stop: Ctrl-C")
+    utils.termline()
 
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        utils.safeprint("\n" + "─" * cols)
-        utils.safeprint("Stopping server...")
-        utils.safeprint("─" * cols)
+        print()
+        utils.termline()
+        print("Stopping server...")
+        utils.termline()
         server.server_close()

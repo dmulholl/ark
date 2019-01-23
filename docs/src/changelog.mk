@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 2.1.0
+
+* Colored terminal output.
+
+
+
 ### 2.0.0
 
 * Add Python 3.6 type hints throughout the codebase.

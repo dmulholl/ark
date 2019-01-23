@@ -8,7 +8,6 @@ import hashlib
 import time
 import subprocess
 import hashlib
-import shutil
 
 from .. import site
 from .. import utils
@@ -88,18 +87,15 @@ def callback(parser):
     if parser['theme']: args += ['--theme', parser['theme']]
     if parser['clear']: args += ['--clear']
 
-    # Determine terminal width.
-    cols, _ = shutil.get_terminal_size()
-
     # Print a header showing the site location.
-    utils.safeprint("─" * cols)
-    utils.safeprint("Site: %s" % home)
-    utils.safeprint("Stop: Ctrl-C")
-    utils.safeprint("─" * cols)
+    utils.termline()
+    print("Site: %s" % home)
+    print("Stop: Ctrl-C")
+    utils.termline()
 
     # Build the site with the 'firstwatch' flag.
     subprocess.call(args + ['firstwatch'])
-    utils.safeprint("─" * cols)
+    utils.termline()
 
     # Create a hash digest of the site directory.
     oldhash = hashsite(home)
@@ -126,9 +122,10 @@ def callback(parser):
         pass
 
     # Build the site with the 'lastwatch' flag.
-    print("\n" + "─" * cols)
+    print()
+    utils.termline()
     subprocess.call(args + ['lastwatch'])
-    print("─" * cols)
+    utils.termline()
 
 
 # Return a hash digest of the site directory.

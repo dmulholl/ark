@@ -98,3 +98,10 @@ def safeprint(*objects, sep=' ', end='\n', file=sys.stdout):
             string = string.encode(enc, errors='replace').decode(enc)
             strings.append(string)
         print(*strings, sep=sep, end=end, file=file)
+
+
+# Print a grey line across the width of the terminal.
+def termline():
+    cols, _ = shutil.get_terminal_size()
+    line = '\u001B[90m' + '─' * cols + '\u001B[0m'
+    safeprint(line)
