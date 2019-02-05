@@ -5,7 +5,7 @@ title: Changelog
 
 ### 2.1.0
 
-* Colored terminal output.
+* Add colored terminal output.
 
 
 

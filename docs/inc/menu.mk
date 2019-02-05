@@ -5,4 +5,5 @@
 * [Extensions](@root/extensions//)
 * [FAQ](@root/faq//)
 * [Changelog](@root/changelog//)
+* [License](@root/license//)
 * [Source](https://github.com/dmulholland/ivy)
