@@ -75,7 +75,7 @@ A node file can begin with a [YAML][] header specifying metadata for the node:
 
     Content begins here.
 
-Node content can be written in [Markdown][] or [Monk][]. Files with a `.md` extension are rendered as Markdown, files with a `.mk` extension are rendered as Monk. (Ivy can be extended via plugins to support other formats and extensions.)
+Node content can be written in [Markdown][] or [Syntext][]. Files with a `.md` extension are rendered as Markdown, files with a `.stx` extension are rendered as Syntext. (Ivy can be extended via plugins to support other formats and extensions.)
 
 Note that the file
 
@@ -90,7 +90,7 @@ correspond to a single node in the parse tree. Node files provide content and me
 Files named `index` are special-cased and correspond to the same node as their parent directory.
 
 [Markdown]: http://daringfireball.net/projects/markdown/
-[Monk]: https://darrenmulholland.com/docs/monk/
+[Syntext]: https://darrenmulholland.com/docs/syntext/
 [YAML]: http://en.wikipedia.org/wiki/YAML
 
 
@@ -249,6 +249,6 @@ Installing via `pip` also automatically installs the following optional dependen
 * [Markdown](https://pypi.python.org/pypi/Markdown)
 * [Pygments](https://pypi.python.org/pypi/Pygments)
 * [PyYAML](https://pypi.python.org/pypi/PyYAML)
-* [Monk](https://pypi.python.org/pypi/libmonk)
+* [Syntext](https://pypi.python.org/pypi/syntext)
 
 Ivy will run without any of these optional dependencies installed but the associated functionality will not be available.
