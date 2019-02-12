@@ -17,7 +17,7 @@ title: Changelog
 
 * Add Windows support for colored terminal output.
 
-* Small improvements to mobile styles for the Graphite theme.
+* Small improvements to mobile styles for the `graphite` theme.
 
 
 
@@ -51,7 +51,7 @@ title: Changelog
 
 * Remove deprecated support for source files in Syntex format.
 
-* Minor improvements to Graphite theme styles.
+* Minor improvements to `graphite` theme styles.
 
 
 
