@@ -3,13 +3,21 @@ title: Changelog
 ---
 
 
+[syntext]: https://darrenmulholland.com/docs/syntext/
+[semver]: http://semver.org
+[monk]: https://darrenmulholland.com/docs/monk/
+[clio]: https://darrenmulholland.com/docs/clio/
+[janus]: https://darrenmulholland.com/docs/janus/
+
+
+
 ### 2.2.0
 
 * Update Ivy to reflect the Monk to [Syntext][] name change. Old `.monk` and `.mk` files will continue to work.
 
 * Add Windows support for colored terminal output.
 
-[syntext]: https://darrenmulholland.com/docs/syntext/
+* Small improvements to mobile styles for the Graphite theme.
 
 
 
@@ -75,15 +83,11 @@ title: Changelog
 
 * We revert to the original algorithm for locating and rewriting `@root/` urls, i.e. only urls enclosed in quotes or angle brackets will be rewritten. (Quotes are preserved, angle brackets evaporate.)
 
-[semver]: http://semver.org
-
 
 
 ### 0.9.0
 
 * Ivy has been updated to support [Monk][] 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
-
-[monk]: https://darrenmulholland.com/docs/monk/
 
 
 
@@ -93,9 +97,6 @@ title: Changelog
   from [Clio][] to [Janus][].
 
 * The default `graphite` theme now supports a meta description tag.
-
-[clio]: https://darrenmulholland.com/docs/clio/
-[janus]: https://darrenmulholland.com/docs/janus/
 
 
 
