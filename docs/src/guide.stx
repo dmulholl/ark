@@ -244,6 +244,7 @@ Installing Ivy via `pip` automatically installs the following required dependenc
 
 Installing via `pip` also automatically installs the following optional dependencies:
 
+* [Colorama](https://pypi.org/project/colorama/)
 * [Ibis](https://pypi.python.org/pypi/ibis)
 * [Jinja](https://pypi.python.org/pypi/Jinja2)
 * [Markdown](https://pypi.python.org/pypi/Markdown)

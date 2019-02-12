@@ -7,6 +7,8 @@ title: Changelog
 
 * Update Ivy to reflect the Monk to [Syntext][] name change. Old `.monk` and `.mk` files will continue to work.
 
+* Add Windows support for colored terminal output.
+
 [syntext]: https://darrenmulholland.com/docs/syntext/
 
 
