@@ -23,7 +23,7 @@ errorstr = """Error: Ivy requires the %s library. Try:
     $ pip install %s"""
 
 
-# Check that the application's dependencies are available.
+# Check that the application's required dependencies are available.
 try:
     import janus
 except ImportError:
@@ -32,6 +32,16 @@ try:
     import shortcodes
 except ImportError:
     sys.exit(errorstr % ('Shortcodes', 'shortcodes'))
+
+
+# On Windows, use colorama to support ANSI terminal codes.
+if sys.platform == 'win32':
+    try:
+        import colorama
+    except ImportError:
+        pass
+    else:
+        colorama.init()
 
 
 # We import the package's modules so users can access 'ivy.foo' via a simple
