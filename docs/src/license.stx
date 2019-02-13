@@ -2,7 +2,9 @@
 title: License
 ---
 
-All code has been placed in the public domain and is free for personal and commercial use. No attribution is required.
+### Ivy
+
+All of Ivy's code has been placed in the public domain and is free for personal and commercial use. No attribution is required.
 
     This is free and unencumbered software released into the
     public domain.
@@ -31,3 +33,13 @@ All code has been placed in the public domain and is free for personal and comme
     THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>.
+
+
+### Themes
+
+The default `graphite` theme bundles the elegant [Crimson Text][] font by [Sebastian Koch][]. These font files are distributed under the SIL Open Font License 1.1.
+
+All other theme code has been placed in the public domain.
+
+[crimson text]: https://fonts.google.com/specimen/Crimson+Text
+[sebastian koch]: https://github.com/skosch
