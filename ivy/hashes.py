@@ -28,8 +28,12 @@ _hashes = { 'old': {}, 'new': {} }
 def cachefile() -> str:
     if not 'cachefile' in _hashes:
         name = hashlib.sha1(site.home().encode()).hexdigest() + '.pickle'
-        home = os.path.expanduser('~')
-        _hashes['cachefile'] = os.path.join(home, '.cache', 'ivy', name)
+        if os.name == 'nt':
+            root = os.getenv('LOCALAPPDATA', os.path.expanduser('~'))
+            root = os.path.join(root, 'Ivy')
+        else:
+            root = os.path.expanduser('~/.cache/ivy')
+        _hashes['cachefile'] = os.path.join(root, name)
     return _hashes['cachefile']
 
 
