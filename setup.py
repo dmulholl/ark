@@ -62,7 +62,7 @@ setup(
         'colorama',
     ],
     author = 'Darren Mulholland',
-    url='https://github.com/dmulholland/ivy',
+    url='https://github.com/dmulholl/ivy',
     license = 'Public Domain',
     description = 'A static website generator.',
     long_description = __doc__,
