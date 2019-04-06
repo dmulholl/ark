@@ -11,11 +11,17 @@ title: Changelog
 
 
 
+### 2.3.0
+
+* The cache file is now stored in `%LOCALAPPDATA%` instead of the user's home directory on Windows.
+
+
+
 ### 2.2.0
 
-* Update Ivy to reflect the Monk to [Syntext][] name change. Old `.monk` and `.mk` files will continue to work.
-
 * Add Windows support for colored terminal output.
+
+* Update Ivy to reflect the Monk to [Syntext][] name change. Old `.monk` and `.mk` files will continue to work.
 
 * Small improvements to mobile styles for the `graphite` theme.
 
