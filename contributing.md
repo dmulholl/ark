@@ -1,7 +1,7 @@
 
 # Contributing
 
-* Bug reports are welcome.
+* Bug reports are always welcome.
 
 * Feature requests are welcome too, although I'll probably say no. My plan is to keep Ivy as small and simple as possible.
 
