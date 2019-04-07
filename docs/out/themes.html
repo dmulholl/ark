@@ -66,13 +66,25 @@ text files into a self-contained website.</p>
         <hr>
       </header>
       <p>
-A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's <code>lib</code> folder, and the name of the active theme directory specified in the site's configuration file.
+Ivy borrows its idea of themes from <a href="http://www.wordpress.org/">WordPress</a> where a theme is a directory of templates, styles, and scripts that together provide the look and feel for a site.
+</p>
+<p class="center">
+<em>A site's theme is completely independent of its content.</em>
+</p>
+<p>
+This idea is central. You can swap between themes and completely change the appearance of your site without touching its content.
+</p>
+<h3 id="location">
+Location
+</h3>
+<p>
+Themes should be placed in the site's <code>lib</code> directory, and the name of the active theme directory specified in the site's configuration file.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;graphite&quot;</span>
 </pre>
 <p>
-Ivy ships with a small collection of bundled themes including <code>graphite</code>, a simple documentation theme, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
+Ivy ships with a small collection of bundled themes including <code>graphite</code>, the default theme you're looking at right now, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
 </p>
 <p>
 Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:
@@ -106,11 +118,20 @@ The <code>templates</code> directory is where Ivy looks for the theme's template
 </p>
 </li>
 </ul>
+<h3 id="template-files">
+Template Files
+</h3>
 <p>
-Ivy has builtin support for templates written in <a href="http://jinja.pocoo.org">Jinja</a> (using a <code>.jinja</code> extension) and <a href="https://github.com/dmulholland/ibis">Ibis</a> (using a <code>.ibis</code> extension). Support for other template languages can be added via plugins.
+Template files provide the HTML scaffolding for constructing pages &mdash; you can think of a template file as the mould into which your content will be poured.
 </p>
-<h3 id="templates">
-Templates
+<p>
+There are countless templating languages and Ivy can use any of them, but it has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a>. Ivy determines the language of a template file by looking at its extension &mdash; <code>.jinja</code> for Jinja and <code>.ibis</code> for Ibis.
+</p>
+<p>
+You can add support for alternative templating languages via <a href="extensions.html#templates">plugins</a>.
+</p>
+<h3 id="template-hierarchy">
+Template Hierarchy
 </h3>
 <p>
 When Ivy generates a HTML page it searches for the appropriate template file to use in reverse order of specificity.
