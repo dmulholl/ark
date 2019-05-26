@@ -34,13 +34,13 @@ def register_command(parser):
 
 # Command callback.
 def callback(parser):
-    ivydir = os.path.dirname(os.path.dirname(__file__))
-    inidir = os.path.join(ivydir, 'ini')
-    dstdir = parser.get_args()[0] if parser.has_args() else '.'
-    os.makedirs(dstdir, exist_ok=True)
-    os.chdir(dstdir)
+    ivy_dir = os.path.dirname(os.path.dirname(__file__))
+    src_dir = os.path.join(ivy_dir, 'skeleton')
+    dst_dir = parser.get_args()[0] if parser.has_args() else '.'
+    os.makedirs(dst_dir, exist_ok=True)
+    os.chdir(dst_dir)
 
     for name in ('ext', 'inc', 'lib', 'out', 'res', 'src'):
         os.makedirs(name, exist_ok=True)
 
-    utils.copydir(inidir, '.', noclobber=True)
+    utils.copydir(src_dir, '.', noclobber=True)
