@@ -6,7 +6,6 @@ Ivy
 Ivy is a static website generator. It transforms a directory of text files into
 a self-contained website.
 
-* `Github <https://github.com/dmulholland/ivy>`_
 * `Documentation <https://darrenmulholland.com/docs/ivy/>`_
 
 """
@@ -62,7 +61,7 @@ setup(
         'colorama',
     ],
     author = 'Darren Mulholland',
-    url='https://github.com/dmulholl/ivy',
+    url='https://darrenmulholland.com/docs/ivy/',
     license = 'Public Domain',
     description = 'A static website generator.',
     long_description = __doc__,
