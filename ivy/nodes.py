@@ -50,6 +50,9 @@ class Node():
         # A node is empty until we process an associated source file.
         self.empty: bool = True
 
+        # Stores the filepath of the node's source file.
+        self.filepath: str = ''
+
     # String representation of the Node instance.
     def __repr__(self) -> str:
         return "<Node /%s>" % '/'.join(self.path)
@@ -98,7 +101,7 @@ class Node():
         self.text = hooks.filter('node_text', self.text, self)
 
         # Render the filtered text into html.
-        html = renderers.render(self.text, self.ext)
+        html = renderers.render(self.text, self.ext, self.filepath)
 
         # Filter the node's html on the 'node_html' hook.
         self.html = hooks.filter('node_html', html, self)
@@ -188,6 +191,7 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
         childnode.slug = slug
         childnode.stem = path.stem
         childnode.parent = dirnode
+        childnode.filepath = str(path)
         dirnode.children[slug] = childnode
         _parse_node_directory(childnode, path)
 
@@ -219,6 +223,7 @@ def _parse_node_file(dirnode: Node, filepath: Path):
         filenode.stem = filepath.stem
         filenode.parent = dirnode
         dirnode.children[slug] = filenode
+    filenode.filepath = str(filepath)
 
     # Update the new or existing node with the file's text and metadata.
     filenode.text, meta = loader.load(filepath)

@@ -44,9 +44,12 @@ def register(*extensions: str) -> Callable:
 
 
 # Render a string and return the result.
-def render(text: str, ext: str) -> str:
+def render(text: str, ext: str, source_id: str = '') -> str:
     if ext in _callbacks:
-        return _callbacks[ext](text)
+        try:
+            return _callbacks[ext](text)
+        except Exception as err:
+            sys.exit(f"Error rendering '{source_id}': {err}") 
     else:
         sys.exit(f"Error: no registered renderer for '.{ext}'.")
 

@@ -27,5 +27,5 @@ def load() -> Dict[str, str]:
                 if renderers.is_registered_ext(ext):
                     text, _ = loader.load(path)
                     key = stem.lower().replace(' ', '_').replace('-', '_')
-                    _cache[key] = renderers.render(text, ext)
+                    _cache[key] = renderers.render(text, ext, str(path))
     return _cache
