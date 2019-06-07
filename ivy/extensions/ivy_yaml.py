@@ -35,7 +35,7 @@ if yaml:
                 text = text[match.end(0):]
 
                 try:
-                    data = yaml.load(match.group(1))
+                    data = yaml.safe_load(match.group(1))
                 except Exception as err:
                     msg = "YAML %s: %s" % (err.__class__.__name__, err)
                     sys.exit(msg)
