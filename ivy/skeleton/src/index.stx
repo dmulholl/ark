@@ -41,7 +41,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-::: c
+::: code c
 
     #include <stdio.h>
 
@@ -56,7 +56,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-:>>
+::: quote
 
     Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae,
     aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli
@@ -100,14 +100,14 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-* * *
+::: --- :::
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-:!! info
+::: alertbox .info
 
     This is an alert box of type: *info*.
 
@@ -116,7 +116,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-:!! warning
+::: alertbox .warning
 
     This is an alert box of type: *warning*.
 
@@ -125,7 +125,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-:!! error
+::: alertbox .error
 
     This is an alert box of type: *error*.
 
