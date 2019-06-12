@@ -54,8 +54,20 @@ def render(page: 'pages.Page') -> str:
     for name in page['templates']:
         for path in _cache:
             if name == path.stem:
-                if path.suffix.strip('.') in _callbacks:
-                    return _callbacks[path.suffix.strip('.')](page, path.name)
+                ext = path.suffix.strip('.')
+                if ext in _callbacks:
+                    try:
+                        return _callbacks[ext](page, path.name)
+                    except Exception as err:
+                        msg = "Template Error\n"
+                        msg += f"Template: {path.name}\n"
+                        msg += f"Page: {page['filepath']}\n"
+                        msg += f"{err.__class__.__name__}: {err}\n"
+                        if err.__context__:
+                            cause = err.__context__
+                            msg += "The following cause was reported:\n"
+                            msg += "{cause.__class__.__name__}: {cause}"
+                        sys.exit(msg.strip())
                 else:
                     msg = "Error: unrecognised template extension '%s'."
                     sys.exit(msg % path.suffix)
