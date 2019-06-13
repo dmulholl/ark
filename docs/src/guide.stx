@@ -2,7 +2,7 @@
 title: Guide
 ---
 
-:insert toc
+::: insert toc
 
 
 ## Command Line Interface
@@ -130,14 +130,12 @@ Ivy generates page-relative urls and files with a `.html` extension by default, 
 
 First, you can specify a root url in your site configuration file. Specify an explicit domain for absolute urls or a single forward slash `"/"` for site-relative urls.
 
-::: python
-
+::: code python
     root = "http://example.com/"
 
 Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension or specify a single forward slash `"/"` to generate directory-style urls.
 
-::: python
-
+::: code python
     extension = ".html"
 
 To link to files within your site from nodes or templates use site-relative urls prefixed by `@root/`, e.g.
@@ -199,8 +197,7 @@ Just supply the shortcode with the name of the file to include. You can learn mo
 
 Ivy uses the [Markdown][mddocs] package to render node files with a `.md` extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a `markdown` attribute, e.g.
 
-::: python
-
+::: code python
     markdown = { 'extensions': ['markdown.extensions.extra'] }
 
 See the package's [documentation][mddocs] for details of its available options.

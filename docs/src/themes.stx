@@ -14,8 +14,7 @@ This idea is central. You can swap between themes and completely change the appe
 
 Themes should be placed in the site's `lib` directory, and the name of the active theme directory specified in the site's configuration file.
 
-::: python
-
+::: code python
     theme = "graphite"
 
 Ivy ships with a small collection of bundled themes including `graphite`, the default theme you're looking at right now, and `debug`, a diagnostic theme useful when designing themes or debugging sites.
@@ -32,11 +31,11 @@ Ivy searches for a named theme first in the site's theme library, then (if it ex
 
 Ivy looks for three subdirectories within the theme directory: `resources`, `extensions`, and `templates`.
 
-* The content of the `resources` directory is copied to the output directory when the site is built.
+(*) The content of the `resources` directory is copied to the output directory when the site is built.
 
-* Themes can bundle extensions for Ivy by placing Python modules or packages in the `extensions` directory.
+(*) Themes can bundle extensions for Ivy by placing Python modules or packages in the `extensions` directory.
 
-* The `templates` directory is where Ivy looks for the theme's template files.
+(*) The `templates` directory is where Ivy looks for the theme's template files.
 
 
 

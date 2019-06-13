@@ -10,6 +10,21 @@ title: Changelog
 [janus]: https://darrenmulholland.com/docs/janus/
 
 
+### 2.4.0.dev
+
+* Improved error handling and reporting for extension errors.
+
+* Minor tweaks to the `graphite` theme.
+
+* The YAML extension now uses the `safe_load()` function to parse file headers.
+
+* Add colored output for the `tree` command.
+
+* Update the skeleton site to support Syntext 2.0.
+
+* Files with a `.mk` or `.monk` extension will no longer be rendered as Syntext.
+
+
 
 ### 2.3.0
 

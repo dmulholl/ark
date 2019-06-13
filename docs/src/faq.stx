@@ -46,7 +46,7 @@ This file will be copied to the output directory and can be accessed in template
 
 Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
 
-::: yaml
+::: code yaml
 
     ---
     title: Page Title
@@ -55,7 +55,7 @@ Ivy has no special support for WordPress-style featured images but we can implem
 
 We can then check for the presence of a featured image in the appropriate template file:
 
-::: django
+::: code django
 
     {% if node.image %}
         <img src="@root/images/{{node.image}}">
@@ -63,7 +63,7 @@ We can then check for the presence of a featured image in the appropriate templa
 
 Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
 
-::: django
+::: code django
 
     {% for image in node.gallery %}
         <img src="@root/images/{{image}}">
@@ -75,15 +75,11 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 
 Annoyingly, Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get a scary looking error message if you add a bare `@root/` url to a Yaml header, e.g.
 
-:::
-
     ---
     image: @root/images/photo.jpg
     ---
 
 Quoting the url solves the problem:
-
-::: yaml
 
     ---
     image: "@root/images/photo.jpg"

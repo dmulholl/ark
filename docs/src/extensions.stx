@@ -2,7 +2,7 @@
 title: Extensions
 ---
 
-:insert toc
+::: insert toc
 
 
 ## Installing Plugins
@@ -11,7 +11,7 @@ The site extensions directory `ext` is intended for plugins that enhance Ivy's f
 
 Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an `extensions` list in the site's configuration file:
 
-::: python
+::: code python
 
     extensions = [
         'extension_one',
@@ -41,7 +41,7 @@ You can find these bundled plugins in the `ivy/ext/` directory which you can vie
 
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 
-::: python
+::: code python
 
     import ivy
 
@@ -59,7 +59,7 @@ This callback is registered on the `exit` event hook which fires just before the
 
 Here's a simple filter callback that changes every instance of the word *foo* in node content to *bar*:
 
-::: python
+::: code python
 
     import ivy
 
@@ -88,7 +88,7 @@ Ivy has builtin support for [Jinja][] and [Ibis][] templates. Plugins can regist
 [jinja]: http://jinja.pocoo.org
 [ibis]: https://github.com/dmulholland/ibis
 
-::: python
+::: code python
 
     import ivy
 
@@ -108,7 +108,7 @@ Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. 
 [markdown]: https://en.wikipedia.org/wiki/Markdown
 [syntext]: https://darrenmulholland.com/docs/syntext/
 
-::: python
+::: code python
 
     import ivy
 
@@ -125,7 +125,7 @@ A rendering-engine callback should accept a single string argument containing pl
 
 Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the `file_text` filter hook.
 
-::: python
+::: code python
 
     import ivy
 
@@ -159,7 +159,7 @@ Block-scoped shortcodes can be nested to any depth. Innermost shortcodes are pro
 
 Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
 
-::: python
+::: code python
 
     import shortcodes
 
@@ -170,7 +170,7 @@ Plugins can register shortcode tags using the `@shortcodes.register()` decorator
 
 Specifying a closing tag in the decorator gives the new shortcode block scope:
 
-::: python
+::: code python
 
     @shortcodes.register('tag', 'endtag')
     def handler(node, content, pargs, kwargs):
@@ -192,4 +192,4 @@ Note that shortcodes are processed *before* node text is rendered into HTML.
 You can find the full documentation for the Shortcodes library [here][scdocs].
 
 [scdocs]: https://darrenmulholland.com/docs/shortcodes/
-[scgithub]: https://github.com/dmulholland/shortcodes
+[scgithub]: https://github.com/dmulholl/shortcodes

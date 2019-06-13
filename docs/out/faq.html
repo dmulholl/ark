@@ -62,23 +62,8 @@ text files into a self-contained website.</p>
         
         <hr>
       </header>
-      <ul class="stx-toc">
-<li>
-<a href="#why-wont-ivy-install">Why won't Ivy install?</a>
-</li>
-<li>
-<a href="#where-do-i-put-my-image-files">Where do I put my image files?</a>
-</li>
-<li>
-<a href="#does-ivy-support-featured-images-or-image-galleries">Does Ivy support featured images or image galleries?</a>
-</li>
-<li>
-<a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a url to a Yaml header?</a>
-</li>
-<li>
-<a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
-</li>
-</ul>
+      <insert>
+</insert>
 <h3 id="why-wont-ivy-install">
 Why won't Ivy install?
 </h3>
@@ -135,8 +120,8 @@ Ivy has no special support for WordPress-style featured images but we can implem
 </p>
 <pre class="lang-yaml pygments" data-lang="yaml">
 <span class="nn">---</span>
-<span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Page Title</span>
-<span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">photo.jpg</span>
+<span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Page Title</span>
+<span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">photo.jpg</span>
 <span class="nn">---</span>
 </pre>
 <p>
@@ -169,10 +154,10 @@ image: @root/images/photo.jpg
 <p>
 Quoting the url solves the problem:
 </p>
-<pre class="lang-yaml pygments" data-lang="yaml">
-<span class="nn">---</span>
-<span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="s">&quot;@root/images/photo.jpg&quot;</span>
-<span class="nn">---</span>
+<pre>
+---
+image: &quot;@root/images/photo.jpg&quot;
+---
 </pre>
 <p>
 And yes, I think it's ugly too.
