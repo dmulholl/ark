@@ -20,6 +20,9 @@
       {% if site.tagline %}
         <p class="tagline">{{ site.tagline.strip() }}</p>
       {% endif %}
+      {% if site.version %}
+        <p class="version">{{ site.version.strip() }}</p>
+      {% endif %}
       <nav class="menu">
         <input id="menu-check" type="checkbox"/>
         <label id="menu-label" for="menu-check" class="unselectable">
