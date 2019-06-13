@@ -25,22 +25,11 @@ if yaml:
     # Register our preprocessor callback on the 'file_text' filter hook.
     @ivy.hooks.register('file_text')
     def parse_yaml(text, meta):
-
-        # Give the text a preliminary sniff before firing up the regex engine.
         if text.startswith("---\n"):
-
-            # A yaml header is identified by opening and closing `---` lines.
             match = re.match(r"^---\n(.*?\n)---\n+", text, re.DOTALL)
             if match:
                 text = text[match.end(0):]
-
-                try:
-                    data = yaml.safe_load(match.group(1))
-                except Exception as err:
-                    msg = "YAML %s: %s" % (err.__class__.__name__, err)
-                    sys.exit(msg)
-
+                data = yaml.safe_load(match.group(1))
                 if isinstance(data, dict):
                     meta.update(data)
-
         return text
