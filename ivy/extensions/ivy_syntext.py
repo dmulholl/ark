@@ -10,9 +10,8 @@ except ImportError:
     syntext = None
 
 
-# The syntext package is an optional dependency. We keep the bindings to .mk
-# .monk for backwards compatibility.
+# The syntext package is an optional dependency. 
 if syntext:
-    @ivy.renderers.register('stx', 'mk', 'monk')
+    @ivy.renderers.register('stx')
     def render(text):
         return syntext.render(text, pygmentize=True)
