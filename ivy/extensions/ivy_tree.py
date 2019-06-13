@@ -6,7 +6,6 @@
 
 import ivy
 import sys
-import shutil
 import os
 
 
@@ -28,17 +27,18 @@ def register_command(parser):
     parser.new_cmd("tree", helptext, callback)
 
 
-# Command callback.
+# Command callback. This function will be called by the command-line parser if
+# the 'tree' command is found.
 def callback(parser):
 
+    # We can't print the tree until the site model has been fully initialized
+    # so we register a callback to fire after initialization.
     @ivy.hooks.register('main')
     def tree_callback():
         if not ivy.site.home():
             sys.exit("Error: cannot locate the site's home directory.")
-
-        cols, _ = shutil.get_terminal_size()
-        ivy.utils.safeprint('─' * cols)
+        ivy.utils.termline()
         ivy.utils.safeprint('Site: %s' % ivy.site.home())
-        ivy.utils.safeprint('─' * cols)
+        ivy.utils.termline()
         ivy.utils.safeprint(ivy.nodes.root().str())
-        ivy.utils.safeprint('─' * cols)
+        ivy.utils.termline()
