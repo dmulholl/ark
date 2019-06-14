@@ -483,13 +483,17 @@ th, td {
         text-align: center;
     }
 
-    .masthead .tagline, .masthead .version {
+    .masthead .tagline {
         text-align: center;
         display: none;
     }
 
-    .homepage .masthead .tagline, .homepage .masthead .version {
+    .homepage .masthead .tagline {
         display: block;
+    }
+
+    .masthead .version {
+        text-align: center;
     }
 
     .masthead .menu {
