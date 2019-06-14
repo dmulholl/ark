@@ -14,7 +14,7 @@ title: Changelog
 
 * Improved error handling and reporting for extension errors.
 
-* Minor tweaks to the `graphite` theme.
+* Add a `version` tag to the `graphite` theme.
 
 * The YAML extension now uses the `safe_load()` function to parse file headers.
 

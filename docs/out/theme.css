@@ -267,6 +267,11 @@ body {
     text-align: right;
 }
 
+.masthead .version {
+    font-style: italic;
+    text-align: right;
+}
+
 .masthead .menu {
     margin-right: 20px;
     direction: rtl;
@@ -485,6 +490,10 @@ th, td {
 
     .homepage .masthead .tagline {
         display: block;
+    }
+
+    .masthead .version {
+        text-align: center;
     }
 
     .masthead .menu {
