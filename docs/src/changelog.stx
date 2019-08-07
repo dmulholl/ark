@@ -10,7 +10,8 @@ title: Changelog
 [janus]: https://darrenmulholland.com/docs/janus/
 
 
-### 2.4.0.dev
+
+### 2.4.0
 
 * Improved error handling and reporting for extension errors.
 
@@ -23,6 +24,8 @@ title: Changelog
 * Update the skeleton site to support Syntext 2.0.
 
 * Files with a `.mk` or `.monk` extension will no longer be rendered as Syntext.
+
+* Files with a `.stx` or `.sxt` extension will be rendered as Syntext.
 
 
 
@@ -123,14 +126,10 @@ title: Changelog
 
 ### 0.7.0
 
-* The algorithm for locating and rewriting `@root/` urls has been changed.
-  Previously only `@root/` urls enclosed in quotes or angle brackets were rewritten; now all `@root/` urls are rewritten unless escaped by a preceding backslash.
+* The algorithm for locating and rewriting `@root/` urls has been changed. Previously only `@root/` urls enclosed in quotes or angle brackets were rewritten; now all `@root/` urls are rewritten unless escaped by a preceding backslash.
 
 
 
 ### 0.6.0
 
-* The site configuration file has been renamed from `site.py` to `config.py`.
-  Old `site.py` files will continue to be recognised.
-
-  Some Python installations were confusing the `site.py` file with the standard library's `site` module, causing the interpreter to crash when Ivy was run from the site directory.
+* The site configuration file has been renamed from `site.py` to `config.py`. Old `site.py` files will continue to be recognised. (Some Python installations were confusing the `site.py` file with the standard library's `site` module, causing the interpreter to crash when Ivy was run from the site directory.)

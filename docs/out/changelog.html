@@ -65,8 +65,8 @@ text files into a self-contained website.</p>
         
         <hr>
       </header>
-      <h3 id="id-2-4-0-dev">
-2.4.0.dev
+      <h3 id="id-2-4-0">
+2.4.0
 </h3>
 <ul>
 <li>
@@ -86,6 +86,9 @@ Update the skeleton site to support Syntext 2.0.
 </li>
 <li>
 Files with a <code>.mk</code> or <code>.monk</code> extension will no longer be rendered as Syntext.
+</li>
+<li>
+Files with a <code>.stx</code> or <code>.sxt</code> extension will be rendered as Syntext.
 </li>
 </ul>
 <h3 id="id-2-3-0">
@@ -225,8 +228,7 @@ The default <code>graphite</code> theme now supports a meta description tag.
 </h3>
 <ul>
 <li>
-The algorithm for locating and rewriting <code>@root/</code> urls has been changed.
-Previously only <code>@root/</code> urls enclosed in quotes or angle brackets were rewritten; now all <code>@root/</code> urls are rewritten unless escaped by a preceding backslash.
+The algorithm for locating and rewriting <code>@root/</code> urls has been changed. Previously only <code>@root/</code> urls enclosed in quotes or angle brackets were rewritten; now all <code>@root/</code> urls are rewritten unless escaped by a preceding backslash.
 </li>
 </ul>
 <h3 id="id-0-6-0">
@@ -234,10 +236,7 @@ Previously only <code>@root/</code> urls enclosed in quotes or angle brackets we
 </h3>
 <ul>
 <li>
-The site configuration file has been renamed from <code>site.py</code> to <code>config.py</code>.
-Old <code>site.py</code> files will continue to be recognised.
-
-Some Python installations were confusing the <code>site.py</code> file with the standard library's <code>site</code> module, causing the interpreter to crash when Ivy was run from the site directory.
+The site configuration file has been renamed from <code>site.py</code> to <code>config.py</code>. Old <code>site.py</code> files will continue to be recognised. (Some Python installations were confusing the <code>site.py</code> file with the standard library's <code>site</code> module, causing the interpreter to crash when Ivy was run from the site directory.)
 </li>
 </ul>
 
