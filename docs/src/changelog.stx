@@ -11,7 +11,7 @@ title: Changelog
 
 
 
-### 2.5.0.dev
+### 2.5.0
 
 * Remove SSL support from the test server.
 
@@ -29,9 +29,10 @@ title: Changelog
 
 * Update the skeleton site to support Syntext 2.0.
 
+* Files with a `.stx` or `.sxt` extension will be rendered as Syntext. 
+
 * Files with a `.mk` or `.monk` extension will no longer be rendered as Syntext.
 
-* Files with a `.stx` or `.sxt` extension will be rendered as Syntext.
 
 
 
