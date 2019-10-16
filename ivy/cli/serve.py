@@ -6,7 +6,6 @@ import sys
 import os
 import http.server
 import webbrowser
-import ssl
 
 from .. import site
 from .. import utils
@@ -32,8 +31,6 @@ Options:
   -d, --directory <path>    Specify a custom directory to serve.
   -h, --host <addr>         Host IP address. Defaults to localhost.
   -p, --port <int>          Port number. Defaults to 8080.
-  -c, --ssl-cert <path>     SSL certificate file. (Enables HTTPS.)
-  -k, --ssl-key <path>      SSL key file if separate from certificate.
 
 Flags:
       --help                Print this command's help text and exit.
@@ -51,26 +48,10 @@ def register_command(parser):
     cmd.new_str("host h", fallback="localhost")
     cmd.new_int("port p", fallback=8080)
     cmd.new_str("browser b")
-    cmd.new_str("ssl-cert c")
-    cmd.new_str("ssl-key k")
 
 
 # Command callback.
 def callback(parser):
-
-    if parser['ssl-cert']:
-        certfile = os.path.abspath(parser['ssl-cert'])
-        if not os.path.exists(certfile):
-            sys.exit("Error: certificate '%s' does not exist." % certfile)
-    else:
-        certfile = None
-
-    if parser['ssl-key']:
-        keyfile = os.path.abspath(parser['ssl-key'])
-        if not os.path.exists(keyfile):
-            sys.exit("Error: key file '%s' does not exist." % keyfile)
-    else:
-        keyfile = None
 
     if parser['directory']:
         dirpath = os.path.abspath(parser['directory'])
@@ -94,26 +75,15 @@ def callback(parser):
     except OSError:
         sys.exit("Error: port already in use. Choose a different port.")
 
-    if certfile:
-        server.socket = ssl.wrap_socket(
-            server.socket,
-            keyfile=keyfile,
-            certfile=certfile,
-            server_side=True
-        )
-        protocol = "https"
-    else:
-        protocol = "http"
-
     address = server.socket.getsockname()
     if parser['browser']:
         try:
             browser = webbrowser.get(parser['browser'])
         except webbrowser.Error:
             sys.exit("Error: cannot locate browser '%s'." % parser['browser'])
-        browser.open("%s://%s:%s" % (protocol, parser['host'], address[1]))
+        browser.open("http://%s:%s" % (parser['host'], address[1]))
     elif not parser['no-browser']:
-        webbrowser.open("%s://%s:%s" % (protocol, parser['host'], address[1]))
+        webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
 
     utils.termline()
     print("Root: %s" % site.out())
