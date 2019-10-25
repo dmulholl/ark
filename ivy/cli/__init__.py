@@ -15,7 +15,7 @@ from . import serve
 from . import watch
 
 
-# We want the root ArgParser instance to be available to plugins.
+# We store the root ArgParser instance globally so it's available to plugins.
 parser = None
 
 

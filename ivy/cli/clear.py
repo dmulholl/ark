@@ -32,8 +32,6 @@ def register_command(parser):
 def callback(parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
-
     if not os.path.exists(site.out()):
         sys.exit("Error: cannot locate the site's output directory.")
-
     utils.cleardir(site.out())

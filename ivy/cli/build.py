@@ -78,7 +78,7 @@ def callback(parser):
 # Default build routine. Creates a single output page for each node in the
 # parse tree.
 @hooks.register('main_build')
-def builder():
+def build_site():
 
     # Make sure we have a valid theme directory.
     if not site.theme():
