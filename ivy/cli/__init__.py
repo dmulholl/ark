@@ -46,8 +46,6 @@ Command Help:
 
 # Parse the application's command-line arguments.
 def parse():
-
-    # We make the root parser global so plugins can inspect it.
     global parser
     parser = janus.ArgParser(helptext, ivy.__version__)
 

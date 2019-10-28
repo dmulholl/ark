@@ -7,11 +7,9 @@ import ivy
 try:
     import syntext
 except ImportError:
-    syntext = None
-
-
-# The syntext package is an optional dependency. 
-if syntext:
+    pass
+else:
     @ivy.renderers.register('stx', 'sxt')
     def render(text):
         return syntext.render(text, pygmentize=True)
+
