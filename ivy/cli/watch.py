@@ -56,24 +56,21 @@ def register_command(parser):
 # Callback for the watch command. Python doesn't have a builtin file system
 # watcher so we hack together one of our own.
 def callback(parser):
-
     home = site.home()
     if not home:
         sys.exit("Error: cannot locate the site's home directory.")
 
-    # Assemble a list of arguments for the subprocess call.
-    base = []
-
-    # We need to check if the `ivy` package has been executed:
-    # 1. Directly, as `python3 /path/to/ivy/package`.
-    # 2. As an installed package on the import path, `python3 -m ivy`.
-    # 3. Via an entry script, `ivy`, or a Windows executable `ivy.exe`.
+    # We want to reinvoke the currently active Ivy package when we call the
+    # build command. This package may have been invoked in one of three ways:
+    # 1. Directly: `python /path/to/ivy/directory`.
+    # 2. As an installed package on the import path: `python -m ivy`.
+    # 3. Via an entry script or Windows executable.
     if os.path.isdir(sys.argv[0]):
-        base += ['python3', sys.argv[0]]
+        base = ['python3', sys.argv[0]]
     elif sys.argv[0].endswith('__main__.py'):
-        base += ['python3', sys.argv[0]]
+        base = ['python3', sys.argv[0]]
     else:
-        base.append(sys.argv[0])
+        base = [sys.argv[0]]
 
     # Append the 'build' command, a 'watching' flag, and any user arguments.
     args = base + ['build', 'watching'] + parser.get_args()

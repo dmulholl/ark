@@ -64,7 +64,6 @@ def callback(parser):
 
     if parser['theme']:
         site.config['theme'] = parser['theme']
-
     if parser['clear']:
         utils.cleardir(site.out())
 

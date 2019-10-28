@@ -52,7 +52,6 @@ def register_command(parser):
 
 # Command callback.
 def callback(parser):
-
     if parser['directory']:
         dirpath = os.path.abspath(parser['directory'])
         if not os.path.exists(dirpath):

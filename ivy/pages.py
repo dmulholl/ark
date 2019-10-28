@@ -62,7 +62,6 @@ class Page(dict):
     def get_filepath(self) -> str:
         slugs = self['node'].path or ['index']
         suffix = site.config['extension']
-
         if suffix == '/':
             if slugs[-1] == 'index':
                 slugs[-1] += '.html'
@@ -70,37 +69,29 @@ class Page(dict):
                 slugs.append('index.html')
         else:
             slugs[-1] += suffix
-
         return hooks.filter('page_path', site.out(*slugs), self)
 
     # Assemble a list of path slugs.
     def get_slug_list(self) -> List[str]:
         slugs, stack = [], ['node'] + self['node'].path
-
         while stack:
             slugs.append('-'.join(stack))
             stack.pop()
-
         return hooks.filter('page_slugs', slugs, self)
 
     # Assemble a list of potential template names for the page.
     def get_template_list(self) -> List[str]:
         template_list = self.get_slug_list()
-
         if 'template' in self['node']:
             template_list.insert(0, self['node']['template'])
-
         return hooks.filter('page_templates', template_list, self)
 
     # Assemble a list of CSS classes for the page's <body> element.
     def get_class_list(self) -> List[str]:
         class_list = self.get_slug_list()
-
         if self['flags']['is_homepage']:
             class_list.append('homepage')
-
         if 'classes' in self['node']:
             for item in str(self['node']['classes']).split(','):
                 class_list.append(item.strip())
-
         return hooks.filter('page_classes', class_list, self)

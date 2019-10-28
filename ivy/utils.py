@@ -26,20 +26,15 @@ def cleardir(dirpath: str):
 # created if it does not already exist. If 'noclobber' is true, existing files
 # will not be overwritten.
 def copydir(srcdir: str, dstdir: str, noclobber: bool = False):
-
     if not os.path.exists(srcdir):
         return
-
     if not os.path.exists(dstdir):
         os.makedirs(dstdir)
-
     for name in os.listdir(srcdir):
         src = os.path.join(srcdir, name)
         dst = os.path.join(dstdir, name)
-
         if name in ('__pycache__', '.DS_Store'):
             continue
-
         if os.path.isfile(src):
             copyfile(src, dst, noclobber)
         elif os.path.isdir(src):
@@ -63,10 +58,8 @@ def copyfile(src: str, dst: str, noclobber: bool = False):
 # Write a string to a file. Creates parent directories if required.
 def writefile(path: str, content: str):
     path = os.path.abspath(path)
-
     if not os.path.isdir(os.path.dirname(path)):
         os.makedirs(os.path.dirname(path))
-
     with open(path, 'w', encoding='utf-8') as file:
         file.write(content)
 
