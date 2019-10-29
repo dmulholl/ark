@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Code Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="pygments.css">
+    
+    
+  </head>
+
+  <body class="node-code node">
+
+    <header class="masthead">
+      <h1><a href="index.html">Ivy Demo</a></h1>
+      
+        <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of 
+text files into a self-contained website.</p>
+      
+      
+      <nav class="menu">
+        <input id="menu-check" type="checkbox"/>
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="parent.html">Parent Page</a><ul>
+<li><a href="parent/child-one.html">Child One</a></li>
+<li><a href="parent/child-two.html">Child Two</a></li>
+</ul>
+</li>
+<li><a href="code.html">Code Samples</a></li>
+<li><a href="images.html">Images</a></li>
+<li><a href="short.html">Short</a></li>
+</ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+        <h1>Code Test</h1>
+        
+        <hr>
+      </header>
+      <p>
+Code without syntax-highlighting:
+</p>
+<pre>
+#include &lt;stdio.h&gt;
+
+// This is a comment.
+int main(int argc, char *argv[]) {
+    printf(&quot;hello world\n&quot;);
+    return 0;
+}
+</pre>
+<p>
+C with syntax-highlighting:
+</p>
+<pre class="lang-c pygments" data-lang="c">
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// This is a comment.</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>
+Python with syntax-highlighting:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">foo</span>
+
+<span class="c1"># This is a comment.</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+
+<span class="nd">@decorator</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Thing</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">arg</span> <span class="o">*</span> <span class="mi">42</span> <span class="o">+</span> <span class="mf">12.5</span>
+</pre>
+<p>
+HTML with syntax-highlighting:
+</p>
+<pre class="lang-html pygments" data-lang="html">
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Sample Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;heading&quot;</span><span class="p">&gt;</span>Test Page<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Lorem ipsum dolor sit amet.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre>
+<p>
+Django template syntax with syntax-highlighting:
+</p>
+<pre class="lang-django pygments" data-lang="django">
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">posts</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;h1&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/h1&gt;</span>
+<span class="x">    &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">post.content</span><span class="o">|</span><span class="nf">striptags</span><span class="o">|</span><span class="nf">truncatewords</span><span class="o">:</span><span class="m">50</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</pre>
+
+    </article>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,67 @@
+---
+title: Code Test
+---
+
+Code without syntax-highlighting:
+
+::: code
+
+    #include <stdio.h>
+
+    // This is a comment.
+    int main(int argc, char *argv[]) {
+        printf("hello world\n");
+        return 0;
+    }
+
+C with syntax-highlighting:
+
+::: code c
+
+    #include <stdio.h>
+
+    // This is a comment.
+    int main(int argc, char *argv[]) {
+        printf("hello world\n");
+        return 0;
+    }
+
+Python with syntax-highlighting:
+
+::: code python
+
+    import foo
+
+    # This is a comment.
+    def hello_world():
+        print("hello world")
+
+    @decorator("bar")
+    class Thing:
+        def method(self, arg=5):
+            return arg * 42 + 12.5
+
+HTML with syntax-highlighting:
+
+::: code html
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Sample Page</title>
+        </head>
+        <body>
+            <h1 class="heading">Test Page</h1>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </body>
+    </html>
+
+Django template syntax with syntax-highlighting:
+
+::: code django
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content|striptags|truncatewords:50 }}</p>
+    {% endfor %}
+

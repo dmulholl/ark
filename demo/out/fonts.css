@@ -1,0 +1,72 @@
+/**
+ * -------------------------------------------------------------------------
+ *  Google fonts served locally.
+ * -------------------------------------------------------------------------
+ */
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Crimson Text Regular'),
+       local('CrimsonText-Regular'),
+       url(fonts/CrimsonText-Regular.woff2) format('woff2'),
+       url(fonts/CrimsonText-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Crimson Text Italic'),
+       local('CrimsonText-Italic'),
+       url(fonts/CrimsonText-Italic.woff2) format('woff2'),
+       url(fonts/CrimsonText-Italic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Crimson Text Bold'),
+       local('CrimsonText-Bold'),
+       url(fonts/CrimsonText-Bold.woff2) format('woff2'),
+       url(fonts/CrimsonText-Bold.ttf) format('truetype');
+}
+
+/*
+    The fonts below are packaged with the theme and can be uncommented
+    if needed.
+ */
+
+/*
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Crimson Text Bold Italic'),
+       local('CrimsonText-BoldItalic'),
+       url(fonts/CrimsonText-BoldItalic.woff2) format('woff2'),
+       url(fonts/CrimsonText-BoldItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Crimson Text SemiBold'),
+       local('CrimsonText-SemiBold'),
+       url(fonts/CrimsonText-SemiBold.woff2) format('woff2'),
+       url(fonts/CrimsonText-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Crimson Text SemiBold Italic'),
+       local('CrimsonText-SemiBoldItalic'),
+       url(fonts/CrimsonText-SemiBoldItalic.woff2) format('woff2'),
+       url(fonts/CrimsonText-SemiBoldItalic.ttf) format('truetype');
+}
+*/
