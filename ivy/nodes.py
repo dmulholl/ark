@@ -22,7 +22,7 @@ class Node():
 
     def __init__(self):
 
-        # Stores the node's metadata.
+        # Stores the node's metadata (e.g. title, subtitle, author).
         self.meta: Dict[str, Any] = {}
 
         # Stores a reference to the node's parent node.
