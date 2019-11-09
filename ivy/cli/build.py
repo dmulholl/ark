@@ -12,7 +12,7 @@ from .. import pages
 from .. import utils
 
 
-# Command help text.
+# Command-line helptext for the 'build' command.
 helptext = """
 Usage: %s build
 
@@ -38,7 +38,7 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
-# Register the command on the 'cli' event hook.
+# Register the 'build' command on the 'cli' event hook.
 @hooks.register('cli')
 def register_command(parser):
     cmd = parser.new_cmd("build", helptext, callback)
@@ -51,7 +51,8 @@ def register_command(parser):
     cmd.new_str("theme t")
 
 
-# Command callback.
+# This function will be executed by the command-line parser whenever the 
+# 'build' command is found.
 def callback(parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
