@@ -27,6 +27,7 @@ Options:
   -i, --inc <path>      Override the default 'inc' directory.
   -l, --lib <path>      Override the default 'lib' directory.
   -o, --out <path>      Override the default 'out' directory.
+  -p, --port <int>      Port number to serve on. Defaults to 8080.
   -r, --res <path>      Override the default 'res' directory.
   -s, --src <path>      Override the default 'src' directory.
   -t, --theme <name>    Override the default theme.
@@ -51,6 +52,7 @@ def register_command(parser):
     cmd.new_str("inc i")
     cmd.new_str("res r")
     cmd.new_str("theme t")
+    cmd.new_int("port p", fallback=8080)
 
 
 # Callback for the watch command. Python doesn't have a builtin file system
@@ -101,7 +103,7 @@ def callback(parser):
     # background and automatically shut down when the watch process exits.
     if not parser["no-server"]:
         subprocess.Popen(
-            base + ['serve'],
+            base + ['serve', '--port', str(parser['port'])],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
