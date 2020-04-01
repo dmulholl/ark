@@ -28,8 +28,8 @@ Ivy is a static website generator built in Python. It's small, elegant, and easy
 * [Documentation][]
 * [Demo Site][]
 
-[Documentation]: https://darrenmulholland.com/docs/ivy/
-[Demo Site]: https://darrenmulholland.com/demos/ivy/
+[Documentation]: http://www.dmulholl.com/docs/ivy/
+[Demo Site]: http://www.dmulholl.com/demos/ivy/
 
 <p align="center"><em>This is a personal project &mdash; bug reports are welcome but I won't accept pull requests.</em></p>
 
