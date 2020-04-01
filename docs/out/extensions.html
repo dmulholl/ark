@@ -143,9 +143,9 @@ Here's a simple event callback that prints a count of the number of pages that h
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
 
-<span class="nd">@ivy.hooks.register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_page_count</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
 </pre>
 <p>
 This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ivy/__init__.py</code> file.)
@@ -162,7 +162,7 @@ Here's a simple filter callback that changes every instance of the word <em>foo<
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
 
-<span class="nd">@ivy.hooks.register</span><span class="p">(</span><span class="s1">&#39;node_text&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;node_text&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
@@ -187,7 +187,7 @@ Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a hr
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
 
-<span class="nd">@ivy.templates.register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
@@ -204,7 +204,7 @@ Ivy has builtin support for node files written in <a href="https://en.wikipedia.
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
 
-<span class="nd">@ivy.renderers.register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">markdown_callback</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
@@ -221,7 +221,7 @@ Ivy has builtin support for YAML file headers. Plugins can add support for addit
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
 
-<span class="nd">@ivy.hooks.register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">parse_toml</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">meta</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">text</span>
@@ -265,7 +265,7 @@ Plugins can register shortcode tags using the <code>@shortcodes.register()</code
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
-<span class="nd">@shortcodes.register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
+<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">replacement_text</span>
@@ -274,7 +274,7 @@ Plugins can register shortcode tags using the <code>@shortcodes.register()</code
 Specifying a closing tag in the decorator gives the new shortcode block scope:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="nd">@shortcodes.register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="s1">&#39;endtag&#39;</span><span class="p">)</span>
+<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="s1">&#39;endtag&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">replacement_text</span>
