@@ -39,6 +39,6 @@ def callback(parser):
     dst_dir = parser.get_args()[0] if parser.has_args() else '.'
     os.makedirs(dst_dir, exist_ok=True)
     os.chdir(dst_dir)
-    for name in ('ext', 'inc', 'lib', 'out', 'res', 'src'):
+    for name in ('inc', 'lib', 'src'):
         os.makedirs(name, exist_ok=True)
     utils.copydir(src_dir, '.', noclobber=True)
