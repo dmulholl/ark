@@ -39,13 +39,13 @@
     </ul>
     <hr>
 
-    <h2>Meta</h2>
+    <h2>Node Meta</h2>
     <pre>{{ node.meta|pprint|pygmentize:'python' }}</pre>
 
-    <h2>Text</h2>
+    <h2>Node Text</h2>
     <pre>{{ node.text|escape }}</pre>
 
-    <h2>HTML</h2>
+    <h2>Node HTML</h2>
     <pre>{{ node.html|escape }}</pre>
 
     <h2>Page</h2>
