@@ -5,7 +5,7 @@
     <title>Quickstart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="graphite.css">
     <link rel="stylesheet" href="pygments.css">
     
     
@@ -20,7 +20,7 @@
 text files into a self-contained website.</p>
       
       
-        <p class="version">Version 2.5.0</p>
+        <p class="version">Version 2.7.0</p>
       
       <nav class="menu">
         <input id="menu-check" type="checkbox"/>
@@ -102,11 +102,8 @@ Ivy will create the following directory structure for your site:
 <pre>
 mysite/
     config.py    # site configuration file
-    ext/         # extensions directory for plugins
     inc/         # includes directory for menus, etc.
     lib/         # library directory for themes
-    out/         # output directory for html files
-    res/         # resources directory for static assets
     src/         # source directory for text files
 </pre>
 <p>
@@ -116,7 +113,7 @@ Ivy initializes your <code>src</code> directory with a simple skeleton site whic
 $ ivy build
 </pre>
 <p>
-You can run the <code>build</code> command from the site directory itself or from any of its subdirectories. It tells Ivy to render the text files in the <code>src</code> directory into HTML and place the output in the <code>out</code> directory.
+You can run the <code>build</code> command from the site directory itself or from any of its subdirectories. It tells Ivy to render the text files in the <code>src</code> directory into HTML and place the output in an <code>out</code> directory.
 </p>
 <p>
 Run the <code>build</code> command and take a look at the output. You can open the HTML files directly in your browser or use Ivy's builtin web server to serve the contents of the <code>out</code> directory:

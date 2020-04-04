@@ -3,11 +3,24 @@ title: Changelog
 ---
 
 
-[syntext]: https://darrenmulholland.com/docs/syntext/
+[Syntext]: http://www.dmulholl.com/docs/syntext/
 [semver]: http://semver.org
-[monk]: https://darrenmulholland.com/docs/monk/
-[clio]: https://darrenmulholland.com/docs/clio/
-[janus]: https://darrenmulholland.com/docs/janus/
+[Monk]: http://www.dmulholl.com/docs/monk/
+[Clio]: http://www.dmulholl.com/docs/clio/
+[Janus]: http://www.dmulholl.com/docs/janus/
+
+
+### 2.7.0
+
+* Simpler directory structure for newly initialized sites.
+
+* The sample shortcode plugin has been moved into core.
+
+
+
+### 2.6.0
+
+* Add a `--port` option to the `watch` command to set the port number the test server will run on.
 
 
 
@@ -29,10 +42,9 @@ title: Changelog
 
 * Update the skeleton site to support Syntext 2.0.
 
-* Files with a `.stx` or `.sxt` extension will be rendered as Syntext. 
+* Files with a `.stx` or `.sxt` extension will be rendered as Syntext.
 
 * Files with a `.mk` or `.monk` extension will no longer be rendered as Syntext.
-
 
 
 

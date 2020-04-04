@@ -5,7 +5,7 @@
     <title>Extensions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="graphite.css">
     <link rel="stylesheet" href="pygments.css">
     
     
@@ -20,7 +20,7 @@
 text files into a self-contained website.</p>
       
       
-        <p class="version">Version 2.5.0</p>
+        <p class="version">Version 2.7.0</p>
       
       <nav class="menu">
         <input id="menu-check" type="checkbox"/>
@@ -70,7 +70,7 @@ text files into a self-contained website.</p>
       </header>
       <ul class="stx-toc">
 <li>
-<a href="#installing-plugins">Installing Plugins</a>
+<a href="#installing-extensions">Installing Extensions</a>
 </li>
 <li>
 <a href="#event-filter-hooks">Event &amp; Filter Hooks</a>
@@ -101,15 +101,24 @@ text files into a self-contained website.</p>
 <a href="#shortcodes">Shortcodes</a>
 </li>
 </ul>
-<h2 id="installing-plugins">
-Installing Plugins
+<h2 id="installing-extensions">
+Installing Extensions
 </h2>
 <p>
-The site extensions directory <code>ext</code> is intended for plugins that enhance Ivy's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
+An extension (aka a 'plugin') is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
 </p>
+<ul>
+<li>
 <p>
-Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an <code>extensions</code> list in the site's configuration file:
+You can add an extensions directory named <code>ext</code> to your site's root directory. Extension modules placed in this <code>ext</code> directory will be loaded automatically by Ivy.
 </p>
+</li>
+<li>
+<p>
+If an extension module has been installed on Python's standard import path you can activate it for a particular site by adding its name to an <code>extensions</code> list in the site's configuration file:
+</p>
+</li>
+</ul>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;extension_one&#39;</span><span class="p">,</span>
@@ -117,7 +126,7 @@ Alternatively, extension modules installed on Python's standard import path can 
 <span class="p">]</span>
 </pre>
 <p>
-This method can be used to enable extensions installed from the package index using <code>pip</code>.
+This second method can be used to enable extensions installed from the Python package index using <code>pip</code>.
 </p>
 <h2 id="event-filter-hooks">
 Event &amp; Filter Hooks
@@ -129,7 +138,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 Most of Ivy's default functionality &mdash; e.g. support for Jinja templates or Markdown files &mdash; is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 </p>
 <p>
-You can find these bundled plugins in the <code>ivy/ext/</code> directory which you can view on Github <a href="https://github.com/dmulholland/ivy/tree/master/ivy/ext">here</a>.
+You can find these bundled plugins in the <code>ivy/extensions/</code> directory which you can view on Github <a href="https://github.com/dmulholl/ivy/tree/master/ivy/extensions">here</a>.
 </p>
 <h3 id="events">
 Events
@@ -182,7 +191,7 @@ Ivy relies for most of its functionality on a suite of pluggable rendering and p
 Templates
 </h3>
 <p>
-Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -199,7 +208,7 @@ A template-engine callback should accept a <code>Page</code> object and a templa
 Node Content
 </h3>
 <p>
-Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://darrenmulholland.com/docs/syntext/">Syntext</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/">Syntext</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -236,31 +245,22 @@ The <code>file_text</code> hook can be found in the <code>ivy/loader.py</code> f
 Shortcodes
 </h2>
 <p>
-Ivy has builtin support for WordPress-style <a href="https://darrenmulholland.com/docs/shortcodes/">shortcodes</a> with space-separated positional and keyword arguments:
+Ivy has builtin support for WordPress-style <a href="http://www.dmulholl.com/docs/shortcodes/">shortcodes</a> with space-separated positional and keyword arguments:
 </p>
 <pre>
-[% tag arg1 key=arg2 %]
+[% tag arg1 key=arg2 %] ... [% endtag %]
 </pre>
 <p>
-Arguments containing spaces can be enclosed in quotes:
+Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
+</p>
+<p>
+Ivy ships with a sample shortcode plugin which registers an <code>[% include %]</code> shortcode. You can use this shortcode to inject the content of files from your site's <code>inc</code> directory directly into a node's text, e.g.
 </p>
 <pre>
-[% tag &quot;arg 1&quot; key=&quot;arg 2&quot; %]
+[% include foobar.md %]
 </pre>
 <p>
-Shortcodes can be atomic, as above, or can enclose a block of content between opening and closing tags:
-</p>
-<pre>
-[% tag %] ... [% endtag %]
-</pre>
-<p>
-Block-scoped shortcodes can be nested to any depth. Innermost shortcodes are processed first:
-</p>
-<pre>
-[% tag %] ... content with [% more %] shortcodes ... [% endtag %]
-</pre>
-<p>
-Plugins can register shortcode tags using the <code>@shortcodes.register()</code> decorator:
+Plugins can register custom shortcode tags using the <code>@shortcodes.register()</code> decorator:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">shortcodes</span>
@@ -304,7 +304,7 @@ Positional and keyword arguments are passed as strings. The handler function its
 Note that shortcodes are processed <em>before</em> node text is rendered into HTML.
 </p>
 <p>
-You can find the full documentation for the Shortcodes library <a href="https://darrenmulholland.com/docs/shortcodes/">here</a>.
+You can find the full documentation for the Shortcodes library <a href="http://www.dmulholl.com/docs/shortcodes/">here</a>.
 </p>
 
     </article>

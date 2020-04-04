@@ -48,7 +48,7 @@ There are countless templating languages and Ivy can use any of them, but it has
 You can add support for alternative templating languages via [plugins](@root/extensions//#templates).
 
 [Jinja]: http://jinja.pocoo.org
-[Ibis]: https://github.com/dmulholland/ibis
+[Ibis]: https://github.com/dmulholl/ibis
 
 
 

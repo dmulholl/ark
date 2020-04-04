@@ -5,7 +5,7 @@
     <title>FAQ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="graphite.css">
     <link rel="stylesheet" href="pygments.css">
     
     
@@ -20,7 +20,7 @@
 text files into a self-contained website.</p>
       
       
-        <p class="version">Version 2.5.0</p>
+        <p class="version">Version 2.7.0</p>
       
       <nav class="menu">
         <input id="menu-check" type="checkbox"/>
@@ -83,6 +83,12 @@ text files into a self-contained website.</p>
 </li>
 <li>
 <a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
+</li>
+<li>
+<a href="#how-do-i-deploy-a-site-built-with-ivy">How do I deploy a site built with Ivy?</a>
+</li>
+<li>
+<a href="#why-is-it-called-ivy">Why is it called Ivy?</a>
 </li>
 </ul>
 <h3 id="why-wont-ivy-install">
@@ -190,13 +196,45 @@ Can I build a blog using Ivy?
 Sure, but you'll have to write some code to do it.
 </p>
 <p>
-Ivy is actually a stripped-down version of an older static website generator that I tinkered with for years called <a href="https://darrenmulholland.com/docs/malt/">Malt</a>, which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, <em>general-purpose</em> static-website-plus-blog engine &mdash; it just ends up being a WordPress-style rat's nest of options and switches.
+Ivy is actually a stripped-down version of an older static website generator that I tinkered with for years called <a href="http://www.dmulholl.com/docs/malt/">Malt</a>, which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, <em>general-purpose</em> static-website-plus-blog engine &mdash; it just ends up being a WordPress-style rat's nest of options and switches.
 </p>
 <p>
 It's actually quite easy to build a blog on top of Ivy by adding a simple plugin to assemble indexes, etc. &mdash; at least, it's easy to do it for <em>one specific site</em>. I've certainly thought about building a general-purpose blog plugin, but it inevitably turns into its own mini rat's nest of options and switches all over again.
 </p>
 <p>
-I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at <a href="https://darrenmulholland.com/docs/malt/">Malt</a> for inspiration.
+I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at <a href="http://www.dmulholl.com/docs/malt/">Malt</a> for inspiration.
+</p>
+<h3 id="how-do-i-deploy-a-site-built-with-ivy">
+How do I deploy a site built with Ivy?
+</h3>
+<p>
+One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like &mdash; in the simplest case you can 'deploy' it simply by double-clicking on the .html files to view them locally in your browser.
+</p>
+<p>
+To make your website available on the public internet you have lots of options. Here's some of the most common, in order of increasing difficulty and expense.
+</p>
+<ul>
+<li>
+<p>
+The simplest option to get started is to use a service like <a href="https://pages.github.com">Github Pages</a> which will host static websites for free.
+</p>
+</li>
+<li>
+<p>
+The next step up is 'shared web hosting' &mdash; it's cheap, flexible, and lots of online companies offer it. I've used <a href="https://www.nearlyfreespeech.net">NearlyFreeSpeech</a> myself and been happy with their service.
+</p>
+</li>
+<li>
+<p>
+If you need more control over your hosting environment you can run your own webserver on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like <a href="https://www.digitalocean.com">Digital Ocean</a>.
+</p>
+</li>
+</ul>
+<h3 id="why-is-it-called-ivy">
+Why is it called Ivy?
+</h3>
+<p>
+Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.
 </p>
 
     </article>

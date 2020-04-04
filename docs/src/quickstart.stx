@@ -27,18 +27,15 @@ Ivy will create the following directory structure for your site:
 
     mysite/
         config.py    # site configuration file
-        ext/         # extensions directory for plugins
         inc/         # includes directory for menus, etc.
         lib/         # library directory for themes
-        out/         # output directory for html files
-        res/         # resources directory for static assets
         src/         # source directory for text files
 
 Ivy initializes your `src` directory with a simple skeleton site which you can build immediately using the `build` command:
 
     $ ivy build
 
-You can run the `build` command from the site directory itself or from any of its subdirectories. It tells Ivy to render the text files in the `src` directory into HTML and place the output in the `out` directory.
+You can run the `build` command from the site directory itself or from any of its subdirectories. It tells Ivy to render the text files in the `src` directory into HTML and place the output in an `out` directory.
 
 Run the `build` command and take a look at the output. You can open the HTML files directly in your browser or use Ivy's builtin web server to serve the contents of the `out` directory:
 

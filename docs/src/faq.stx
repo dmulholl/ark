@@ -99,4 +99,24 @@ It's actually quite easy to build a blog on top of Ivy by adding a simple plugin
 
 I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at [Malt][] for inspiration.
 
-[malt]: https://darrenmulholland.com/docs/malt/
+[malt]: http://www.dmulholl.com/docs/malt/
+
+
+
+### How do I deploy a site built with Ivy?
+
+One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like --- in the simplest case you can 'deploy' it simply by double-clicking on the .html files to view them locally in your browser.
+
+To make your website available on the public internet you have lots of options. Here's some of the most common, in order of increasing difficulty and expense.
+
+(*) The simplest option to get started is to use a service like [Github Pages](https://pages.github.com) which will host static websites for free.
+
+(*) The next step up is 'shared web hosting' --- it's cheap, flexible, and lots of online companies offer it. I've used [NearlyFreeSpeech](https://www.nearlyfreespeech.net) myself and been happy with their service.
+
+(*) If you need more control over your hosting environment you can run your own webserver on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
+
+
+
+### Why is it called Ivy?
+
+Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.

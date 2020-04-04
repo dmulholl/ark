@@ -5,11 +5,13 @@ title: Extensions
 ::: insert toc
 
 
-## Installing Plugins
+## Installing Extensions
 
-The site extensions directory `ext` is intended for plugins that enhance Ivy's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ivy's extension hooks to inject their own code into the build process.
+An extension (aka a 'plugin') is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
 
-Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an `extensions` list in the site's configuration file:
+(*) You can add an extensions directory named `ext` to your site's root directory. Extension modules placed in this `ext` directory will be loaded automatically by Ivy.
+
+(*) If an extension module has been installed on Python's standard import path you can activate it for a particular site by adding its name to an `extensions` list in the site's configuration file:
 
 ::: code python
 
@@ -18,7 +20,7 @@ Alternatively, extension modules installed on Python's standard import path can 
         'extension_two',
     ]
 
-This method can be used to enable extensions installed from the package index using `pip`.
+This second method can be used to enable extensions installed from the Python package index using `pip`.
 
 
 
@@ -28,9 +30,9 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 
 Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 
-You can find these bundled plugins in the `ivy/ext/` directory which you can view on Github [here][extdir].
+You can find these bundled plugins in the `ivy/extensions/` directory which you can view on Github [here][extdir].
 
-[extdir]: https://github.com/dmulholland/ivy/tree/master/ivy/ext
+[extdir]: https://github.com/dmulholl/ivy/tree/master/ivy/extensions
 
 
 
@@ -86,7 +88,7 @@ Ivy relies for most of its functionality on a suite of pluggable rendering and p
 Ivy has builtin support for [Jinja][] and [Ibis][] templates. Plugins can register support for additional formats using the `@templates.register()` decorator. Template-engine callbacks are registered per file-extension, e.g.
 
 [jinja]: http://jinja.pocoo.org
-[ibis]: https://github.com/dmulholland/ibis
+[ibis]: https://github.com/dmulholl/ibis
 
 ::: code python
 
@@ -106,7 +108,7 @@ A template-engine callback should accept a `Page` object and a template filename
 Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 [markdown]: https://en.wikipedia.org/wiki/Markdown
-[syntext]: https://darrenmulholland.com/docs/syntext/
+[syntext]: http://www.dmulholl.com/docs/syntext/
 
 ::: code python
 
@@ -141,23 +143,17 @@ The `file_text` hook can be found in the `ivy/loader.py` file.
 
 ## Shortcodes
 
-Ivy has builtin support for WordPress-style [shortcodes][scdocs] with space-separated positional and keyword arguments:
+Ivy has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
 
-    \[% tag arg1 key=arg2 %]
+    \[% tag arg1 key=arg2 %] ... \[% endtag %]
 
-Arguments containing spaces can be enclosed in quotes:
+Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
 
-    \[% tag "arg 1" key="arg 2" %]
+Ivy ships with a sample shortcode plugin which registers an `\[% include %]` shortcode. You can use this shortcode to inject the content of files from your site's `inc` directory directly into a node's text, e.g.
 
-Shortcodes can be atomic, as above, or can enclose a block of content between opening and closing tags:
+    \[% include foobar.md %]
 
-    \[% tag %] ... \[% endtag %]
-
-Block-scoped shortcodes can be nested to any depth. Innermost shortcodes are processed first:
-
-    \[% tag %] ... content with \[% more %] shortcodes ... \[% endtag %]
-
-Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
+Plugins can register custom shortcode tags using the `@shortcodes.register()` decorator:
 
 ::: code python
 
@@ -189,7 +185,6 @@ Positional and keyword arguments are passed as strings. The handler function its
 
 Note that shortcodes are processed *before* node text is rendered into HTML.
 
-You can find the full documentation for the Shortcodes library [here][scdocs].
+You can find the full documentation for the Shortcodes library [here][shortcodes].
 
-[scdocs]: https://darrenmulholland.com/docs/shortcodes/
-[scgithub]: https://github.com/dmulholl/shortcodes
+[shortcodes]: http://www.dmulholl.com/docs/shortcodes/
