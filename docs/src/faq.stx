@@ -113,7 +113,7 @@ To make your website available on the public internet you have lots of options. 
 
 (*) The next step up is 'shared web hosting' --- it's cheap, flexible, and lots of online companies offer it. I've used [NearlyFreeSpeech](https://www.nearlyfreespeech.net) myself and been happy with their service.
 
-(*) If you need more control over your hosting environment you can run your own webserver on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
+(*) If you need more control over your hosting environment you can run your own webserver like Apache or Nginx on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
 
 
 
