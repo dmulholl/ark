@@ -10,6 +10,9 @@
 # be customized by giving nodes an integer 'menu_order' attribute with
 # lower orders coming first. The default order value is 0. (Note that the
 # homepage is an exception and will always be the first entry in the menu.)
+#
+# If a node has a 'menu_exclude' attribute set to true, it will be excluded
+# from the menu.
 # ------------------------------------------------------------------------------
 
 import ivy
@@ -36,7 +39,7 @@ def get_pagelist():
     menu.append('<li><a href="@root/">%s</a></li>\n' % title)
 
     for child in sorted_children(root):
-        if not child.empty:
+        if not child.empty and not child.get('menu_exclude', False):
             add_node(child, menu)
 
     menu.append('</ul>')
@@ -50,11 +53,15 @@ def add_node(node, menu):
     menu.append('<a href="%s">%s</a>' % (node.url, title))
 
     if node.has_children:
-        menu.append('<ul>\n')
+        menu_children = []
         for child in sorted_children(node):
-            if not child.empty:
+            if not child.empty and not child.get('menu_exclude', False):
+                menu_children.append(child)
+        if menu_children:
+            menu.append('<ul>\n')
+            for child in menu_children:
                 add_node(child, menu)
-        menu.append('</ul>\n')
+            menu.append('</ul>\n')
 
     menu.append('</li>\n')
 

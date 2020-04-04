@@ -10,6 +10,12 @@ title: Changelog
 [Janus]: http://www.dmulholl.com/docs/janus/
 
 
+### 2.8.0
+
+* Add a `menu_exclude` option to omit nodes from automatically-generated menus.
+
+
+
 ### 2.7.0
 
 * Simpler directory structure for newly initialized sites.
