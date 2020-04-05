@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 import sys
-from ivy import hooks, templates, site
+import ivy
 
 try:
     import ibis
@@ -14,13 +14,15 @@ except ImportError:
 # The ibis package is an optional dependency.
 if ibis:
 
-    # Initialize the template loader. 
-    @hooks.register('init')
+    # Initialize the template loader.
+    @ivy.hooks.register('init')
     def init():
-        ibis.config.loader = ibis.loaders.FileLoader(site.theme('templates'))
+        ibis.config.loader = ibis.loaders.FileLoader(
+            ivy.site.theme('templates')
+        )
 
     # Register our template engine callback for files with a .ibis extension.
-    @templates.register('ibis')
+    @ivy.templates.register('ibis')
     def callback(page, filename):
         template = ibis.config.loader(filename)
         return template.render(page)
