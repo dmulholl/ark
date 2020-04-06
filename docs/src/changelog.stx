@@ -10,6 +10,12 @@ title: Changelog
 [Janus]: http://www.dmulholl.com/docs/janus/
 
 
+### 2.9.0.dev
+
+* Better footnote styles for the `graphite` theme.
+
+
+
 ### 2.8.0
 
 * Add a `menu_exclude` option to omit nodes from automatically-generated menus.
