@@ -7,11 +7,25 @@ meta-title: Ivy Demo
 Lorem ipsum dolor sit amet, consectetur [adipiscing elit](#), sed do eiusmod
 *tempor incididunt* ut labore et **dolore magna** aliqua. Ut enim ad minim
 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-`commodo consequat`.
+`commodo consequat`.[^1]
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
 eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-sunt in culpa qui officia deserunt mollit anim id est laborum.
+sunt in culpa qui officia deserunt mollit anim id est laborum.[^2]
+
+::: footnote 1
+
+    Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae,
+    aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli
+    appellantur.
+
+::: footnote 2
+
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
 
 ## Heading H2
 
@@ -19,6 +33,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
+
+
 
 ### Heading H3
 
@@ -132,3 +148,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
+
+
+
+### Notes
+
+::: insert footnotes
