@@ -361,6 +361,10 @@ body {
      content: "]";
  }
 
+ .footnote a {
+     border: none;
+ }
+
  .footnotes dt {
      display: table-cell;
      width: 40px;
