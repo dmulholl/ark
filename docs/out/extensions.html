@@ -144,7 +144,7 @@ You can find these bundled plugins in the <code>ivy/extensions/</code> directory
 Events
 </h3>
 <p>
-<em>Event callbacks</em> accept zero or more arguments depending on the specific hook. They may modify their arguments in place but have no return value.
+<i>Event callbacks</i> accept zero or more arguments depending on the specific hook. They may modify their arguments in place but have no return value.
 </p>
 <p>
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
@@ -163,10 +163,10 @@ This callback is registered on the <code>exit</code> event hook which fires just
 Filters
 </h3>
 <p>
-<em>Filter callbacks</em> accept at least one argument &mdash; the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
+<i>Filter callbacks</i> accept at least one argument &mdash; the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
 </p>
 <p>
-Here's a simple filter callback that changes every instance of the word <em>foo</em> in node content to <em>bar</em>:
+Here's a simple filter callback that changes every instance of the word <i>foo</i> in node content to <i>bar</i>:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -301,7 +301,7 @@ A dictionary of keyword arguments.
 Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
 </p>
 <p>
-Note that shortcodes are processed <em>before</em> node text is rendered into HTML.
+Note that shortcodes are processed <i>before</i> node text is rendered into HTML.
 </p>
 <p>
 You can find the full documentation for the Shortcodes library <a href="http://www.dmulholl.com/docs/shortcodes/">here</a>.

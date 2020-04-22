@@ -230,6 +230,7 @@ would be accessible in template files as <code>node.date_of_birth</code>.
 All nodes have the following default attributes:
 </p>
 <dl>
+<div>
 <dt>
 <code>html</code>
 </dt>
@@ -238,6 +239,8 @@ All nodes have the following default attributes:
 The node's text content rendered into html.
 </p>
 </dd>
+</div>
+<div>
 <dt>
 <code>text</code>
 </dt>
@@ -246,6 +249,8 @@ The node's text content rendered into html.
 The node's raw text content.
 </p>
 </dd>
+</div>
+<div>
 <dt>
 <code>url</code>
 </dt>
@@ -254,6 +259,7 @@ The node's raw text content.
 The node's url.
 </p>
 </dd>
+</div>
 </dl>
 <h2 id="links">
 Links
@@ -298,7 +304,7 @@ Linking to the homepage is a special case &mdash; a simple <code>@root/</code> w
 Includes
 </h2>
 <p>
-The <em>includes</em> directory, <code>inc</code>, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Monk depending on their extension and the resulting HTML made available for inclusion in template files via the <code>inc.&lt;name&gt;</code> attribute.
+The <i>includes</i> directory, <code>inc</code>, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Monk depending on their extension and the resulting HTML made available for inclusion in template files via the <code>inc.&lt;name&gt;</code> attribute.
 </p>
 <p>
 For example, a menu can be constructed in Markdown using nested lists:
@@ -317,7 +323,7 @@ If this menu was contained in a file named <code>menu.md</code> then the rendere
 Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</code> extension will have their contents preserved as-is.
 </p>
 <p>
-Note that included files are available for use in <em>templates</em> (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Syntext files). To include elements in node content consider making use of <a href="extensions.html#shortcodes">shortcodes</a>.
+Note that included files are available for use in <i>templates</i> (e.g. Jinja or Ibis files), not in node content (e.g. Markdown or Syntext files). To include elements in node content consider making use of <a href="extensions.html#shortcodes">shortcodes</a>.
 </p>
 <h2 id="extension-options">
 Extension Options

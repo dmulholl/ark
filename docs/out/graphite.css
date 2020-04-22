@@ -237,7 +237,7 @@ body {
 
 .main {
     width: 600px;
-    padding: 32px 50px 20px 50px;
+    padding: 32px 50px 40px 50px;
     margin-left: 360px;
     border-left: 3px solid black;
     min-height: calc(100vh - 80px);
@@ -319,6 +319,10 @@ body {
     margin: 50px auto 60px;
 }
 
+.main > :last-child {
+    margin-bottom: 0;
+}
+
 /**
  * Alert Boxes
  */
@@ -349,18 +353,52 @@ body {
  * Footnotes
  */
 
-.footnote-index {
-    display: table-cell;
-    width: 30px;
-}
+ .footnote a::before {
+     content: "[";
+ }
 
-.footnote-body {
-    display: table-cell;
-}
+ .footnote a::after {
+     content: "]";
+ }
 
-.footnote-body :first-child {
-    margin-top: 0;
-}
+ .footnote a {
+     border: none;
+ }
+
+ .footnotes dt {
+     display: table-cell;
+     width: 40px;
+     text-align: right;
+     font-weight: normal;
+ }
+
+ .footnotes dt a {
+     padding: 0;
+     border: none;
+ }
+
+ .footnotes dt a::before {
+     content: "[";
+ }
+
+ .footnotes dt a::after {
+     content: "]";
+ }
+
+ .footnotes dd {
+     display: table-cell;
+     padding-left: 20px;
+     padding-right: 0px;
+     border: none
+ }
+
+ .footnotes dd :first-child {
+     margin-top: 0;
+ }
+
+ .footnotes div:last-child dd :last-child {
+     margin-bottom: 0;
+ }
 
 /**
  * Tables

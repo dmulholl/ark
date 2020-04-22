@@ -11,19 +11,24 @@ from . import site
 
 
 # Load the named Python module from the specified directory.
-def load_module(directory: str, name: str):
-    sys.path.insert(0, directory)
+def load_module(dirpath: str, name: str):
+    sys.path.insert(0, dirpath)
     importlib.import_module(name)
     sys.path.pop(0)
 
 
 # Load a directory of Python modules.
-def load_directory(directory: str):
-    for name in os.listdir(directory):
+def load_directory(dirpath: str):
+    for name in os.listdir(dirpath):
         if name.startswith('.'):
             continue
-        base = os.path.splitext(name)[0]
-        load_module(directory, base)
+        path = os.path.join(dirpath, name)
+        if os.path.isfile(path):
+            base, ext = os.path.splitext(name)
+            if ext == '.py':
+                load_module(dirpath, base)
+        elif os.path.isdir(path):
+            load_module(dirpath, name)
 
 
 # Load Ivy's default set of bundled extensions.
