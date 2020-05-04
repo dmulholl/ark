@@ -109,14 +109,6 @@ sub {
     top: .5ex;
 }
 
-small {
-    font-size: 75%;
-}
-
-big {
-    font-size: 125%;
-}
-
 /**
  * Code
  */
