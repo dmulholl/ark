@@ -109,14 +109,6 @@ sub {
     top: .5ex;
 }
 
-small {
-    font-size: 75%;
-}
-
-big {
-    font-size: 125%;
-}
-
 /**
  * Code
  */
@@ -324,29 +316,36 @@ body {
 }
 
 /**
- * Alert Boxes
+ * Info Boxes
  */
 
-.alertbox {
+.infobox, .alertbox {
     margin: 40px 20px;
     border: 1px solid;
     padding: 0 25px;
     border-radius: 3px;
+    border-color: #bbb;
+    background-color: #f8f8f8;
 }
 
-.alertbox.info {
+.infobox.blue, .alertbox.info {
     border-color: #bac6d3;
     background-color: #e2eef9;
 }
 
-.alertbox.warning {
+.infobox.yellow, .alertbox.warning {
     border-color: #dfd8c2;
     background-color: #fff9ea;
 }
 
-.alertbox.error {
+.infobox.red, .alertbox.error {
     border-color: #d2b2b2;
     background-color: #fcdede;
+}
+
+.infobox.green, .alertbox.success {
+    border-color: #B2C2AB;
+    background-color: #DEF2D6;
 }
 
 /**

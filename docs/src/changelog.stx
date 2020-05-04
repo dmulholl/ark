@@ -10,7 +10,7 @@ title: Changelog
 [Janus]: http://www.dmulholl.com/docs/janus/
 
 
-### 2.9.0.dev
+### 2.9.0
 
 * Check for a `.py` extension before attempting to load files from the extensions directory.
 
