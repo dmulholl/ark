@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 manifest = """\
 include license.txt readme.md
 recursive-include ivy/extensions *
-recursive-include ivy/skeleton *
+recursive-include ivy/initsite *
 """
 
 

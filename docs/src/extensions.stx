@@ -36,7 +36,6 @@ You can find these bundled plugins in the `ivy/extensions/` directory which you 
 
 
 
-
 ### Events
 
 *Event callbacks* accept zero or more arguments depending on the specific hook. They may modify their arguments in place but have no return value.

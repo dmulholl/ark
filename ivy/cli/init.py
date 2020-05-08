@@ -35,7 +35,7 @@ def register_command(parser):
 # Command callback.
 def callback(parser):
     ivy_dir = os.path.dirname(os.path.dirname(__file__))
-    src_dir = os.path.join(ivy_dir, 'skeleton')
+    src_dir = os.path.join(ivy_dir, 'initsite')
     dst_dir = parser.get_args()[0] if parser.has_args() else '.'
     os.makedirs(dst_dir, exist_ok=True)
     os.chdir(dst_dir)
