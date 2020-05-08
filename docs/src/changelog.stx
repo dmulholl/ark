@@ -3,11 +3,12 @@ title: Changelog
 ---
 
 
-[Syntext]: http://www.dmulholl.com/docs/syntext/
-[semver]: http://semver.org
-[Monk]: http://www.dmulholl.com/docs/monk/
-[Clio]: http://www.dmulholl.com/docs/clio/
-[Janus]: http://www.dmulholl.com/docs/janus/
+### 2.10.0.dev
+
+* Update required Python version to 3.8.
+
+* Make the shortcodes package an optional dependency.
+
 
 
 ### 2.9.0
@@ -72,7 +73,7 @@ title: Changelog
 
 * Add Windows support for colored terminal output.
 
-* Update Ivy to reflect the Monk to [Syntext][] name change. Old `.monk` and `.mk` files will continue to work.
+* Update Ivy to reflect the Monk to Syntext name change. Old `.monk` and `.mk` files will continue to work.
 
 * Small improvements to mobile styles for the `graphite` theme.
 
@@ -130,7 +131,7 @@ title: Changelog
 
 ### 1.0.0
 
-* First stable release. Future releases will adhere to [semantic versioning][semver] for changes which affect the theme or plugin API.
+* First stable release. Future releases will adhere to [semantic versioning](http://semver.org) for changes which affect the theme or plugin API.
 
 * This release adds support for Monk files with a `.mk` extension.
 
@@ -144,14 +145,14 @@ title: Changelog
 
 ### 0.9.0
 
-* Ivy has been updated to support [Monk][] 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
+* Ivy has been updated to support Monk 1.0, the markup language previously named Syntex. Old `.stx` files will continue to be supported.
 
 
 
 ### 0.8.0
 
 * The argument-parsing library for the command line interface has been changed
-  from [Clio][] to [Janus][].
+  from Clio to Janus.
 
 * The default `graphite` theme now supports a meta description tag.
 

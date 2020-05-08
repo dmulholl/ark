@@ -5,33 +5,12 @@
 # License: Public Domain
 # ------------------------------------------------------------------------------
 
+__version__ = '2.10.0.dev'
+
+
 import sys
-
-
-# Application version number.
-__version__ = '2.9.0'
-
-
-# Ivy requires at least Python 3.6.
-if sys.version_info < (3, 6):
-    sys.exit('Error: Ivy requires Python 3.6 or later.')
-
-
-# Template for error messages informing the user of any missing dependencies.
-errorstr = """Error: Ivy requires the %s library. Try:
-
-    $ pip install %s"""
-
-
-# Check that the application's required dependencies are available.
-try:
-    import janus
-except ImportError:
-    sys.exit(errorstr % ('Janus', 'libjanus'))
-try:
-    import shortcodes
-except ImportError:
-    sys.exit(errorstr % ('Shortcodes', 'shortcodes'))
+if sys.version_info < (3, 8):
+    sys.exit('Error: Ivy requires Python 3.8 or later.')
 
 
 # On Windows, use colorama to support ANSI terminal codes.
