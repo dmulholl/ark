@@ -1,7 +1,7 @@
 
 # Ivy
 
-Ivy is a static website generator built in Python. It's small, elegant, and easy to use.
+Ivy is a static website generator built in Python. It's small, simple, and surprisingly powerful.
 
     $ ivy --help
 
@@ -25,11 +25,6 @@ Ivy is a static website generator built in Python. It's small, elegant, and easy
     Command Help:
       help <command>      Print the specified command's help text and exit.
 
-* [Documentation][]
-* [Demo Site][]
-
-[Documentation]: http://www.dmulholl.com/docs/ivy/
-[Demo Site]: http://www.dmulholl.com/demos/ivy/
-
-<p align="center"><em>This is a personal project &mdash; bug reports are welcome but I won't accept pull requests.</em></p>
+* [Documentation](http://www.dmulholl.com/docs/ivy/)
+* [Demo Site](http://www.dmulholl.com/demos/ivy/)
 

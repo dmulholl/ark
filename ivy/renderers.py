@@ -50,10 +50,10 @@ def render(text: str, ext: str, source: str = '') -> str:
             return _callbacks[ext](text)
         except Exception as err:
             msg =  f"Rendering Error: {source}\n"
-            msg += f"  Error: {err.__class__.__name__}: {err}\n"
+            msg += f"  Error: {err.__class__.__name__}: {err}"
             if (context := err.__context__):
-                msg += f"  Cause: {context.__class__.__name__}: {context}"
-            sys.exit(msg.strip())
+                msg += f"\n  Cause: {context.__class__.__name__}: {context}"
+            sys.exit(msg)
     else:
         sys.exit(f"Error: no registered renderer for '.{ext}'.")
 
