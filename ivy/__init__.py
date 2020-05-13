@@ -1,8 +1,5 @@
 # ------------------------------------------------------------------------------
 # Ivy: a static website generator.
-#
-# Author: Darren Mulholland <dmulholl@tcd.ie>
-# License: Public Domain
 # ------------------------------------------------------------------------------
 
 __version__ = '2.10.0.dev'
