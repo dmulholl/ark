@@ -2,6 +2,12 @@
 title: Extensions
 ---
 
+[jinja]: http://jinja.pocoo.org
+[ibis]: https://github.com/dmulholl/ibis
+[markdown]: https://en.wikipedia.org/wiki/Markdown
+[syntext]: http://www.dmulholl.com/docs/syntext/
+[shortcodes]: http://www.dmulholl.com/docs/shortcodes/
+
 ::: insert toc
 
 
@@ -30,9 +36,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 
 Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 
-You can find these bundled plugins in the `ivy/extensions/` directory which you can view on Github [here][extdir].
-
-[extdir]: https://github.com/dmulholl/ivy/tree/master/ivy/extensions
+You can find these bundled plugins in the `ivy/extensions/` directory which you can view on [Github](https://github.com/dmulholl/ivy/tree/master/ivy/extensions).
 
 
 
@@ -78,16 +82,12 @@ Note that this hook supplies us with the `Node` instance itself as an additional
 
 Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][] template-engine for handling `.jinja` template files. Plugins can register support for additional rendering and parsing engines using a system of `@register` decorators.
 
-[jinja]: http://jinja.pocoo.org
-
 
 
 ### Templates
 
 Ivy has builtin support for [Jinja][] and [Ibis][] templates. Plugins can register support for additional formats using the `@templates.register()` decorator. Template-engine callbacks are registered per file-extension, e.g.
 
-[jinja]: http://jinja.pocoo.org
-[ibis]: https://github.com/dmulholl/ibis
 
 ::: code python
 
@@ -106,8 +106,6 @@ A template-engine callback should accept a `Page` object and a template filename
 
 Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
-[markdown]: https://en.wikipedia.org/wiki/Markdown
-[syntext]: http://www.dmulholl.com/docs/syntext/
 
 ::: code python
 
@@ -184,6 +182,5 @@ Positional and keyword arguments are passed as strings. The handler function its
 
 Note that shortcodes are processed *before* node text is rendered into HTML.
 
-You can find the full documentation for the Shortcodes library [here][shortcodes].
+See the [shortcodes documentation][shortcodes] for further details.
 
-[shortcodes]: http://www.dmulholl.com/docs/shortcodes/

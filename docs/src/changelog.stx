@@ -3,9 +3,9 @@ title: Changelog
 ---
 
 
-### 2.10.0.dev
+### 2.10.0
 
-* Update required Python version to 3.8.
+* Update the required Python version to 3.8.
 
 * Make the shortcodes package an optional dependency.
 
