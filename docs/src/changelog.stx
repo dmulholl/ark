@@ -9,6 +9,8 @@ title: Changelog
 
 * Make the shortcodes package an optional dependency.
 
+* Simplify the sample site configuration file.
+
 
 
 ### 2.9.0

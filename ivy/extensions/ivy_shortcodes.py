@@ -27,12 +27,9 @@ if shortcodes:
         try:
             return parser.parse(text, node)
         except shortcodes.ShortcodeError as err:
-            msg =  "-------------------\n"
-            msg += "  Shortcode Error  \n"
-            msg += "-------------------\n\n"
-            msg += "  %s\n\n" % node
-            msg += "  %s: %s" % (err.__class__.__name__, err)
+            msg = "Shortcode Error\n"
+            msg += f"  Node: {node}\n"
+            msg += f"  Error: {err.__class__.__name__}: {err}"
             if (cause := err.__context__):
-                msg += "\n\n  The following cause was reported:\n\n"
-                msg += "  %s: %s" % (cause.__class__.__name__, cause)
+                msg += "\n  Cause: {cause.__class__.__name__}: {cause}"
             sys.exit(msg)
