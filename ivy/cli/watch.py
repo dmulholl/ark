@@ -134,7 +134,7 @@ def hashsite(sitepath):
     def hashdir(dirpath, is_home):
         for entry in os.scandir(dirpath):
             if entry.is_file():
-                if entry.name.endswith('~'):
+                if entry.name.endswith('~') or entry.name.endswith('.swp'):
                     continue
                 mtime = os.path.getmtime(entry.path)
                 hash.update(str(mtime).encode())
@@ -143,6 +143,10 @@ def hashsite(sitepath):
                 if is_home and entry.name == 'out':
                     continue
                 hashdir(entry.path, False)
+                
+    try:
+        hashdir(sitepath, True)
+    except FileNotFoundError:
+        pass
 
-    hashdir(sitepath, True)
     return hash.digest()
