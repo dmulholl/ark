@@ -69,7 +69,8 @@ class Page(dict):
                 slugs.append('index.html')
         else:
             slugs[-1] += suffix
-        return hooks.filter('page_path', site.out(*slugs), self)
+        filepath = site.out(*slugs)
+        return hooks.filter('page_path', filepath, self)
 
     # Assemble a list of path slugs.
     def get_slug_list(self) -> List[str]:
