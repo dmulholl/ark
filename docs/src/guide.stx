@@ -156,7 +156,7 @@ Linking to the homepage is a special case --- a simple `@root/` will always suff
 
 ## Includes
 
-The *includes* directory, `inc`, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Monk depending on their extension and the resulting HTML made available for inclusion in template files via the `inc.<name>` attribute.
+The *includes* directory, `inc`, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntext depending on their extension and the resulting HTML made available for inclusion in template files via the `inc.<name>` attribute.
 
 For example, a menu can be constructed in Markdown using nested lists:
 
