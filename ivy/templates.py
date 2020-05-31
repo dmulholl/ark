@@ -62,7 +62,7 @@ def render(page: 'pages.Page') -> str:
                         msg = "Template Error\n"
                         msg += f"  Template: {path.name}\n"
                         msg += f"  Page: {page['filepath']}\n"
-                        msg += f"  Error: {err.__class__.__name__}: {err}"
+                        msg += f"  {err.__class__.__name__}: {err}"
                         if (context := err.__context__):
                             msg += f"\n  Cause: {context.__class__.__name__}: {context}"
                         sys.exit(msg)

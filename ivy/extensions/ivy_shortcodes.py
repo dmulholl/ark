@@ -29,7 +29,7 @@ if shortcodes:
         except shortcodes.ShortcodeError as err:
             msg = "Shortcode Error\n"
             msg += f"  Node: {node}\n"
-            msg += f"  Error: {err.__class__.__name__}: {err}"
+            msg += f"  {err.__class__.__name__}: {err}"
             if (cause := err.__context__):
                 msg += "\n  Cause: {cause.__class__.__name__}: {cause}"
             sys.exit(msg)
