@@ -23,7 +23,7 @@ def load(path: Union[str, Path]) -> Tuple[str, Dict[str, Any]]:
         return text, meta
     except Exception as err:
         msg =  f"Error loading: {path}\n"
-        msg += f"  Error: {err.__class__.__name__}: {err}"
+        msg += f"  {err.__class__.__name__}: {err}"
         if (context := err.__context__):
             msg += f"\n  Cause: {context.__class__.__name__}: {context}"
         sys.exit(msg)

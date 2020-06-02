@@ -13,7 +13,7 @@ from typing import Dict, List, Callable, Any, Union, Optional
 
 
 # Cached parse tree of Node instances.
-_root = None
+_root: Optional['Node'] = None
 
 
 # A Node instance represents a directory or text file (or both) in the
