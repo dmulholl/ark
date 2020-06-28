@@ -8,9 +8,8 @@ import os
 from . import site
 
 
-# Regex for locating @root/ urls for rewriting. We only rewrite urls inside
-# quotes (which are preserved) or angle brackets (which evaporate).
-re_url = re.compile(r'''(["'<])@root/(.*?)(#.*?)?(\1|>)''')
+# Regex for locating @root/ urls for rewriting.
+re_url = re.compile(r'''(["'])@root/(.*?)(#.*?)?\1''')
 
 
 # Rewrite all @root/ urls to their final form.
@@ -22,7 +21,7 @@ def rewrite(html: str, filepath: str):
 
     # Each matched url is replaced with the output of this callback.
     def callback(match):
-        quote = match.group(1) if match.group(1) in ('"', "'") else ''
+        quote = match.group(1)
         url = match.group(2).lstrip('/') if match.group(2) else ''
         fragment = match.group(3) or ''
 
