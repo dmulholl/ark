@@ -11,10 +11,9 @@ import hashlib
 
 from .. import site
 from .. import utils
-from .. import hooks
+from .. import events
 
 
-# Command help text.
 helptext = """
 Usage: %s watch
 
@@ -24,40 +23,27 @@ Usage: %s watch
   The test server is automatically launched to view the site.
 
 Options:
-  -i, --inc <path>      Override the default 'inc' directory.
-  -l, --lib <path>      Override the default 'lib' directory.
-  -o, --out <path>      Override the default 'out' directory.
   -p, --port <int>      Port number to serve on. Defaults to 8080.
-  -r, --res <path>      Override the default 'res' directory.
-  -s, --src <path>      Override the default 'src' directory.
   -t, --theme <name>    Override the default theme.
 
 Flags:
   -c, --clear           Clear the output directory before each build.
   -h, --help            Print this command's help text and exit.
-      --no-server       Do not launch the test server.
 
 """ % os.path.basename(sys.argv[0])
 
 
-# Register the command on the 'cli' event hook.
-@hooks.register('cli')
+@events.register('cli')
 def register_command(parser):
-    cmd = parser.new_cmd("watch", helptext, callback)
-    cmd.new_flag("clear c")
-    cmd.new_flag("no-server")
-    cmd.new_str("out o")
-    cmd.new_str("src s")
-    cmd.new_str("lib l")
-    cmd.new_str("inc i")
-    cmd.new_str("res r")
-    cmd.new_str("theme t")
-    cmd.new_int("port p", fallback=8080)
+    cmd = parser.command("watch", helptext, cmd_callback)
+    cmd.flag("clear c")
+    cmd.option("theme t")
+    cmd.option("port p", type=int, default=8080)
 
 
 # Callback for the watch command. Python doesn't have a builtin file system
 # watcher so we hack together one of our own.
-def callback(parser):
+def cmd_callback(cmd_name, cmd_parser):
     home = site.home()
     if not home:
         sys.exit("Error: cannot locate the site's home directory.")
@@ -75,16 +61,13 @@ def callback(parser):
         base = [sys.argv[0]]
 
     # Append the 'build' command, a 'watching' flag, and any user arguments.
-    args = base + ['build', 'watching'] + parser.get_args()
+    args = base + ['build', 'watching'] + cmd_parser.args
 
     # Add direct support for the 'build' command's options and flags.
-    if parser['out']: args += ['--out', parser['out']]
-    if parser['src']: args += ['--src', parser['src']]
-    if parser['lib']: args += ['--lib', parser['lib']]
-    if parser['inc']: args += ['--inc', parser['inc']]
-    if parser['res']: args += ['--res', parser['res']]
-    if parser['theme']: args += ['--theme', parser['theme']]
-    if parser['clear']: args += ['--clear']
+    if cmd_parser.found('theme'):
+        args += ['--theme', cmd_parser.value('theme')]
+    if cmd_parser.found('clear'):
+        args += ['--clear']
 
     # Print a header showing the site location.
     utils.termline()
@@ -101,12 +84,11 @@ def callback(parser):
 
     # Run the webserver in a child process. It should run silently in the
     # background and automatically shut down when the watch process exits.
-    if not parser["no-server"]:
-        subprocess.Popen(
-            base + ['serve', '--port', str(parser['port'])],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
-        )
+    subprocess.Popen(
+        base + ['serve', '--port', str(cmd_parser.value('port'))],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
 
     # Loop until the user hits Ctrl-C.
     try:
@@ -116,7 +98,7 @@ def callback(parser):
                 subprocess.call(args)
                 newhash = hashsite(home)
             oldhash = newhash
-            time.sleep(0.25)
+            time.sleep(1)
     except KeyboardInterrupt:
         pass
 
@@ -129,24 +111,24 @@ def callback(parser):
 
 # Return a hash digest of the site directory.
 def hashsite(sitepath):
-    hash = hashlib.sha256()
+    hasher = hashlib.sha256()
 
     def hashdir(dirpath, is_home):
         for entry in os.scandir(dirpath):
             if entry.is_file():
-                if entry.name.endswith('~') or entry.name.endswith('.swp'):
+                if entry.name.endswith(('~', '.swp')):
                     continue
                 mtime = os.path.getmtime(entry.path)
-                hash.update(str(mtime).encode())
-                hash.update(entry.name.encode())
+                hasher.update(str(mtime).encode())
+                hasher.update(entry.name.encode())
             if entry.is_dir():
-                if is_home and entry.name == 'out':
+                if is_home and entry.name in ('out', '.git'):
                     continue
                 hashdir(entry.path, False)
-                
+
     try:
         hashdir(sitepath, True)
     except FileNotFoundError:
         pass
 
-    return hash.digest()
+    return hasher.digest()

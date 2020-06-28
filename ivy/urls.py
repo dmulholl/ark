@@ -47,7 +47,7 @@ def rewrite(html: str, filepath: str):
         else:
             url = prefix + url
 
-        return '%s%s%s%s' % (quote, url, fragment, quote)
+        return f"{quote}{url}{fragment}{quote}"
 
     # Replace each match with the return value of the callback.
     return re_url.sub(callback, html)

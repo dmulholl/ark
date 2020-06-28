@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ node.meta_title || node.title || site.title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="@root/fonts.css">
+        <link rel="stylesheet" href="@root/graphite.css">
+        <link rel="stylesheet" href="@root/pygments.css">
+        {% if node.meta_description %}
+        <meta name="description" content="{{{ node.meta_description.strip() }}}">
+        {% endif %}
+        {{ inc.head }}
+    </head>
+    <body class="{{{ classes|join:' ' }}}">
+        <header class="masthead">
+            <h1><a href="@root/">{{ site.title || "Site Title" }}</a></h1>
+            {% if site.tagline %}
+            <p class="tagline">{{ site.tagline.strip() }}</p>
+            {% endif %}
+            {% if site.version %}
+            <p class="version">{{ site.version.strip() }}</p>
+            {% endif %}
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                {{ inc.menu || automenu }}
+            </nav>
+        </header>
+        <article class="main">
+            <header class="title">
+                <h1>{{ node.title }}</h1>
+                {% if node.subtitle %}
+                <p class="subtitle">{{ node.subtitle }}</p>
+                {% endif %}
+                <hr>
+            </header>
+            {{ node.html }}
+        </article>
+        {{ inc.foot }}
+    </body>
+</html>

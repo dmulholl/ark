@@ -1,18 +1,17 @@
 # ------------------------------------------------------------------------------
-# This extension adds support for YAML metadata headers in source files. YAML 
+# This extension adds support for YAML metadata headers in source files. YAML
 # headers are identified by opening and closing '---' lines.
 # ------------------------------------------------------------------------------
 
 import ivy
 import re
-import sys
 
 try:
     import yaml
 except ImportError:
     pass
 else:
-    @ivy.hooks.register('file_text')
+    @ivy.filters.register('file_text')
     def parse_yaml(text, meta):
         if text.startswith("---\n"):
             match = re.match(r"^---\n(.*?\n)---\n+", text, re.DOTALL)

@@ -7,7 +7,8 @@ import os
 
 from . import site
 from . import includes
-from . import hooks
+from . import events
+from . import filters
 from . import utils
 from . import templates
 from . import hashes
@@ -30,25 +31,17 @@ class Page(dict):
 
     # Render the page into html and write the html to disk.
     def render(self):
-
-        # Fire the 'render_page' event.
-        hooks.event('render_page', self)
-
-        # Determine the output filepath.
         self['filepath'] = self.get_filepath()
-
-        # Generate a string of CSS classes for the page.
-        self['classes'] = ' '.join(self.get_class_list())
-
-        # Generate a list of potential template names.
+        self['classes'] = self.get_class_list()
         self['templates'] = self.get_template_list()
 
         # Render the page into html.
+        events.fire('render_page', self)
         html = templates.render(self)
         site.rendered(1)
 
         # Filter the html before writing it to disk.
-        html = hooks.filter('page_html', html, self)
+        html = filters.apply('page_html', html, self)
 
         # Rewrite all @root/ urls.
         html = urls.rewrite(html, self['filepath'])
@@ -70,22 +63,25 @@ class Page(dict):
         else:
             slugs[-1] += suffix
         filepath = site.out(*slugs)
-        return hooks.filter('page_path', filepath, self)
+        return filters.apply('page_path', filepath, self)
 
-    # Assemble a list of path slugs.
+    # Assemble an ordered list of hyphenated slugs for generating CSS classes
+    # and running template lookups.
+    # E.g. <Node @root/foo/bar//> -> ['node-foo-bar', 'node-foo', 'node'].
     def get_slug_list(self) -> List[str]:
-        slugs, stack = [], ['node'] + self['node'].path
+        slugs = []
+        stack = ['node'] + self['node'].path
         while stack:
             slugs.append('-'.join(stack))
             stack.pop()
-        return hooks.filter('page_slugs', slugs, self)
+        return filters.apply('page_slugs', slugs, self)
 
     # Assemble a list of potential template names for the page.
     def get_template_list(self) -> List[str]:
         template_list = self.get_slug_list()
         if 'template' in self['node']:
             template_list.insert(0, self['node']['template'])
-        return hooks.filter('page_templates', template_list, self)
+        return filters.apply('page_templates', template_list, self)
 
     # Assemble a list of CSS classes for the page's <body> element.
     def get_class_list(self) -> List[str]:
@@ -95,4 +91,4 @@ class Page(dict):
         if 'classes' in self['node']:
             for item in str(self['node']['classes']).split(','):
                 class_list.append(item.strip())
-        return hooks.filter('page_classes', class_list, self)
+        return filters.apply('page_classes', class_list, self)

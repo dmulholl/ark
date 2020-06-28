@@ -9,7 +9,7 @@ try:
 except ImportError:
     pass
 else:
-    @ivy.renderers.register('stx', 'sxt')
+    @ivy.renderers.register('stx')
     def render(text):
         return syntext.render(text, pygmentize=True)
 

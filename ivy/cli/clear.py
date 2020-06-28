@@ -7,10 +7,9 @@ import os
 
 from .. import site
 from .. import utils
-from .. import hooks
+from .. import events
 
 
-# Command help text.
 helptext = """
 Usage: %s clear
 
@@ -22,14 +21,12 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
-# Register the command on the 'cli' event hook.
-@hooks.register('cli')
+@events.register('cli')
 def register_command(parser):
-    parser.new_cmd("clear", helptext, callback)
+    parser.command("clear", helptext, cmd_callback)
 
 
-# Command callback.
-def callback(parser):
+def cmd_callback(cmd_name, cmd_parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
     if not os.path.exists(site.out()):

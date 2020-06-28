@@ -2,6 +2,26 @@
 title: Changelog
 ---
 
+### 3.0.0.dev
+
+* Most changes in this release are internal and won't affect existing sites or themes. Extensions will need to be updated but the required changes should be minor.
+
+* One small change which may affect themes --- the `classes` list for the `<body>` element is now a list of strings rather than a single string. These strings can be concatenated using a template filter as demonstrated in the bundled `graphite` theme.
+
+* The most significant change for extensions is that the `hooks` module has been split into two separate modules, `events` and `filters`, to make its operation clearer and conceptually simpler. Existing `@hooks.register()` decorators in extensions will need to be updated to either `@events.register()` or `@filters.register()` but should otherwise work unchanged.
+
+* This release switches to a new library for parsing command line arguments, [argslib](http://github.com/dmulholl/argslib). The command line interface has also been simplified by removing all switches for customizing site directories (`src`, `out`, etc.). These directories can now be customized from the site's `config.py` file.
+
+* The default build routine has been moved to its own module, `build.py`.
+
+* In general, code has been ruthlessly simplified wherever possible. In particular, the internal structure of the node tree is now significantly simpler.
+
+* URL path slugs are now customizable and no longer tied to filenames. The slug can be customized by adding a `slug` attribute to the node's metadata.
+
+* The `tree` command for inspecting site structure has been substantially enhanced.
+
+
+
 
 ### 2.10.0
 

@@ -2,7 +2,7 @@
 # This module is responsible for loading and preprocessing source files.
 # ------------------------------------------------------------------------------
 
-from . import hooks
+from . import filters
 
 from typing import Dict, Any, Union, Tuple
 from pathlib import Path
@@ -14,7 +14,7 @@ def load(path: Union[str, Path]) -> Tuple[str, Dict[str, Any]]:
     try:
         with open(str(path), encoding='utf-8') as file:
             text, meta = file.read(), {}
-        text = hooks.filter('file_text', text, meta)
+        text = filters.apply('file_text', text, meta)
         for key, value in list(meta.items()):
             normalized_key = key.lower().replace(' ', '_').replace('-', '_')
             if normalized_key != key:
@@ -22,7 +22,7 @@ def load(path: Union[str, Path]) -> Tuple[str, Dict[str, Any]]:
                 meta[normalized_key] = value
         return text, meta
     except Exception as err:
-        msg =  f"Error loading: {path}\n"
+        msg = f"Error loading: {path}\n"
         msg += f"  {err.__class__.__name__}: {err}"
         if (context := err.__context__):
             msg += f"\n  Cause: {context.__class__.__name__}: {context}"

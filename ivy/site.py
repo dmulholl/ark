@@ -5,9 +5,7 @@
 import os
 import time
 import sys
-
 from os.path import isdir, isfile, join
-from typing import Any
 
 
 # Storage for the site's configuration data.
@@ -66,46 +64,56 @@ def _find_home() -> str:
     return ''
 
 
-# Return the path to the site's home directory or an empty string if the
+# Returns the path to the site's home directory or an empty string if the
 # home directory cannot be located. Append arguments.
 def home(*append: str) -> str:
     path = cache.get('home') or cache.setdefault('home', _find_home())
     return join(path, *append)
 
 
+# Checks for and caches custom directory paths.
+def _dirpath(name: str, key: str) -> str:
+    if cached := cache.get(key):
+        return cached
+    elif custom := config.get(key):
+        return cache.setdefault(key, join(home(), custom))
+    else:
+        return cache.setdefault(key, home(name))
+
+
 # Return the path to the source directory. Append arguments.
 def src(*append: str) -> str:
-    path = cache.get('src') or cache.setdefault('src', home('src'))
+    path = _dirpath('src', 'src_dir')
     return join(path, *append)
 
 
 # Return the path to the output directory. Append arguments.
 def out(*append: str) -> str:
-    path = cache.get('out') or cache.setdefault('out', home('out'))
+    path = _dirpath('out', 'out_dir')
     return join(path, *append)
 
 
 # Return the path to the theme-library directory. Append arguments.
 def lib(*append: str) -> str:
-    path = cache.get('lib') or cache.setdefault('lib', home('lib'))
+    path = _dirpath('lib', 'lib_dir')
     return join(path, *append)
 
 
 # Return the path to the extensions directory. Append arguments.
 def ext(*append: str) -> str:
-    path = cache.get('ext') or cache.setdefault('ext', home('ext'))
+    path = _dirpath('ext', 'ext_dir')
     return join(path, *append)
 
 
 # Return the path to the includes directory. Append arguments.
 def inc(*append: str) -> str:
-    path = cache.get('inc') or cache.setdefault('inc', home('inc'))
+    path = _dirpath('inc', 'inc_dir')
     return join(path, *append)
 
 
 # Return the path to the resources directory. Append arguments.
 def res(*append: str) -> str:
-    path = cache.get('res') or cache.setdefault('res', home('res'))
+    path = _dirpath('res', 'res_dir')
     return join(path, *append)
 
 
@@ -128,9 +136,9 @@ def _find_theme(name: str) -> str:
         return name
 
     # A bundled theme directory in the application folder?
-    bundled = join(os.path.dirname(__file__), 'initsite', 'lib', name)
-    if isdir(bundled):
-        return bundled
+    bundled_theme = join(os.path.dirname(__file__), 'ini', 'lib', name)
+    if isdir(bundled_theme):
+        return bundled_theme
 
     return ''
 

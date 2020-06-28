@@ -23,7 +23,7 @@ cache = None
 
 
 # Register a callback to add the 'automenu' attribute to each page context.
-@ivy.hooks.register('render_page')
+@ivy.events.register('render_page')
 def add_automenu(page):
     global cache
     if cache is None:
@@ -36,10 +36,10 @@ def get_pagelist():
 
     root = ivy.nodes.root()
     title = root.get('menu_title') or root.get('title') or 'Home'
-    menu.append('<li><a href="@root/">%s</a></li>\n' % title)
+    menu.append(f'<li><a href="@root/">{title}</a></li>\n')
 
     for child in sorted_children(root):
-        if not child.empty and not child.get('menu_exclude', False):
+        if not child.empty and not child.get('menu_exclude'):
             add_node(child, menu)
 
     menu.append('</ul>')
@@ -50,16 +50,16 @@ def add_node(node, menu):
     menu.append('<li>')
 
     title = node.get('menu_title') or node.get('title') or 'Untitled Node'
-    menu.append('<a href="%s">%s</a>' % (node.url, title))
+    menu.append(f'<a href="{node.url}">{title}</a>')
 
     if node.has_children:
-        menu_children = []
+        children = []
         for child in sorted_children(node):
-            if not child.empty and not child.get('menu_exclude', False):
-                menu_children.append(child)
-        if menu_children:
+            if not child.empty and not child.get('menu_exclude'):
+                children.append(child)
+        if children:
             menu.append('<ul>\n')
-            for child in menu_children:
+            for child in children:
                 add_node(child, menu)
             menu.append('</ul>\n')
 
@@ -67,4 +67,4 @@ def add_node(node, menu):
 
 
 def sorted_children(node):
-    return sorted(node.childlist, key=lambda n: n.get('menu_order', 0))
+    return sorted(node.children, key=lambda n: n.get('menu_order', 0))

@@ -6,12 +6,11 @@ import os
 import sys
 
 from .. import utils
-from .. import hooks
+from .. import events
 
 
-# Command help text.
 helptext = """
-Usage: %s init
+Usage: %s init [directory]
 
   Initialize a new site directory. If a directory path is specified, that
   directory will be created and initialized. Otherwise, the current directory
@@ -26,17 +25,15 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
-# Register the command on the 'cli' event hook.
-@hooks.register('cli')
+@events.register('cli')
 def register_command(parser):
-    parser.new_cmd("init", helptext, callback)
+    parser.command("init", helptext, cmd_callback)
 
 
-# Command callback.
-def callback(parser):
+def cmd_callback(cmd_name, cmd_parser):
     ivy_dir = os.path.dirname(os.path.dirname(__file__))
-    src_dir = os.path.join(ivy_dir, 'initsite')
-    dst_dir = parser.get_args()[0] if parser.has_args() else '.'
+    src_dir = os.path.join(ivy_dir, 'ini')
+    dst_dir = cmd_parser.args[0] if cmd_parser.args else '.'
     os.makedirs(dst_dir, exist_ok=True)
     os.chdir(dst_dir)
     for name in ('inc', 'lib', 'src'):

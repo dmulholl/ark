@@ -2,7 +2,6 @@
 # This extension adds support for Ibis templates.
 # ------------------------------------------------------------------------------
 
-import sys
 import ivy
 
 try:
@@ -15,7 +14,7 @@ except ImportError:
 if ibis:
 
     # Initialize the template loader.
-    @ivy.hooks.register('init')
+    @ivy.events.register('init')
     def init():
         ibis.config.loader = ibis.loaders.FileLoader(
             ivy.site.theme('templates')

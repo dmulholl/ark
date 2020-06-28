@@ -1,6 +1,7 @@
 ---
 title: Page Title
 subtitle: This page has a subtitle.
+menu_title: Home
 ---
 
 Lorem ipsum dolor sit amet, consectetur [adipiscing elit](#), sed do eiusmod
@@ -10,16 +11,14 @@ veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
 eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-sunt in culpa qui officia deserunt mollit anim id est laborum.[^2]
+sunt in culpa qui officia deserunt mollit anim id est laborum [fn:2].
 
 ::: footnote 1
-
     Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae,
     aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli
     appellantur.
 
 ::: footnote 2
-
     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
     dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -56,7 +55,6 @@ quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
 ::: code c
-
     #include <stdio.h>
 
     int main(int argc, char *argv[])
@@ -71,7 +69,6 @@ quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
 ::: quote
-
     Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae,
     aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli
     appellantur.
@@ -121,27 +118,8 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-::: alertbox .info
-
-    This is an alert box of type: *info*.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat.
-
-::: alertbox .warning
-
-    This is an alert box of type: *warning*.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat.
-
-::: alertbox .error
-
-    This is an alert box of type: *error*.
+::: infobox
+    This is an info box.
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

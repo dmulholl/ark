@@ -17,7 +17,7 @@ import hashlib
 import pickle
 
 from . import site
-from . import hooks
+from . import events
 
 
 # Stores page hashes from the previous and current build runs.
@@ -50,7 +50,7 @@ def match(filepath: str, content: str) -> bool:
 
 
 # Load cached page hashes from the last build run.
-@hooks.register('init_build')
+@events.register('init_build')
 def _load():
     if os.path.isfile(cachefile()):
         with open(cachefile(), 'rb') as file:
@@ -58,7 +58,7 @@ def _load():
 
 
 # Cache page hashes to disk for the next build run.
-@hooks.register('exit_build')
+@events.register('exit_build')
 def _save():
     if _hashes['new'] and _hashes['new'] != _hashes['old']:
         if not os.path.isdir(os.path.dirname(cachefile())):

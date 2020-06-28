@@ -4,8 +4,7 @@
 
 import os
 import sys
-
-import janus
+import args
 import ivy
 
 from . import build
@@ -13,13 +12,9 @@ from . import init
 from . import clear
 from . import serve
 from . import watch
+from . import new
 
 
-# We store the root ArgParser instance globally so it's available to plugins.
-parser = None
-
-
-# Application help text.
 helptext = """
 Usage: %s [command]
 
@@ -34,8 +29,9 @@ Commands:
   build               Build the site.
   clear               Clear the output directory.
   init                Initialize a new site directory.
+  new                 Create a new node file.
   serve               Run a web server on the site's output directory.
-  tree                Print the site's node tree.
+  tree                Print the node tree.
   watch               Monitor the site directory and rebuild on changes.
 
 Command Help:
@@ -44,16 +40,18 @@ Command Help:
 """ % os.path.basename(sys.argv[0])
 
 
+# We store the root ArgParser instance globally so it's available to plugins.
+parser = None
+
+
 # Parse the application's command-line arguments.
-def parse():
+def parse_args():
     global parser
-    parser = janus.ArgParser(helptext, ivy.__version__)
+    parser = args.ArgParser(helptext, ivy.__version__)
 
     # Fire the 'cli' event. Plugins can use this event to register their own
-    # custom commands and options.
-    ivy.hooks.event('cli', parser)
+    # custom commands and options on the parser instance.
+    ivy.events.fire('cli', parser)
 
     # Parse the application's command line arguments.
     parser.parse()
-    if not parser.has_cmd():
-        parser.exit_help()

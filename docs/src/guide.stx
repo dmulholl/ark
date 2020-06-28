@@ -59,6 +59,13 @@ Ivy uses the presence of either a `config.py` file or a hidden `.ivy` file to id
 
 Static assets such as image files should be placed in the resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
 
+Default directories can be overridden by adding a `*_dir` attribute to the `config.py` file, e.g.
+
+::: code python
+    out_dir = "custom_name"
+
+The value will be treated as a directory path relative to the home directory.
+
 
 
 ## Nodes
@@ -70,7 +77,7 @@ A node file can begin with a [YAML][] header specifying metadata for the node:
     ---
     title: My Important Document
     author: John Doe
-    date: 1979-02-28
+    date: 1999-12-31
     ---
 
     Content begins here.
@@ -87,7 +94,7 @@ and the directory
 
 correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
 
-(Files named `index` are special-cased and correspond to the same node as their parent directory.)
+(Files named `index` are special --- they correspond to the same node as their parent directory.)
 
 [Markdown]: http://daringfireball.net/projects/markdown/
 [Syntext]: http://www.dmulholl.com/docs/syntext/
@@ -95,7 +102,7 @@ correspond to a single node in the parse tree. Node files provide content and me
 
 
 
-## Node Meta
+## Metadata
 
 Ivy has builtin support for node metadata in [YAML][] format; support for additional formats can be added via extensions. Note that a node file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute
 
@@ -222,7 +229,7 @@ The bundled Automenu extension automatically generates a menu containing links t
 
 Installing Ivy via `pip` automatically installs the following required dependencies:
 
-* [Janus](https://pypi.python.org/pypi/libjanus)
+* [Argslib](https://pypi.python.org/pypi/argslib)
 
 Installing via `pip` also automatically installs the following optional dependencies:
 

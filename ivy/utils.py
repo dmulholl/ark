@@ -7,8 +7,7 @@ import shutil
 import unicodedata
 import re
 import sys
-
-from . import hooks
+from . import filters
 
 
 # Clear the contents of a directory.
@@ -66,15 +65,15 @@ def writefile(path: str, content: str):
 
 # Default slug-preparation function; returns a slugified version of the
 # supplied string. This function is used to sanitize url components, etc.
-def slugify(string: str) -> str:
-    out = unicodedata.normalize('NFKD', string)
-    out = out.encode('ascii', errors='ignore').decode('ascii')
-    out = out.lower()
-    out = out.replace("'", '')
-    out = re.sub(r'[^a-z0-9-]+', '-', out)
-    out = re.sub(r'--+', '-', out)
-    out = out.strip('-')
-    return hooks.filter('slugify', out, string)
+def slugify(inputstring: str) -> str:
+    output = unicodedata.normalize('NFKD', inputstring)
+    output = output.encode('ascii', errors='ignore').decode('ascii')
+    output = output.lower()
+    output = output.replace("'", '')
+    output = re.sub(r'[^a-z0-9-]+', '-', output)
+    output = re.sub(r'--+', '-', output)
+    output = output.strip('-')
+    return filters.apply('slugify', output, inputstring)
 
 
 # A drop-in replacement for the print function that won't choke when

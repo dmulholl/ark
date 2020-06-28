@@ -20,8 +20,8 @@ from setuptools import setup, find_packages
 # MANIFEST.in file content.
 manifest = """\
 include license.txt readme.md
-recursive-include ivy/extensions *
-recursive-include ivy/initsite *
+recursive-include ivy/ext *
+recursive-include ivy/ini *
 """
 
 
@@ -55,10 +55,10 @@ setup(
         'pyyaml >= 5.0',
         'jinja2 >= 2.0',
         'syntext >= 2.0.0',
-        'libjanus >= 1.0.0',
         'ibis >= 1.6.0',
         'shortcodes >= 2.1.0',
         'colorama',
+        'argslib',
     ],
     author = 'Darren Mulholland',
     url='http://www.dmulholl.com/docs/ivy/',
