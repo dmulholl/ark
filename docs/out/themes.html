@@ -133,7 +133,7 @@ You can add support for alternative templating languages via <a href="extensions
 Template Hierarchy
 </h3>
 <p>
-When Ivy generates a HTML page it searches for the appropriate template file to use in reverse order of specificity.
+When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity.
 </p>
 <p>
 For example, the node file:
@@ -145,7 +145,7 @@ src/foo/bar/baz.md
 corresponds to the node:
 </p>
 <pre>
-&lt;Node /foo/bar/baz&gt;
+&lt;Node @root/foo/bar/baz//&gt;
 </pre>
 <p>
 Ivy will search for a template file for this node in the following order:

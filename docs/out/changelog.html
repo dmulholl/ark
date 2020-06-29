@@ -75,13 +75,13 @@ Most changes in this release are internal and won't affect existing sites or the
 One small change which may affect themes &mdash; the <code>classes</code> list for the <code>&lt;body&gt;</code> element is now a list of strings rather than a single string. These strings can be concatenated using a template filter as demonstrated in the bundled <code>graphite</code> theme.
 </li>
 <li>
-The most significant change for extensions is that the <code>hooks</code> module has been split into two separate modules, <code>events</code> and <code>filters</code>, to make its operation clearer and conceptually simpler. Existing <code>@hooks.register()</code> decorators in extensions will need to be updated to either <code>@events.register()</code> or <code>@filters.register()</code> but should otherwise work unchanged.
+The most significant change for extensions is that the <code>hooks</code> module has been split into two separate modules, <code>events</code> and <code>filters</code>, to make its operation clearer and conceptually simpler. Existing <code>@hooks.register()</code> decorators in extensions will need to be renamed to either <code>@events.register()</code> or <code>@filters.register()</code> but should otherwise work unchanged.
 </li>
 <li>
-This release switches to a new library for parsing command line arguments, <a href="http://github.com/dmulholl/argslib">argslib</a>. The command line interface has also been simplified by removing all switches for customizing site directories (<code>src</code>, <code>out</code>, etc.). These directories can now be customized from the site's <code>config.py</code> file.
+This release switches to a new library for parsing command line arguments, <a href="http://github.com/dmulholl/argslib">argslib</a>. The command line interface has also been simplified by removing all options for customizing site directories (<code>src</code>, <code>out</code>, etc.). These directories can now be customized from the site's <code>config.py</code> file.
 </li>
 <li>
-The default build routine has been moved to its own module, <code>build.py</code>.
+The default build routine has been moved to its own module, <code>ivy/build.py</code>.
 </li>
 <li>
 In general, code has been ruthlessly simplified wherever possible. In particular, the internal structure of the node tree is now significantly simpler.
@@ -93,10 +93,13 @@ URL path slugs are now customizable and no longer tied to filenames. The slug ca
 The <code>tree</code> command for inspecting site structure has been substantially enhanced.
 </li>
 <li>
-A new command, <code>new</code>, has been added for creating new node files.
+A convenience command, <code>new</code>, has been added for creating new node files.
 </li>
 <li>
-<code>@root</code> urls in angle brackets are no longer rewritten.
+<code>@root/</code> urls in angle brackets are no longer rewritten. This "feature" was a solution in search of a problem.
+</li>
+<li>
+The <code>nodes.node()</code> function now takes an <code>@root/</code> url and returns the corresponding <code>Node</code> instance.
 </li>
 </ul>
 <h3 id="id-2-10-0">

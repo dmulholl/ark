@@ -8,11 +8,11 @@ title: Changelog
 
 * One small change which may affect themes --- the `classes` list for the `<body>` element is now a list of strings rather than a single string. These strings can be concatenated using a template filter as demonstrated in the bundled `graphite` theme.
 
-* The most significant change for extensions is that the `hooks` module has been split into two separate modules, `events` and `filters`, to make its operation clearer and conceptually simpler. Existing `@hooks.register()` decorators in extensions will need to be updated to either `@events.register()` or `@filters.register()` but should otherwise work unchanged.
+* The most significant change for extensions is that the `hooks` module has been split into two separate modules, `events` and `filters`, to make its operation clearer and conceptually simpler. Existing `@hooks.register()` decorators in extensions will need to be renamed to either `@events.register()` or `@filters.register()` but should otherwise work unchanged.
 
-* This release switches to a new library for parsing command line arguments, [argslib](http://github.com/dmulholl/argslib). The command line interface has also been simplified by removing all switches for customizing site directories (`src`, `out`, etc.). These directories can now be customized from the site's `config.py` file.
+* This release switches to a new library for parsing command line arguments, [argslib](http://github.com/dmulholl/argslib). The command line interface has also been simplified by removing all options for customizing site directories (`src`, `out`, etc.). These directories can now be customized from the site's `config.py` file.
 
-* The default build routine has been moved to its own module, `build.py`.
+* The default build routine has been moved to its own module, `ivy/build.py`.
 
 * In general, code has been ruthlessly simplified wherever possible. In particular, the internal structure of the node tree is now significantly simpler.
 
@@ -20,9 +20,11 @@ title: Changelog
 
 * The `tree` command for inspecting site structure has been substantially enhanced.
 
-* A new command, `new`, has been added for creating new node files.
+* A convenience command, `new`, has been added for creating new node files.
 
-* `@root` urls in angle brackets are no longer rewritten.
+* `@root/` urls in angle brackets are no longer rewritten. This "feature" was a solution in search of a problem.
+
+* The `nodes.node()` function now takes an `@root/` url and returns the corresponding `Node` instance.
 
 
 

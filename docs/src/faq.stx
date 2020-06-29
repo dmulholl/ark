@@ -19,9 +19,9 @@ Next, install Ivy using the copy of `pip` associated with your Python 3 installa
 
 Check that Ivy has installed properly:
 
-    $ python3 -m ivy --version
+    $ python3 -m ivy --help
 
-You should now be able to run the application simply by typing `ivy`, but if you're still having problems try `python3 -m ivy` as a fallback.
+You should now be able to run the application simply by typing `ivy`, but if you're still having problems try using `python3 -m ivy` as a fallback.
 
 
 
@@ -113,7 +113,7 @@ To make your website available on the public internet you have lots of options. 
 
 (*) The next step up is 'shared web hosting' --- it's cheap, flexible, and lots of online companies offer it. I've used [NearlyFreeSpeech](https://www.nearlyfreespeech.net) myself and been happy with their service.
 
-(*) If you need more control over your hosting environment you can run your own webserver like Apache or Nginx on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
+(*) If you need more control over your hosting environment you can run your own webserver (typically Apache or Nginx) on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
 
 
 

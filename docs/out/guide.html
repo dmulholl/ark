@@ -154,7 +154,7 @@ Default directories can be overridden by adding a <code>*_dir</code> attribute t
 <span class="n">out_dir</span> <span class="o">=</span> <span class="s2">&quot;custom_name&quot;</span>
 </pre>
 <p>
-The value will be treated as a directory path relative to the home directory.
+The value will be treated as a directory path relative to the site directory.
 </p>
 <h2 id="nodes">
 Nodes
@@ -251,6 +251,9 @@ Links
 Ivy generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
 </p>
 <p>
+(Aside &mdash; you really shouldn't, unless you absolutely need to. The default settings are the most flexible and allow your site to be viewed locally just by opening the files in a browser without any need for a webserver.)
+</p>
+<p>
 First, you can specify a root url in your site configuration file. Specify an explicit domain for absolute urls or a single forward slash <code>&quot;/&quot;</code> for site-relative urls.
 </p>
 <pre class="lang-python pygments" data-lang="python">
@@ -336,7 +339,7 @@ Ivy uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> pac
 Automenu
 </h3>
 <p>
-The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via an <code>automenu</code> attribute. This menu can be customized in three ways:
+The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via the <code>automenu</code> attribute. This menu can be customized in three ways:
 </p>
 <ul>
 <li>
@@ -346,7 +349,7 @@ If a node has a <code>menu_title</code> attribute, its value will be used in the
 </li>
 <li>
 <p>
-By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute (positive or negative) with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
 </p>
 </li>
 <li>
@@ -410,7 +413,7 @@ Notes
 </dt>
 <dd>
 <p>
-Ivy scans the output html for <code>@root</code> urls just before it gets written to disk. Only <code>@root</code> urls enclosed in quotes are rewritten.
+Ivy scans the output html for <code>@root/</code> urls just before it gets written to disk. Only <code>@root/</code> urls enclosed in quotes are rewritten &mdash; i.e. only urls which are actively being used in links.
 </p>
 </dd>
 </div>
