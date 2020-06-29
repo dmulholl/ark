@@ -64,16 +64,17 @@ def writefile(path: str, content: str):
 
 
 # Default slug-preparation function; returns a slugified version of the
-# supplied string. This function is used to sanitize url components, etc.
-def slugify(inputstring: str) -> str:
-    output = unicodedata.normalize('NFKD', inputstring)
+# input string. This function is used to sanitize url components, etc.
+def slugify(input_string: str) -> str:
+    if custom_slug := filters.apply('slugify', '', input_string):
+        return custom_slug
+    output = unicodedata.normalize('NFKD', input_string)
     output = output.encode('ascii', errors='ignore').decode('ascii')
     output = output.lower()
     output = output.replace("'", '')
     output = re.sub(r'[^a-z0-9-]+', '-', output)
     output = re.sub(r'--+', '-', output)
-    output = output.strip('-')
-    return filters.apply('slugify', output, inputstring)
+    return output.strip('-')
 
 
 # A drop-in replacement for the print function that won't choke when
