@@ -66,7 +66,7 @@ def writefile(path: str, content: str):
 # Default slug-preparation function; returns a slugified version of the
 # input string. This function is used to sanitize url components, etc.
 def slugify(input_string: str) -> str:
-    if custom_slug := filters.apply('slugify', '', input_string):
+    if custom_slug := filters.apply('slugify', None, input_string):
         return custom_slug
     output = unicodedata.normalize('NFKD', input_string)
     output = output.encode('ascii', errors='ignore').decode('ascii')
