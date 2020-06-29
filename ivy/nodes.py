@@ -113,22 +113,18 @@ class Node():
             out.append(child.tree(depth + 1, urls))
         return '\n'.join(out)
 
-    # Initialize the node. This method is called on the root node once the
-    # parse tree has been assembled. It recursively calls itself on all
-    # subnodes.
+    # This method should be called on a new node after its metadata and .text
+    # attributes have been assigned. It initializes the node by filtering its
+    # text and rendering it into html. Calling this method on the root node of
+    # a tree will automatically initialize all descendant nodes. (In this case
+    # the filter and event hooks fire 'bottom up', i.e. when they fire on a
+    # node, all its decendents have already been initialized.)
     def init(self):
-
-        # Filter the node's raw text, render it, then filter the rendered html.
+        for node in self.children:
+            node.init()
         self.text = filters.apply('node_text', self.text, self)
         html = renderers.render(self.text, self.ext, self.filepath)
         self.html = filters.apply('node_html', html, self)
-
-        # Initialize any subnodes.
-        for node in self.children:
-            node.init()
-
-        # This event fires 'bottom up', i.e. when this event fires on a node,
-        # all its descendants have already been initialized.
         events.fire('init_node', self)
 
     # Call the specified function on the node and all its descendants.
