@@ -71,9 +71,6 @@ class Node():
         # Stores the node's processed html content.
         self.html: str = ''
 
-        # A node is empty until we process an associated source file.
-        self.empty: bool = True
-
     # String representation of the Node instance.
     def __repr__(self) -> str:
         return f"<Node {self.url}>"
@@ -218,6 +215,5 @@ def _parse_node_file(dirnode: Node, filepath: Path):
     text, meta = loader.load(filepath)
     filenode.text = text
     filenode.update(meta)
-    filenode.empty = False
     filenode.filepath = str(filepath)
     filenode.ext = filepath.suffix.strip('.')

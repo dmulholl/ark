@@ -31,8 +31,7 @@ def build_site():
 
     # Callback to render a single node instance.
     def render(node):
-        if not node.empty:
-            pages.Page(node).render()
+        pages.Page(node).render()
 
     # Walk the parse tree and pass each node to the render callback.
     nodes.root().walk(render)
