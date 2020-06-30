@@ -39,7 +39,7 @@ def get_pagelist():
     menu.append(f'<li><a href="@root/">{title}</a></li>\n')
 
     for child in sorted_children(root):
-        if not child.empty and not child.get('menu_exclude'):
+        if not child.get('menu_exclude'):
             add_node(child, menu)
 
     menu.append('</ul>')
@@ -55,7 +55,7 @@ def add_node(node, menu):
     if node.has_children:
         children = []
         for child in sorted_children(node):
-            if not child.empty and not child.get('menu_exclude'):
+            if not child.get('menu_exclude'):
                 children.append(child)
         if children:
             menu.append('<ul>\n')

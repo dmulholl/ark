@@ -86,7 +86,7 @@ class Page(dict):
     # Assemble a list of CSS classes for the page's <body> element.
     def get_class_list(self) -> List[str]:
         class_list = self.get_slug_list()
-        if self['flags']['is_homepage']:
+        if self['node'].parent is None:
             class_list.append('homepage')
         if 'classes' in self['node']:
             for item in str(self['node']['classes']).split(','):
