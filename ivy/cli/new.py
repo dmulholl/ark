@@ -26,18 +26,39 @@ Options:
   -d, --date <str>      Specify a date string for the node.
 
 Flags:
+  -c, --content         Add dummy content.
   -f, --force           Overwrite an existing node file.
   -h, --help            Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 
 
-template = """\
+template1 = """\
 ---
 title: {title}
 date: {date}
 ---
 
+"""
+
+template2 = """\
+---
+title: {title}
+date: {date}
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+Brigantes femina duce exurere coloniam, expugnare castra, ac nisi felicitas in
+tali casu effugium subveniebat in aperta et solida. Neque is miseriarum finis.
+Struendum vallum, petendus agger, amissa magna ex parte luxus egestatis scelerum
+sibi conscios nisi pollutum obstrictumque meritis suis principem passuros.
 """
 
 
@@ -47,6 +68,7 @@ def register_command(parser):
     cmd_parser.option("title t")
     cmd_parser.option("date d")
     cmd_parser.flag("force f")
+    cmd_parser.flag("content c")
 
 
 def cmd_callback(cmd_name, cmd_parser):
@@ -61,4 +83,8 @@ def cmd_callback(cmd_name, cmd_parser):
         'title': cmd_parser.value('title') or "Untitled",
         'date': cmd_parser.value('date') or datetime.date.today()
     }
-    utils.writefile(filepath, template.format(**values))
+
+    if cmd_parser.found("content"):
+        utils.writefile(filepath, template2.format(**values))
+    else:
+        utils.writefile(filepath, template1.format(**values))
