@@ -67,4 +67,5 @@ def add_node(node, menu):
 
 
 def sorted_children(node):
-    return sorted(node.children, key=lambda n: n.get('menu_order', 0))
+    children = sorted(node.children, key=lambda n: n.stem)
+    return sorted(children, key=lambda n: n.get('menu_order', 0))
