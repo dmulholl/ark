@@ -27,11 +27,11 @@ cache = None
 def add_automenu(page):
     global cache
     if cache is None:
-        cache = get_pagelist()
+        cache = make_menu()
     page['automenu'] = cache
 
 
-def get_pagelist():
+def make_menu():
     menu = ['<ul>\n']
 
     root = ivy.nodes.root()
@@ -47,9 +47,11 @@ def get_pagelist():
 
 
 def add_node(node, menu):
-    menu.append('<li>')
+    title = node.get('menu_title') or node.get('title')
+    if title is None:
+        return
 
-    title = node.get('menu_title') or node.get('title') or 'Untitled Node'
+    menu.append('<li>')
     menu.append(f'<a href="{node.url}">{title}</a>')
 
     if node.has_children:
