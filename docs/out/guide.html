@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev</p>
+            <p class="version">Version 3.0.0.dev1</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -301,7 +301,7 @@ slug: my-custom-slug
 ---
 </pre>
 <p>
-Slugs can be customized sitewide by applying a <a href="extensions.html#event-filter-hooks">filter</a> on the <code>slugify</code> filter hook.
+Slugs can be customized sitewide by registering a filter callback on the <code>slugify</code> <a href="extensions.html#event-filter-hooks">filter hook</a>.
 </p>
 <h2 id="includes">
 Includes
@@ -378,6 +378,9 @@ If a node has a <code>menu_exclude</code> attribute set to true it (and its chil
 </p>
 </li>
 </ul>
+<p>
+Only nodes which have a <code>menu_title</code> or <code>title</code> attribute set are included in the menu.
+</p>
 <h2 id="dependencies">
 Dependencies
 </h2>

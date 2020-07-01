@@ -2,7 +2,7 @@
 title: Changelog
 ---
 
-### 3.0.0.dev
+### 3.0.0.dev1
 
 * Most changes in this release are internal and won't affect existing sites or themes. Extensions will need to be updated but the required changes should be minor.
 
@@ -20,11 +20,13 @@ title: Changelog
 
 * The `tree` command for inspecting site structure has been substantially enhanced.
 
-* A convenience command, `new`, has been added for creating new node files.
+* A convenience command, `make`, has been added for creating new node files.
 
 * `@root/` urls in angle brackets are no longer rewritten. This "feature" was a solution in search of a problem.
 
 * The `nodes.node()` function now takes an `@root/` url and returns the corresponding `Node` instance.
+
+* The `is_homepage` flag has been moved to the root page dictionary.
 
 
 

@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev</p>
+            <p class="version">Version 3.0.0.dev1</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -64,8 +64,8 @@ text files into a self-contained website.</p>
                 
                 <hr>
             </header>
-            <h3 id="id-3-0-0-dev">
-3.0.0.dev
+            <h3 id="id-3-0-0-dev1">
+3.0.0.dev1
 </h3>
 <ul>
 <li>
@@ -93,13 +93,16 @@ URL path slugs are now customizable and no longer tied to filenames. The slug ca
 The <code>tree</code> command for inspecting site structure has been substantially enhanced.
 </li>
 <li>
-A convenience command, <code>new</code>, has been added for creating new node files.
+A convenience command, <code>make</code>, has been added for creating new node files.
 </li>
 <li>
 <code>@root/</code> urls in angle brackets are no longer rewritten. This "feature" was a solution in search of a problem.
 </li>
 <li>
 The <code>nodes.node()</code> function now takes an <code>@root/</code> url and returns the corresponding <code>Node</code> instance.
+</li>
+<li>
+The <code>is_homepage</code> flag has been moved to the root page dictionary.
 </li>
 </ul>
 <h3 id="id-2-10-0">

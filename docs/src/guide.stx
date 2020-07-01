@@ -153,7 +153,7 @@ This default slug can be overridden by setting a custom slug in the header:
     slug: my-custom-slug
     ---
 
-Slugs can be customized sitewide by applying a [filter](@root/extensions//#event-filter-hooks) on the `slugify` filter hook.
+Slugs can be customized sitewide by registering a filter callback on the `slugify` [filter hook](@root/extensions//#event-filter-hooks).
 
 
 
@@ -215,6 +215,8 @@ The bundled Automenu extension automatically generates a menu containing links t
 (*) By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer `menu_order` attribute (positive or negative) with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
 
 (*) If a node has a `menu_exclude` attribute set to true it (and its children) will be omitted from the menu.
+
+Only nodes which have a `menu_title` or `title` attribute set are included in the menu.
 
 
 
