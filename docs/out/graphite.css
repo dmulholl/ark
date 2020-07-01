@@ -88,6 +88,11 @@ blockquote {
     font-style: italic;
 }
 
+.blockquote-caption {
+    margin: -10px 20px 40px;
+    text-align: right;
+}
+
 abbr[title] {
     border-bottom: 1px dotted;
     cursor: help;

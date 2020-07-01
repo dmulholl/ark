@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Changelog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="graphite.css">
-    <link rel="stylesheet" href="pygments.css">
-    
-    
-  </head>
-
-  <body class="node-changelog node">
-
-    <header class="masthead">
-      <h1><a href="index.html">Ivy</a></h1>
-      
-        <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
+    <head>
+        <meta charset="utf-8">
+        <title>Changelog</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="graphite.css">
+        <link rel="stylesheet" href="pygments.css">
+        
+        
+    </head>
+    <body class="node-changelog node">
+        <header class="masthead">
+            <h1><a href="index.html">Ivy</a></h1>
+            
+            <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
 text files into a self-contained website.</p>
-      
-      
-        <p class="version">Version 2.10.0</p>
-      
-      <nav class="menu">
-        <input id="menu-check" type="checkbox"/>
-        <label id="menu-label" for="menu-check" class="unselectable">
-          <span class="icon close-icon">✕</span>
-          <span class="icon open-icon">☰</span>
-          <span class="text">Menu</span>
-        </label>
-        <ul>
+            
+            
+            <p class="version">Version 3.0.0.dev1</p>
+            
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
 <li>
 <a href="index.html">Home</a>
 </li>
@@ -58,16 +56,56 @@ text files into a self-contained website.</p>
 <a href="https://github.com/dmulholl/ivy">Source</a>
 </li>
 </ul>
-      </nav>
-    </header>
-
-    <article class="main">
-      <header class="title">
-        <h1>Changelog</h1>
-        
-        <hr>
-      </header>
-      <h3 id="id-2-10-0">
+            </nav>
+        </header>
+        <article class="main">
+            <header class="title">
+                <h1>Changelog</h1>
+                
+                <hr>
+            </header>
+            <h3 id="id-3-0-0-dev1">
+3.0.0.dev1
+</h3>
+<ul>
+<li>
+Most changes in this release are internal and won't affect existing sites or themes. Extensions will need to be updated but the required changes should be minor.
+</li>
+<li>
+One small change which may affect themes &mdash; the <code>classes</code> list for the <code>&lt;body&gt;</code> element is now a list of strings rather than a single string. These strings can be concatenated using a template filter as demonstrated in the bundled <code>graphite</code> theme.
+</li>
+<li>
+The most significant change for extensions is that the <code>hooks</code> module has been split into two separate modules, <code>events</code> and <code>filters</code>, to make its operation clearer and conceptually simpler. Existing <code>@hooks.register()</code> decorators in extensions will need to be renamed to either <code>@events.register()</code> or <code>@filters.register()</code> but should otherwise work unchanged.
+</li>
+<li>
+This release switches to a new library for parsing command line arguments, <a href="http://github.com/dmulholl/argslib">argslib</a>. The command line interface has also been simplified by removing all options for customizing site directories (<code>src</code>, <code>out</code>, etc.). These directories can now be customized from the site's <code>config.py</code> file.
+</li>
+<li>
+The default build routine has been moved to its own module, <code>ivy/build.py</code>.
+</li>
+<li>
+In general, code has been ruthlessly simplified wherever possible. In particular, the internal structure of the node tree is now significantly simpler.
+</li>
+<li>
+URL path slugs are now customizable and no longer tied to filenames. The slug can be customized by adding a <code>slug</code> attribute to the node's metadata.
+</li>
+<li>
+The <code>tree</code> command for inspecting site structure has been substantially enhanced.
+</li>
+<li>
+A convenience command, <code>make</code>, has been added for creating new node files.
+</li>
+<li>
+<code>@root/</code> urls in angle brackets are no longer rewritten. This "feature" was a solution in search of a problem.
+</li>
+<li>
+The <code>nodes.node()</code> function now takes an <code>@root/</code> url and returns the corresponding <code>Node</code> instance.
+</li>
+<li>
+The <code>is_homepage</code> flag has been moved to the root page dictionary.
+</li>
+</ul>
+<h3 id="id-2-10-0">
 2.10.0
 </h3>
 <ul>
@@ -301,9 +339,7 @@ The algorithm for locating and rewriting <code>@root/</code> urls has been chang
 The site configuration file has been renamed from <code>site.py</code> to <code>config.py</code>. Old <code>site.py</code> files will continue to be recognised. (Some Python installations were confusing the <code>site.py</code> file with the standard library's <code>site</code> module, causing the interpreter to crash when Ivy was run from the site directory.)
 </li>
 </ul>
-    </article>
-
-    
-
-  </body>
+        </article>
+        
+    </body>
 </html>

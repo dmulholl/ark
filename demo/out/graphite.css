@@ -46,7 +46,7 @@ img {
 body {
     font-size: 17px;
     color: black;
-    font-family: 'Crimson Text', serif;
+    font-family: 'Crimson Text', Georgia, serif;
     line-height: 1.75;
 }
 
@@ -69,7 +69,7 @@ h2 {
 
 h3, h4, h5, h6 {
     padding: 0;
-    margin: 60px 0 30px;
+    margin: 80px 0 30px;
     line-height: 1.25;
     text-align: left;
     font-size: 19px;
@@ -86,6 +86,11 @@ blockquote {
     padding: 0 20px;
     border-left: 3px solid #ddd;
     font-style: italic;
+}
+
+.blockquote-caption {
+    margin: -10px 20px 40px;
+    text-align: right;
 }
 
 abbr[title] {
@@ -107,14 +112,6 @@ sup {
 
 sub {
     top: .5ex;
-}
-
-small {
-    font-size: 75%;
-}
-
-big {
-    font-size: 125%;
 }
 
 /**
@@ -189,9 +186,6 @@ a {
     text-decoration: none;
     padding-bottom: 2px;
     border-bottom: 1px solid;
-}
-
-a:hover {
 }
 
 sup a {
@@ -324,29 +318,36 @@ body {
 }
 
 /**
- * Alert Boxes
+ * Info Boxes
  */
 
-.alertbox {
+.infobox, .alertbox {
     margin: 40px 20px;
     border: 1px solid;
     padding: 0 25px;
     border-radius: 3px;
+    border-color: #bbb;
+    background-color: #f8f8f8;
 }
 
-.alertbox.info {
+.infobox.blue, .alertbox.info {
     border-color: #bac6d3;
     background-color: #e2eef9;
 }
 
-.alertbox.warning {
+.infobox.yellow, .alertbox.warning {
     border-color: #dfd8c2;
     background-color: #fff9ea;
 }
 
-.alertbox.error {
+.infobox.red, .alertbox.error {
     border-color: #d2b2b2;
     background-color: #fcdede;
+}
+
+.infobox.green, .alertbox.success {
+    border-color: #B2C2AB;
+    background-color: #DEF2D6;
 }
 
 /**
@@ -359,6 +360,10 @@ body {
 
  .footnote a::after {
      content: "]";
+ }
+
+ .footnote a {
+     border: none;
  }
 
  .footnotes dt {

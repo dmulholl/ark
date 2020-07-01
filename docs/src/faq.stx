@@ -4,6 +4,11 @@ title: FAQ
 
 ::: insert toc
 
+### Can I build a blog using Ivy?
+
+[Holly](https://github.com/dmulholl/holly) is a blog-engine plugin for Ivy. It adds support for WordPress-style post and tag indexes.
+
+
 
 ### Why won't Ivy install?
 
@@ -19,9 +24,9 @@ Next, install Ivy using the copy of `pip` associated with your Python 3 installa
 
 Check that Ivy has installed properly:
 
-    $ python3 -m ivy --version
+    $ python3 -m ivy --help
 
-You should now be able to run the application simply by typing `ivy`, but if you're still having problems try `python3 -m ivy` as a fallback.
+You should now be able to run the application simply by typing `ivy`, but if you're still having problems try using `python3 -m ivy` as a fallback.
 
 
 
@@ -89,20 +94,6 @@ And yes, I think it's ugly too.
 
 
 
-### Can I build a blog using Ivy?
-
-Sure, but you'll have to write some code to do it.
-
-Ivy is actually a stripped-down version of an older static website generator that I tinkered with for years called [Malt][], which was fully blog-capable. One of the lessons I learned along the way is that it's pretty much impossible to build a simple, elegant, *general-purpose* static-website-plus-blog engine --- it just ends up being a WordPress-style rat's nest of options and switches.
-
-It's actually quite easy to build a blog on top of Ivy by adding a simple plugin to assemble indexes, etc. --- at least, it's easy to do it for *one specific site*. I've certainly thought about building a general-purpose blog plugin, but it inevitably turns into its own mini rat's nest of options and switches all over again.
-
-I don't have any personal use for a blog so I probably never will get around to working on the problem again, but if anyone else wants to try they're welcome to take a look at [Malt][] for inspiration.
-
-[malt]: http://www.dmulholl.com/docs/malt/
-
-
-
 ### How do I deploy a site built with Ivy?
 
 One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like --- in the simplest case you can 'deploy' it simply by double-clicking on the .html files to view them locally in your browser.
@@ -113,10 +104,10 @@ To make your website available on the public internet you have lots of options. 
 
 (*) The next step up is 'shared web hosting' --- it's cheap, flexible, and lots of online companies offer it. I've used [NearlyFreeSpeech](https://www.nearlyfreespeech.net) myself and been happy with their service.
 
-(*) If you need more control over your hosting environment you can run your own webserver like Apache or Nginx on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
+(*) If you need more control over your hosting environment you can run your own webserver (typically Apache or Nginx) on a virtual server machine (a VPS or Virtual Private Server) you rent from a company like [Digital Ocean](https://www.digitalocean.com).
 
 
 
 ### Why is it called Ivy?
 
-Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.
+I liked the name Industrial Vellum, but it was too long. Also, the branching tree structure of the nodes reminded me of ivy.

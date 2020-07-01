@@ -13,14 +13,13 @@ title: Extensions
 
 ## Installing Extensions
 
-An extension (aka a 'plugin') is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
+An extension/plugin is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
 
 (*) You can add an extensions directory named `ext` to your site's root directory. Extension modules placed in this `ext` directory will be loaded automatically by Ivy.
 
 (*) If an extension module has been installed on Python's standard import path you can activate it for a particular site by adding its name to an `extensions` list in the site's configuration file:
 
 ::: code python
-
     extensions = [
         'extension_one',
         'extension_two',
@@ -36,7 +35,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 
 Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 
-You can find these bundled plugins in the `ivy/extensions/` directory which you can view on [Github](https://github.com/dmulholl/ivy/tree/master/ivy/extensions).
+You can find these bundled plugins in the `ivy/ext/` directory which you can view on [Github](https://github.com/dmulholl/ivy/tree/master/ivy/ext).
 
 
 
@@ -47,14 +46,11 @@ You can find these bundled plugins in the `ivy/extensions/` directory which you 
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 
 ::: code python
-
-    import ivy
-
-    @ivy.hooks.register('exit')
+    @ivy.events.register('exit')
     def print_page_count():
         print(ivy.site.written())
 
-This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` hook can be found in the `ivy/__init__.py` file.)
+This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` event hook can be found in the `ivy/__init__.py` file.)
 
 
 
@@ -65,16 +61,14 @@ This callback is registered on the `exit` event hook which fires just before the
 Here's a simple filter callback that changes every instance of the word *foo* in node content to *bar*:
 
 ::: code python
-
-    import ivy
-
-    @ivy.hooks.register('node_text')
+    @ivy.filters.register('node_text')
     def foo_to_bar(text, node):
         return text.replace('foo', 'bar')
 
-This callback is registered on the `node_text` filter hook which fires just before a node's text is rendered into HTML. (The `node_text` hook can be found in the `ivy/nodes.py` file).
+This callback is registered on the `node_text` filter hook which fires just before a node's text is rendered into HTML. (The `node_text` filter hook can be found in the `ivy/nodes.py` file).
 
-Note that this hook supplies us with the `Node` instance itself as an additional argument which we here ignore.
+
+Note that this hook supplies us with the `Node` instance itself as an additional argument which in this case we ignore.
 
 
 
@@ -90,11 +84,8 @@ Ivy has builtin support for [Jinja][] and [Ibis][] templates. Plugins can regist
 
 
 ::: code python
-
-    import ivy
-
     @ivy.templates.register('jinja')
-    def jinja_callback(page, filename):
+    def jinja_callback(page, template_filename):
         ...
         return html
 
@@ -108,9 +99,6 @@ Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. 
 
 
 ::: code python
-
-    import ivy
-
     @ivy.renderers.register('md')
     def markdown_callback(text):
         ...
@@ -125,24 +113,21 @@ A rendering-engine callback should accept a single string argument containing pl
 Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the `file_text` filter hook.
 
 ::: code python
-
-    import ivy
-
-    @ivy.hooks.register('file_text')
-    def parse_toml(text, meta):
+    @ivy.filters.register('file_text')
+    def parse_toml(raw_text, meta_dict):
         ...
-        return text
+        return filtered_text
 
-This filter fires each time a node file is loaded; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
+This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 
-The `file_text` hook can be found in the `ivy/loader.py` file.
+The `file_text` filter hook can be found in the `ivy/loader.py` file.
 
 
 ## Shortcodes
 
 Ivy has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
 
-    \[% tag arg1 key=arg2 %] ... \[% endtag %]
+    \[% tag arg1 key=arg2 %]  ...  \[% endtag %]
 
 Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
 
@@ -180,7 +165,7 @@ Handler functions should accept four arguments:
 
 Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
 
-Note that shortcodes are processed *before* node text is rendered into HTML.
+Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
 
-See the [shortcodes documentation][shortcodes] for further details.
+See the [shortcodes package documentation][shortcodes] for further details.
 

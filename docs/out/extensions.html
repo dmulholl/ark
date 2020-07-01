@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Extensions</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="graphite.css">
-    <link rel="stylesheet" href="pygments.css">
-    
-    
-  </head>
-
-  <body class="node-extensions node">
-
-    <header class="masthead">
-      <h1><a href="index.html">Ivy</a></h1>
-      
-        <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
+    <head>
+        <meta charset="utf-8">
+        <title>Extensions</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="graphite.css">
+        <link rel="stylesheet" href="pygments.css">
+        
+        
+    </head>
+    <body class="node-extensions node">
+        <header class="masthead">
+            <h1><a href="index.html">Ivy</a></h1>
+            
+            <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
 text files into a self-contained website.</p>
-      
-      
-        <p class="version">Version 2.10.0</p>
-      
-      <nav class="menu">
-        <input id="menu-check" type="checkbox"/>
-        <label id="menu-label" for="menu-check" class="unselectable">
-          <span class="icon close-icon">✕</span>
-          <span class="icon open-icon">☰</span>
-          <span class="text">Menu</span>
-        </label>
-        <ul>
+            
+            
+            <p class="version">Version 3.0.0.dev1</p>
+            
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
 <li>
 <a href="index.html">Home</a>
 </li>
@@ -58,16 +56,15 @@ text files into a self-contained website.</p>
 <a href="https://github.com/dmulholl/ivy">Source</a>
 </li>
 </ul>
-      </nav>
-    </header>
-
-    <article class="main">
-      <header class="title">
-        <h1>Extensions</h1>
-        
-        <hr>
-      </header>
-      <ul class="stx-toc">
+            </nav>
+        </header>
+        <article class="main">
+            <header class="title">
+                <h1>Extensions</h1>
+                
+                <hr>
+            </header>
+            <ul class="stx-toc">
 <li>
 <a href="#installing-extensions">Installing Extensions</a>
 </li>
@@ -104,7 +101,7 @@ text files into a self-contained website.</p>
 Installing Extensions
 </h2>
 <p>
-An extension (aka a 'plugin') is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
+An extension/plugin is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
 </p>
 <ul>
 <li>
@@ -137,7 +134,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 Most of Ivy's default functionality &mdash; e.g. support for Jinja templates or Markdown files &mdash; is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 </p>
 <p>
-You can find these bundled plugins in the <code>ivy/extensions/</code> directory which you can view on <a href="https://github.com/dmulholl/ivy/tree/master/ivy/extensions">Github</a>.
+You can find these bundled plugins in the <code>ivy/ext/</code> directory which you can view on <a href="https://github.com/dmulholl/ivy/tree/master/ivy/ext">Github</a>.
 </p>
 <h3 id="events">
 Events
@@ -149,14 +146,12 @@ Events
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
-
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_page_count</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
 </pre>
 <p>
-This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ivy/__init__.py</code> file.)
+This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> event hook can be found in the <code>ivy/__init__.py</code> file.)
 </p>
 <h3 id="filters">
 Filters
@@ -168,17 +163,15 @@ Filters
 Here's a simple filter callback that changes every instance of the word <i>foo</i> in node content to <i>bar</i>:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
-
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;node_text&#39;</span><span class="p">)</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;node_text&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
 <p>
-This callback is registered on the <code>node_text</code> filter hook which fires just before a node's text is rendered into HTML. (The <code>node_text</code> hook can be found in the <code>ivy/nodes.py</code> file).
+This callback is registered on the <code>node_text</code> filter hook which fires just before a node's text is rendered into HTML. (The <code>node_text</code> filter hook can be found in the <code>ivy/nodes.py</code> file).
 </p>
 <p>
-Note that this hook supplies us with the <code>Node</code> instance itself as an additional argument which we here ignore.
+Note that this hook supplies us with the <code>Node</code> instance itself as an additional argument which in this case we ignore.
 </p>
 <h2 id="rendering-parsing-engines">
 Rendering &amp; Parsing Engines
@@ -193,10 +186,8 @@ Templates
 Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
-
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
 </pre>
@@ -210,8 +201,6 @@ Node Content
 Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/">Syntext</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
-
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">markdown_callback</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="o">...</span>
@@ -227,18 +216,16 @@ Node Meta
 Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the <code>file_text</code> filter hook.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
-
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">parse_toml</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">meta</span><span class="p">):</span>
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">parse_toml</span><span class="p">(</span><span class="n">raw_text</span><span class="p">,</span> <span class="n">meta_dict</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">return</span> <span class="n">text</span>
+    <span class="k">return</span> <span class="n">filtered_text</span>
 </pre>
 <p>
-This filter fires each time a node file is loaded; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
+This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 </p>
 <p>
-The <code>file_text</code> hook can be found in the <code>ivy/loader.py</code> file.
+The <code>file_text</code> filter hook can be found in the <code>ivy/loader.py</code> file.
 </p>
 <h2 id="shortcodes">
 Shortcodes
@@ -247,7 +234,7 @@ Shortcodes
 Ivy has builtin support for WordPress-style <a href="http://www.dmulholl.com/docs/shortcodes/">shortcodes</a> with space-separated positional and keyword arguments:
 </p>
 <pre>
-[% tag arg1 key=arg2 %] ... [% endtag %]
+[% tag arg1 key=arg2 %]  ...  [% endtag %]
 </pre>
 <p>
 Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
@@ -300,14 +287,12 @@ A dictionary of keyword arguments.
 Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
 </p>
 <p>
-Note that shortcodes are processed <i>before</i> node text is rendered into HTML.
+Note that shortcodes are processed <i>before</i> node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
 </p>
 <p>
-See the <a href="http://www.dmulholl.com/docs/shortcodes/">shortcodes documentation</a> for further details.
+See the <a href="http://www.dmulholl.com/docs/shortcodes/">shortcodes package documentation</a> for further details.
 </p>
-    </article>
-
-    
-
-  </body>
+        </article>
+        
+    </body>
 </html>

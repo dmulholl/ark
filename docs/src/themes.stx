@@ -54,7 +54,7 @@ You can add support for alternative templating languages via [plugins](@root/ext
 
 ### Template Hierarchy
 
-When Ivy generates a HTML page it searches for the appropriate template file to use in reverse order of specificity.
+When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity.
 
 For example, the node file:
 
@@ -62,7 +62,7 @@ For example, the node file:
 
 corresponds to the node:
 
-    <Node /foo/bar/baz>
+    <Node @root/foo/bar/baz//>
 
 Ivy will search for a template file for this node in the following order:
 

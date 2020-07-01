@@ -43,7 +43,8 @@ def register(*extensions: str) -> Callable:
     return register_callback
 
 
-# Render a string and return the result.
+# Render a string and return the result. The `source` parameter is only used
+# when reporting errors.
 def render(text: str, ext: str, source: str = '') -> str:
     if ext in _callbacks:
         try:

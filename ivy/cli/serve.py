@@ -9,10 +9,9 @@ import webbrowser
 
 from .. import site
 from .. import utils
-from .. import hooks
+from .. import events
 
 
-# Command help text.
 helptext = """
 Usage: %s serve
 
@@ -34,28 +33,24 @@ Options:
 
 Flags:
       --help                Print this command's help text and exit.
-      --no-browser          Do not launch the default web browser.
 
 """ % os.path.basename(sys.argv[0])
 
 
-# Register the command on the 'cli' event hook.
-@hooks.register('cli')
+@events.register('cli')
 def register_command(parser):
-    cmd = parser.new_cmd("serve", helptext, callback)
-    cmd.new_flag("no-browser")
-    cmd.new_str("directory d")
-    cmd.new_str("host h", fallback="localhost")
-    cmd.new_int("port p", fallback=8080)
-    cmd.new_str("browser b")
+    cmd = parser.command("serve", helptext, cmd_callback)
+    cmd.option("directory d")
+    cmd.option("browser b")
+    cmd.option("host h", default="localhost")
+    cmd.option("port p", type=int, default=8080)
 
 
-# Command callback.
-def callback(parser):
-    if parser['directory']:
-        dirpath = os.path.abspath(parser['directory'])
+def cmd_callback(cmd_name, cmd_parser):
+    if cmd_parser.found('directory'):
+        dirpath = os.path.abspath(cmd_parser.value('directory'))
         if not os.path.exists(dirpath):
-            sys.exit("Error: directory '%s' does not exist." % dirpath)
+            sys.exit(f"Error: directory '{dirpath}' does not exist.")
         os.chdir(dirpath)
     else:
         if not site.home():
@@ -66,7 +61,7 @@ def callback(parser):
 
     try:
         server = http.server.HTTPServer(
-            (parser['host'], parser['port']),
+            (cmd_parser.value('host'), cmd_parser.value('port')),
             http.server.SimpleHTTPRequestHandler
         )
     except PermissionError:
@@ -75,14 +70,15 @@ def callback(parser):
         sys.exit("Error: port already in use. Choose a different port.")
 
     address = server.socket.getsockname()
-    if parser['browser']:
+    url = f"http://{cmd_parser.value('host')}:{address[1]}"
+    if cmd_parser.found('browser'):
         try:
-            browser = webbrowser.get(parser['browser'])
+            browser = webbrowser.get(cmd_parser.value('browser'))
         except webbrowser.Error:
-            sys.exit("Error: cannot locate browser '%s'." % parser['browser'])
-        browser.open("http://%s:%s" % (parser['host'], address[1]))
-    elif not parser['no-browser']:
-        webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
+            sys.exit(f"Error: cannot locate browser '{cmd_parser.value('browser')}'.")
+        browser.open(url)
+    else:
+        webbrowser.open(url)
 
     utils.termline()
     print("Root: %s" % site.out())

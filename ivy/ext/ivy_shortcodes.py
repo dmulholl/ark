@@ -22,7 +22,7 @@ if shortcodes:
     parser = shortcodes.Parser(**settings)
 
     # Filter each node's content on the 'node_text' filter hook.
-    @ivy.hooks.register('node_text')
+    @ivy.filters.register('node_text')
     def render(text, node):
         try:
             return parser.parse(text, node)
@@ -31,5 +31,5 @@ if shortcodes:
             msg += f"  Node: {node}\n"
             msg += f"  {err.__class__.__name__}: {err}"
             if (cause := err.__context__):
-                msg += "\n  Cause: {cause.__class__.__name__}: {cause}"
+                msg += f"\n  Cause: {cause.__class__.__name__}: {cause}"
             sys.exit(msg)

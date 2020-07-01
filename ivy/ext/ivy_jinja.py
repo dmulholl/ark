@@ -2,7 +2,6 @@
 # This extension adds support for Jinja templates.
 # ------------------------------------------------------------------------------
 
-import sys
 import ivy
 
 try:
@@ -20,7 +19,7 @@ if jinja2:
 
     # Initialize our Jinja environment on the 'init' event hook.
     # Check the site's config file for any custom settings.
-    @ivy.hooks.register('init')
+    @ivy.events.register('init')
     def init():
         settings = {
             'loader': jinja2.FileSystemLoader(ivy.site.theme('templates'))

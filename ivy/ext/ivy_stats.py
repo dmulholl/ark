@@ -3,11 +3,11 @@
 # the end of each build run.
 # ------------------------------------------------------------------------------
 
-from ivy import hooks, site, utils
+from ivy import events, site, utils
 
 
 # Register a callback on the 'exit_build' event hook.
-@hooks.register('exit_build')
+@events.register('exit_build')
 def print_stats():
 
     # The site module maintains a count of the number of pages that have been

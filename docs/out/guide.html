@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Guide</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="graphite.css">
-    <link rel="stylesheet" href="pygments.css">
-    
-    
-  </head>
-
-  <body class="node-guide node">
-
-    <header class="masthead">
-      <h1><a href="index.html">Ivy</a></h1>
-      
-        <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
+    <head>
+        <meta charset="utf-8">
+        <title>Guide</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="graphite.css">
+        <link rel="stylesheet" href="pygments.css">
+        
+        
+    </head>
+    <body class="node-guide node">
+        <header class="masthead">
+            <h1><a href="index.html">Ivy</a></h1>
+            
+            <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
 text files into a self-contained website.</p>
-      
-      
-        <p class="version">Version 2.10.0</p>
-      
-      <nav class="menu">
-        <input id="menu-check" type="checkbox"/>
-        <label id="menu-label" for="menu-check" class="unselectable">
-          <span class="icon close-icon">✕</span>
-          <span class="icon open-icon">☰</span>
-          <span class="text">Menu</span>
-        </label>
-        <ul>
+            
+            
+            <p class="version">Version 3.0.0.dev1</p>
+            
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
 <li>
 <a href="index.html">Home</a>
 </li>
@@ -58,16 +56,15 @@ text files into a self-contained website.</p>
 <a href="https://github.com/dmulholl/ivy">Source</a>
 </li>
 </ul>
-      </nav>
-    </header>
-
-    <article class="main">
-      <header class="title">
-        <h1>Guide</h1>
-        
-        <hr>
-      </header>
-      <ul class="stx-toc">
+            </nav>
+        </header>
+        <article class="main">
+            <header class="title">
+                <h1>Guide</h1>
+                
+                <hr>
+            </header>
+            <ul class="stx-toc">
 <li>
 <a href="#command-line-interface">Command Line Interface</a>
 </li>
@@ -78,10 +75,13 @@ text files into a self-contained website.</p>
 <a href="#nodes">Nodes</a>
 </li>
 <li>
-<a href="#node-meta">Node Meta</a>
+<a href="#metadata">Metadata</a>
 </li>
 <li>
 <a href="#links">Links</a>
+</li>
+<li>
+<a href="#nodes-slugs-and-urls">Nodes, Slugs, and URLs</a>
 </li>
 <li>
 <a href="#includes">Includes</a>
@@ -106,6 +106,9 @@ text files into a self-contained website.</p>
 <li>
 <a href="#dependencies">Dependencies</a>
 </li>
+<li>
+<a href="#notes">Notes</a>
+</li>
 </ul>
 <h2 id="command-line-interface">
 Command Line Interface
@@ -123,32 +126,7 @@ To build an existing site, run the <code>build</code> command from the site dire
 $ ivy build
 </pre>
 <p>
-Use the <code>ivy --help</code> flag to view the full command-line help text:
-</p>
-<pre>
-Usage: ivy [FLAGS] [COMMAND]
-
-  Ivy is a static website generator. It transforms a
-  directory of text files into a self-contained website.
-
-Flags:
-  -h, --help          Print the application&#x27;s help text.
-  -v, --version       Print the application&#x27;s version.
-
-Commands:
-  build               Build the site.
-  clear               Clear the output directory.
-  init                Initialize a new site directory.
-  serve               Run a server on the output directory.
-  tree                Print the site&#x27;s node tree.
-  watch               Monitor the site directory and
-                      automatically rebuild on changes.
-
-Command Help:
-  help &lt;command&gt;      Print the command&#x27;s help text.
-</pre>
-<p>
-Run <code>ivy help &lt;command&gt;</code> to view the help text for a specific command.
+Use the <code>ivy --help</code> flag to view the full command-line help text.
 </p>
 <h2 id="site-structure">
 Site Structure
@@ -172,6 +150,15 @@ Ivy uses the presence of either a <code>config.py</code> file or a hidden <code>
 <p>
 Static assets such as image files should be placed in the resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
 </p>
+<p>
+Default directories can be overridden by adding a <code>*_dir</code> attribute to the <code>config.py</code> file, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">out_dir</span> <span class="o">=</span> <span class="s2">&quot;custom_name&quot;</span>
+</pre>
+<p>
+The value will be treated as a directory path relative to the site directory.
+</p>
 <h2 id="nodes">
 Nodes
 </h2>
@@ -185,7 +172,7 @@ A node file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a
 ---
 title: My Important Document
 author: John Doe
-date: 1979-02-28
+date: 1999-12-31
 ---
 
 Content begins here.
@@ -209,17 +196,17 @@ src/foo/bar/
 correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
 </p>
 <p>
-(Files named <code>index</code> are special-cased and correspond to the same node as their parent directory.)
+(Files named <code>index</code> are special &mdash; they correspond to the same node as their parent directory.)
 </p>
-<h2 id="node-meta">
-Node Meta
+<h2 id="metadata">
+Metadata
 </h2>
 <p>
 Ivy has builtin support for node metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via extensions. Note that a node file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute
 </p>
 <pre>
 ---
-Date of Birth: 1901-02-28
+Date of Birth: 1999-12-31
 ---
 </pre>
 <p>
@@ -267,6 +254,9 @@ Links
 Ivy generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
 </p>
 <p>
+(Aside &mdash; you really shouldn't, unless you absolutely need to. The default settings are the most flexible and allow your site to be viewed locally just by opening the files in a browser without any need for a webserver.)
+</p>
+<p>
 First, you can specify a root url in your site configuration file. Specify an explicit domain for absolute urls or a single forward slash <code>&quot;/&quot;</code> for site-relative urls.
 </p>
 <pre class="lang-python pygments" data-lang="python">
@@ -285,7 +275,7 @@ To link to files within your site from nodes or templates use site-relative urls
 @root/images/photo.jpg
 </pre>
 <p>
-Ivy will automatically rewrite these urls in the appropriate format.
+Ivy will automatically rewrite these urls in the appropriate format.<sup class="footnote" id="fnref:1"><a href="#fn:1">1</a></sup>
 </p>
 <p>
 Use two trailing slashes when linking to pages generated by Ivy itself &mdash; this tells Ivy to rewrite the ending to suit your extension settings.
@@ -296,8 +286,22 @@ Use two trailing slashes when linking to pages generated by Ivy itself &mdash; t
 <p>
 Linking to the homepage is a special case &mdash; a simple <code>@root/</code> will always suffice.
 </p>
+<h2 id="nodes-slugs-and-urls">
+Nodes, Slugs, and URLs
+</h2>
 <p>
-(Only <code>@root</code> urls enclosed in quotes or angle brackets get rewritten by Ivy; quotes are preserved, angle brackets evaporate.)
+A node's url is determined by its <i>slug</i> and by the slugs of its parent nodes. By default a node's slug is generated by <i>slugifying</i> its filename &mdash; the extension is stripped, text is converted to lowercase ascii, spaces are converted to hyphens etc., so a node file named <code>Foo Bar.md</code> would have the slug <code>foo-bar</code>.
+</p>
+<p>
+This default slug can be overridden by setting a custom slug in the header:
+</p>
+<pre>
+---
+slug: my-custom-slug
+---
+</pre>
+<p>
+Slugs can be customized sitewide by registering a filter callback on the <code>slugify</code> <a href="extensions.html#event-filter-hooks">filter hook</a>.
 </p>
 <h2 id="includes">
 Includes
@@ -331,13 +335,13 @@ Extension Options
 Markdown
 </h3>
 <p>
-Ivy uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a <code>markdown</code> attribute, e.g.
+Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a <code>markdown</code> attribute, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
 </pre>
 <p>
-See the package's <a href="https://pythonhosted.org/Markdown/">documentation</a> for details of its available options.
+See the package's <a href="https://pypi.org/project/Markdown/">documentation</a> for details of its available options.
 </p>
 <h3 id="jinja">
 Jinja
@@ -355,7 +359,7 @@ Ivy uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> pac
 Automenu
 </h3>
 <p>
-The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via an <code>automenu</code> attribute. This menu can be customized in three ways:
+The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via the <code>automenu</code> attribute. This menu can be customized in three ways:
 </p>
 <ul>
 <li>
@@ -365,7 +369,7 @@ If a node has a <code>menu_title</code> attribute, its value will be used in the
 </li>
 <li>
 <p>
-By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute (positive or negative) with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
 </p>
 </li>
 <li>
@@ -374,6 +378,9 @@ If a node has a <code>menu_exclude</code> attribute set to true it (and its chil
 </p>
 </li>
 </ul>
+<p>
+Only nodes which have a <code>menu_title</code> or <code>title</code> attribute set are included in the menu.
+</p>
 <h2 id="dependencies">
 Dependencies
 </h2>
@@ -382,7 +389,7 @@ Installing Ivy via <code>pip</code> automatically installs the following require
 </p>
 <ul>
 <li>
-<a href="https://pypi.python.org/pypi/libjanus">Janus</a>
+<a href="https://pypi.python.org/pypi/argslib">Argslib</a>
 </li>
 </ul>
 <p>
@@ -417,9 +424,24 @@ Installing via <code>pip</code> also automatically installs the following option
 <p>
 Ivy will run without any of these optional dependencies installed but the associated functionality will not be available.
 </p>
-    </article>
-
-    
-
-  </body>
+<h2 id="notes">
+Notes
+</h2>
+<dl class="footnotes">
+<div id="fn:1">
+<dt>
+<a href="#fnref:1">
+1
+</a>
+</dt>
+<dd>
+<p>
+Ivy scans the output html for <code>@root/</code> urls just before it gets written to disk. Only <code>@root/</code> urls enclosed in quotes are rewritten &mdash; i.e. only urls which are actively being used in links.
+</p>
+</dd>
+</div>
+</dl>
+        </article>
+        
+    </body>
 </html>

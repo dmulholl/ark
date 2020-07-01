@@ -2,7 +2,7 @@
 # Ivy: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '2.10.5'
+__version__ = '3.0.0.dev1'
 
 import sys
 if sys.version_info < (3, 8):
@@ -25,17 +25,19 @@ if sys.platform == 'win32':
 from . import cli
 from . import extensions
 from . import hashes
-from . import hooks
+from . import events
+from . import filters
 from . import includes
 from . import loader
 from . import nodes
 from . import pages
 from . import renderers
 from . import site
+from . import build
 
 
 # Application entry point. Calling main() initializes the site model, loads
-# the site's plugins, and then fires a sequence of event hooks. All of Ivy's
+# the site's plugins, then fires a sequence of event hooks. All of Ivy's
 # functionality is handled by callbacks registered on these hooks.
 def main():
 
@@ -49,12 +51,12 @@ def main():
     extensions.load_site_extensions()
 
     # Process the application's command-line arguments.
-    cli.parse()
+    cli.parse_args()
 
     # Load any plugins bundled with the active theme.
     extensions.load_theme_extensions()
 
     # Fire the primary sequence of event hooks.
-    hooks.event('init')
-    hooks.event('main')
-    hooks.event('exit')
+    events.fire('init')
+    events.fire('main')
+    events.fire('exit')
