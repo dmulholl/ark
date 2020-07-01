@@ -27,7 +27,7 @@ class Page(dict):
         self['inc'] = includes.load()
         self['site'] = site.config
         self['node'] = node
-        self['flags'] = {'is_homepage': node.parent is None}
+        self['is_homepage'] = node.parent is None
 
     # Render the page into html and write the html to disk.
     def render(self):
@@ -86,7 +86,7 @@ class Page(dict):
     # Assemble a list of CSS classes for the page's <body> element.
     def get_class_list(self) -> List[str]:
         class_list = self.get_slug_list()
-        if self['node'].parent is None:
+        if self['is_homepage']:
             class_list.append('homepage')
         if 'classes' in self['node']:
             for item in str(self['node']['classes']).split(','):
