@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module contains the logic for the 'new' command.
+# This module contains the logic for the 'make' command.
 # ------------------------------------------------------------------------------
 
 import os
@@ -12,7 +12,7 @@ from .. import site
 
 
 helptext = """
-Usage: %s new <filename>
+Usage: %s make <filename>
 
   Creates a new node file in the src directory. The filepath should be
   specified relative to the src directory. Creates directories along the
@@ -64,7 +64,7 @@ sibi conscios nisi pollutum obstrictumque meritis suis principem passuros.
 
 @events.register('cli')
 def register_command(parser):
-    cmd_parser = parser.command("new", helptext, cmd_callback)
+    cmd_parser = parser.command("make", helptext, cmd_callback)
     cmd_parser.option("title t")
     cmd_parser.option("date d")
     cmd_parser.flag("force f")

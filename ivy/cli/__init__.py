@@ -12,7 +12,7 @@ from . import init
 from . import clear
 from . import serve
 from . import watch
-from . import new
+from . import make
 
 
 helptext = """
@@ -29,7 +29,7 @@ Commands:
   build               Build the site.
   clear               Clear the output directory.
   init                Initialize a new site directory.
-  new                 Create a new node file.
+  make                Create a new node file.
   serve               Run a web server on the site's output directory.
   tree                Print the node tree.
   watch               Monitor the site directory and rebuild on changes.
