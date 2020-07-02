@@ -98,7 +98,7 @@ def cmd_callback(cmd_name, cmd_parser):
                 subprocess.call(args)
                 newhash = hashsite(home)
             oldhash = newhash
-            time.sleep(1)
+            time.sleep(0.5)
     except KeyboardInterrupt:
         pass
 
