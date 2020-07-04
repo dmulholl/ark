@@ -64,7 +64,7 @@ def treestring(node, depth=0, base='url', attr=None):
     else:
         line = '·  ' * depth + node.slug or '/'
     if attr:
-        line += '  --  ' + repr(node.get(attr, ''))
+        line += '  --  ' + repr(node.get(attr))
     lines = [line]
     for child in node.children:
         lines.append(treestring(child, depth + 1, base, attr))
