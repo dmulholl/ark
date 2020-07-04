@@ -1,12 +1,12 @@
 # ------------------------------------------------------------------------------
-# This extension prints a count of pages rendered and pages written to disk at
-# the end of each build run.
+# This extension prints a simple stats report at the end of each build run.
 # ------------------------------------------------------------------------------
 
+import shutil
+import datetime
 from ivy import events, site, utils
 
 
-# Register a callback on the 'exit_build' event hook.
 @events.register('exit_build')
 def print_stats():
 
@@ -18,8 +18,14 @@ def print_stats():
     time = site.runtime()
     average = time / rendered if rendered else 0
 
-    # Assemble the stats report.
-    report =  "Rendered: %5d  ·  Written: %5d  ·  "
+    # Add a timestamp if we have space.
+    cols, _ = shutil.get_terminal_size()
+    if cols >= 95:
+        report = datetime.datetime.now().strftime("[%H:%M:%S]  ·  ")
+    else:
+        report = ''
+
+    report += "Rendered: %5d  ·  Written: %5d  ·  "
     report += "Time: %5.2f sec  ·  Avg: %.4f sec/page"
 
     # Make the dots grey before printing.
