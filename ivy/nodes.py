@@ -56,7 +56,8 @@ class Node():
         # Stores child nodes.
         self.children: List[Node] = []
 
-        # Stores the filepath of the node's source file.
+        # Stores the path to the node's source directory/file.
+        # (File path will overwrite directory path.)
         self.filepath: str = ''
 
         # Stores the node's filepath stem, i.e. basename minus extension.
@@ -71,7 +72,7 @@ class Node():
         # Stores the node's processed html content.
         self.html: str = ''
 
-    # String representation of the Node instance.
+    # Nodes are addressable by url so it functions as a softly-unique ID.
     def __repr__(self) -> str:
         return f"<Node {self.url}>"
 
@@ -91,7 +92,8 @@ class Node():
     def get(self, key: str, default: Any = None) -> Any:
         return self.meta.get(key, default)
 
-    # Dictionary-style 'get' with inheritance for metadata.
+    # Dictionary-style 'get' with inheritance for metadata. This method walks
+    # its way up the ancestor chain looking for a matching entry.
     def inherit(self, key: str, default: Any = None) -> Any:
         while self is not None:
             if key in self.meta:
@@ -103,19 +105,12 @@ class Node():
     def update(self, other: Dict[str, Any]):
         self.meta.update(other)
 
-    # Returns a printable tree showing the node and its descendants.
-    def tree(self, depth: int = 0, urls: bool = True) -> str:
-        out = ["·  " * depth + self.url] if urls else ["·  " * depth + self.slug or '/']
-        for child in self.children:
-            out.append(child.tree(depth + 1, urls))
-        return '\n'.join(out)
-
     # This method should be called on a new node after its metadata and .text
     # attributes have been assigned. It initializes the node by filtering its
-    # text and rendering it into html. Calling this method on the root node of
-    # a tree will automatically initialize all descendant nodes. (In this case
-    # the filter and event hooks fire 'bottom up', i.e. when they fire on a
-    # node, all its decendents have already been initialized.)
+    # text and rendering it into html. As a convenience, calling this method on
+    # the root node of a tree will automatically initialize all descendant nodes.
+    # (In this case the filter and event hooks fire 'bottom up', i.e. when they
+    # fire on a node, all its decendents have already been initialized.)
     def init(self):
         for node in self.children:
             node.init()

@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 # This extension adds a 'tree' command to Ivy's command line interface. We
-# implement the command here rather than in the cli package to provide an
+# implement the command here rather than in the cli package purely to provide an
 # example of an extension registering a custom command.
 # ------------------------------------------------------------------------------
 
@@ -9,16 +9,22 @@ import sys
 import os
 
 
-# Command help text.
 helptext = """
 Usage: %s tree [FLAGS]
 
-  Print the site's node tree. The root node to use as the starting point can
-  be determined by specifying its url, e.g.
+  This command prints the site's node tree. The root note to use as the
+  starting point can be specifed using the --root option:
 
     $ ivy tree --root @root/foo/bar//
 
+  The tree displays urls by default. Use the --slugs flag to print slugs
+  instead. Use the --attr option to append the value of an arbitrary attribute,
+  e.g.
+
+    $ ivy tree --attr title
+
 Options:
+  -a, --attr <name>     Attribute to display.
   -r, --root <url>      Specify the root node. (Defaults to the site root.)
 
 Flags:
@@ -28,30 +34,38 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
-# Register our command on the 'cli' event hook.
 @ivy.events.register('cli')
 def register_command(parser):
     cmd_parser = parser.command("tree", helptext, cmd_callback)
     cmd_parser.flag("slugs s")
     cmd_parser.option("root r", default="@root/")
+    cmd_parser.option("attr a")
 
 
-# Command callback. This function will be called by the command-line parser if
-# the 'tree' command is found. We can't print the tree until the site model has
-# been fully initialized so we register a callback to fire after initialization.
 def cmd_callback(cmd_name, cmd_parser):
-    show_urls = False if cmd_parser.found("slugs") else True
-    root_url = cmd_parser.value("root")
+    base = 'slug' if cmd_parser.found('slugs') else 'url'
 
     @ivy.events.register('main')
     def tree_callback():
         if not ivy.site.home():
             sys.exit("Error: cannot locate the site's home directory.")
-        if (node := ivy.nodes.node(root_url)) is None:
+        if (node := ivy.nodes.node(cmd_parser.value("root"))) is None:
             sys.exit("Error: cannot find the specified root node.")
         ivy.utils.termline()
         ivy.utils.safeprint('Site: %s' % ivy.site.home())
         ivy.utils.termline()
-        ivy.utils.safeprint(node.tree(urls=show_urls))
+        ivy.utils.safeprint(treestring(node, base=base, attr=cmd_parser.value('attr')))
         ivy.utils.termline()
 
+
+def treestring(node, depth=0, base='url', attr=None):
+    if base == 'url':
+        line = '·  ' * depth + node.url
+    else:
+        line = '·  ' * depth + node.slug or '/'
+    if attr:
+        line += '  --  ' + repr(node.get(attr, ''))
+    lines = [line]
+    for child in node.children:
+        lines.append(treestring(child, depth + 1, base, attr))
+    return '\n'.join(lines)
