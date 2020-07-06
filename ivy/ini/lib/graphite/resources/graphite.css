@@ -107,7 +107,7 @@ sup, sub {
 
 sup {
     bottom: 1.5ex;
-    padding: 0 .75ex;
+    padding: 0 0.5ex;
 }
 
 sub {
@@ -399,6 +399,10 @@ body {
 
  .footnotes div:last-child dd :last-child {
      margin-bottom: 0;
+ }
+
+ .footnotes pre {
+     margin: 30px 0;
  }
 
 /**
