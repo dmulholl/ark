@@ -62,7 +62,7 @@ Ivy requires Python 3.8 or later.
 
 My goal is to keep Ivy as small and simple as possible so I almost certainly won't accept pull requests.
 Ivy's plugin system makes it *extremely* flexible, however, so there's a good chance any feature you want to add can be written as an extension.
-(If you find you need an extra event or filter hook to make an extension work let me know and I'll add it.)
+(Let me know if you find you need an extra event or filter hook to make an extension work.)
 
 
 ### License
