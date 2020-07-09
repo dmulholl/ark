@@ -21,14 +21,10 @@ Usage: %s tree [FLAGS]
   instead. Use the --attr option to append the value of an arbitrary attribute,
   e.g.
 
-    $ ivy tree --attr title
-
-  Multiple attributes can be specified, e.g.
-
     $ ivy tree --attr title --attr date
 
 Options:
-  -a, --attr <name>     Attribute(s) to display.
+  -a, --attr <name>     Attribute to display.
   -r, --root <url>      Specify the root node. (Defaults to the site root.)
 
 Flags:
