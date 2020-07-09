@@ -107,7 +107,7 @@ sup, sub {
 
 sup {
     bottom: 1.5ex;
-    padding: 0 .75ex;
+    padding: 0 0.5ex;
 }
 
 sub {
@@ -368,7 +368,7 @@ body {
 
  .footnotes dt {
      display: table-cell;
-     width: 40px;
+     width: 30px;
      text-align: right;
      font-weight: normal;
  }
@@ -399,6 +399,10 @@ body {
 
  .footnotes div:last-child dd :last-child {
      margin-bottom: 0;
+ }
+
+ .footnotes pre {
+     margin: 30px 0;
  }
 
 /**
@@ -495,7 +499,7 @@ th, td {
 
     body {
         width: auto;
-        max-width: 600px;
+        max-width: 700px;
         padding-top: 60px;
     }
 
@@ -524,6 +528,9 @@ th, td {
 
     .masthead .tagline {
         text-align: center;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
         display: none;
     }
 
