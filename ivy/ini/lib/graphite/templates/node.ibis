@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <title>{{ node.meta_title || node.title || site.title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="@root/fonts.css">
-        <link rel="stylesheet" href="@root/graphite.css">
-        <link rel="stylesheet" href="@root/pygments.css">
+        <link rel="stylesheet" href="@root/assets/fonts.css">
+        <link rel="stylesheet" href="@root/assets/graphite.css">
+        <link rel="stylesheet" href="@root/assets/pygments.css">
         {% if node.meta_description %}
         <meta name="description" content="{{{ node.meta_description.strip() }}}">
         {% endif %}
