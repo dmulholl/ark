@@ -115,6 +115,8 @@ def hashsite(sitepath):
 
     def hashdir(dirpath, is_home):
         for entry in os.scandir(dirpath):
+            if entry.name.startswith('.'):
+                continue
             if entry.is_file():
                 if entry.name.endswith(('~', '.swp')):
                     continue
@@ -122,8 +124,6 @@ def hashsite(sitepath):
                 hasher.update(str(mtime).encode())
                 hasher.update(entry.name.encode())
             if entry.is_dir():
-                if is_home and entry.name in ('out', '.git'):
-                    continue
                 hashdir(entry.path, False)
 
     try:
