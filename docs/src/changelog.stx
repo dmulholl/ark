@@ -28,6 +28,8 @@ title: Changelog
 
 * The `is_homepage` flag has been moved to the root page dictionary. The `flags` dictionary has been removed.
 
+* The `debug` theme has been redesigned.
+
 
 
 ### 2.10.0
