@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 # This module contains the default build routine. It creates a single html page
-# in the output directory for each node in the parse tree.
+# in the output directory for each node in the node tree.
 # ------------------------------------------------------------------------------
 
 import os
@@ -33,6 +33,6 @@ def build_site():
     def render(node):
         pages.Page(node).render()
 
-    # Walk the parse tree and pass each node to the render callback.
+    # Walk the node tree and pass each node to the render callback.
     nodes.root().walk(render)
 
