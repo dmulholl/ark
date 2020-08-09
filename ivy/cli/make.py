@@ -37,6 +37,7 @@ template1 = """\
 ---
 title: {title}
 date: {date}
+status: draft
 ---
 
 """
@@ -45,6 +46,7 @@ template2 = """\
 ---
 title: {title}
 date: {date}
+status: draft
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

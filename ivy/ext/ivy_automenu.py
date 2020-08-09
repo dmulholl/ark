@@ -11,8 +11,8 @@
 # lower orders coming first. The default order value is 0. (Note that the
 # homepage is an exception and will always be the first entry in the menu.)
 #
-# If a node has a 'menu_exclude' attribute set to true, it will be excluded
-# from the menu.
+# If a node has a 'menu_exclude' attribute set to true or a 'status' attribute
+# set to 'draft' or 'private' it will be excluded from the menu.
 # ------------------------------------------------------------------------------
 
 import ivy
@@ -33,41 +33,37 @@ def add_automenu(page):
 
 def make_menu():
     menu = ['<ul>\n']
-
     root = ivy.nodes.root()
     title = root.get('menu_title') or root.get('title') or 'Home'
     menu.append(f'<li><a href="@root/">{title}</a></li>\n')
-
-    for child in sorted_children(root):
-        if not child.get('menu_exclude'):
-            add_node(child, menu)
-
+    for entry in sorted_children(root):
+        add_node_to_menu(entry[0], entry[1], menu)
     menu.append('</ul>')
     return ''.join(menu)
 
 
-def add_node(node, menu):
-    title = node.get('menu_title') or node.get('title')
-    if title is None:
-        return
-
+def add_node_to_menu(title, node, menu):
     menu.append('<li>')
     menu.append(f'<a href="{node.url}">{title}</a>')
-
-    if node.has_children:
-        children = []
-        for child in sorted_children(node):
-            if not child.get('menu_exclude'):
-                children.append(child)
-        if children:
-            menu.append('<ul>\n')
-            for child in children:
-                add_node(child, menu)
-            menu.append('</ul>\n')
-
+    if entries := sorted_children(node):
+        menu.append('<ul>\n')
+        for entry in entries:
+            add_node_to_menu(entry[0], entry[1], menu)
+        menu.append('</ul>\n')
     menu.append('</li>\n')
 
 
 def sorted_children(node):
-    children = sorted(node.children, key=lambda n: n.stem)
-    return sorted(children, key=lambda n: n.get('menu_order', 0))
+    children = []
+    for child in node.children:
+        if child.get('menu_exclude'):
+            continue
+        if child.get('status', 'public').lower() in ('draft', 'private'):
+            continue
+        if (title := child.get('menu_title') or child.get('title')) is None:
+            continue
+        children.append((title, child))
+    children.sort(key=lambda entry: entry[1].stem)
+    children.sort(key=lambda entry: entry[1].get('menu_order', 0))
+    return children
+
