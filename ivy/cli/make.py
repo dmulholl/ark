@@ -42,6 +42,7 @@ status: draft
 
 """
 
+
 template2 = """\
 ---
 title: {title}
