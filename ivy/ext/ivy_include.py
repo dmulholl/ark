@@ -13,15 +13,24 @@
 # Markdown then the included content should also be in Markdown or HTML).
 # ------------------------------------------------------------------------------
 
-import shortcodes
-import ivy
 import os
+import ivy
 
-@shortcodes.register('include')
-def handler(node, content, pargs, kwargs):
-    if pargs:
-        path = ivy.site.inc(pargs[0])
-        if os.path.exists(path):
-            with open(path) as file:
-                return file.read()
-    return ''
+try:
+    import shortcodes
+except ImportError:
+    shortcodes = None
+
+
+# The shortcodes module is an optional dependency so we check that it's actually
+# installed before trying to use it.
+if shortcodes:
+
+    @shortcodes.register('include')
+    def handler(node, content, pargs, kwargs):
+        if pargs:
+            path = ivy.site.inc(pargs[0])
+            if os.path.exists(path):
+                with open(path) as file:
+                    return file.read()
+        return ''
