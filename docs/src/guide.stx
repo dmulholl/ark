@@ -83,8 +83,7 @@ correspond to a single node in the parse tree. Node files provide content and me
 
 
 
-
-## Metadata
+## Metadata & Attributes
 
 Ivy has builtin support for node metadata in [YAML][] format; support for additional formats can be added via extensions. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
 
@@ -96,17 +95,17 @@ would be accessible in template files as `node.meta_title`.
 
 All nodes have the following default attributes:
 
-[[ `node.html` ]]
-
-    The node's text content rendered into html.
-
 [[ `node.text` ]]
 
-    The node's raw text content.
+    The node's text content as read from the source file.
+
+[[ `node.html` ]]
+
+    The node's text content after it's been rendered into HTML. (This will only differ from `node.text` if a renderer has been registered for the node file's extension. By default a Markdown renderer is registered for `.md` files and a Syntext renderer for `.stx` files.)
 
 [[ `node.url` ]]
 
-    The node's url.
+    The node's `@root/` url.
 
 
 
@@ -164,6 +163,29 @@ Slugs can be customized sitewide by registering a filter callback on the `slugif
 
 
 
+## Body Classes
+
+Ivy automatically generates a list of useful CSS classes for each page's `<body>` element based on the node's url slugs. For example the node with the url:
+
+    @root/foo/bar/baz//
+
+will have the classes:
+
+    node-foo-bar-baz
+    node-foo-bar
+    node-foo
+    node
+
+You can add your own custom classes for a particular node by adding a comma-separated `classes` list to the node's header, e.g.
+
+    ---
+    classes: foo, bar, baz
+    ---
+
+Note that the homepage node automatically gets the class `homepage`.
+
+
+
 ## Includes
 
 The *includes* directory, `inc`, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntext depending on their extension and the resulting HTML made available for inclusion in template files via the `inc.<name>` attribute.
@@ -198,18 +220,15 @@ See the package's [documentation][mdpkg] for details of its available options.
 
 
 
-
 ### Jinja
 
 Ivy uses the [Jinja2][] package to render template files with a `.jinja` extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a `jinja` attribute.
 
 
 
-
 ### Shortcodes
 
 Ivy uses the [Shortcodes][] package to process shortcodes in node files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
-
 
 
 

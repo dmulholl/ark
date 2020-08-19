@@ -75,13 +75,16 @@ text files into a self-contained website.</p>
 <a href="#nodes">Nodes</a>
 </li>
 <li>
-<a href="#metadata">Metadata</a>
+<a href="#metadata-attributes">Metadata &amp; Attributes</a>
 </li>
 <li>
 <a href="#links">Links</a>
 </li>
 <li>
 <a href="#nodes-slugs-and-urls">Nodes, Slugs, and URLs</a>
+</li>
+<li>
+<a href="#body-classes">Body Classes</a>
 </li>
 <li>
 <a href="#includes">Includes</a>
@@ -198,8 +201,8 @@ correspond to a single node in the parse tree. Node files provide content and me
 <p>
 (Files named <code>index</code> are special &mdash; they correspond to the same node as their parent directory.)
 </p>
-<h2 id="metadata">
-Metadata
+<h2 id="metadata-attributes">
+Metadata &amp; Attributes
 </h2>
 <p>
 Ivy has builtin support for node metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via extensions. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
@@ -218,21 +221,21 @@ All nodes have the following default attributes:
 <dl>
 <div>
 <dt>
-<code>node.html</code>
+<code>node.text</code>
 </dt>
 <dd>
 <p>
-The node's text content rendered into html.
+The node's text content as read from the source file.
 </p>
 </dd>
 </div>
 <div>
 <dt>
-<code>node.text</code>
+<code>node.html</code>
 </dt>
 <dd>
 <p>
-The node's raw text content.
+The node's text content after it's been rendered into HTML. (This will only differ from <code>node.text</code> if a renderer has been registered for the node file's extension. By default a Markdown renderer is registered for <code>.md</code> files and a Syntext renderer for <code>.stx</code> files.)
 </p>
 </dd>
 </div>
@@ -242,7 +245,7 @@ The node's raw text content.
 </dt>
 <dd>
 <p>
-The node's url.
+The node's <code>@root/</code> url.
 </p>
 </dd>
 </div>
@@ -287,6 +290,35 @@ slug: my-custom-slug
 </pre>
 <p>
 Slugs can be customized sitewide by registering a filter callback on the <code>slugify</code> <a href="extensions.html#event-filter-hooks">filter hook</a>.
+</p>
+<h2 id="body-classes">
+Body Classes
+</h2>
+<p>
+Ivy automatically generates a list of useful CSS classes for each page's <code>&lt;body&gt;</code> element based on the node's url slugs. For example the node with the url:
+</p>
+<pre>
+@root/foo/bar/baz//
+</pre>
+<p>
+will have the classes:
+</p>
+<pre>
+node-foo-bar-baz
+node-foo-bar
+node-foo
+node
+</pre>
+<p>
+You can add your own custom classes for a particular node by adding a comma-separated <code>classes</code> list to the node's header, e.g.
+</p>
+<pre>
+---
+classes: foo, bar, baz
+---
+</pre>
+<p>
+Note that the homepage node automatically gets the class <code>homepage</code>.
 </p>
 <h2 id="includes">
 Includes
