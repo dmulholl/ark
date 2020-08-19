@@ -29,10 +29,12 @@ def build_site():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Callback to render a single node instance.
-    def render(node):
-        pages.Page(node).render()
+    # Callback to handle individual Node instances.
+    def handle_node(node):
+        node.render()
+        page = pages.Page(node)
+        page.write()
 
     # Walk the node tree and pass each node to the render callback.
-    nodes.root().walk(render)
+    nodes.root().walk(handle_node)
 

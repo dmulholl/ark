@@ -30,7 +30,7 @@ class Page(dict):
         self['is_homepage'] = node.parent is None
 
     # Render the page into html and write the html to disk.
-    def render(self):
+    def write(self):
         self['filepath'] = self.get_filepath()
         self['classes'] = self.get_class_list()
         self['templates'] = self.get_template_list()

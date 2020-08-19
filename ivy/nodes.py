@@ -25,15 +25,11 @@ def root() -> Node:
     if _root is None:
         _root = Node()
         _parse_node_directory(_root, site.src())
-        _root.init()
-        events.fire('init_tree', _root)
     return _root
 
 
-# Returns the node corresponding to the specified url if it exists.
+# Returns the node corresponding to the specified @root/ url if it exists.
 def node(url: str) -> Optional[Node]:
-    if not url.startswith('@root/'):
-        return None
     node = root()
     for slug in url.rstrip('/').split('/')[1:]:
         if (node := node.child(slug)) is None:
@@ -105,19 +101,12 @@ class Node():
     def update(self, other: Dict[str, Any]):
         self.meta.update(other)
 
-    # This method should be called on a new node after its metadata and .text
-    # attributes have been assigned. It initializes the node by filtering its
-    # text and rendering it into html. As a convenience, calling this method on
-    # the root node of a tree will automatically initialize all descendant nodes.
-    # (In this case the filter and event hooks fire 'bottom up', i.e. when they
-    # fire on a node, all its decendents have already been initialized.)
-    def init(self):
-        for node in self.children:
-            node.init()
+    # Renders the node's text into html.
+    def render(self) -> Node:
         self.text = filters.apply('node_text', self.text, self)
         html = renderers.render(self.text, self.ext, self.filepath)
         self.html = filters.apply('node_html', html, self)
-        events.fire('init_node', self)
+        return self
 
     # Call the specified function on the node and all its descendants.
     def walk(self, callback: Callable[['Node'], None]):
@@ -169,7 +158,7 @@ class Node():
 #   dirpath (str/Path): path to the directory as a string or Path instance.
 def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
 
-    # Loop over the directory's subdirectories.
+    # Parse subdirectories.
     for path in (p for p in Path(dirpath).iterdir() if p.is_dir()):
         childnode = Node()
         childnode.stem = path.stem
@@ -178,7 +167,7 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
         dirnode.children.append(childnode)
         _parse_node_directory(childnode, path)
 
-    # Loop over the directory's files. Skip dotfiles.
+    # Parse files. Skip dotfiles.
     for path in (p for p in Path(dirpath).iterdir() if p.is_file()):
         if path.stem.startswith('.'):
             continue
