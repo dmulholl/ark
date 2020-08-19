@@ -7,18 +7,9 @@ import sys
 from typing import Dict, Callable
 
 
-# This dictionary maps text formats to registered rendering-engine callbacks.
-# We include a default set of null renderers for various common file
-# extensions. (These can be overridden by plugins if desired.) A null renderer
-# will simply pass the text straight through without making any changes.
-_callbacks: Dict[str, Callable] = {
-    'css': lambda s: s,
-    'html': lambda s: s,
-    'js': lambda s: s,
-    'meta': lambda s: s,
-    'txt': lambda s: s,
-    '': lambda s: s,
-}
+# This dictionary maps text formats identified by file extension to callback
+# functions which render text into html.
+_callbacks: Dict[str, Callable] = {}
 
 
 # Decorator function for registering rendering-engine callbacks. A rendering-
@@ -43,8 +34,8 @@ def register(*extensions: str) -> Callable:
     return register_callback
 
 
-# Render a string and return the result. The `source` parameter is only used
-# when reporting errors.
+# Renders a string into html and return the result. The `source` parameter is
+# only used when reporting errors.
 def render(text: str, ext: str, source: str = '') -> str:
     if ext in _callbacks:
         try:
@@ -55,11 +46,10 @@ def render(text: str, ext: str, source: str = '') -> str:
             if (context := err.__context__):
                 msg += f"\n  Cause: {context.__class__.__name__}: {context}"
             sys.exit(msg)
-    else:
-        sys.exit(f"Error: no registered renderer for '.{ext}'.")
+    return text
 
 
-# Return true if a rendering-engine callback has been registered for the
+# Returns true if a rendering-engine callback has been registered for the
 # specified file extension.
 def is_registered_ext(ext: str) -> bool:
     return ext in _callbacks

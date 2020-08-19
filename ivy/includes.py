@@ -24,8 +24,7 @@ def load() -> Dict[str, str]:
         if os.path.isdir(site.inc()):
             for path in pathlib.Path(site.inc()).iterdir():
                 stem, ext = path.stem, path.suffix.strip('.')
-                if renderers.is_registered_ext(ext):
-                    text, _ = loader.load(path)
-                    key = stem.lower().replace(' ', '_').replace('-', '_')
-                    _cache[key] = renderers.render(text, ext, str(path))
+                text, _ = loader.load(path)
+                key = stem.lower().replace(' ', '_').replace('-', '_')
+                _cache[key] = renderers.render(text, ext, str(path))
     return _cache

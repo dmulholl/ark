@@ -178,12 +178,9 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
         dirnode.children.append(childnode)
         _parse_node_directory(childnode, path)
 
-    # Loop over the directory's files. We skip dotfiles and file types for
-    # which we don't have a registered rendering-engine callback.
+    # Loop over the directory's files. Skip dotfiles.
     for path in (p for p in Path(dirpath).iterdir() if p.is_file()):
         if path.stem.startswith('.'):
-            continue
-        if not renderers.is_registered_ext(path.suffix.strip('.')):
             continue
         _parse_node_file(dirnode, path)
 
