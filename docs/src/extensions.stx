@@ -6,7 +6,7 @@ title: Extensions
 [ibis]: https://github.com/dmulholl/ibis
 [markdown]: https://en.wikipedia.org/wiki/Markdown
 [syntext]: http://www.dmulholl.com/docs/syntext/
-[shortcodes]: http://www.dmulholl.com/docs/shortcodes/
+[shortcodes]: https://github.com/dmulholl/shortcodes
 
 ::: insert toc
 
@@ -138,7 +138,6 @@ Ivy ships with a sample shortcode plugin which registers an `\[% include %]` sho
 Plugins can register custom shortcode tags using the `@shortcodes.register()` decorator:
 
 ::: code python
-
     import shortcodes
 
     @shortcodes.register('tag')
@@ -149,7 +148,6 @@ Plugins can register custom shortcode tags using the `@shortcodes.register()` de
 Specifying a closing tag in the decorator gives the new shortcode block scope:
 
 ::: code python
-
     @shortcodes.register('tag', 'endtag')
     def handler(node, content, pargs, kwargs):
         ...

@@ -86,25 +86,25 @@ correspond to a single node in the parse tree. Node files provide content and me
 
 ## Metadata
 
-Ivy has builtin support for node metadata in [YAML][] format; support for additional formats can be added via extensions. Note that a node file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute
+Ivy has builtin support for node metadata in [YAML][] format; support for additional formats can be added via extensions. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
 
     ---
-    Date of Birth: 1999-12-31
+    Meta Title: Important Document
     ---
 
-would be accessible in template files as `node.date_of_birth`.
+would be accessible in template files as `node.meta_title`.
 
 All nodes have the following default attributes:
 
-[[ `html` ]]
+[[ `node.html` ]]
 
     The node's text content rendered into html.
 
-[[ `text` ]]
+[[ `node.text` ]]
 
     The node's raw text content.
 
-[[ `url` ]]
+[[ `node.url` ]]
 
     The node's url.
 

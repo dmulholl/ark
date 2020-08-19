@@ -202,15 +202,15 @@ correspond to a single node in the parse tree. Node files provide content and me
 Metadata
 </h2>
 <p>
-Ivy has builtin support for node metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via extensions. Note that a node file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute
+Ivy has builtin support for node metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via extensions. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
 </p>
 <pre>
 ---
-Date of Birth: 1999-12-31
+Meta Title: Important Document
 ---
 </pre>
 <p>
-would be accessible in template files as <code>node.date_of_birth</code>.
+would be accessible in template files as <code>node.meta_title</code>.
 </p>
 <p>
 All nodes have the following default attributes:
@@ -218,7 +218,7 @@ All nodes have the following default attributes:
 <dl>
 <div>
 <dt>
-<code>html</code>
+<code>node.html</code>
 </dt>
 <dd>
 <p>
@@ -228,7 +228,7 @@ The node's text content rendered into html.
 </div>
 <div>
 <dt>
-<code>text</code>
+<code>node.text</code>
 </dt>
 <dd>
 <p>
@@ -238,7 +238,7 @@ The node's raw text content.
 </div>
 <div>
 <dt>
-<code>url</code>
+<code>node.url</code>
 </dt>
 <dd>
 <p>
