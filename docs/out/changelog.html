@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev2</p>
+            <p class="version">Version 3.0.0.dev3</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -106,6 +106,15 @@ The <code>is_homepage</code> flag has been moved to the root page dictionary. Th
 </li>
 <li>
 The <code>debug</code> theme has been redesigned.
+</li>
+<li>
+The <code>renderers</code> module now defaults to passing unregistered text formats through unchanged.
+</li>
+<li>
+The <code>Node.init()</code> method has been replaced by <code>Node.render()</code>. The <code>init_node</code> and <code>init_tree</code> event hooks have been removed.
+</li>
+<li>
+The <code>Page.render()</code> method has been renamed <code>Page.write()</code>.
 </li>
 </ul>
 <h3 id="id-2-10-0">

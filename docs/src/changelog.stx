@@ -30,6 +30,12 @@ title: Changelog
 
 * The `debug` theme has been redesigned.
 
+* The `renderers` module now defaults to passing unregistered text formats through unchanged.
+
+* The `Node.init()` method has been replaced by `Node.render()`. The `init_node` and `init_tree` event hooks have been removed.
+
+* The `Page.render()` method has been renamed `Page.write()`.
+
 
 
 ### 2.10.0
