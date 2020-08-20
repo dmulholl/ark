@@ -89,7 +89,7 @@ text files into a self-contained website.</p>
 <a href="#node-content">Node Content</a>
 </li>
 <li>
-<a href="#node-meta">Node Meta</a>
+<a href="#node-metadata">Node Metadata</a>
 </li>
 </ul>
 </li>
@@ -209,8 +209,8 @@ Ivy has builtin support for node files written in <a href="https://en.wikipedia.
 <p>
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
 </p>
-<h3 id="node-meta">
-Node Meta
+<h3 id="node-metadata">
+Node Metadata
 </h3>
 <p>
 Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the <code>file_text</code> filter hook.
@@ -290,7 +290,7 @@ Positional and keyword arguments are passed as strings. The handler function its
 Note that shortcodes are processed <i>before</i> node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
 </p>
 <p>
-See the <a href="https://github.com/dmulholl/shortcodes">shortcodes package documentation</a> for further details.
+See the <a href="https://github.com/dmulholl/shortcodes">shortcodes package</a> documentation for further details.
 </p>
         </article>
         

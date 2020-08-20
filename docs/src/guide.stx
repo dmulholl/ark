@@ -85,7 +85,7 @@ correspond to a single node in the parse tree. Node files provide content and me
 
 ## Metadata & Attributes
 
-Ivy has builtin support for node metadata in [YAML][] format; support for additional formats can be added via extensions. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
+Ivy has builtin support for node metadata in [YAML][] format. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
 
     ---
     Meta Title: Important Document

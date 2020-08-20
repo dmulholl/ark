@@ -108,7 +108,7 @@ A rendering-engine callback should accept a single string argument containing pl
 
 
 
-### Node Meta
+### Node Metadata
 
 Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the `file_text` filter hook.
 
@@ -165,5 +165,5 @@ Positional and keyword arguments are passed as strings. The handler function its
 
 Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
 
-See the [shortcodes package documentation][shortcodes] for further details.
+See the [shortcodes package][shortcodes] documentation for further details.
 
