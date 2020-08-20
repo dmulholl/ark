@@ -89,6 +89,12 @@ text files into a self-contained website.</p>
 <li>
 <a href="#why-is-it-called-ivy">Why is it called Ivy?</a>
 </li>
+<li>
+<a href="#how-do-i-generate-absolute-urls">How do I generate absolute urls?</a>
+</li>
+<li>
+<a href="#how-do-i-specify-a-custom-file-extension">How do I specify a custom file extension?</a>
+</li>
 </ul>
 <h3 id="can-i-build-a-blog-using-ivy">
 Can I build a blog using Ivy?
@@ -225,6 +231,30 @@ Why is it called Ivy?
 </h3>
 <p>
 I liked the name Industrial Vellum, but it was too long. Also, the branching tree structure of the nodes reminded me of ivy.
+</p>
+<h3 id="how-do-i-generate-absolute-urls">
+How do I generate absolute urls?
+</h3>
+<p>
+You can tell Ivy to generate absolute urls by specifying an explicit root domain in your site configuration file, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
+</pre>
+<p>
+Specify a single forward slash to generate site-relative urls.
+</p>
+<h3 id="how-do-i-specify-a-custom-file-extension">
+How do I specify a custom file extension?
+</h3>
+<p>
+You can specify a custom file extension for output files in your site configuration file, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.htm&quot;</span>
+</pre>
+<p>
+Specify a single forward slash to generate directory-style urls.
 </p>
         </article>
         

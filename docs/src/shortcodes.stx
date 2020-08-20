@@ -102,10 +102,10 @@ This is a handy shortcode for building sitemaps --- it assembles a list of links
         target_node = ivy.nodes.node(pargs[0])
         for child in target_node.children:
             title = child.get('title', 'Missing Title')
-            links.append(f"* [{title}]({child.url})")
-        return "\n".join(links)
+            links.append(f'* [{title}]({child.url})')
+        return '\n'.join(links)
 
-To use this shortcode, just supply the `@root` url of the target node, e.g.
+To use this shortcode, just supply the `@root/` url of the target node, e.g.
 
     \[% list_children @root/foo/bar// %]
 
