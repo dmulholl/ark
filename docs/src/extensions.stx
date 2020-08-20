@@ -7,6 +7,7 @@ title: Extensions
 [markdown]: https://en.wikipedia.org/wiki/Markdown
 [syntext]: http://www.dmulholl.com/docs/syntext/
 [shortcodes]: https://github.com/dmulholl/shortcodes
+[mdpkg]: https://pypi.org/project/Markdown/
 
 ::: insert toc
 
@@ -121,4 +122,44 @@ Ivy has builtin support for YAML file headers. Extensions can add support for ad
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 
 The `file_text` filter hook can be found in the `ivy/loader.py` file.
+
+
+
+## Extension Options
+
+
+### Markdown
+
+Ivy uses the [Markdown][mdpkg] package to render node files with a `.md` extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a `markdown` attribute, e.g.
+
+::: code python
+    markdown = { 'extensions': ['markdown.extensions.extra'] }
+
+See the package's documentation for details of the available options.
+
+
+
+### Jinja
+
+Ivy uses the [Jinja][] package to render template files with a `.jinja` extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a `jinja` attribute.
+
+
+
+### Shortcodes
+
+Ivy uses the [Shortcodes][] package to process shortcodes in node files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
+
+
+
+### Automenu
+
+The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via the `automenu` attribute. This menu can be customized in three ways:
+
+(*) If a node has a `menu_title` attribute, its value will be used in the menu in place of the node's `title`.
+
+(*) By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer `menu_order` attribute (positive or negative) with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+
+(*) If a node has a `menu_exclude` attribute set to true it (and its children) will be omitted from the menu.
+
+Only nodes which have a `menu_title` or `title` attribute are included in the menu.
 

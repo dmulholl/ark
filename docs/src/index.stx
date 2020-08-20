@@ -65,6 +65,29 @@ Ivy's plugin system makes it *extremely* flexible, however, so there's a good ch
 (Let me know if you find you need an extra event or filter hook to make an extension work.)
 
 
+
 ### License
 
 This work has been placed in the public domain.
+
+
+
+### Dependencies
+
+Installing Ivy via `pip` automatically installs the following required dependencies:
+
+* [Argslib](https://pypi.python.org/pypi/argslib)
+
+Installing via `pip` also automatically installs the following optional dependencies:
+
+* [Colorama](https://pypi.org/project/colorama/)
+* [Ibis](https://pypi.python.org/pypi/ibis)
+* [Jinja](https://pypi.python.org/pypi/Jinja2)
+* [Markdown](https://pypi.python.org/pypi/Markdown)
+* [Pygments](https://pypi.python.org/pypi/Pygments)
+* [PyYAML](https://pypi.python.org/pypi/PyYAML)
+* [Shortcodes](https://pypi.python.org/pypi/shortcodes)
+* [Syntext](https://pypi.python.org/pypi/syntext)
+
+Ivy will run without any of these optional dependencies installed but the associated functionality will not be available.
+

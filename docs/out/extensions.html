@@ -96,6 +96,23 @@ text files into a self-contained website.</p>
 </li>
 </ul>
 </li>
+<li>
+<a href="#extension-options">Extension Options</a>
+<ul>
+<li>
+<a href="#markdown">Markdown</a>
+</li>
+<li>
+<a href="#jinja">Jinja</a>
+</li>
+<li>
+<a href="#shortcodes">Shortcodes</a>
+</li>
+<li>
+<a href="#automenu">Automenu</a>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="installing-extensions">
 Installing Extensions
@@ -226,6 +243,59 @@ This filter fires each time a node file is loaded from disk; it passes the raw f
 </p>
 <p>
 The <code>file_text</code> filter hook can be found in the <code>ivy/loader.py</code> file.
+</p>
+<h2 id="extension-options">
+Extension Options
+</h2>
+<h3 id="markdown">
+Markdown
+</h3>
+<p>
+Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a <code>markdown</code> attribute, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
+</pre>
+<p>
+See the package's documentation for details of the available options.
+</p>
+<h3 id="jinja">
+Jinja
+</h3>
+<p>
+Ivy uses the <a href="http://jinja.pocoo.org">Jinja</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
+</p>
+<h3 id="shortcodes">
+Shortcodes
+</h3>
+<p>
+Ivy uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> package to process shortcodes in node files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
+</p>
+<h3 id="automenu">
+Automenu
+</h3>
+<p>
+The bundled Automenu extension automatically generates a menu containing links to every node in the site. The menu can be accessed in templates via the <code>automenu</code> attribute. This menu can be customized in three ways:
+</p>
+<ul>
+<li>
+<p>
+If a node has a <code>menu_title</code> attribute, its value will be used in the menu in place of the node's <code>title</code>.
+</p>
+</li>
+<li>
+<p>
+By default entries are ordered alphabetically by filename. Entry order can be customized by giving nodes an integer <code>menu_order</code> attribute (positive or negative) with lower numbers coming first. The default order value is 0. (Note that the homepage is an exception and will always be the first entry in the menu.)
+</p>
+</li>
+<li>
+<p>
+If a node has a <code>menu_exclude</code> attribute set to true it (and its children) will be omitted from the menu.
+</p>
+</li>
+</ul>
+<p>
+Only nodes which have a <code>menu_title</code> or <code>title</code> attribute are included in the menu.
 </p>
         </article>
         
