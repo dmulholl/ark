@@ -13,6 +13,8 @@ from . import utils
 from . import pages
 
 
+# The `main_build` event is fired by the `$ ivy build` command. (It's one of
+# three build events: `init_build`, `main_build`, `exit_build`.)
 @events.register('main_build')
 def build_site():
 
@@ -29,12 +31,12 @@ def build_site():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Callback to handle individual Node instances.
+    # Callback to handle individual nodes.
     def handle_node(node):
         node.render()
         page = pages.Page(node)
         page.write()
 
-    # Walk the node tree and pass each node to the render callback.
+    # Walk the node tree and pass each node to the handler.
     nodes.root().walk(handle_node)
 
