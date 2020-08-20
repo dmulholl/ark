@@ -36,6 +36,8 @@ title: Changelog
 
 * The `Page.render()` method has been renamed `Page.write()`.
 
+* The sample shortcode extension has been replaced by a set of examples in the documentation.
+
 
 
 ### 2.10.0

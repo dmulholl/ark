@@ -1,0 +1,114 @@
+---
+title: Shortcodes
+---
+
+[shortcodes]: https://github.com/dmulholl/shortcodes
+
+Ivy has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
+
+    \[% tag arg1 key=arg2 %]
+
+Shortcodes are powerful --- you can use them to inject content into a node's text or to customize the formatting of a block of content.
+
+
+
+### Registering Shortcodes
+
+Shortcodes are implemented by the [shortcodes][] package, an external library.
+An Ivy extension can register a new shortcode tag using the shortcode package's `@register()` decorator:
+
+::: code python
+    import shortcodes
+
+    @shortcodes.register('tag')
+    def handler(node, content, pargs, kwargs):
+        ...
+        return replacement_text
+
+The handler function should accept four arguments:
+
+1. The `Node` instance containing the shortcode.
+2. A string containing the shortcode's content, if the shortcode has block scope.
+3. A list of positional arguments.
+4. A dictionary of keyword arguments.
+
+Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
+
+Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
+
+See the shortcode package's [documentation][shortcodes] for further details.
+
+
+
+### Example --- `include_raw`
+
+Here's a sample shortcode you could use to inject the raw content of a file from the site's includes directory, `inc`, directly into a node file:
+
+::: code python
+    import ivy
+    import shortcodes
+
+    @shortcodes.register('include_raw')
+    def handler(node, content, pargs, kwargs):
+        if pargs:
+            path = ivy.site.inc(pargs[0])
+            if os.path.isfile(path):
+                with open(path) as file:
+                    return file.read()
+        return ''
+
+To use this shortcode, just supply the name of the file you want to include, e.g.
+
+    \[% include_raw menu.md %]
+
+The shortcode will be replaced by the content of the file.
+
+
+
+### Example --- `include_rendered`
+
+Ivy already loads and renders the content of files from the includes directory to make it available in template files. What if you want to include this pre-rendered content in a node file?
+
+::: code python
+    import ivy
+    import shortcodes
+
+    @shortcodes.register('include_rendered')
+    def handler(node, content, pargs, kwargs):
+        includes = ivy.includes.load()
+        if pargs and pargs[0] in includes:
+            return includes[pargs[0]]
+        return ''
+
+To use this shortcode, just supply the name of the file you want to include, leaving off the file extension, e.g.
+
+    \[% include_rendered menu %]
+
+The shortcode will be replaced by the rendered content of the file.
+
+
+
+### Example --- `list_children`
+
+This is a handy shortcode for building sitemaps --- it assembles a list of links to all the children of a target node:
+
+::: code python
+    import ivy
+    import shortcodes
+
+    @shortcodes.register('list_children')
+    def handler(node, content, pargs, kwargs):
+        links = []
+        target_node = ivy.nodes.node(pargs[0])
+        for child in target_node.children:
+            title = child.get('title', 'Missing Title')
+            links.append(f"* [{title}]({child.url})")
+        return "\n".join(links)
+
+To use this shortcode, just supply the `@root/` url of the target node, e.g.
+
+    \[% list_children @root/foo/bar// %]
+
+The shortcode will be replaced by the list of links.
+
+

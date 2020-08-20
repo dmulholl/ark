@@ -13,7 +13,7 @@ title: Extensions
 
 ## Installing Extensions
 
-An extension/plugin is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
+An extension is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
 
 (*) You can add an extensions directory named `ext` to your site's root directory. Extension modules placed in this `ext` directory will be loaded automatically by Ivy.
 
@@ -74,13 +74,13 @@ Note that this hook supplies us with the `Node` instance itself as an additional
 
 ## Rendering & Parsing Engines
 
-Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][] template-engine for handling `.jinja` template files. Plugins can register support for additional rendering and parsing engines using a system of `@register` decorators.
+Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][] template-engine for handling `.jinja` template files. Extensions can register support for additional rendering and parsing engines using a system of `@register` decorators.
 
 
 
 ### Templates
 
-Ivy has builtin support for [Jinja][] and [Ibis][] templates. Plugins can register support for additional formats using the `@templates.register()` decorator. Template-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for [Jinja][] and [Ibis][] templates. Extensions can register support for additional formats using the `@templates.register()` decorator. Template-engine callbacks are registered per file-extension, e.g.
 
 
 ::: code python
@@ -95,7 +95,7 @@ A template-engine callback should accept a `Page` object and a template filename
 
 ### Node Content
 
-Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Extensions can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 
 ::: code python
@@ -110,7 +110,7 @@ A rendering-engine callback should accept a single string argument containing pl
 
 ### Node Metadata
 
-Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the `file_text` filter hook.
+Ivy has builtin support for YAML file headers. Extensions can add support for additional formats by preprocessing file content on the `file_text` filter hook.
 
 ::: code python
     @ivy.filters.register('file_text')
@@ -121,49 +121,4 @@ Ivy has builtin support for YAML file headers. Plugins can add support for addit
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 
 The `file_text` filter hook can be found in the `ivy/loader.py` file.
-
-
-## Shortcodes
-
-Ivy has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
-
-    \[% tag arg1 key=arg2 %]  ...  \[% endtag %]
-
-Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
-
-Ivy ships with a sample shortcode plugin which registers an `\[% include %]` shortcode. You can use this shortcode to inject the content of files from your site's `inc` directory directly into a node's text, e.g.
-
-    \[% include foobar.md %]
-
-Plugins can register custom shortcode tags using the `@shortcodes.register()` decorator:
-
-::: code python
-    import shortcodes
-
-    @shortcodes.register('tag')
-    def handler(node, content, pargs, kwargs):
-        ...
-        return replacement_text
-
-Specifying a closing tag in the decorator gives the new shortcode block scope:
-
-::: code python
-    @shortcodes.register('tag', 'endtag')
-    def handler(node, content, pargs, kwargs):
-        ...
-        return replacement_text
-
-Handler functions should accept four arguments:
-
-1. The `Node` instance containing the shortcode.
-2. A string containing the shortcode's content, if the shortcode has block
-   scope.
-3. A list of positional arguments.
-4. A dictionary of keyword arguments.
-
-Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
-
-Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
-
-See the [shortcodes package][shortcodes] documentation for further details.
 

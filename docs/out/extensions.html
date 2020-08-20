@@ -35,13 +35,16 @@ text files into a self-contained website.</p>
 <a href="quickstart.html">Quickstart</a>
 </li>
 <li>
-<a href="guide.html">Guide</a>
+<a href="sites.html">Building Sites</a>
 </li>
 <li>
 <a href="themes.html">Themes</a>
 </li>
 <li>
 <a href="extensions.html">Extensions</a>
+</li>
+<li>
+<a href="shortcodes.html">Shortcodes</a>
 </li>
 <li>
 <a href="faq.html">FAQ</a>
@@ -93,15 +96,12 @@ text files into a self-contained website.</p>
 </li>
 </ul>
 </li>
-<li>
-<a href="#shortcodes">Shortcodes</a>
-</li>
 </ul>
 <h2 id="installing-extensions">
 Installing Extensions
 </h2>
 <p>
-An extension/plugin is a Python module or package that extends Ivy's functionality. You can install plugins for a site in one of two ways.
+An extension is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
 </p>
 <ul>
 <li>
@@ -177,13 +177,13 @@ Note that this hook supplies us with the <code>Node</code> instance itself as an
 Rendering &amp; Parsing Engines
 </h2>
 <p>
-Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
+Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Extensions can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
 </p>
 <h3 id="templates">
 Templates
 </h3>
 <p>
-Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Extensions can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
@@ -198,7 +198,7 @@ A template-engine callback should accept a <code>Page</code> object and a templa
 Node Content
 </h3>
 <p>
-Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/">Syntext</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/">Syntext</a>. Extensions can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
@@ -213,7 +213,7 @@ A rendering-engine callback should accept a single string argument containing pl
 Node Metadata
 </h3>
 <p>
-Ivy has builtin support for YAML file headers. Plugins can add support for additional formats by preprocessing file content on the <code>file_text</code> filter hook.
+Ivy has builtin support for YAML file headers. Extensions can add support for additional formats by preprocessing file content on the <code>file_text</code> filter hook.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
@@ -226,71 +226,6 @@ This filter fires each time a node file is loaded from disk; it passes the raw f
 </p>
 <p>
 The <code>file_text</code> filter hook can be found in the <code>ivy/loader.py</code> file.
-</p>
-<h2 id="shortcodes">
-Shortcodes
-</h2>
-<p>
-Ivy has builtin support for WordPress-style <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:
-</p>
-<pre>
-[% tag arg1 key=arg2 %]  ...  [% endtag %]
-</pre>
-<p>
-Shortcodes are powerful; you can use them to inject content into a node's text or to customize the formatting of a block of content.
-</p>
-<p>
-Ivy ships with a sample shortcode plugin which registers an <code>[% include %]</code> shortcode. You can use this shortcode to inject the content of files from your site's <code>inc</code> directory directly into a node's text, e.g.
-</p>
-<pre>
-[% include foobar.md %]
-</pre>
-<p>
-Plugins can register custom shortcode tags using the <code>@shortcodes.register()</code> decorator:
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">shortcodes</span>
-
-<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="k">return</span> <span class="n">replacement_text</span>
-</pre>
-<p>
-Specifying a closing tag in the decorator gives the new shortcode block scope:
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="s1">&#39;endtag&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="k">return</span> <span class="n">replacement_text</span>
-</pre>
-<p>
-Handler functions should accept four arguments:
-</p>
-<ol>
-<li>
-The <code>Node</code> instance containing the shortcode.
-</li>
-<li>
-A string containing the shortcode's content, if the shortcode has block
-scope.
-</li>
-<li>
-A list of positional arguments.
-</li>
-<li>
-A dictionary of keyword arguments.
-</li>
-</ol>
-<p>
-Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
-</p>
-<p>
-Note that shortcodes are processed <i>before</i> node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
-</p>
-<p>
-See the <a href="https://github.com/dmulholl/shortcodes">shortcodes package</a> documentation for further details.
 </p>
         </article>
         

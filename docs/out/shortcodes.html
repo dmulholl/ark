@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Shortcodes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/fonts.css">
+        <link rel="stylesheet" href="assets/graphite.css">
+        <link rel="stylesheet" href="assets/pygments.css">
+        
+        
+    </head>
+    <body class="node-shortcodes node">
+        <header class="masthead">
+            <h1><a href="index.html">Ivy</a></h1>
+            
+            <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
+text files into a self-contained website.</p>
+            
+            
+            <p class="version">Version 3.0.0.dev3</p>
+            
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="sites.html">Building Sites</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="extensions.html">Extensions</a>
+</li>
+<li>
+<a href="shortcodes.html">Shortcodes</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+<li>
+<a href="changelog.html">Changelog</a>
+</li>
+<li>
+<a href="license.html">License</a>
+</li>
+<li>
+<a href="https://github.com/dmulholl/ivy">Github</a>
+</li>
+</ul>
+            </nav>
+        </header>
+        <article class="main">
+            <header class="title">
+                <h1>Shortcodes</h1>
+                
+                <hr>
+            </header>
+            <p>
+Ivy has builtin support for WordPress-style <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:
+</p>
+<pre>
+[% tag arg1 key=arg2 %]
+</pre>
+<p>
+Shortcodes are powerful &mdash; you can use them to inject content into a node's text or to customize the formatting of a block of content.
+</p>
+<h3 id="registering-shortcodes">
+Registering Shortcodes
+</h3>
+<p>
+Shortcodes are implemented by the <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> package, an external library.
+An Ivy extension can register a new shortcode tag using the shortcode package's <code>@register()</code> decorator:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">shortcodes</span>
+
+<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">replacement_text</span>
+</pre>
+<p>
+The handler function should accept four arguments:
+</p>
+<ol>
+<li>
+The <code>Node</code> instance containing the shortcode.
+</li>
+<li>
+A string containing the shortcode's content, if the shortcode has block scope.
+</li>
+<li>
+A list of positional arguments.
+</li>
+<li>
+A dictionary of keyword arguments.
+</li>
+</ol>
+<p>
+Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
+</p>
+<p>
+Note that shortcodes are processed <i>before</i> node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
+</p>
+<p>
+See the shortcode package's <a href="https://github.com/dmulholl/shortcodes">documentation</a> for further details.
+</p>
+<h3 id="example-include-raw">
+Example &mdash; <code>include_raw</code>
+</h3>
+<p>
+Here's a sample shortcode you could use to inject the raw content of a file from the site's includes directory, <code>inc</code>, directly into a node file:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">shortcodes</span>
+
+<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_raw&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pargs</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">inc</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+</pre>
+<p>
+To use this shortcode, just supply the name of the file you want to include, e.g.
+</p>
+<pre>
+[% include_raw menu.md %]
+</pre>
+<p>
+The shortcode will be replaced by the content of the file.
+</p>
+<h3 id="example-include-rendered">
+Example &mdash; <code>include_rendered</code>
+</h3>
+<p>
+Ivy already loads and renders the content of files from the includes directory to make it available in template files. What if you want to include this pre-rendered content in a node file?
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">shortcodes</span>
+
+<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_rendered&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">includes</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">includes</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">pargs</span> <span class="ow">and</span> <span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">includes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">includes</span><span class="p">[</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+</pre>
+<p>
+To use this shortcode, just supply the name of the file you want to include, leaving off the file extension, e.g.
+</p>
+<pre>
+[% include_rendered menu %]
+</pre>
+<p>
+The shortcode will be replaced by the rendered content of the file.
+</p>
+<h3 id="example-list-children">
+Example &mdash; <code>list_children</code>
+</h3>
+<p>
+This is a handy shortcode for building sitemaps &mdash; it assembles a list of links to all the children of a target node:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">shortcodes</span>
+
+<span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;list_children&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">target_node</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">target_node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Missing Title&#39;</span><span class="p">)</span>
+        <span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;* [</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">child</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</pre>
+<p>
+To use this shortcode, just supply the <code>@root/</code> url of the target node, e.g.
+</p>
+<pre>
+[% list_children @root/foo/bar// %]
+</pre>
+<p>
+The shortcode will be replaced by the list of links.
+</p>
+        </article>
+        
+    </body>
+</html>
