@@ -56,7 +56,7 @@ setup(
         'jinja2 ~= 2.0',
         'syntext ~= 2.0',
         'ibis ~= 1.6',
-        'shortcodes ~= 2.1',
+        'shortcodes ~= 3.0',
         'colorama',
         'argslib',
     ],
