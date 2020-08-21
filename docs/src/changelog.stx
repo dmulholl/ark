@@ -38,6 +38,8 @@ title: Changelog
 
 * The sample shortcode extension has been replaced by a set of examples in the documentation.
 
+* The [shortcodes](https://github.com/dmulholl/shortcodes) dependency version has been upgraded to 3.0. Shortcode handler functions will need to be updated to reflect the updated API.
+
 
 
 ### 2.10.0

@@ -270,7 +270,7 @@ slug: my-custom-slug
 ---
 </pre>
 <p>
-Slugs can be customized sitewide by registering a filter callback on the <code>slugify</code> <a href="extensions.html#event-filter-hooks">filter hook</a>.
+Slugs can be customized sitewide by registering a filter callback on the <code>slugify</code> <a href="extensions.html#event-filter-hooks">filter hook</a>. (You can find this hook in the <code>ivy/utils.py</code> file.)
 </p>
 <h3 id="classes">
 Classes
@@ -305,10 +305,10 @@ Note that the homepage node automatically gets the class <code>homepage</code>.
 Includes
 </h3>
 <p>
-The <i>includes</i> directory, <code>inc</code>, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntext depending on their extension and the resulting HTML made available for inclusion in templates via an <code>inc.&lt;filename&gt;</code> variable.
+The <i>includes</i> directory, <code>inc</code>, is for includeable files, typically snippets of content that can be reused on multiple pages throughout the site like menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntext depending on their extension and the resulting HTML made available for inclusion in templates via an <code>inc.&lt;filename&gt;</code> variable.
 </p>
 <p>
-For example, a menu can be constructed in Markdown using nested lists:
+For example, a simple menu can be constructed in Markdown using nested lists:
 </p>
 <pre>
 * [Home](@root/)

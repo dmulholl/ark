@@ -87,25 +87,22 @@ An Ivy extension can register a new shortcode tag using the shortcode package's 
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">replacement_text</span>
 </pre>
 <p>
-The handler function should accept four arguments:
+The handler function should accept three arguments:
 </p>
 <ol>
-<li>
-The <code>Node</code> instance containing the shortcode.
-</li>
-<li>
-A string containing the shortcode's content, if the shortcode has block scope.
-</li>
 <li>
 A list of positional arguments.
 </li>
 <li>
 A dictionary of keyword arguments.
+</li>
+<li>
+The <code>Node</code> instance containing the shortcode.
 </li>
 </ol>
 <p>
@@ -128,13 +125,10 @@ Here's a sample shortcode you could use to inject the raw content of a file from
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_raw&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">pargs</span><span class="p">:</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">inc</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">inc</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre>
 <p>
 To use this shortcode, just supply the name of the file you want to include, e.g.
@@ -156,11 +150,9 @@ Ivy already loads and renders the content of files from the includes directory t
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_rendered&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="n">includes</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">includes</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">pargs</span> <span class="ow">and</span> <span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">includes</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">includes</span><span class="p">[</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-    <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">includes</span><span class="p">[</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 </pre>
 <p>
 To use this shortcode, just supply the name of the file you want to include, leaving off the file extension, e.g.
@@ -182,11 +174,11 @@ This is a handy shortcode for building sitemaps &mdash; it assembles a list of l
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;list_children&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">target_node</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">target_node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Missing Title&#39;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;Missing Title&#39;</span>
         <span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;* [</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">](</span><span class="si">{</span><span class="n">child</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
 </pre>

@@ -137,7 +137,7 @@ This default slug can be overridden by setting a custom slug in the header:
     slug: my-custom-slug
     ---
 
-Slugs can be customized sitewide by registering a filter callback on the `slugify` [filter hook](@root/extensions//#event-filter-hooks).
+Slugs can be customized sitewide by registering a filter callback on the `slugify` [filter hook](@root/extensions//#event-filter-hooks). (You can find this hook in the `ivy/utils.py` file.)
 
 
 
@@ -166,9 +166,9 @@ Note that the homepage node automatically gets the class `homepage`.
 
 ### Includes
 
-The *includes* directory, `inc`, is intended for snippets of content that can be reused on multiple pages throughout the site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntext depending on their extension and the resulting HTML made available for inclusion in templates via an `inc.<filename>` variable.
+The *includes* directory, `inc`, is for includeable files, typically snippets of content that can be reused on multiple pages throughout the site like menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntext depending on their extension and the resulting HTML made available for inclusion in templates via an `inc.<filename>` variable.
 
-For example, a menu can be constructed in Markdown using nested lists:
+For example, a simple menu can be constructed in Markdown using nested lists:
 
     * [Home](@root/)
     * [About](@root/about//)
