@@ -79,7 +79,7 @@ and the directory
 
 correspond to a single node in the parse tree. Node files provide content and metadata for a node; node directories store child nodes.
 
-(Files named `index` are special --- they correspond to the same node as their parent directory.)
+(Files named `index.*` are special --- they correspond to the same node as their parent directory.)
 
 
 
