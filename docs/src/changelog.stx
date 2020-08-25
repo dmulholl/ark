@@ -40,6 +40,8 @@ title: Changelog
 
 * The [shortcodes](https://github.com/dmulholl/shortcodes) dependency version has been upgraded to 3.0. Shortcode handler functions will need to be updated to reflect the updated API.
 
+* A `build_node` filter has been added to the default build routine in `ivy/build.py`. This filter can be used as a switch to determine which nodes get turned into pages.
+
 
 
 ### 2.10.0

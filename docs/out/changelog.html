@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev4</p>
+            <p class="version">Version 3.0.0.dev5</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -124,6 +124,9 @@ The sample shortcode extension has been replaced by a set of examples in the doc
 </li>
 <li>
 The <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> dependency version has been upgraded to 3.0. Shortcode handler functions will need to be updated to reflect the updated API.
+</li>
+<li>
+A <code>build_node</code> filter has been added to the default build routine in <code>ivy/build.py</code>. This filter can be used as a switch to determine which nodes get turned into pages.
 </li>
 </ul>
 <h3 id="id-2-10-0">
