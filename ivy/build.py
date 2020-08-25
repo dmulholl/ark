@@ -11,10 +11,10 @@ from . import nodes
 from . import site
 from . import utils
 from . import pages
+from . import filters
 
 
-# The `main_build` event is fired by the `$ ivy build` command. (It's one of
-# three build events: `init_build`, `main_build`, `exit_build`.)
+# The `main_build` event is fired by the `$ ivy build` command.
 @events.register('main_build')
 def build_site():
 
@@ -32,11 +32,12 @@ def build_site():
         utils.copydir(site.res(), site.out())
 
     # Callback to handle individual nodes.
-    def handle_node(node):
-        node.render()
-        page = pages.Page(node)
-        page.write()
+    def build_node(node):
+        if filters.apply('build_node', True, node):
+            node.render()
+            page = pages.Page(node)
+            page.write()
 
     # Walk the node tree and pass each node to the handler.
-    nodes.root().walk(handle_node)
+    nodes.root().walk(build_node)
 
