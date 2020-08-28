@@ -83,7 +83,7 @@ correspond to a single node in the parse tree. Node files provide content and me
 
 
 
-### Metadata & Attributes
+### Metadata
 
 Ivy has builtin support for node metadata in [YAML][] format. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
 
@@ -180,4 +180,20 @@ If this menu was placed in a file named `menu.md` then the rendered HTML would b
 
 You can add files with any extension to the `inc` directory including `.html`, `.js`, and `.css`.
 If no renderer has been registered for the extension the file's content will be preserved as-is.
+
+
+
+### Meta Titles and Descriptions
+
+The default theme, `graphite`, has builtin support for HTML meta titles and descriptions. (A page's meta title is the title shown in the browser's tab bar and on search engine result pages. A page's meta description is often used by search engines as the 'snippet' of content displayed on result pages.)
+
+Just add `meta_title` and/or `meta_description` attributes to the page's header:
+
+    ---
+    title: Title On Page
+    meta_title: Search Engine Title
+    meta_description: A description of the page's content.
+    ---
+
+This isn't really a feature of Ivy itself --- the default theme simply checks for these attributes in its template files and you can add similar support to your own custom themes.
 

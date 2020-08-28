@@ -78,7 +78,7 @@ text files into a self-contained website.</p>
 <a href="#nodes">Nodes</a>
 </li>
 <li>
-<a href="#metadata-attributes">Metadata &amp; Attributes</a>
+<a href="#metadata">Metadata</a>
 </li>
 <li>
 <a href="#links">Links</a>
@@ -91,6 +91,9 @@ text files into a self-contained website.</p>
 </li>
 <li>
 <a href="#includes">Includes</a>
+</li>
+<li>
+<a href="#meta-titles-and-descriptions">Meta Titles and Descriptions</a>
 </li>
 </ul>
 <h3 id="command-line-interface">
@@ -182,8 +185,8 @@ correspond to a single node in the parse tree. Node files provide content and me
 <p>
 (Files named <code>index.*</code> are special &mdash; they correspond to the same node as their parent directory.)
 </p>
-<h3 id="metadata-attributes">
-Metadata &amp; Attributes
+<h3 id="metadata">
+Metadata
 </h3>
 <p>
 Ivy has builtin support for node metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format. Note that metadata keys are converted to lowercase and spaces and hyphens are replaced by underscores so the YAML attribute:
@@ -323,6 +326,25 @@ If this menu was placed in a file named <code>menu.md</code> then the rendered H
 <p>
 You can add files with any extension to the <code>inc</code> directory including <code>.html</code>, <code>.js</code>, and <code>.css</code>.
 If no renderer has been registered for the extension the file's content will be preserved as-is.
+</p>
+<h3 id="meta-titles-and-descriptions">
+Meta Titles and Descriptions
+</h3>
+<p>
+The default theme, <code>graphite</code>, has builtin support for HTML meta titles and descriptions. (A page's meta title is the title shown in the browser's tab bar and on search engine result pages. A page's meta description is often used by search engines as the 'snippet' of content displayed on result pages.)
+</p>
+<p>
+Just add <code>meta_title</code> and/or <code>meta_description</code> attributes to the page's header:
+</p>
+<pre>
+---
+title: Title On Page
+meta_title: Search Engine Title
+meta_description: A description of the page&#x27;s content.
+---
+</pre>
+<p>
+This isn't really a feature of Ivy itself &mdash; the default theme simply checks for these attributes in its template files and you can add similar support to your own custom themes.
 </p>
         </article>
         
