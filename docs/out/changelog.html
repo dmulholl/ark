@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev5</p>
+            <p class="version">Version 3.0.0.dev6</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -127,6 +127,9 @@ The <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> dependency v
 </li>
 <li>
 A <code>build_node</code> filter has been added to the default build routine in <code>ivy/build.py</code>. This filter can be used as a switch to determine which nodes get turned into pages.
+</li>
+<li>
+Two new filters, <code>load_node_dir</code> and <code>load_node_file</code>, have been added in <code>ivy/nodes.py</code>. These can be used as switches to determine which files and directories in <code>src</code> get parsed as nodes.
 </li>
 </ul>
 <h3 id="id-2-10-0">
