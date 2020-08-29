@@ -160,18 +160,20 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
 
     # Parse subdirectories.
     for path in (p for p in Path(dirpath).iterdir() if p.is_dir()):
-        childnode = Node()
-        childnode.stem = path.stem
-        childnode.parent = dirnode
-        childnode.filepath = str(path)
-        dirnode.children.append(childnode)
-        _parse_node_directory(childnode, path)
+        if filters.apply('load_node_dir', True, path):
+            childnode = Node()
+            childnode.stem = path.stem
+            childnode.parent = dirnode
+            childnode.filepath = str(path)
+            dirnode.children.append(childnode)
+            _parse_node_directory(childnode, path)
 
-    # Parse files. Skip dotfiles.
+    # Parse files.
     for path in (p for p in Path(dirpath).iterdir() if p.is_file()):
-        if path.stem.startswith('.'):
+        if path.stem.startswith('.') or path.stem.endswith('~'):
             continue
-        _parse_node_file(dirnode, path)
+        if filters.apply('load_node_file', True, path):
+            _parse_node_file(dirnode, path)
 
 
 # Parse a source file.
