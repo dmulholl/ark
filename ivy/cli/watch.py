@@ -115,11 +115,9 @@ def hashsite(sitepath):
 
     def hashdir(dirpath, is_home):
         for entry in os.scandir(dirpath):
-            if entry.name.startswith('.'):
+            if entry.name.startswith('.') or entry.name.endswith('~'):
                 continue
             if entry.is_file():
-                if entry.name.endswith(('~', '.swp')):
-                    continue
                 mtime = os.path.getmtime(entry.path)
                 hasher.update(str(mtime).encode())
                 hasher.update(entry.name.encode())
