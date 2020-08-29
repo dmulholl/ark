@@ -2,6 +2,7 @@
 # This module is responsible for loading and preprocessing source files.
 # ------------------------------------------------------------------------------
 
+import sys
 from . import filters
 
 from typing import Dict, Any, Union, Tuple
