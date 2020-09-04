@@ -28,7 +28,8 @@ def root() -> Node:
     return _root
 
 
-# Returns the node corresponding to the specified @root/ url if it exists.
+# Returns the node corresponding to the specified @root/ url if it exists,
+# otherwise returns None.
 def node(url: str) -> Optional[Node]:
     node = root()
     for slug in url.rstrip('/').split('/')[1:]:
@@ -68,15 +69,15 @@ class Node():
         # Stores the node's processed html content.
         self.html: str = ''
 
-    # Nodes are addressable by url so it functions as a softly-unique ID.
+    # Identifying nodes by their @root/ url is useful for debugging.
     def __repr__(self) -> str:
         return f"<Node {self.url}>"
 
-    # Allow dictionary-style read access to the node's metadata.
+    # Allows dictionary-style read access to the node's metadata.
     def __getitem__(self, key: str) -> Any:
         return self.meta[key]
 
-    # Allow dictionary-style write access to the node's metadata.
+    # Allows dictionary-style write access to the node's metadata.
     def __setitem__(self, key: str, value: Any):
         self.meta[key] = value
 
@@ -101,14 +102,14 @@ class Node():
     def update(self, other: Dict[str, Any]):
         self.meta.update(other)
 
-    # Renders the node's text into html.
+    # Renders the node's text into html. Returns self to allow chaining.
     def render(self) -> Node:
         self.text = filters.apply('node_text', self.text, self)
         html = renderers.render(self.text, self.ext, self.filepath)
         self.html = filters.apply('node_html', html, self)
         return self
 
-    # Call the specified function on the node and all its descendants.
+    # Calls the specified function on the node and all its descendants.
     def walk(self, callback: Callable[['Node'], None]):
         for node in self.children:
             node.walk(callback)

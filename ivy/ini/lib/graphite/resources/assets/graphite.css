@@ -4,15 +4,15 @@
  * -------------------------------------------------------------------------
  */
 
-html {
-    font-size: 100%;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    box-sizing: border-box;
-}
-
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+    -webkit-text-size-adjust: none;
+            text-size-adjust: none;
 }
 
 body {
@@ -473,27 +473,9 @@ th, td {
  * -------------------------------------------------------------------------
  *  Media Queries
  * -------------------------------------------------------------------------
- *
- * The @viewport tag does the same thing as
- *
- *   <meta name="viewport" content="width=device-width">
- *
- * but in the future W3C standard way. The -ms- prefix is required for
- * IE10+ to render responsive styling in Windows 8 "snapped" views;
- * IE10+ does not honour the meta tag.
  */
 
-@-ms-viewport {
-    width: device-width;
-}
-
-@viewport {
-    width: device-width;
-}
-
-/**
- * Tablet screens and smaller.
- */
+/* Tablet screens and smaller. */
 
 @media screen and (max-width: 960px) {
 
@@ -640,16 +622,12 @@ th, td {
     }
 }
 
-/**
- * Landscape phone screens and smaller.
- */
+/* Landscape phone screens and smaller. */
 
 @media screen and (max-width: 720px) {
 }
 
-/**
- * Portrait phone screens.
- */
+/* Portrait phone screens. */
 
 @media screen and (max-width: 480px) {
 

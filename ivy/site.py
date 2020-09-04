@@ -20,13 +20,13 @@ cache = {}
 def init():
 
     # Record the start time.
-    cache['start'] = time.time()
+    cache['start_time'] = time.time()
 
     # Initialize a count of the number of pages rendered.
-    cache['rendered'] = 0
+    cache['pages_rendered'] = 0
 
     # Initialize a count of the number of pages written to disk.
-    cache['written'] = 0
+    cache['pages_written'] = 0
 
     # Default site configuration settings.
     config['root'] = ''
@@ -65,53 +65,54 @@ def _find_home() -> str:
 
 
 # Returns the path to the site's home directory or an empty string if the
-# home directory cannot be located. Append arguments.
+# home directory cannot be located. Appends arguments.
 def home(*append: str) -> str:
     path = cache.get('home') or cache.setdefault('home', _find_home())
     return join(path, *append)
 
 
-# Checks for and caches custom directory paths.
-def _dirpath(name: str, key: str) -> str:
-    if cached := cache.get(key):
+# Caches custom directory paths. Allows standard directory names (`src`, `out`,
+# etc.) to be overridden in the config.py file.
+def _dirpath(dirname: str, config_key: str) -> str:
+    if cached := cache.get(config_key):
         return cached
-    elif custom := config.get(key):
-        return cache.setdefault(key, join(home(), custom))
+    elif custom := config.get(config_key):
+        return cache.setdefault(config_key, join(home(), custom))
     else:
-        return cache.setdefault(key, home(name))
+        return cache.setdefault(config_key, home(dirname))
 
 
-# Return the path to the source directory. Append arguments.
+# Returns the path to the source directory. Appends arguments.
 def src(*append: str) -> str:
     path = _dirpath('src', 'src_dir')
     return join(path, *append)
 
 
-# Return the path to the output directory. Append arguments.
+# Returns the path to the output directory. Appends arguments.
 def out(*append: str) -> str:
     path = _dirpath('out', 'out_dir')
     return join(path, *append)
 
 
-# Return the path to the theme-library directory. Append arguments.
+# Returns the path to the theme-library directory. Appends arguments.
 def lib(*append: str) -> str:
     path = _dirpath('lib', 'lib_dir')
     return join(path, *append)
 
 
-# Return the path to the extensions directory. Append arguments.
+# Returns the path to the extensions directory. Appends arguments.
 def ext(*append: str) -> str:
     path = _dirpath('ext', 'ext_dir')
     return join(path, *append)
 
 
-# Return the path to the includes directory. Append arguments.
+# Returns the path to the includes directory. Appends arguments.
 def inc(*append: str) -> str:
     path = _dirpath('inc', 'inc_dir')
     return join(path, *append)
 
 
-# Return the path to the resources directory. Append arguments.
+# Returns the path to the resources directory. Appends arguments.
 def res(*append: str) -> str:
     path = _dirpath('res', 'res_dir')
     return join(path, *append)
@@ -143,26 +144,26 @@ def _find_theme(name: str) -> str:
     return ''
 
 
-# Return the path to the theme directory or an empty string if the theme
-# directory cannot be located. Append arguments.
+# Returns the path to the theme directory or an empty string if the theme
+# directory cannot be located. Appends arguments.
 def theme(*append: str) -> str:
     if 'themepath' not in cache:
         cache['themepath'] = _find_theme(config['theme'])
     return join(cache['themepath'], *append)
 
 
-# Return the application runtime in seconds.
+# Returns the application runtime in seconds.
 def runtime() -> float:
-    return time.time() - cache['start']
+    return time.time() - cache['start_time']
 
 
 # Increment the count of pages rendered by n and return the new value.
 def rendered(n: int = 0) -> int:
-    cache['rendered'] += n
-    return cache['rendered']
+    cache['pages_rendered'] += n
+    return cache['pages_rendered']
 
 
 # Increment the count of pages written by n and return the new value.
 def written(n: int = 0) -> int:
-    cache['written'] += n
-    return cache['written']
+    cache['pages_written'] += n
+    return cache['pages_written']
