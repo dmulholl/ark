@@ -27,7 +27,6 @@ from . import extensions
 from . import hashes
 from . import events
 from . import filters
-from . import includes
 from . import loader
 from . import nodes
 from . import pages

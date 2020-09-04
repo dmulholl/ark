@@ -3,12 +3,19 @@
 # ------------------------------------------------------------------------------
 
 import os
-import time
 import sys
+import time
+import pathlib
+
+from . import loader
+from . import renderers
+
 from os.path import isdir, isfile, join
+from typing import Dict
 
 
-# Storage for the site's configuration data.
+# This dictionary contains the content of the site's `config.py` file. It can
+# be accessed in template files via the `site` variable.
 config = {}
 
 
@@ -47,7 +54,7 @@ def init():
         config['root'] += '/'
 
 
-# Attempt to determine and return the path to the site's home directory. We use
+# Attempts to determine and return the path to the site's home directory. We use
 # the presence of either a 'config.py' or '.ivy' file to identify the home
 # directory. We first test the current working directory, then its ancestor
 # directories in sequence until we reach the system root. If we make it all the
@@ -167,3 +174,20 @@ def rendered(n: int = 0) -> int:
 def written(n: int = 0) -> int:
     cache['pages_written'] += n
     return cache['pages_written']
+
+
+# Returns a cached dictionary of rendered files from the `inc` directory.
+# The dictionary's keys are the original filenames converted to lowercase
+# with spaces and hyphens replaced by underscores.
+def includes() -> Dict[str, str]:
+    if 'includes' in cache:
+        return cache['includes']
+    cache['includes'] = {}
+    if isdir(inc()):
+        for path in pathlib.Path(inc()).iterdir():
+            text, _ = loader.load(path)
+            ext = path.suffix.strip('.')
+            key = path.stem.lower().replace(' ', '_').replace('-', '_')
+            cache['includes'][key] = renderers.render(text, ext, str(path))
+    return cache['includes']
+

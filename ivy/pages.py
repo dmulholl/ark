@@ -6,7 +6,6 @@ import re
 import os
 
 from . import site
-from . import includes
 from . import events
 from . import filters
 from . import utils
@@ -24,9 +23,9 @@ class Page(dict):
     # Every Page is initialized with an associated Node instance. This node's
     # location in the parse tree determines output filepath for the page.
     def __init__(self, node: Node):
-        self['inc'] = includes.load()
-        self['site'] = site.config
         self['node'] = node
+        self['site'] = site.config
+        self['inc'] = site.includes()
         self['is_homepage'] = node.parent is None
 
     # Render the page into html and write the html to disk.
