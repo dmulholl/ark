@@ -4,10 +4,12 @@
 
 import os
 import shutil
-import unicodedata
 import re
 import sys
+import unicodedata
+
 from . import filters
+from . import site
 
 
 # Clear the contents of a directory.
@@ -98,3 +100,50 @@ def termline():
     cols, _ = shutil.get_terminal_size()
     line = '\u001B[90m' + '─' * cols + '\u001B[0m'
     safeprint(line)
+
+
+# Regex for locating @root/ urls enclosed in quotes.
+regex_url = re.compile(r"""
+    (["'])@root/(.*?)([#].*?)?\1
+""", re.VERBOSE)
+
+
+# Rewrite all @root/ urls in the HTML document to their final form.
+def rewrite_urls(html: str, filepath: str):
+    relpath = os.path.relpath(filepath, site.out())
+    depth = len(relpath.replace('\\', '/').split('/'))
+    prefix = site.config.get('root') or '../' * (depth - 1)
+    suffix = site.config.get('extension')
+
+    # Each matched url is replaced with the output of this callback.
+    def callback(match):
+        quote = match.group(1)
+        url = match.group(2).lstrip('/') if match.group(2) else ''
+        fragment = match.group(3) or ''
+
+        # 1. We have a link to the homepage.
+        if url == '':
+            if suffix == '/':
+                if depth == 1:
+                    url = '' if fragment else '#'
+                else:
+                    url = prefix
+            else:
+                url = prefix + 'index' + suffix
+
+        # 2. We have a link to a generated node page.
+        elif url.endswith('//'):
+            if suffix == '/':
+                url = prefix + url.rstrip('/') + '/'
+            else:
+                url = prefix + url.rstrip('/') + suffix
+
+        # 3. We have a link to a static asset or directory.
+        else:
+            url = prefix + url
+
+        return f"{quote}{url}{fragment}{quote}"
+
+    # Replace each match with the return value of the callback.
+    return regex_url.sub(callback, html)
+

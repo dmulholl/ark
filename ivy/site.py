@@ -54,7 +54,7 @@ def init():
         config['root'] += '/'
 
 
-# Attempts to determine and return the path to the site's home directory. We use
+# Attempt to determine and return the path to the site's home directory. We use
 # the presence of either a 'config.py' or '.ivy' file to identify the home
 # directory. We first test the current working directory, then its ancestor
 # directories in sequence until we reach the system root. If we make it all the

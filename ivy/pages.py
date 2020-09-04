@@ -11,7 +11,6 @@ from . import filters
 from . import utils
 from . import templates
 from . import hashes
-from . import urls
 
 from typing import List
 from .nodes import Node
@@ -43,7 +42,7 @@ class Page(dict):
         html = filters.apply('page_html', html, self)
 
         # Rewrite all @root/ urls.
-        html = urls.rewrite(html, self['filepath'])
+        html = utils.rewrite_urls(html, self['filepath'])
 
         # Write the page to disk. Avoid overwriting identical files.
         if not hashes.match(self['filepath'], html):
