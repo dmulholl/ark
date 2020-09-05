@@ -121,7 +121,7 @@ Ivy has builtin support for YAML file headers. Extensions can add support for ad
 
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 
-The `file_text` filter hook can be found in the `ivy/loader.py` file.
+The `file_text` filter hook can be found in the `ivy/utils.py` file.
 
 
 

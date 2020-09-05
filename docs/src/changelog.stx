@@ -48,6 +48,8 @@ title: Changelog
 
 * The `urls.py` module has been replaced by a `utils.rewrite_urls()` function.
 
+* The `loader.py` module has been replaced by a `utils.loadfile()` function.
+
 
 
 ### 2.10.0
