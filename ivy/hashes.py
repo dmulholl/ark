@@ -24,8 +24,19 @@ from . import events
 _hashes = { 'old': {}, 'new': {} }
 
 
-# Returns the name of the cachefile for the curent site.
-def cachefile() -> str:
+# Returns true if `filepath` is an existing file whose hash matches that of
+# the content string.
+def match(filepath: str, content: str) -> bool:
+    key = os.path.relpath(filepath, site.out())
+    _hashes['new'][key] = hashlib.sha1(content.encode()).hexdigest()
+    if os.path.exists(filepath):
+        return _hashes['old'].get(key) == _hashes['new'][key]
+    else:
+        return False
+
+
+# Returns the name of the cache file for the curent site.
+def _cachefile() -> str:
     if not 'cachefile' in _hashes:
         name = hashlib.sha1(site.home().encode()).hexdigest() + '.pickle'
         if os.name == 'nt':
@@ -37,23 +48,11 @@ def cachefile() -> str:
     return _hashes['cachefile']
 
 
-# Returns true if filepath is an existing file whose hash matches that of
-# the content string. We use the relative filepath as the key to avoid
-# leaking potentially sensitive information.
-def match(filepath: str, content: str) -> bool:
-    key = os.path.relpath(filepath, site.out())
-    _hashes['new'][key] = hashlib.sha1(content.encode()).hexdigest()
-    if os.path.exists(filepath):
-        return _hashes['old'].get(key) == _hashes['new'][key]
-    else:
-        return False
-
-
 # Load cached page hashes from the last build run.
 @events.register('init_build')
 def _load():
-    if os.path.isfile(cachefile()):
-        with open(cachefile(), 'rb') as file:
+    if os.path.isfile(_cachefile()):
+        with open(_cachefile(), 'rb') as file:
             _hashes['old'] = pickle.load(file)
 
 
@@ -61,7 +60,7 @@ def _load():
 @events.register('exit_build')
 def _save():
     if _hashes['new'] and _hashes['new'] != _hashes['old']:
-        if not os.path.isdir(os.path.dirname(cachefile())):
-            os.makedirs(os.path.dirname(cachefile()))
-        with open(cachefile(), 'wb') as file:
+        if not os.path.isdir(os.path.dirname(_cachefile())):
+            os.makedirs(os.path.dirname(_cachefile()))
+        with open(_cachefile(), 'wb') as file:
             pickle.dump(_hashes['new'], file)
