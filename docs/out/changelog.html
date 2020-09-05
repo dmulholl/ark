@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Changelog</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev6</p>
+            <p class="version">Version 3.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -67,8 +67,8 @@ text files into a self-contained website.</p>
                 
                 <hr>
             </header>
-            <h3 id="id-3-0-0-dev">
-3.0.0.dev
+            <h3 id="id-3-0-0">
+3.0.0
 </h3>
 <ul>
 <li>
@@ -130,6 +130,12 @@ A <code>build_node</code> filter has been added to the default build routine in 
 </li>
 <li>
 Two new filters, <code>load_node_dir</code> and <code>load_node_file</code>, have been added in <code>ivy/nodes.py</code>. These filters can be used as switches to determine which files and directories in <code>src</code> get parsed as nodes.
+</li>
+<li>
+The <code>includes.py</code> module has been replaced by a <code>site.includes()</code> function.
+</li>
+<li>
+The <code>urls.py</code> module has been replaced by a <code>utils.rewrite_urls()</code> function.
 </li>
 </ul>
 <h3 id="id-2-10-0">

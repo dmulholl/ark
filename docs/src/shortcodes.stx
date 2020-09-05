@@ -71,7 +71,7 @@ Ivy already loads and renders the content of files from the includes directory t
 
     @shortcodes.register('include_rendered')
     def handler(pargs, kwargs, node):
-        includes = ivy.includes.load()
+        includes = ivy.site.includes()
         return includes[pargs[0]]
 
 To use this shortcode, just supply the name of the file you want to include, leaving off the file extension, e.g.

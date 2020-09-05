@@ -2,7 +2,7 @@
 title: Changelog
 ---
 
-### 3.0.0.dev
+### 3.0.0
 
 * Most changes in this release are internal and won't affect existing sites or themes. Extensions will need to be updated but the required changes should be minor.
 
@@ -43,6 +43,10 @@ title: Changelog
 * A `build_node` filter has been added to the default build routine in `ivy/build.py`. This filter can be used as a switch to determine which nodes get turned into pages.
 
 * Two new filters, `load_node_dir` and `load_node_file`, have been added in `ivy/nodes.py`. These filters can be used as switches to determine which files and directories in `src` get parsed as nodes.
+
+* The `includes.py` module has been replaced by a `site.includes()` function.
+
+* The `urls.py` module has been replaced by a `utils.rewrite_urls()` function.
 
 
 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Shortcodes</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0.dev6</p>
+            <p class="version">Version 3.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -151,7 +151,7 @@ Ivy already loads and renders the content of files from the includes directory t
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_rendered&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
-    <span class="n">includes</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">includes</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+    <span class="n">includes</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">includes</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">includes</span><span class="p">[</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 </pre>
 <p>
