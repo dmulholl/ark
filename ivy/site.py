@@ -7,8 +7,8 @@ import sys
 import time
 import pathlib
 
-from . import loader
 from . import renderers
+from . import utils
 
 from os.path import isdir, isfile, join
 from typing import Dict
@@ -185,7 +185,7 @@ def includes() -> Dict[str, str]:
     cache['includes'] = {}
     if isdir(inc()):
         for path in pathlib.Path(inc()).iterdir():
-            text, _ = loader.load(path)
+            text, _ = utils.loadfile(path)
             ext = path.suffix.strip('.')
             key = path.stem.lower().replace(' ', '_').replace('-', '_')
             cache['includes'][key] = renderers.render(text, ext, str(path))

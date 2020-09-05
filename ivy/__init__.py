@@ -2,7 +2,7 @@
 # Ivy: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '3.0.0.dev6'
+__version__ = '3.0.0.rc1'
 
 import sys
 if sys.version_info < (3, 8):
@@ -27,12 +27,12 @@ from . import extensions
 from . import hashes
 from . import events
 from . import filters
-from . import loader
 from . import nodes
 from . import pages
 from . import renderers
 from . import site
 from . import build
+from . import utils
 
 
 # Application entry point. Calling main() initializes the site model, loads

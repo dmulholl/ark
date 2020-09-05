@@ -10,7 +10,6 @@ from . import utils
 from . import events
 from . import filters
 from . import renderers
-from . import loader
 from . import site
 
 
@@ -196,7 +195,7 @@ def _parse_node_file(dirnode: Node, filepath: Path):
             filenode.stem = filepath.stem
             filenode.parent = dirnode
             dirnode.children.append(filenode)
-    text, meta = loader.load(filepath)
+    text, meta = utils.loadfile(filepath)
     filenode.text = text
     filenode.update(meta)
     filenode.filepath = str(filepath)
