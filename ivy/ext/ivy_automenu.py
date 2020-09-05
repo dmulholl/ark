@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 # This extension automatically generates a menu containing links to every node
-# in the site. The menu can be accessed in templates via the 'automenu'
-# attribute.
+# in the site. The menu can be accessed in templates via an 'automenu' variable.
 #
 # If a node has a 'menu_title' attribute, its value will be used in the
 # menu in place of the node's title.
@@ -22,7 +21,7 @@ import ivy
 cache = None
 
 
-# Register a callback to add the 'automenu' attribute to each page context.
+# Register a callback to add an 'automenu' attribute to each Page instance.
 @ivy.events.register('render_page')
 def add_automenu(page):
     global cache
