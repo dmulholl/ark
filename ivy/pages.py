@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module renders and writes html pages to disk.
+# This module renders and writes HTML pages to disk.
 # ------------------------------------------------------------------------------
 
 import re
@@ -16,29 +16,29 @@ from typing import List
 from .nodes import Node
 
 
-# A Page instance represents a single html page in the rendered site.
+# A Page instance represents a single HTML page in the rendered site.
 class Page(dict):
 
-    # Every Page is initialized with an associated Node instance. This node's
-    # location in the parse tree determines output filepath for the page.
+    # Each Page is initialized with an associated Node instance. This node's
+    # location in the parse tree determines the output filepath for the page.
     def __init__(self, node: Node):
         self['node'] = node
         self['site'] = site.config
         self['inc'] = site.includes()
         self['is_homepage'] = node.parent is None
 
-    # Render the page into html and write the html to disk.
+    # Render the page into HTML and write the HTML to disk.
     def write(self):
         self['filepath'] = self.get_filepath()
         self['classes'] = self.get_class_list()
         self['templates'] = self.get_template_list()
 
-        # Render the page into html.
+        # Render the page into HTML.
         events.fire('render_page', self)
         html = templates.render(self)
         site.rendered(1)
 
-        # Filter the html before writing it to disk.
+        # Filter the HTML before writing it to disk.
         html = filters.apply('page_html', html, self)
 
         # Rewrite all @root/ urls.

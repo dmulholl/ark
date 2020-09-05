@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module contains the default build routine. It creates a single html page
+# This module contains the default build routine. It creates a single HTML page
 # in the output directory for each node in the node tree.
 # ------------------------------------------------------------------------------
 
