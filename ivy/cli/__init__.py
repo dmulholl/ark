@@ -41,17 +41,11 @@ Command Help:
 
 
 # We store the root ArgParser instance globally so it's available to plugins.
-parser = None
+argparser = args.ArgParser(helptext, ivy.__version__)
 
 
-# Parse the application's command-line arguments.
+# Parse the application's command-line arguments. Plugins can use the `cli`
+# event to register their own custom commands.
 def parse_args():
-    global parser
-    parser = args.ArgParser(helptext, ivy.__version__)
-
-    # Fire the 'cli' event. Plugins can use this event to register their own
-    # custom commands and options on the parser instance.
-    ivy.events.fire('cli', parser)
-
-    # Parse the application's command line arguments.
-    parser.parse()
+    ivy.events.fire('cli', argparser)
+    argparser.parse()

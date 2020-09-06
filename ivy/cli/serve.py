@@ -38,8 +38,8 @@ Flags:
 
 
 @events.register('cli')
-def register_command(parser):
-    cmd = parser.command("serve", helptext, cmd_callback)
+def register_command(argparser):
+    cmd = argparser.command("serve", helptext, cmd_callback)
     cmd.option("directory d")
     cmd.option("browser b")
     cmd.option("host h", default="localhost")

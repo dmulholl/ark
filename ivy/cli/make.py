@@ -66,8 +66,8 @@ sibi conscios nisi pollutum obstrictumque meritis suis principem passuros.
 
 
 @events.register('cli')
-def register_command(parser):
-    cmd_parser = parser.command("make", helptext, cmd_callback)
+def register_command(argparser):
+    cmd_parser = argparser.command("make", helptext, cmd_callback)
     cmd_parser.option("title t")
     cmd_parser.option("date d")
     cmd_parser.flag("force f")

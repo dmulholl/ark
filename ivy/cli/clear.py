@@ -22,8 +22,8 @@ Flags:
 
 
 @events.register('cli')
-def register_command(parser):
-    parser.command("clear", helptext, cmd_callback)
+def register_command(argparser):
+    argparser.command("clear", helptext, cmd_callback)
 
 
 def cmd_callback(cmd_name, cmd_parser):

@@ -34,8 +34,8 @@ Flags:
 
 
 @events.register('cli')
-def register_command(parser):
-    cmd = parser.command("watch", helptext, cmd_callback)
+def register_command(argparser):
+    cmd = argparser.command("watch", helptext, cmd_callback)
     cmd.flag("clear c")
     cmd.option("theme t")
     cmd.option("port p", type=int, default=8080)
