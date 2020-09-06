@@ -3,31 +3,14 @@
 # ------------------------------------------------------------------------------
 
 import ivy
-import shutil
 import datetime
 
 
 @ivy.events.register('exit_build')
 def print_stats():
-
-    # The site module maintains a count of the number of pages that have been
-    # rendered into html and written to disk.
-    rendered, written = ivy.site.rendered(), ivy.site.written()
-
-    # The runtime() function gives the application's runtime in seconds.
-    time = ivy.site.runtime()
-    average = time / rendered if rendered else 0
-
-    # Add a timestamp if we have space.
-    cols, _ = shutil.get_terminal_size()
-    if cols >= 95:
-        report = datetime.datetime.now().strftime("[%H:%M:%S]  ·  ")
-    else:
-        report = ''
-
-    report += "Rendered: %5d  ·  Written: %5d  ·  "
-    report += "Time: %5.2f sec  ·  Avg: %.4f sec/page"
-
-    # Make the dots grey before printing.
+    report = datetime.datetime.now().strftime("[%H:%M:%S]")
+    report += f"   ·   Rendered: {ivy.site.rendered():5d}"
+    report += f"   ·   Written: {ivy.site.written():5d}"
+    report += f"   ·   Time: {ivy.site.runtime():6.2f} sec"
     report = report.replace('·', '\u001B[90m·\u001B[0m')
-    ivy.utils.safeprint(report % (rendered, written, time, average))
+    ivy.utils.safeprint(report)
