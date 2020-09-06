@@ -35,10 +35,10 @@ Flags:
 
 @events.register('cli')
 def register_command(argparser):
-    cmd = argparser.command("watch", helptext, cmd_callback)
-    cmd.flag("clear c")
-    cmd.option("theme t")
-    cmd.option("port p", type=int, default=8080)
+    cmd_parser = argparser.command("watch", helptext, cmd_callback)
+    cmd_parser.flag("clear c")
+    cmd_parser.option("theme t")
+    cmd_parser.option("port p", type=int, default=8080)
 
 
 # Callback for the watch command. Python doesn't have a builtin file system

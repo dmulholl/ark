@@ -36,9 +36,9 @@ Flags:
 
 @events.register('cli')
 def register_command(argparser):
-    cmd = argparser.command("build", helptext, cmd_callback)
-    cmd.flag("clear c")
-    cmd.option("theme t")
+    cmd_parser = argparser.command("build", helptext, cmd_callback)
+    cmd_parser.flag("clear c")
+    cmd_parser.option("theme t")
 
 
 def cmd_callback(cmd_name, cmd_parser):
@@ -58,7 +58,6 @@ def cmd_callback(cmd_name, cmd_parser):
 
 @events.register('main_build')
 def build_site():
-
     # Make sure we have a valid theme directory.
     if not site.theme():
         theme_name =  site.config['theme']

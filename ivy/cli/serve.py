@@ -39,11 +39,11 @@ Flags:
 
 @events.register('cli')
 def register_command(argparser):
-    cmd = argparser.command("serve", helptext, cmd_callback)
-    cmd.option("directory d")
-    cmd.option("browser b")
-    cmd.option("host h", default="localhost")
-    cmd.option("port p", type=int, default=8080)
+    cmd_parser = argparser.command("serve", helptext, cmd_callback)
+    cmd_parser.option("directory d")
+    cmd_parser.option("browser b")
+    cmd_parser.option("host h", default="localhost")
+    cmd_parser.option("port p", type=int, default=8080)
 
 
 def cmd_callback(cmd_name, cmd_parser):
