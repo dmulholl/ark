@@ -18,7 +18,7 @@
 text files into a self-contained website.</p>
             
             
-            <p class="version">Version 3.0.0</p>
+            <p class="version">Version 3.1.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -67,7 +67,18 @@ text files into a self-contained website.</p>
                 
                 <hr>
             </header>
-            <h3 id="id-3-0-0">
+            <h3 id="id-3-1-0">
+3.1.0
+</h3>
+<ul>
+<li>
+All build command callbacks have been consolidated in the <code>ivy/cli/build.py</code> module.
+</li>
+<li>
+The end-of-build report has been updated.
+</li>
+</ul>
+<h3 id="id-3-0-0">
 3.0.0
 </h3>
 <ul>
@@ -82,9 +93,6 @@ The most significant change for extensions is that the <code>hooks</code> module
 </li>
 <li>
 This release switches to a new library for parsing command line arguments, <a href="http://github.com/dmulholl/argslib">argslib</a>. The command line interface has also been simplified by removing all options for customizing site directories (<code>src</code>, <code>out</code>, etc.). These directories can now be customized from the site's <code>config.py</code> file.
-</li>
-<li>
-The default build routine has been moved to its own module, <code>ivy/build.py</code>.
 </li>
 <li>
 In general, code has been ruthlessly simplified wherever possible. In particular, the internal structure of the node tree is now significantly simpler.
