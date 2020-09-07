@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 3.2.0
+
+* The output of the `tree` command is now sorted by slug.
+
+
+
 ### 3.1.0
 
 * All build command callbacks have been consolidated in the `ivy/cli/build.py` module.
