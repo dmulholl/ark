@@ -1,16 +1,18 @@
 # ------------------------------------------------------------------------------
-# This extension adds a 'tree' command to Ivy's command line interface. We
-# implement the command here rather than in the cli package purely to provide an
-# example of an extension registering a custom command.
+# This module contains the logic for the 'tree' command.
 # ------------------------------------------------------------------------------
 
-import ivy
-import sys
 import os
+import sys
+
+from .. import site
+from .. import nodes
+from .. import utils
+from .. import events
 
 
 helptext = """
-Usage: %s tree [FLAGS]
+Usage: %s tree
 
   This command prints the site's node tree. The root note to use as the
   starting point can be specifed using the --root option:
@@ -34,9 +36,9 @@ Flags:
 """ % os.path.basename(sys.argv[0])
 
 
-@ivy.events.register('cli')
-def register_command(parser):
-    cmd_parser = parser.command("tree", helptext, cmd_callback)
+@events.register('cli')
+def register_command(argparser):
+    cmd_parser = argparser.command("tree", helptext, cmd_callback)
     cmd_parser.flag("slugs s")
     cmd_parser.option("root r", default="@root/")
     cmd_parser.option("attr a")
@@ -45,17 +47,17 @@ def register_command(parser):
 def cmd_callback(cmd_name, cmd_parser):
     base = 'slug' if cmd_parser.found('slugs') else 'url'
 
-    @ivy.events.register('main')
+    @events.register('main')
     def tree_callback():
-        if not ivy.site.home():
+        if not site.home():
             sys.exit("Error: cannot locate the site's home directory.")
-        if (node := ivy.nodes.node(cmd_parser.value("root"))) is None:
+        if (node := nodes.node(cmd_parser.value("root"))) is None:
             sys.exit("Error: cannot find the specified root node.")
-        ivy.utils.termline()
-        ivy.utils.safeprint('Site: %s' % ivy.site.home())
-        ivy.utils.termline()
-        ivy.utils.safeprint(treestring(node, depth=0, base=base, attrs=cmd_parser.values('attr')))
-        ivy.utils.termline()
+        utils.termline()
+        utils.safeprint('Site: %s' % site.home())
+        utils.termline()
+        utils.safeprint(treestring(node, depth=0, base=base, attrs=cmd_parser.values('attr')))
+        utils.termline()
 
 
 def treestring(node, depth, base, attrs):
@@ -66,6 +68,6 @@ def treestring(node, depth, base, attrs):
     for attr in attrs:
         line += '  \u001B[90m--\u001B[0m  ' + repr(node.get(attr))
     lines = [line]
-    for child in node.children:
+    for child in sorted(node.children, key=lambda node: node.slug):
         lines.append(treestring(child, depth + 1, base, attrs))
     return '\n'.join(lines)

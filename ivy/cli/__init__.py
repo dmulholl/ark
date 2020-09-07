@@ -13,6 +13,7 @@ from . import clear
 from . import serve
 from . import watch
 from . import make
+from . import tree
 
 
 helptext = """
