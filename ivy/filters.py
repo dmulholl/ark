@@ -20,11 +20,16 @@ _callbacks: Dict[str, Dict[int, List[Callable]]] = {}
 # integer value of 0. Callbacks with lower order fire first.
 def register(hook: str, order: int = 0) -> Callable:
 
-    def register_callback(func: Callable) -> Callable:
-        _callbacks.setdefault(hook, {}).setdefault(order, []).append(func)
-        return func
+    def decorator(callback: Callable) -> Callable:
+        _callbacks.setdefault(hook, {}).setdefault(order, []).append(callback)
+        return callback
 
-    return register_callback
+    return decorator
+
+
+# Register a filter callback directly without using a decorator.
+def register_callback(hook: str, callback: Callable, order: int = 0):
+    _callbacks.setdefault(hook, {}).setdefault(order, []).append(callback)
 
 
 # Fires a filter hook.
