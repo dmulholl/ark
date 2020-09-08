@@ -12,7 +12,7 @@ from .. import events
 
 
 helptext = """
-Usage: %s tree
+Usage: ivy tree
 
   This command prints the site's node tree. The root note to use as the
   starting point can be specifed using the --root option:
@@ -32,8 +32,7 @@ Options:
 Flags:
   -h, --help            Print this command's help text and exit.
   -s, --slugs           Show slugs instead of urls.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 @events.register('cli')

@@ -15,7 +15,7 @@ from .. import filters
 
 
 helptext = """
-Usage: %s build
+Usage: ivy build
 
   Build the current site. This command can be run from the site directory or
   any of its subdirectories.
@@ -30,8 +30,7 @@ Options:
 Flags:
   -c, --clear           Clear the output directory before building.
   -h, --help            Print this command's help text and exit.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 @events.register('cli')

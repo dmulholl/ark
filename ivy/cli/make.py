@@ -12,7 +12,7 @@ from .. import site
 
 
 helptext = """
-Usage: %s make <filename>
+Usage: ivy make <filename>
 
   Creates a new node file in the src directory. The filepath should be
   specified relative to the src directory. Creates directories along the
@@ -29,8 +29,7 @@ Flags:
   -c, --content         Add dummy content.
   -f, --force           Overwrite an existing node file.
   -h, --help            Print this command's help text and exit.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 template1 = """\

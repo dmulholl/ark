@@ -10,7 +10,7 @@ from .. import events
 
 
 helptext = """
-Usage: %s init [directory]
+Usage: ivy init [directory]
 
   Initialize a new site directory. If a directory path is specified, that
   directory will be created and initialized. Otherwise, the current directory
@@ -21,8 +21,7 @@ Arguments:
 
 Flags:
   -h, --help          Print this command's help text and exit.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 @events.register('cli')

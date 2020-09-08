@@ -11,14 +11,13 @@ from .. import events
 
 
 helptext = """
-Usage: %s clear
+Usage: ivy clear
 
   Clear the output directory.
 
 Flags:
   -h, --help          Print this command's help text and exit.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 @events.register('cli')

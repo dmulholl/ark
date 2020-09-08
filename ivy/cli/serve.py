@@ -13,7 +13,7 @@ from .. import events
 
 
 helptext = """
-Usage: %s serve
+Usage: ivy serve
 
   Serve the site's output directory using Python's builtin web server. The
   default web browser is automatically launched to view the site.
@@ -33,8 +33,7 @@ Options:
 
 Flags:
       --help                Print this command's help text and exit.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 @events.register('cli')

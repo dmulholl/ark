@@ -2,10 +2,8 @@
 # This package processes the application's command-line arguments.
 # ------------------------------------------------------------------------------
 
-import os
-import sys
-import args
 import ivy
+import args
 
 from . import build
 from . import init
@@ -17,7 +15,7 @@ from . import tree
 
 
 helptext = """
-Usage: %s [flag] [command]
+Usage: ivy [flag] [command]
 
   Ivy is a static website generator. It transforms a directory of text files
   into a self-contained website.
@@ -37,8 +35,7 @@ Commands:
 
 Command Help:
   help <command>      Print the specified command's help text and exit.
-
-""" % os.path.basename(sys.argv[0])
+"""
 
 
 # We store the root ArgParser instance globally so it's available to plugins.
