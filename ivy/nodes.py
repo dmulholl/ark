@@ -42,8 +42,7 @@ def node(url: str) -> Optional[Node]:
 class Node():
 
     def __init__(self):
-
-        # Stores the node's metadata (title, subtitle, author, etc.).
+        # Stores the node's metadata (title, author, date, etc.).
         self.meta: Dict[str, Any] = {}
 
         # Stores a reference to the node's parent node.
@@ -65,8 +64,8 @@ class Node():
         # Stores the node's raw text content.
         self.text: str = ''
 
-        # Stores the node's processed html content.
-        self.html: str = ''
+        # Internal cache for generated data.
+        self.cache: Dict[str, Any] = {}
 
     # Identifying nodes by their @root/ url is useful for debugging.
     def __repr__(self) -> str:
@@ -101,37 +100,34 @@ class Node():
     def update(self, other: Dict[str, Any]):
         self.meta.update(other)
 
-    # Renders the node's text into html. Returns self to allow chaining.
-    def render(self) -> Node:
-        self.text = filters.apply('node_text', self.text, self)
-        html = renderers.render(self.text, self.ext, self.filepath)
-        self.html = filters.apply('node_html', html, self)
-        return self
-
     # Calls the specified function on the node and all its descendants.
     def walk(self, callback: Callable[['Node'], None]):
         for node in self.children:
             node.walk(callback)
         callback(self)
 
-    # Returns the node's path, i.e. the list of slugs that determine its output
-    # filepath and url.
+    # Returns the node's path, i.e. a list containing its own slug and the slugs
+    # of its ancestor nodes which determines its output filepath and url.
     @property
     def path(self) -> List[str]:
-        slugs = []
-        while self.parent is not None:
-            slugs.append(self.slug)
-            self = self.parent
-        slugs.reverse()
-        return slugs
+        if not 'path' in self.cache:
+            self.cache['path'] = []
+            current = self
+            while current.parent is not None:
+                self.cache['path'].append(current.slug)
+                current = current.parent
+            self.cache['path'].reverse()
+        return self.cache['path']
 
     # Returns the node's url.
     @property
     def url(self) -> str:
-        if self.parent:
-            return '@root/' + '/'.join(self.path) + '//'
-        else:
-            return '@root/'
+        if not 'url' in self.cache:
+            if self.parent:
+                self.cache['url'] = '@root/' + '/'.join(self.path) + '//'
+            else:
+                self.cache['url'] = '@root/'
+        return self.cache['url']
 
     # True if the node has child nodes.
     @property
@@ -141,7 +137,9 @@ class Node():
     # Returns the node's filepath/url slug.
     @property
     def slug(self) -> str:
-        return self.meta.get('slug') or utils.slugify(self.stem)
+        if not 'slug' in self.cache:
+            self.cache['slug'] = self.meta.get('slug') or utils.slugify(self.stem)
+        return self.cache['slug']
 
     # Returns the child node with the specified slug if it exists, otherwise None.
     def child(self, slug: str) -> Optional[Node]:
@@ -149,6 +147,15 @@ class Node():
             if child.slug == slug:
                 return child
         return None
+
+    # Returns the node's rendered HTML content.
+    @property
+    def html(self) -> str:
+        if not 'html' in self.cache:
+            text = filters.apply('node_text', self.text, self)
+            html = renderers.render(text, self.ext, self.filepath)
+            self.cache['html'] = filters.apply('node_html', html, self)
+        return self.cache['html']
 
 
 # Parse a source directory.

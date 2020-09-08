@@ -74,7 +74,6 @@ def build_site():
     # Callback to handle individual nodes.
     def build_node(node):
         if filters.apply('build_node', True, node):
-            node.render()
             page = pages.Page(node)
             page.write()
 
