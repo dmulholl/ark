@@ -180,14 +180,12 @@ def written(n: int = 0) -> int:
 # The dictionary's keys are the original filenames converted to lowercase
 # with spaces and hyphens replaced by underscores.
 def includes() -> Dict[str, str]:
-    if 'includes' in cache:
-        return cache['includes']
-    cache['includes'] = {}
-    if isdir(inc()):
-        for path in pathlib.Path(inc()).iterdir():
-            text, _ = utils.loadfile(path)
-            ext = path.suffix.strip('.')
-            key = path.stem.lower().replace(' ', '_').replace('-', '_')
-            cache['includes'][key] = renderers.render(text, ext, str(path))
+    if not 'includes' in cache:
+        cache['includes'] = {}
+        if isdir(inc()):
+            for path in pathlib.Path(inc()).iterdir():
+                text, _ = utils.loadfile(path)
+                ext = path.suffix.strip('.')
+                key = path.stem.lower().replace(' ', '_').replace('-', '_')
+                cache['includes'][key] = renderers.render(text, ext, str(path))
     return cache['includes']
-
