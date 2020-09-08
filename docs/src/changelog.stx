@@ -5,7 +5,7 @@ title: Changelog
 
 ### 3.3.0
 
-* The `Node.render()` method has been replaced by making `Node.html` a dynamically-generated property. Internal caching has been added to nodes which should speed up large builds.
+* The `Node.render()` method has been replaced by making `Node.html` a dynamically-generated property. Internal caching has been added to nodes to reduce build time.
 
 
 
