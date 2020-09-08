@@ -22,7 +22,7 @@ _callbacks: Dict[str, Callable] = {}
 #   @ivy.renderers.register('md', 'mdk')
 #   def callback(text):
 #       ...
-#       return rendered
+#       return html
 #
 def register(*extensions: str) -> Callable:
 
