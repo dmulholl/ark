@@ -106,8 +106,8 @@ class Node():
             node.walk(callback)
         callback(self)
 
-    # Returns the node's path, i.e. a list containing its own slug and the slugs
-    # of its ancestor nodes which determines its output filepath and url.
+    # Returns the node's path, i.e. the list of slugs which determines the node's
+    # output filepath and url. (Returns a disposable copy of the cached list.)
     @property
     def path(self) -> List[str]:
         if not 'path' in self.cache:
@@ -117,7 +117,7 @@ class Node():
                 self.cache['path'].append(current.slug)
                 current = current.parent
             self.cache['path'].reverse()
-        return self.cache['path']
+        return self.cache['path'].copy()
 
     # Returns the node's url.
     @property
