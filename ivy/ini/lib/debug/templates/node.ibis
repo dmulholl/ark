@@ -15,12 +15,18 @@
                 {% endif %}
             </h1>
 
-            <button class="accordion">Automenu</button>
+            {% if inc.menu %}
+            <div class="menu">
+                {{ inc.menu }}
+            </div>
+            {% endif %}
+
+            <button class="button">Automenu</button>
             <div class="panel">
                 {{ automenu }}
             </div>
 
-            <button class="accordion">Children</button>
+            <button class="button">Node Children</button>
             <div class="panel">
                 <ul>
                     {% for child in node.children %}
@@ -31,32 +37,31 @@
                 </ul>
             </div>
 
-            <button class="accordion">Node Meta</button>
+            <button class="button">Node Meta</button>
             <div class="panel">
                 <pre>{{ node.meta|pprint|pygmentize:'python' }}</pre>
             </div>
 
-            <button class="accordion">Node Text</button>
+            <button class="button">Node Text</button>
             <div class="panel">
                 <pre>{{ node.text.strip()|escape }}</pre>
             </div>
 
-            <button class="accordion">Node HTML</button>
+            <button class="button">Node HTML</button>
             <div class="panel">
                 <pre>{{ node.html|escape }}</pre>
             </div>
 
-            <button class="accordion">Page Dict</button>
+            <button class="button">Page Dict</button>
             <div class="panel last">
                 <pre>{{ context.stack|index:2|pprint|pygmentize:'python' }}</pre>
             </div>
         </div>
 
 <script>
-    var accordian = document.getElementsByClassName("accordion");
-
-    for (let i = 0; i < accordian.length; i++) {
-        accordian[i].addEventListener("click", function() {
+    var buttons = document.getElementsByClassName("button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
