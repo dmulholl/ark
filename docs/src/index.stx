@@ -54,6 +54,12 @@ Ivy requires Python 3.8 or later.
 
 
 
+### Plugins
+
+* [Holly](http://www.dmulholl.com/dev/holly.html) --- this blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
+
+
+
 ### Contributing
 
 My goal is to keep Ivy as small and simple as possible so I almost certainly won't accept pull requests.
