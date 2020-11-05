@@ -2,9 +2,10 @@
 title: Shortcodes
 ---
 
-[shortcodes]: https://github.com/dmulholl/shortcodes
+[github]: https://github.com/dmulholl/shortcodes
+[docs]: http://www.dmulholl.com/dev/shortcodes.html
 
-Ivy has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
+Ivy has builtin support for WordPress-style [shortcodes][docs] in node content. These shortcodes can have space-separated positional and keyword arguments:
 
     \[% tag arg1 key=arg2 %]
 
@@ -14,7 +15,7 @@ Shortcodes are powerful --- you can use them to inject content into a node's tex
 
 ### Registering Shortcodes
 
-Shortcodes are implemented by the [shortcodes][] package, an external library.
+Shortcodes are implemented by the [shortcodes][github] package, an external library.
 An Ivy extension can register a new shortcode tag using the shortcode package's `@register()` decorator:
 
 ::: code python
@@ -35,7 +36,7 @@ Positional and keyword arguments are passed as strings. The handler function its
 
 Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
 
-See the shortcode package's [documentation][shortcodes] for further details.
+See the shortcode package's [documentation][docs] for further details.
 
 
 

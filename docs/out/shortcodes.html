@@ -68,7 +68,7 @@ text files into a self-contained website.</p>
                 <hr>
             </header>
             <p>
-Ivy has builtin support for WordPress-style <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:
+Ivy has builtin support for WordPress-style <a href="http://www.dmulholl.com/dev/shortcodes.html">shortcodes</a> in node content. These shortcodes can have space-separated positional and keyword arguments:
 </p>
 <pre>
 [% tag arg1 key=arg2 %]
@@ -112,7 +112,7 @@ Positional and keyword arguments are passed as strings. The handler function its
 Note that shortcodes are processed <i>before</i> node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
 </p>
 <p>
-See the shortcode package's <a href="https://github.com/dmulholl/shortcodes">documentation</a> for further details.
+See the shortcode package's <a href="http://www.dmulholl.com/dev/shortcodes.html">documentation</a> for further details.
 </p>
 <h3 id="example-include-raw">
 Example &mdash; <code>include_raw</code>
