@@ -7,7 +7,7 @@ Ivy is a static website generator. It transforms a directory of text files into
 a self-contained website.
 
 * `Github <https://github.com/dmulholl/ivy>`_
-* `Documentation <http://www.dmulholl.com/docs/ivy/dev/>`_
+* `Documentation <http://www.dmulholl.com/docs/ivy/master/>`_
 * `Demo <http://www.dmulholl.com/demos/ivy/>`_
 
 """
