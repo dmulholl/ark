@@ -5,7 +5,7 @@
  */
 
 pre .bp { color: #3465a4 }                      /* Name.Builtin.Pseudo */
-pre .c  { color: #8f5902 }                      /* Comment */ 
+pre .c  { color: #8f5902 }                      /* Comment */
 pre .c1 { color: #8f5902 }                      /* Comment.Single */
 pre .cm { color: #8f5902 }                      /* Comment.Multiline */
 pre .cp { color: #204a87; font-weight: bold }   /* Comment.Preproc */
@@ -45,7 +45,7 @@ pre .nd { color: #000088 }                      /* Name.Decorator */
 pre .ni { color: #ce5c00 }                      /* Name.Entity */
 pre .ne { color: #cc0000; font-weight: bold }   /* Name.Exception */
 pre .nf { color: #222222 }                      /* Name.Function */
-pre .nl { color: #f57900 }                      /* Name.Label */
+pre .nl { color: #880000 }                      /* Name.Label */
 pre .nn { color: #222222 }                      /* Name.Namespace */
 pre .nt { color: #204a87; font-weight: bold }   /* Name.Tag */
 pre .nv { color: #222222 }                      /* Name.Variable */

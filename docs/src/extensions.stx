@@ -5,7 +5,7 @@ title: Extensions
 [jinja]: http://jinja.pocoo.org
 [ibis]: https://github.com/dmulholl/ibis
 [markdown]: https://en.wikipedia.org/wiki/Markdown
-[syntext]: http://www.dmulholl.com/docs/syntext/
+[syntext]: http://www.dmulholl.com/docs/syntext/master/
 [shortcodes]: https://github.com/dmulholl/shortcodes
 [mdpkg]: https://pypi.org/project/Markdown/
 
