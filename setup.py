@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 """
-Ivy
-===
-
 Ivy is a static website generator. It transforms a directory of text files into
 a self-contained website.
 
@@ -15,8 +12,7 @@ a self-contained website.
 import os
 import re
 import io
-
-from setuptools import setup, find_packages
+import setuptools
 
 
 # MANIFEST.in file content.
@@ -41,10 +37,10 @@ with io.open(metapath, encoding='utf-8') as metafile:
 
 
 # Standard setup routine.
-setup(
+setuptools.setup(
     name = 'ivy',
     version = meta['version'],
-    packages =  find_packages(),
+    packages = setuptools.find_packages(),
     include_package_data = True,
     entry_points = {
         'console_scripts': [
