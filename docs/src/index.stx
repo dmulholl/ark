@@ -29,7 +29,6 @@ Ivy is a static website generator built in Python. It's small, elegant, and easy
       build               Build the site.
       clear               Clear the output directory.
       init                Initialize a new site directory.
-      make                Create a new node file.
       serve               Run a server on the output directory.
       tree                Print the site's node tree.
       watch               Monitor the site directory and

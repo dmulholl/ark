@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 3.4.0.dev
+
+* A convenience command, `open`, has been added for opening `@root/` urls in the default browser.
+
+
+
 ### 3.3.0
 
 * The `Node.render()` method has been replaced by making `Node.html` a dynamically-generated property. Internal caching has been added to nodes to reduce build time.
