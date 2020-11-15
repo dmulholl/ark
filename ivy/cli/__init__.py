@@ -30,6 +30,7 @@ Commands:
   clear               Clear the output directory.
   init                Initialize a new site directory.
   make                Create a new node file.
+  open                Open an @root/ url in the default web browser.
   serve               Run a web server on the site's output directory.
   tree                Print the node tree.
   watch               Monitor the site directory and rebuild on changes.
