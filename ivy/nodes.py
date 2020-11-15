@@ -30,11 +30,13 @@ def root() -> Node:
 # Returns the node corresponding to the specified @root/ url if it exists,
 # otherwise returns None.
 def node(url: str) -> Optional[Node]:
-    node = root()
-    for slug in url.rstrip('/').split('/')[1:]:
-        if (node := node.child(slug)) is None:
-            break
-    return node
+    if url.startswith('@root/'):
+        node = root()
+        for slug in url.rstrip('/').split('/')[1:]:
+            if (node := node.child(slug)) is None:
+                break
+        return node
+    return None
 
 
 # A Node instance represents a directory or text file (or both) in the
