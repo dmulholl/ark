@@ -14,7 +14,7 @@ from .. import events
 helptext = """
 Usage: ivy tree
 
-  This command prints the site's node tree. The root note to use as the
+  This command prints the site's node tree. The root node to use as the
   starting point can be specifed using the --root option:
 
     $ ivy tree --root @root/foo/bar//
