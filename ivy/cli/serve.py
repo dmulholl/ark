@@ -26,7 +26,6 @@ Usage: ivy serve
   require root authorization.
 
 Options:
-  -b, --browser <name>      Specify a browser to open by name.
   -d, --directory <path>    Specify a custom directory to serve.
   -h, --host <addr>         Host IP address. Defaults to localhost.
   -p, --port <int>          Port number. Defaults to 8080.
@@ -70,6 +69,8 @@ def cmd_callback(cmd_name, cmd_parser):
 
     address = server.socket.getsockname()
     url = f"http://{cmd_parser.value('host')}:{address[1]}"
+
+    # Deprecated: this mechanism for selecting a browser by name is unreliable.
     if cmd_parser.found('browser'):
         try:
             browser = webbrowser.get(cmd_parser.value('browser'))
