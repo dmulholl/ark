@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 import ivy
-import args
+import argslib
 
 from . import build
 from . import init
@@ -41,7 +41,7 @@ Command Help:
 
 
 # We store the root ArgParser instance globally so it's available to plugins.
-argparser = args.ArgParser(helptext, ivy.__version__)
+argparser = argslib.ArgParser(helptext, ivy.__version__)
 
 
 # Parse the application's command-line arguments. Plugins can use the `cli`

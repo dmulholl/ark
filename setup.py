@@ -55,7 +55,7 @@ setuptools.setup(
         'syntext ~= 2.0',
         'ibis ~= 1.6',
         'shortcodes ~= 3.0',
-        'argslib ~= 1.0',
+        'argslib ~= 2.0',
         'colorama ~= 0.4',
     ],
     python_requires = ">=3.8",
