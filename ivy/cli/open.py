@@ -10,7 +10,9 @@ import webbrowser
 helptext = """
 Usage: ivy open [url]
 
-  Open the specified @root/ url in the default web browser.
+  This command opens the output file corresponding to the specified @root/ url
+  directly in the default web browser. Defaults to opening the site root if no
+  url is specified.
 
 Arguments:
   [url]             The @root/ url to open. Defaults to the site root.
