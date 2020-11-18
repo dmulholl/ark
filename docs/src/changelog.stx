@@ -3,9 +3,11 @@ title: Changelog
 ---
 
 
-### 3.4.0.dev
+### 3.4.0
 
-* A convenience command, `open`, has been added for opening `@root/` urls in the default browser.
+* A new convenience command, `open`, has been added for opening `@root/` urls in the default browser.
+
+* The `argslib` dependency has been updated to version 2.0.0.
 
 
 
