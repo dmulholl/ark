@@ -6,14 +6,6 @@ Install Ivy from the Python Package Index using `pip`:
 
     $ pip install ivy
 
-Note that Ivy requires Python 3.8 or later. You can check your Python version using the `--version` flag:
-
-        $ python --version
-
-If you have any problems installing, try the sequence of steps outlined [here][install].
-
-[install]: @root/faq//#why-wont-ivy-install
-
 Once Ivy is installed, create a new directory for your site and `cd` into it:
 
     $ mkdir mysite

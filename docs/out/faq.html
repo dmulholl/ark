@@ -72,9 +72,6 @@ text files into a self-contained website.</p>
 <a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
 </li>
 <li>
-<a href="#why-wont-ivy-install">Why won't Ivy install?</a>
-</li>
-<li>
 <a href="#where-do-i-put-my-image-files">Where do I put my image files?</a>
 </li>
 <li>
@@ -101,33 +98,6 @@ Can I build a blog using Ivy?
 </h3>
 <p>
 <a href="https://github.com/dmulholl/holly">Holly</a> is a blog-engine plugin for Ivy. It adds support for WordPress-style post and tag indexes.
-</p>
-<h3 id="why-wont-ivy-install">
-Why won't Ivy install?
-</h3>
-<p>
-Ivy requires Python 3. Every installation problem I've heard about has turned out to be a Python 2 issue, <i>even when people are convinced they're installing using Python 3</i>. If you're having problems installing Ivy, try this sequence of steps:
-</p>
-<p>
-First, make sure you have Python 3 installed:
-</p>
-<pre>
-$ python3 --version
-</pre>
-<p>
-Next, install Ivy using the copy of <code>pip</code> associated with your Python 3 installation:
-</p>
-<pre>
-$ python3 -m pip install ivy
-</pre>
-<p>
-Check that Ivy has installed properly:
-</p>
-<pre>
-$ python3 -m ivy --help
-</pre>
-<p>
-You should now be able to run the application simply by typing <code>ivy</code>, but if you're still having problems try using <code>python3 -m ivy</code> as a fallback.
 </p>
 <h3 id="where-do-i-put-my-image-files">
 Where do I put my image files?
