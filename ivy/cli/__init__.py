@@ -16,7 +16,7 @@ from . import open
 
 
 helptext = """
-Usage: ivy [flag] [command]
+Usage: ivy [command]
 
   Ivy is a static website generator. It transforms a directory of text files
   into a self-contained website.
