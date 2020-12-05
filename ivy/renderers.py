@@ -43,8 +43,10 @@ def render(text: str, ext: str, source: str = '') -> str:
         except Exception as err:
             msg =  f"Rendering Error: {source}\n"
             msg += f"  {err.__class__.__name__}: {err}"
-            if (context := err.__context__):
-                msg += f"\n  Cause: {context.__class__.__name__}: {context}"
+            if (cause := err.__cause__):
+                msg += f"\n  Cause: {cause.__class__.__name__}: {cause}"
+            elif (context := err.__context__):
+                msg += f"\n  Context: {context.__class__.__name__}: {context}"
             sys.exit(msg)
     return text
 

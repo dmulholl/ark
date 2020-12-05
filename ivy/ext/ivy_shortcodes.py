@@ -30,6 +30,8 @@ if shortcodes:
             msg = "Shortcode Error\n"
             msg += f"  Node: {node}\n"
             msg += f"  {err.__class__.__name__}: {err}"
-            if (cause := err.__context__):
+            if (cause := err.__cause__):
                 msg += f"\n  Cause: {cause.__class__.__name__}: {cause}"
+            elif (context := err.__context__):
+                msg += f"\n  Context: {context.__class__.__name__}: {context}"
             sys.exit(msg)
