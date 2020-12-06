@@ -3,6 +3,12 @@ title: Changelog
 ---
 
 
+### 3.5.0.dev
+
+* Update the [Ibis](http://www.dmulholl.com/docs/ibis/master/) dependency version to 2.0.
+
+
+
 ### 3.4.0
 
 * A new convenience command, `open`, has been added for opening `@root/` urls in the default browser.

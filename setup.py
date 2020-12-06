@@ -53,7 +53,7 @@ setuptools.setup(
         'pyyaml ~= 5.0',
         'jinja2 ~= 2.0',
         'syntext ~= 2.0',
-        'ibis ~= 1.6',
+        'ibis ~= 2.0',
         'shortcodes ~= 3.0',
         'argslib ~= 2.0',
         'colorama ~= 0.4',
