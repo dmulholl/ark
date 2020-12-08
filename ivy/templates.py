@@ -61,16 +61,16 @@ def render(page: pages.Page) -> str:
                         return _callbacks[ext](page, path.name)
                     except Exception as err:
                         msg = "Template Error\n"
-                        msg += f"  Template: {path.name}\n"
-                        msg += f"  Page: {page['filepath']}\n"
-                        msg += f"  {err.__class__.__name__}: {err}"
+                        msg += f">> Template: {path.name}\n"
+                        msg += f">> Node: {page['node'].url}\n"
+                        msg += f">> {err.__class__.__name__}: {err}"
                         if (cause := err.__cause__):
-                            msg += f"\n  Cause: {cause.__class__.__name__}: {cause}"
+                            msg += f"\n>> Cause: {cause.__class__.__name__}: {cause}"
                         elif (context := err.__context__):
-                            msg += f"\n  Context: {context.__class__.__name__}: {context}"
+                            msg += f"\n>> Context: {context.__class__.__name__}: {context}"
                         sys.exit(msg)
                 else:
-                    sys.exit(f"Error: unrecognised template extension '.{ext}'.")
+                    msg = f"Error: The template file '{path.name}' has an unrecognised extension."
+                    sys.exit(msg)
 
-    # Missing template file.
-    sys.exit(f"Error: missing template file for page: '{page['filepath']}'.")
+    sys.exit(f"Error: Ivy cannot locate a template file for the node: '{page['node'].url}'.")
