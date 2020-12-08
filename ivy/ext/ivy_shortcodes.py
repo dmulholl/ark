@@ -11,19 +11,20 @@ except ImportError:
     shortcodes = None
 
 
-# Check the config file for custom settings for the shortcode parser.
-settings = ivy.site.config.get('shortcodes', {})
+# Use a single parser instance to parse all files.
+parser = None
 
 
 # The shortcodes module is an optional dependency.
 if shortcodes:
 
-    # Initialize a single parser instance.
-    parser = shortcodes.Parser(**settings)
-
-    # Filter each node's content on the 'node_text' filter hook.
     @ivy.filters.register('node_text')
     def render(text, node):
+        global parser
+        if parser is None:
+            settings = ivy.site.config.get('shortcodes', {})
+            parser = shortcodes.Parser(**settings)
+
         try:
             return parser.parse(text, node)
         except shortcodes.ShortcodeError as err:
@@ -32,6 +33,4 @@ if shortcodes:
             msg += f">> {err.__class__.__name__}: {err}"
             if (cause := err.__cause__):
                 msg += f"\n>> Cause: {cause.__class__.__name__}: {cause}"
-            elif (context := err.__context__):
-                msg += f"\n>> Context: {context.__class__.__name__}: {context}"
             sys.exit(msg)
