@@ -14,7 +14,7 @@ else:
     @ivy.filters.register('file_text')
     def parse_yaml(text, meta):
         if text.startswith("---\n"):
-            match = re.match(r"^---\n(.*?\n)---\n+", text, re.DOTALL)
+            match = re.match(r"^---\n(.*?\n)---\n", text, re.DOTALL)
             if match:
                 text = text[match.end(0):]
                 data = yaml.safe_load(match.group(1))
