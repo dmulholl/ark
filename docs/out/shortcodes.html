@@ -114,6 +114,14 @@ Note that shortcodes are processed <i>before</i> node text is rendered into HTML
 <p>
 See the shortcode package's <a href="http://www.dmulholl.com/dev/shortcodes.html">documentation</a> for further details.
 </p>
+<h3 id="shortcode-errors">
+Shortcode Errors
+</h3>
+<p>
+Note that when the shortcode parser reports syntax or rendering errors it quotes line numbers within
+the node's content. These line numbers don't include the node file's metadata header which is never seen by the
+shortcode parser.
+</p>
 <h3 id="example-include-raw">
 Example &mdash; <code>include_raw</code>
 </h3>

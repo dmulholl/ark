@@ -40,6 +40,14 @@ See the shortcode package's [documentation][docs] for further details.
 
 
 
+### Shortcode Errors
+
+Note that when the shortcode parser reports syntax or rendering errors it quotes line numbers within
+the node's content. These line numbers don't include the node file's metadata header which is never seen by the
+shortcode parser.
+
+
+
 ### Example --- `include_raw`
 
 Here's a sample shortcode you could use to inject the raw content of a file from the site's includes directory, `inc`, directly into a node file:
