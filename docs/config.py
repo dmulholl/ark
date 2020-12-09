@@ -5,8 +5,7 @@
 title = "Ivy"
 
 tagline = """
-Ivy is a static website generator built in Python. It transforms a directory of
-text files into a self-contained website.
+A static website generator for people who like the simpler things in life.
 """
 
-version = "Version 3.4.0"
+version = "Version 3.5.0"
