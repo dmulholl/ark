@@ -5,7 +5,7 @@
 title = "Ivy"
 
 tagline = """
-A static website generator for people who like the simpler things in life.
+A static website generator for people who enjoy the simpler things in life.
 """
 
-version = "Version 3.5.0"
+version = "Version 3.5.0.dev"
