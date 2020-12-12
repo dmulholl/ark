@@ -54,7 +54,7 @@ setuptools.setup(
         'jinja2 ~= 2.0',
         'syntext ~= 2.0',
         'ibis ~= 2.0',
-        'shortcodes ~= 5.0',
+        'shortcodes ~= 5.1',
         'argslib ~= 2.0',
         'colorama ~= 0.4',
     ],
