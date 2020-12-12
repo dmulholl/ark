@@ -71,13 +71,15 @@
 </h3>
 <ul>
 <li>
-Update the <a href="http://www.dmulholl.com/docs/ibis/master/">Ibis</a> dependency version to 2.0.
+The <a href="http://www.dmulholl.com/dev/shortcodes.html">Shortcodes</a> dependency version has been updated
+to 5.0. The only difference end users should notice is improved error messages.
 </li>
 <li>
-Update the <a href="http://www.dmulholl.com/dev/shortcodes.html">Shortcodes</a> dependency version to 5.0.
-</li>
-<li>
-Error reporting has been improved.
+The <a href="http://www.dmulholl.com/docs/ibis/master/">Ibis</a> dependency version has been updated to 2.0.
+If you've been using Ibis templates you'll want to note that Django-style colon-syntax is no
+longer supported for function and filter arguments &mdash; you should use bracket-syntax instead.
+Also, variables that resolve to callables are no longer called automatically &mdash; you need to
+explicitly call functions using brackets, e.g. <code>{{ some.func() }}</code>.
 </li>
 </ul>
 <h3 id="id-3-4-0">
