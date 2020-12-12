@@ -12,7 +12,7 @@
         {% endif %}
         {{ inc.head }}
     </head>
-    <body class="{{{ classes|join:' ' }}}">
+    <body class="{{{ classes|join(' ') }}}">
         <header class="masthead">
             <h1><a href="@root/">{{ site.title || "Site Title" }}</a></h1>
             {% if site.tagline %}
