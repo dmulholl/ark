@@ -3,7 +3,7 @@ title: Changelog
 ---
 
 
-### 4.0.0.dev
+### 4.0.0
 
 * There are no breaking changes to Ivy in this release. I've bumped the version number as two of
   Ivy's dependencies, the Shortcodes and Ibis packages, have been updated and users
