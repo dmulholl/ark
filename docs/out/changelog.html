@@ -17,7 +17,7 @@
             <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-            <p class="version">Version 3.5.0.dev</p>
+            <p class="version">Version 4.0.0.dev</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -66,20 +66,33 @@
                 
                 <hr>
             </header>
-            <h3 id="id-3-5-0-dev">
-3.5.0.dev
+            <h3 id="id-4-0-0-dev">
+4.0.0.dev
 </h3>
 <ul>
 <li>
-The <a href="http://www.dmulholl.com/dev/shortcodes.html">Shortcodes</a> dependency version has been updated
-to 5.0. The only difference end users should notice is improved error messages.
+There are no breaking changes to Ivy in this release. I've bumped the version number as two of
+Ivy's dependencies, the Shortcodes and Ibis packages, have been updated and users
+may want to test their sites for compatibility before updating.
 </li>
 <li>
-The <a href="http://www.dmulholl.com/docs/ibis/master/">Ibis</a> dependency version has been updated to 2.0.
+The <a href="http://www.dmulholl.com/dev/shortcodes.html">Shortcodes</a> dependency version has been updated
+to v5.1. The only difference end users should notice is improved error messages.
+</li>
+<li>
+The <a href="http://www.dmulholl.com/docs/ibis/master/">Ibis</a> dependency version has been updated to v2.0.
 If you've been using Ibis templates you'll want to note that Django-style colon-syntax is no
 longer supported for function and filter arguments &mdash; you should use bracket-syntax instead.
 Also, variables that resolve to callables are no longer called automatically &mdash; you need to
 explicitly call functions using brackets, e.g. <code>{{ some.func() }}</code>.
+</li>
+</ul>
+<h3 id="id-3-5-0">
+3.5.0
+</h3>
+<ul>
+<li>
+Improved error messages.
 </li>
 </ul>
 <h3 id="id-3-4-0">
