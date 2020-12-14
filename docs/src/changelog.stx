@@ -10,7 +10,7 @@ title: Changelog
   may want to test their sites for compatibility before updating.
 
 * The [Shortcodes](http://www.dmulholl.com/dev/shortcodes.html) dependency version has been updated
-  to v5.1. The only difference end users should notice is improved error messages.
+  to v5.0. The only difference end users should notice is improved error messages.
 
 * The [Ibis](http://www.dmulholl.com/docs/ibis/master/) dependency version has been updated to v2.0.
   If you've been using Ibis templates you'll want to note that Django-style colon-syntax is no
