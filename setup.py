@@ -61,7 +61,7 @@ setuptools.setup(
     author = 'Darren Mulholland',
     url='https://github.com/dmulholl/ivy',
     license = 'Public Domain',
-    description = 'A static website generator.',
+    description = 'A static website generator for people who enjoy the simpler things in life.',
     long_description = __doc__,
     classifiers = [
         'Programming Language :: Python :: 3',
