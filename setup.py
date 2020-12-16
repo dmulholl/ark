@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Ivy is a static website generator. It transforms a directory of text files into
-a self-contained website.
+A static website generator for people who enjoy the simpler things in life.
 
 * `Github <https://github.com/dmulholl/ivy>`_
 * `Documentation <http://www.dmulholl.com/docs/ivy/master/>`_
