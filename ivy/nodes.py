@@ -98,10 +98,6 @@ class Node():
             self = self.parent
         return default
 
-    # Dictionary-style 'update' support for metadata.
-    def update(self, other: Dict[str, Any]):
-        self.meta.update(other)
-
     # Calls the specified function on the node and all its descendants.
     def walk(self, callback: Callable[['Node'], None]):
         for node in self.children:
@@ -206,6 +202,6 @@ def _parse_node_file(dirnode: Node, filepath: Path):
             dirnode.children.append(filenode)
     text, meta = utils.loadfile(filepath)
     filenode.text = text
-    filenode.update(meta)
+    filenode.meta.update(meta)
     filenode.filepath = str(filepath)
     filenode.ext = filepath.suffix.strip('.')
