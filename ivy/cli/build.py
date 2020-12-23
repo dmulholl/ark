@@ -62,7 +62,7 @@ def build_site():
     # Make sure we have a valid theme directory.
     if not site.theme():
         theme_name =  site.config['theme']
-        sys.exit(f"Error: cannot locate theme '{theme_name}'.")
+        sys.exit(f"Error: cannot locate the theme '{theme_name}'.")
 
     # Copy the theme's resource files to the output directory.
     if os.path.isdir(site.theme('resources')):
