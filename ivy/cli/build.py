@@ -12,6 +12,7 @@ from .. import utils
 from .. import nodes
 from .. import pages
 from .. import filters
+from .. import hashes
 
 
 helptext = """
@@ -47,6 +48,7 @@ def cmd_callback(cmd_name, cmd_parser):
         site.config['theme'] = cmd_parser.value('theme')
     if cmd_parser.found('clear'):
         utils.cleardir(site.out())
+        hashes.clear()
 
     @events.register('main')
     def fire_build_events():

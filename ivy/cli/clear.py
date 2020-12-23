@@ -8,6 +8,7 @@ import os
 from .. import site
 from .. import utils
 from .. import events
+from .. import hashes
 
 
 helptext = """
@@ -31,3 +32,4 @@ def cmd_callback(cmd_name, cmd_parser):
     if not os.path.exists(site.out()):
         sys.exit("Error: cannot locate the site's output directory.")
     utils.cleardir(site.out())
+    hashes.clear()

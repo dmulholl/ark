@@ -20,47 +20,68 @@ from . import site
 from . import events
 
 
-# Stores page hashes from the previous and current build runs.
-_hashes = { 'old': {}, 'new': {} }
+# Stores page-content hashes.
+_hashes = {}
+
+
+# Update flag. True if we've added new hashes.
+_updated = False
+
+
+# Stores the filepath for the cached-hashes file.
+_file = None
 
 
 # Returns true if `filepath` is an existing file whose hash matches that of
 # the content string.
 def match(filepath: str, content: str) -> bool:
     key = os.path.relpath(filepath, site.out())
-    _hashes['new'][key] = hashlib.sha1(content.encode()).hexdigest()
-    if os.path.exists(filepath):
-        return _hashes['old'].get(key) == _hashes['new'][key]
+    old_hash = _hashes.get(key)
+    new_hash = hashlib.sha1(content.encode()).hexdigest()
+    if new_hash == old_hash:
+        return os.path.exists(filepath)
     else:
+        global _updated
+        _updated = True
+        _hashes[key] = new_hash
         return False
+
+
+# Clear the cache and delete any existing cache file.
+def clear():
+    _hashes.clear()
+    if os.path.isfile(_cachefile()):
+        os.remove(_cachefile())
 
 
 # Returns the name of the cache file for the curent site.
 def _cachefile() -> str:
-    if not 'cachefile' in _hashes:
+    global _file
+    if _file is None:
         name = hashlib.sha1(site.home().encode()).hexdigest() + '.pickle'
         if os.name == 'nt':
             root = os.getenv('LOCALAPPDATA', os.path.expanduser('~'))
             root = os.path.join(root, 'Ivy')
         else:
             root = os.path.expanduser('~/.cache/ivy')
-        _hashes['cachefile'] = os.path.join(root, name)
-    return _hashes['cachefile']
+        _file = os.path.join(root, name)
+    return _file
 
 
 # Load cached page hashes from the last build run.
-@events.register('init_build')
+@events.register('init')
 def _load():
     if os.path.isfile(_cachefile()):
         with open(_cachefile(), 'rb') as file:
-            _hashes['old'] = pickle.load(file)
+            global _hashes
+            _hashes = pickle.load(file)
 
 
 # Cache page hashes to disk for the next build run.
-@events.register('exit_build')
+@events.register('exit')
 def _save():
-    if _hashes['new'] and _hashes['new'] != _hashes['old']:
+    if _updated:
         if not os.path.isdir(os.path.dirname(_cachefile())):
             os.makedirs(os.path.dirname(_cachefile()))
         with open(_cachefile(), 'wb') as file:
-            pickle.dump(_hashes['new'], file)
+            pickle.dump(_hashes, file)
