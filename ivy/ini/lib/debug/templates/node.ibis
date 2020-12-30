@@ -39,7 +39,7 @@
 
             <button class="button">Node Meta</button>
             <div class="panel">
-                <pre>{{ node.meta|pprint|pygmentize:'python' }}</pre>
+                <pre>{{ node.meta|pprint|pygmentize('python') }}</pre>
             </div>
 
             <button class="button">Node Text</button>
@@ -54,7 +54,7 @@
 
             <button class="button">Page Dict</button>
             <div class="panel last">
-                <pre>{{ context.stack|index:2|pprint|pygmentize:'python' }}</pre>
+                <pre>{{ context.stack|index(2)|pprint|pygmentize('python') }}</pre>
             </div>
         </div>
 
