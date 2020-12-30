@@ -9,9 +9,9 @@
     <body>
         <div id="wrap">
             <h1>
-                {{{ node }}}
+                {$ node $}
                 {% if node.parent %}
-                <a href="{{ node.parent.url }}">&#8593;</a>
+                <a href="{$ node.parent.url $}">&#8593;</a>
                 {% endif %}
             </h1>
 
@@ -30,7 +30,7 @@
             <div class="panel">
                 <ul>
                     {% for child in node.children %}
-                    <li><a href="{{ child.url }}">{{{ child }}}</a></li>
+                    <li><a href="{$ child.url $}">{$ child $}</a></li>
                     {% empty %}
                     <li>None.</li>
                     {% endfor %}
@@ -39,7 +39,7 @@
 
             <button class="button">Node Meta</button>
             <div class="panel">
-                <pre>{{ node.meta|pprint|pygmentize:'python' }}</pre>
+                <pre>{{ node.meta|pprint|pygmentize('python') }}</pre>
             </div>
 
             <button class="button">Node Text</button>
@@ -54,7 +54,7 @@
 
             <button class="button">Page Dict</button>
             <div class="panel last">
-                <pre>{{ context.stack|index:2|pprint|pygmentize:'python' }}</pre>
+                <pre>{{ context.stack|index(2)|pprint|pygmentize('python') }}</pre>
             </div>
         </div>
 

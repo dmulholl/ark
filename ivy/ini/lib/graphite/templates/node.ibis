@@ -8,11 +8,11 @@
         <link rel="stylesheet" href="@root/assets/graphite.css">
         <link rel="stylesheet" href="@root/assets/pygments.css">
         {% if node.meta_description %}
-        <meta name="description" content="{{{ node.meta_description.strip() }}}">
+        <meta name="description" content="{$ node.meta_description.strip() $}">
         {% endif %}
         {{ inc.head }}
     </head>
-    <body class="{{{ classes|join(' ') }}}">
+    <body class="{$ classes|join(' ') $}">
         <header class="masthead">
             <h1><a href="@root/">{{ site.title || "Site Title" }}</a></h1>
             {% if site.tagline %}
