@@ -3,6 +3,15 @@ title: Changelog
 ---
 
 
+### 4.1.0
+
+* The internal logic of the hashing module has been simplified.
+
+* The `Node.update()` method has been removed. You can call `Node.meta.update()` directly
+  if required.
+
+
+
 ### 4.0.0
 
 * There are no breaking changes to Ivy in this release. I've bumped the version number as two of
