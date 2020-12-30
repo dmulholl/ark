@@ -2,10 +2,15 @@
 title: Changelog
 ---
 
+[docs:ibis]: http://www.dmulholl.com/docs/ibis/master/
+[docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
+
 
 ### 5.0.0
 
-* There are no breaking changes to Ivy in this release but the [Ibis](http://www.dmulholl.com/docs/ibis/master/) dependency version has been updated to v3.0 which changes the default syntax for escaped print tags to `{$ varname $}`.
+* There are no breaking changes to Ivy in this release but the [Ibis][docs:ibis] dependency version
+  has been updated to v3.0. If you've been using Ibis templates you should note that the default
+  syntax for escaped print tags has changed to `{$ varname $}`.
 
 
 
@@ -24,10 +29,10 @@ title: Changelog
   Ivy's dependencies, the Shortcodes and Ibis packages, have been updated and users
   may want to test their sites for compatibility before updating.
 
-* The [Shortcodes](http://www.dmulholl.com/dev/shortcodes.html) dependency version has been updated
+* The [Shortcodes][docs:shortcodes] dependency version has been updated
   to v5.0. The only difference end users should notice is improved error messages.
 
-* The [Ibis](http://www.dmulholl.com/docs/ibis/master/) dependency version has been updated to v2.0.
+* The [Ibis][docs:ibis] dependency version has been updated to v2.0.
   If you've been using Ibis templates you'll want to note that Django-style colon-syntax is no
   longer supported for function and filter arguments --- you should use bracket-syntax instead.
   Also, variables that resolve to callables are no longer called automatically --- you need to
