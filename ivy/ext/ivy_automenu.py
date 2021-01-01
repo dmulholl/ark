@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+##
 # This extension automatically generates a menu containing links to every node
 # in the site. The menu can be accessed in templates via an 'automenu' variable.
 #
@@ -12,7 +12,7 @@
 #
 # If a node has a 'menu_exclude' attribute set to true or a 'status' attribute
 # set to 'draft' or 'private' it will be excluded from the menu.
-# ------------------------------------------------------------------------------
+##
 
 import ivy
 
@@ -76,4 +76,3 @@ def sorted_children(node, inc_func, sort_func):
         children.sort(key=lambda node: node.stem)
         children.sort(key=lambda node: node.get('menu_order', 0))
     return children
-

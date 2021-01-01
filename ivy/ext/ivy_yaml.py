@@ -1,8 +1,3 @@
-# ------------------------------------------------------------------------------
-# This extension adds support for YAML metadata headers in source files. YAML
-# headers are identified by opening and closing '---' lines.
-# ------------------------------------------------------------------------------
-
 import ivy
 import re
 
