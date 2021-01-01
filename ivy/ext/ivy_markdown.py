@@ -1,7 +1,3 @@
-# ------------------------------------------------------------------------------
-# This extension adds support for source files in Markdown format.
-# ------------------------------------------------------------------------------
-
 import ivy
 
 try:
@@ -9,12 +5,11 @@ try:
 except ImportError:
     markdown = None
 
-
-# The markdown package is an optional dependency.
 if markdown:
 
     # Check the config file for custom settings for the markdown renderer.
-    settings = ivy.site.config.get('markdown', {})
+    # (The bare 'markdown' attribute is deprecated.)
+    settings = ivy.site.config.get('markdown_settings') or ivy.site.config.get('markdown') or {}
 
     # Initialize a markdown renderer.
     renderer = markdown.Markdown(**settings)

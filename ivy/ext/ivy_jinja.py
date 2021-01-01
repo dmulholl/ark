@@ -1,7 +1,3 @@
-# ------------------------------------------------------------------------------
-# This extension adds support for Jinja templates.
-# ------------------------------------------------------------------------------
-
 import ivy
 
 try:
@@ -17,13 +13,15 @@ env = None
 # The jinja2 package is an optional dependency.
 if jinja2:
 
-    # Initialize our Jinja environment on the 'init' event hook.
-    # Check the site's config file for any custom settings.
+    # Initialize the Jinja environment on the 'init' event hook.
+    # Check the site's config file for custom settings.
+    # (The bare 'jinja' attribute is deprecated.)
     @ivy.events.register('init')
     def init():
         settings = {
             'loader': jinja2.FileSystemLoader(ivy.site.theme('templates'))
         }
+        settings.update(ivy.site.config.get('jinja_settings', {}))
         settings.update(ivy.site.config.get('jinja', {}))
         global env
         env = jinja2.Environment(**settings)

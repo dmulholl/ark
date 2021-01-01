@@ -1,7 +1,3 @@
-# ------------------------------------------------------------------------------
-# This extension adds support for shortcodes.
-# ------------------------------------------------------------------------------
-
 import ivy
 import sys
 
@@ -15,14 +11,16 @@ except ImportError:
 parser = None
 
 
-# The shortcodes module is an optional dependency.
+# The bare 'shortcodes' attribute for custom settings is deprecated.
 if shortcodes:
 
     @ivy.filters.register('node_text')
     def render(text, node):
         global parser
         if parser is None:
-            settings = ivy.site.config.get('shortcodes', {})
+            new_settings = ivy.site.config.get('shortcode_settings')
+            old_settings = ivy.site.config.get('shortcodes')
+            settings = new_settings or old_settings or {}
             parser = shortcodes.Parser(**settings)
 
         try:
