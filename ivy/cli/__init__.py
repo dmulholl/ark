@@ -13,6 +13,7 @@ from . import watch
 from . import make
 from . import tree
 from . import open
+from . import deploy
 
 
 helptext = """
