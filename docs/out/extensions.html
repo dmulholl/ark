@@ -250,10 +250,14 @@ Extension Options
 Markdown
 </h3>
 <p>
-Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a <code>markdown</code> attribute, e.g.
+Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
+dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
+<code>markdown_settings</code> attribute, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">markdown_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span>
+<span class="p">}</span>
 </pre>
 <p>
 See the package's documentation for details of the available options.
@@ -262,13 +266,16 @@ See the package's documentation for details of the available options.
 Jinja
 </h3>
 <p>
-Ivy uses the <a href="http://jinja.pocoo.org">Jinja</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
+Ivy uses the <a href="http://jinja.pocoo.org">Jinja</a> package to render template files with a <code>.jinja</code> extension. You can add a
+dictionary of keyword arguments for the Jinja environment to your site configuration file via a
+<code>jinja_settings</code> attribute.
 </p>
 <h3 id="shortcodes">
 Shortcodes
 </h3>
 <p>
-Ivy uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> package to process shortcodes in node files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
+Ivy uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> package to process shortcodes in node files. You can add a dictionary of
+keyword arguments for the shortcode parser to your site configuration file via a <code>shortcode_settings</code> attribute.
 </p>
 <h3 id="automenu">
 Automenu

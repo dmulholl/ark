@@ -130,10 +130,14 @@ The `file_text` filter hook can be found in the `ivy/utils.py` file.
 
 ### Markdown
 
-Ivy uses the [Markdown][mdpkg] package to render node files with a `.md` extension. You can add a dictionary of keyword arguments for the Markdown renderer to your site configuration file via a `markdown` attribute, e.g.
+Ivy uses the [Markdown][mdpkg] package to render node files with a `.md` extension. You can add a
+dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
+`markdown_settings` attribute, e.g.
 
 ::: code python
-    markdown = { 'extensions': ['markdown.extensions.extra'] }
+    markdown_settings = {
+        'extensions': ['markdown.extensions.extra']
+    }
 
 See the package's documentation for details of the available options.
 
@@ -141,13 +145,16 @@ See the package's documentation for details of the available options.
 
 ### Jinja
 
-Ivy uses the [Jinja][] package to render template files with a `.jinja` extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a `jinja` attribute.
+Ivy uses the [Jinja][] package to render template files with a `.jinja` extension. You can add a
+dictionary of keyword arguments for the Jinja environment to your site configuration file via a
+`jinja_settings` attribute.
 
 
 
 ### Shortcodes
 
-Ivy uses the [Shortcodes][] package to process shortcodes in node files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
+Ivy uses the [Shortcodes][] package to process shortcodes in node files. You can add a dictionary of
+keyword arguments for the shortcode parser to your site configuration file via a `shortcode_settings` attribute.
 
 
 
