@@ -6,6 +6,15 @@ title: Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 5.1.0.dev
+
+* A new `deploy` command has been added. This command fires a `deploy` event hook which plugins
+  can use to run site deployment scripts.
+
+* The `make` command has been renamed to `add` to avoid confusion with the `build` command.
+
+
+
 ### 5.0.0
 
 * There are no breaking changes to Ivy in this release but the [Ibis][docs:ibis] dependency version
