@@ -139,7 +139,7 @@ dictionary of keyword arguments for the Markdown renderer to your site configura
         'extensions': ['markdown.extensions.extra']
     }
 
-See the package's documentation for details of the available options.
+See the Markdown package's documentation for details of the available options.
 
 
 
