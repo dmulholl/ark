@@ -2,11 +2,8 @@
 # This module implements the filter API for extensions.
 # ------------------------------------------------------------------------------
 
-from typing import Callable, Any, Optional, Dict, List
-
-
 # Dictionary mapping hook names to lists of callback functions indexed by order.
-_callbacks: Dict[str, Dict[int, List[Callable]]] = {}
+_callbacks = {}
 
 
 # Decorator function for registering filter callbacks, i.e. handler functions
@@ -18,22 +15,22 @@ _callbacks: Dict[str, Dict[int, List[Callable]]] = {}
 #
 # The @register decorator accepts an optional order parameter with a default
 # integer value of 0. Callbacks with lower order fire first.
-def register(hook: str, order: int = 0) -> Callable:
+def register(hook, order=0):
 
-    def decorator(callback: Callable) -> Callable:
+    def register_callback(callback):
         _callbacks.setdefault(hook, {}).setdefault(order, []).append(callback)
         return callback
 
-    return decorator
+    return register_callback
 
 
 # Register a filter callback directly without using a decorator.
-def register_callback(hook: str, callback: Callable, order: int = 0):
+def register_callback(hook, callback, order=0):
     _callbacks.setdefault(hook, {}).setdefault(order, []).append(callback)
 
 
 # Fires a filter hook.
-def apply(hook: str, value: Any, *args: Any) -> Any:
+def apply(hook, value, *args):
     for order in sorted(_callbacks.get(hook, {})):
         for func in _callbacks[hook][order]:
             value = func(value, *args)
@@ -41,12 +38,12 @@ def apply(hook: str, value: Any, *args: Any) -> Any:
 
 
 # Clear all callbacks registered on a hook.
-def clear(hook: str):
+def clear(hook):
     _callbacks[hook] = {}
 
 
 # Deregister a callback from a hook.
-def deregister(hook: str, callback: Callable, order: Optional[int] = None):
+def deregister(hook, callback, order=None):
     if order is None:
         for order in _callbacks.get(hook, {}):
             if callback in _callbacks[hook][order]:

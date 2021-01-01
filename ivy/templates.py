@@ -2,12 +2,9 @@
 # This module handles template-engine callbacks.
 # ------------------------------------------------------------------------------
 
-from __future__ import annotations
-from typing import Dict, List, Callable, Any, Optional
-from pathlib import Path
-
 import sys
 import pathlib
+from pathlib import Path
 
 from . import site
 from . import utils
@@ -15,11 +12,11 @@ from . import pages
 
 
 # Stores registered template-engine callbacks indexed by file extension.
-_callbacks: Dict[str, Callable] = {}
+_callbacks = {}
 
 
 # Caches a list of the theme's template files.
-_cache: Optional[List[Path]] = None
+_cache = None
 
 
 # Decorator function for registering template-engine callbacks. A template-
@@ -33,9 +30,9 @@ _cache: Optional[List[Path]] = None
 #       ...
 #       return html
 #
-def register(ext: str) -> Callable:
+def register(ext):
 
-    def register_callback(callback: Callable) -> Callable:
+    def register_callback(callback):
         _callbacks[ext] = callback
         return callback
 
@@ -43,7 +40,7 @@ def register(ext: str) -> Callable:
 
 
 # Render a Page instance into html.
-def render(page: pages.Page) -> str:
+def render(page):
 
     # Cache a list of the theme's template files for future calls.
     global _cache

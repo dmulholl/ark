@@ -14,7 +14,7 @@ from . import site
 
 
 # Cached parse tree of Node instances.
-_root: Optional[Node] = None
+_root = None
 
 
 # Returns the site's root node. Parses the root directory and assembles the
@@ -161,7 +161,7 @@ class Node():
 # Args:
 #   dirnode (Node): the Node instance for the directory.
 #   dirpath (str/Path): path to the directory as a string or Path instance.
-def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
+def _parse_node_directory(dirnode, dirpath):
 
     # Parse subdirectories.
     for path in (p for p in Path(dirpath).iterdir() if p.is_dir()):
@@ -186,7 +186,7 @@ def _parse_node_directory(dirnode: Node, dirpath: Union[str, Path]):
 # Args:
 #   dirnode (Node): the Node instance for the directory containing the file.
 #   filepath (Path): path to the file as a Path instance.
-def _parse_node_file(dirnode: Node, filepath: Path):
+def _parse_node_file(dirnode, filepath):
     if filepath.stem == 'index':
         filenode = dirnode
     else:

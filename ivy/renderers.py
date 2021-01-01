@@ -4,12 +4,11 @@
 # ------------------------------------------------------------------------------
 
 import sys
-from typing import Dict, Callable
 
 
 # This dictionary maps text formats identified by file extension to callback
 # functions which render text into html.
-_callbacks: Dict[str, Callable] = {}
+_callbacks = {}
 
 
 # Decorator function for registering rendering-engine callbacks. A rendering-
@@ -24,9 +23,9 @@ _callbacks: Dict[str, Callable] = {}
 #       ...
 #       return html
 #
-def register(*extensions: str) -> Callable:
+def register(*extensions):
 
-    def register_callback(func: Callable) -> Callable:
+    def register_callback(func):
         for extension in extensions:
             _callbacks[extension] = func
         return func
@@ -36,7 +35,7 @@ def register(*extensions: str) -> Callable:
 
 # Renders a string into html and return the result. The `source` parameter is
 # only used when reporting errors.
-def render(text: str, ext: str, source: str = '') -> str:
+def render(text, ext, source=''):
     if ext in _callbacks:
         try:
             return _callbacks[ext](text)
@@ -53,5 +52,5 @@ def render(text: str, ext: str, source: str = '') -> str:
 
 # Returns true if a rendering-engine callback has been registered for the
 # specified file extension.
-def is_registered_ext(ext: str) -> bool:
+def is_registered_ext(ext):
     return ext in _callbacks
