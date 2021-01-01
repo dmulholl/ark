@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module contains the logic for the 'make' command.
+# This module contains the logic for the 'add' command.
 # ------------------------------------------------------------------------------
 
 import os
@@ -12,14 +12,14 @@ from .. import site
 
 
 helptext = """
-Usage: ivy make <filename>
+Usage: ivy add <filename>
 
-  Creates a new node file in the src directory. The filepath should be
-  specified relative to the src directory. Creates directories along the
-  path if required.
+  This convenience command creates a new node file in the 'src' directory.
+  The filename should be specified relative to the 'src' directory.
+  Directories along the path will be created if required.
 
 Arguments:
-  <filepath>            File to create.
+  <filename>            File to create.
 
 Options:
   -t, --title <str>     Specify a title string for the node.
@@ -66,7 +66,7 @@ sibi conscios nisi pollutum obstrictumque meritis suis principem passuros.
 
 @events.register('cli')
 def register_command(argparser):
-    cmd_parser = argparser.command("make", helptext, cmd_callback)
+    cmd_parser = argparser.command("add", helptext, cmd_callback)
     cmd_parser.option("title t")
     cmd_parser.option("date d")
     cmd_parser.flag("force f")

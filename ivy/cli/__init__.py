@@ -10,7 +10,7 @@ from . import init
 from . import clear
 from . import serve
 from . import watch
-from . import make
+from . import add
 from . import tree
 from . import open
 from . import deploy
@@ -27,10 +27,11 @@ Flags:
   -v, --version       Print the application's version number and exit.
 
 Commands:
+  add                 Add a new node file.
   build               Build the site.
   clear               Clear the output directory.
+  deploy              Deploy the site.
   init                Initialize a new site directory.
-  make                Create a new node file.
   open                Open an @root/ url in the default web browser.
   serve               Run a web server on the site's output directory.
   tree                Print the node tree.

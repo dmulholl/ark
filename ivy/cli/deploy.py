@@ -16,12 +16,12 @@ Usage: ivy deploy
   deployment scripts.
 
   Alternatively, you can add a 'deploy_script' attribute to your site's
-  configuration file:
+  configuration file, e.g.
 
     deploy_script = "bin/deploy.sh"
 
-  This command will run the referenced script. The path should be referenced
-  relative to the site's home directory.
+  This command will run the referenced script. The script's path should be
+  specified relative to the site's home directory.
 
 Flags:
   -h, --help            Print this command's help text and exit.
