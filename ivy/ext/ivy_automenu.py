@@ -30,7 +30,7 @@ def add_automenu(page):
     page['automenu'] = cache
 
 
-# This function's arguments are experimental and may be removed without warning.
+# This function's arguments are experimental and may be altered at any time.
 # If `inc_func` is set, it should accept a node and return true or false.
 # If `sort_func` is set, it should accept a list of nodes and sort it in place.
 def make_menu(inc_func=None, sort_func=None):

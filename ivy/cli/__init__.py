@@ -33,7 +33,7 @@ Commands:
   deploy              Deploy the site.
   init                Initialize a new site directory.
   open                Open an @root/ url in the default web browser.
-  serve               Run a web server on the site's output directory.
+  serve               Run the test server on the site's output directory.
   tree                Print the node tree.
   watch               Monitor the site directory and rebuild on changes.
 
