@@ -6,6 +6,9 @@ from __future__ import annotations
 from typing import Dict, List, Callable, Any, Union, Optional
 from pathlib import Path
 
+import os
+import sys
+
 from . import utils
 from . import events
 from . import filters
@@ -22,6 +25,8 @@ _root = None
 def root() -> Node:
     global _root
     if _root is None:
+        if not os.path.isdir(site.src()):
+            sys.exit("Error: cannot locate the site's source directory.")
         _root = Node()
         _parse_node_directory(_root, site.src())
     return _root
