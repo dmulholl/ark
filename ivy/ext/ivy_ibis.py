@@ -5,8 +5,6 @@ try:
 except ImportError:
     ibis = None
 
-
-# The ibis package is an optional dependency.
 if ibis:
 
     # Initialize the template loader.
