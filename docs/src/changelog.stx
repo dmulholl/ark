@@ -6,7 +6,7 @@ title: Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
-### 5.1.0.dev
+### 5.1.0
 
 * A new `deploy` command has been added. This command fires a `deploy` event hook which plugins
   can use to run site deployment scripts.
