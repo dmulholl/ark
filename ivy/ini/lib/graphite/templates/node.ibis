@@ -2,13 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{{ node.meta_title || node.title || site.title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ node.meta_title || node.title || site.title }}</title>
         <link rel="stylesheet" href="@root/assets/fonts.css">
         <link rel="stylesheet" href="@root/assets/graphite.css">
         <link rel="stylesheet" href="@root/assets/pygments.css">
         {% if node.meta_description %}
-        <meta name="description" content="{$ node.meta_description.strip() $}">
+            <meta name="description" content="{$ node.meta_description.strip() $}">
         {% endif %}
         {{ inc.head }}
     </head>
@@ -16,10 +16,10 @@
         <header class="masthead">
             <h1><a href="@root/">{{ site.title || "Site Title" }}</a></h1>
             {% if site.tagline %}
-            <p class="tagline">{{ site.tagline.strip() }}</p>
+                <p class="tagline">{{ site.tagline.strip() }}</p>
             {% endif %}
             {% if site.version %}
-            <p class="version">{{ site.version.strip() }}</p>
+                <p class="version">{{ site.version.strip() }}</p>
             {% endif %}
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -35,7 +35,7 @@
             <header class="title">
                 <h1>{{ node.title }}</h1>
                 {% if node.subtitle %}
-                <p class="subtitle">{{ node.subtitle }}</p>
+                    <p class="subtitle">{{ node.subtitle }}</p>
                 {% endif %}
                 <hr>
             </header>

@@ -11,14 +11,14 @@
             <h1>
                 {$ node $}
                 {% if node.parent %}
-                <a href="{$ node.parent.url $}">&#8593;</a>
+                    <a href="{$ node.parent.url $}">&#8593;</a>
                 {% endif %}
             </h1>
 
             {% if inc.menu %}
-            <div class="menu">
-                {{ inc.menu }}
-            </div>
+                <div class="menu">
+                    {{ inc.menu }}
+                </div>
             {% endif %}
 
             <button class="button">Automenu</button>
@@ -30,9 +30,9 @@
             <div class="panel">
                 <ul>
                     {% for child in node.children %}
-                    <li><a href="{$ child.url $}">{$ child $}</a></li>
+                        <li><a href="{$ child.url $}">{$ child $}</a></li>
                     {% empty %}
-                    <li>None.</li>
+                        <li>None.</li>
                     {% endfor %}
                 </ul>
             </div>
