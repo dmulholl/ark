@@ -1,9 +1,9 @@
 ---
 title: Home
-meta title: Ivy &mdash; a static website generator built in Python
+meta title: Ivy &mdash; a static website generator in Python
 meta description: >
-    Ivy is a static website generator built in Python. It's small, elegant,
-    and easy to use.
+    Ivy is a static website generator built in Python.
+    It transforms a directory of text files into a self-contained website.
 ---
 
 [markdown]: http://daringfireball.net/projects/markdown/
@@ -12,7 +12,7 @@ meta description: >
 [syntext]: https://github.com/dmulholl/syntext
 
 
-Ivy is a static website generator built in Python. It's small, elegant, and easy to use.
+Ivy is a static website generator built in Python. It's small, elegant, and simple to use.
 
     $ ivy --help
 
