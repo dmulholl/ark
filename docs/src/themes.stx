@@ -66,10 +66,10 @@ corresponds to the node:
 
 Ivy will search for a template file for this node in the following order:
 
-    1. node-foo-bar-baz
-    2. node-foo-bar
-    3. node-foo
-    4. node
+    1. node-foo-bar-baz.*
+    2. node-foo-bar.*
+    3. node-foo.*
+    4. node.*
 
 
 A node can override this process by specifying a custom template file in its header:
