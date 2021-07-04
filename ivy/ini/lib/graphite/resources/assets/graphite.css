@@ -143,6 +143,10 @@ pre {
     line-height: 1.4;
 }
 
+h1 code {
+    font-size: 28px;
+}
+
 /**
  * Lists
  */
