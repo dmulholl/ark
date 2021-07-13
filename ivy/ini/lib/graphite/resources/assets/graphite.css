@@ -415,9 +415,11 @@ body {
  */
 
 table {
+    font-size: 16px;
     border-collapse: collapse;
     border-spacing: 0;
-    margin: 40px 0px;
+    margin: 50px 0px;
+    width: 100%;
 }
 
 thead, tfoot {
