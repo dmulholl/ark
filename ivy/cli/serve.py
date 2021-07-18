@@ -49,41 +49,37 @@ def cmd_callback(cmd_name, cmd_parser):
         dirpath = os.path.abspath(cmd_parser.value('directory'))
         if not os.path.exists(dirpath):
             sys.exit(f"Error: directory '{dirpath}' does not exist.")
-        os.chdir(dirpath)
     else:
         if not site.home():
             sys.exit("Error: cannot locate the site's home directory.")
         if not os.path.exists(site.out()):
             sys.exit("Error: cannot locate the site's output directory.")
-        os.chdir(site.out())
+        dirpath = site.out()
+
+    os.chdir(dirpath)
+
+    req_host = cmd_parser.value('host')
+    req_port = cmd_parser.value('port')
+
+    server_class = http.server.ThreadingHTTPServer
+    handler_class = http.server.SimpleHTTPRequestHandler
 
     try:
-        server = http.server.HTTPServer(
-            (cmd_parser.value('host'), cmd_parser.value('port')),
-            http.server.SimpleHTTPRequestHandler
-        )
+        server = server_class((req_host, req_port), handler_class)
     except PermissionError:
         sys.exit("Error: use 'sudo' to run on a port below 1024.")
     except OSError:
         sys.exit("Error: port already in use. Choose a different port.")
 
-    address = server.socket.getsockname()
-    url = f"http://{cmd_parser.value('host')}:{address[1]}"
+    host, port = server.socket.getsockname()
 
-    # Deprecated: this mechanism for selecting a browser by name is unreliable.
-    if cmd_parser.found('browser'):
-        try:
-            browser = webbrowser.get(cmd_parser.value('browser'))
-        except webbrowser.Error:
-            sys.exit(f"Error: cannot locate browser '{cmd_parser.value('browser')}'.")
-        browser.open(url)
-    else:
-        webbrowser.open(url)
+    url = f"http://{req_host}:{port}"
+    webbrowser.open(url)
 
     utils.termline()
-    print("Root: %s" % site.out())
-    print("Host: %s"  % address[0])
-    print("Port: %s" % address[1])
+    print("Root: %s" % dirpath)
+    print("Host: %s"  % host)
+    print("Port: %s" % port)
     print("Stop: Ctrl-C")
     utils.termline()
 
