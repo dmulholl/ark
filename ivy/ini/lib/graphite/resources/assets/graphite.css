@@ -50,21 +50,33 @@ body {
     line-height: 1.75;
 }
 
-h1, h2 {
+h1 {
     padding: 0;
     margin: 80px 0 30px;
     line-height: 1.25;
     text-align: center;
-}
-
-h1 {
     font-size: 32px;
     font-weight: normal;
 }
 
 h2 {
+    padding: 0;
+    margin: 80px 0 30px;
+    line-height: 1.25;
+    text-align: center;
     font-size: 22px;
     font-weight: bold;
+}
+
+h2.underline {
+    padding: 0;
+    margin: 80px 0 35px;
+    line-height: 1.25;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
 }
 
 h3, h4, h5, h6 {
