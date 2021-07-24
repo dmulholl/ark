@@ -50,21 +50,33 @@ body {
     line-height: 1.75;
 }
 
-h1, h2 {
+h1 {
     padding: 0;
     margin: 80px 0 30px;
     line-height: 1.25;
     text-align: center;
-}
-
-h1 {
     font-size: 32px;
     font-weight: normal;
 }
 
 h2 {
+    padding: 0;
+    margin: 80px 0 30px;
+    line-height: 1.25;
+    text-align: center;
     font-size: 22px;
     font-weight: bold;
+}
+
+h2.underline {
+    padding: 0;
+    margin: 80px 0 35px;
+    line-height: 1.25;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
 }
 
 h3, h4, h5, h6 {
@@ -141,6 +153,10 @@ pre {
     background-color: #f8f8f8;
     overflow: auto;
     line-height: 1.4;
+}
+
+h1 code {
+    font-size: 28px;
 }
 
 /**
@@ -411,9 +427,11 @@ body {
  */
 
 table {
+    font-size: 16px;
     border-collapse: collapse;
     border-spacing: 0;
-    margin: 40px 0px;
+    margin: 50px 0px;
+    width: 100%;
 }
 
 thead, tfoot {

@@ -82,6 +82,14 @@ you need an extra event or filter hook to make an extension work.)
 
 
 
+### Development Philosophy
+
+Ivy is small, simple, and *complete*. I think of it as a ‘twenty-year tool’ --- a tool I can use for the next twenty years without needing to think about it again.
+
+There may be bug fixes or minor enhancements along the way but I’m not planning to make any significant changes to Ivy for the foreseeable future. If I ever do, I’ll bump the major version number to `v6.x` and the current `v5.x` version will continue to be available from the package index.
+
+
+
 ### License
 
 This work has been placed in the public domain.
