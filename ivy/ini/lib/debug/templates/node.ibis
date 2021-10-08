@@ -52,26 +52,26 @@
                 <pre>{{ node.html|escape }}</pre>
             </div>
 
-            <button class="button">Page Dict</button>
+            <button class="button">Page Data</button>
             <div class="panel last">
-                <pre>{{ context.stack|index(2)|pprint|pygmentize('python') }}</pre>
+                <pre>{{ context.data.stack|index(2)|pprint|pygmentize('python') }}</pre>
             </div>
         </div>
 
-<script>
-    var buttons = document.getElementsByClassName("button");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
+        <script>
+            var buttons = document.getElementsByClassName("button");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
             }
-        });
-    }
-</script>
+        </script>
 
     </body>
 </html>
