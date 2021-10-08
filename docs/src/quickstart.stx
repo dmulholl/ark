@@ -29,7 +29,7 @@ Ivy initializes your `src` directory with a simple skeleton site which you can b
 
 You can run the `build` command from the site directory itself or from any of its subdirectories. It tells Ivy to render the text files in the `src` directory into HTML and place the output in an `out` directory.
 
-Run the `build` command and take a look at the output. You can open the HTML files directly in your browser or use Ivy's builtin web server to serve the contents of the `out` directory:
+Run the `build` command and take a look at the output. You can open the HTML files directly in your browser or use Ivy's builtin test server to serve the contents of the `out` directory:
 
     $ ivy serve
 

@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 5.1.0</p>
+                <p class="version">Version 6.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -164,7 +164,7 @@ Here's a simple event callback that prints a count of the number of pages that h
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_page_count</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">pages_written</span><span class="p">())</span>
 </pre>
 <p>
 This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> event hook can be found in the <code>ivy/__init__.py</code> file.)
@@ -203,12 +203,12 @@ Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a hr
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page_data</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
 </pre>
 <p>
-A template-engine callback should accept a <code>Page</code> object and a template filename and return a string of HTML.
+A template-engine callback should accept a dictionary of page data and a template filename and return a string of HTML.
 </p>
 <h3 id="node-content">
 Node Content

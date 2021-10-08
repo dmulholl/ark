@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 5.1.0</p>
+                <p class="version">Version 6.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -66,7 +66,21 @@
                 
                 <hr>
             </header>
-            <h3 id="id-5-1-0">
+            <h3 id="id-6-0-0">
+6.0.0
+</h3>
+<ul>
+<li>
+This release simplifies Ivy internally by merging <code>Page</code> objects into <code>Node</code> objects.
+</li>
+<li>
+Sites and themes should work unchanged. Plugins may need to be updated if they interacted directly with <code>Page</code> objects.
+</li>
+<li>
+A number of filters which passed <code>Page</code> objects have been renamed and moved to the <code>nodes.py</code> file.
+</li>
+</ul>
+<h3 id="id-5-1-0">
 5.1.0
 </h3>
 <ul>
