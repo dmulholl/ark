@@ -34,7 +34,7 @@ def register(*extensions):
 
 
 # Renders a string into html and return the result. The `source` parameter is
-# only used when reporting errors.
+# only used for reporting errors.
 def render(text, ext, source=''):
     if ext in _callbacks:
         try:

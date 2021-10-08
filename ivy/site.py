@@ -54,7 +54,7 @@ def init():
         config['root'] += '/'
 
 
-# Attempt to determine and return the path to the site's home directory. We use
+# Attempts to determine and return the path to the site's home directory. We use
 # the presence of either a 'config.py' or '.ivy' file to identify the home
 # directory. We first test the current working directory, then its ancestor
 # directories in sequence until we reach the system root. If we make it all the
@@ -125,7 +125,7 @@ def res(*append: str) -> str:
     return join(path, *append)
 
 
-# Attempt to determine the path to the theme directory corresponding to
+# Attempts to determine the path to the theme directory corresponding to
 # the specified theme name. Returns an empty string if the theme directory
 # cannot be located.
 def _find_theme(name: str) -> str:
@@ -164,14 +164,14 @@ def runtime() -> float:
     return time.time() - cache['start_time']
 
 
-# Increment the count of pages rendered by n and return the new value.
-def rendered(n: int = 0) -> int:
+# Increments the count of pages rendered by n and returns the new value.
+def pages_rendered(n: int = 0) -> int:
     cache['pages_rendered'] += n
     return cache['pages_rendered']
 
 
-# Increment the count of pages written by n and return the new value.
-def written(n: int = 0) -> int:
+# Increments the count of pages written by n and returns the new value.
+def pages_written(n: int = 0) -> int:
     cache['pages_written'] += n
     return cache['pages_written']
 
@@ -189,3 +189,8 @@ def includes() -> Dict[str, str]:
                 key = path.stem.lower().replace(' ', '_').replace('-', '_')
                 cache['includes'][key] = renderers.render(text, ext, str(path))
     return cache['includes']
+
+
+# Deprecated aliases.
+rendered = pages_rendered
+written = pages_written

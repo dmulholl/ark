@@ -2,7 +2,7 @@
 # Ivy: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '5.1.2'
+__version__ = '6.0.0.dev'
 
 import sys
 if sys.version_info < (3, 8):
@@ -28,7 +28,6 @@ from . import hashes
 from . import events
 from . import filters
 from . import nodes
-from . import pages
 from . import renderers
 from . import site
 from . import utils
@@ -42,13 +41,13 @@ def main():
     # Initialize the site model.
     site.init()
 
-    # Load bundled plugins, plugins listed in the site's configuration file,
-    # and plugins in the site's 'ext' directory.
+    # Load plugins bundled with Ivy itself, then any plugins listed in the
+    # site's config.py file, then any plugins in the site's 'ext' directory.
     extensions.load_bundled_extensions()
     extensions.load_installed_extensions()
     extensions.load_site_extensions()
 
-    # Process the application's command-line arguments.
+    # Process the command-line arguments.
     cli.parse_args()
 
     # Load any plugins bundled with the active theme.

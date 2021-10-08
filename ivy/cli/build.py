@@ -10,7 +10,6 @@ from .. import site
 from .. import events
 from .. import utils
 from .. import nodes
-from .. import pages
 from .. import filters
 from .. import hashes
 
@@ -61,7 +60,7 @@ def cmd_callback(cmd_name, cmd_parser):
 def build_site():
     # Make sure we have a valid theme directory.
     if not site.theme():
-        theme_name =  site.config['theme']
+        theme_name = site.config['theme']
         sys.exit(f"Error: cannot locate the theme '{theme_name}'.")
 
     # Copy the theme's resource files to the output directory.
@@ -75,8 +74,7 @@ def build_site():
     # Callback to handle individual nodes.
     def build_node(node):
         if filters.apply('build_node', True, node):
-            page = pages.Page(node)
-            page.write()
+            node.write()
 
     # Walk the node tree and pass each node to the handler.
     nodes.root().walk(build_node)
@@ -85,8 +83,8 @@ def build_site():
 @events.register('exit_build')
 def print_build_stats():
     report = datetime.datetime.now().strftime("[%H:%M:%S]")
-    report += f"   ·   Rendered: {site.rendered():5d}"
-    report += f"   ·   Written: {site.written():5d}"
+    report += f"   ·   Rendered: {site.pages_rendered():5d}"
+    report += f"   ·   Written: {site.pages_written():5d}"
     report += f"   ·   Time: {site.runtime():6.2f} sec"
     report = report.replace('·', '\u001B[90m·\u001B[0m')
     utils.safeprint(report)

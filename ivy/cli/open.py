@@ -36,7 +36,7 @@ def cmd_callback(cmd_name, cmd_parser):
 
     arg = cmd_parser.args[0] if cmd_parser.args else "@root/"
     if (node := ivy.nodes.node(arg)):
-        url  = "file://" + ivy.pages.Page(node).get_filepath()
+        url  = "file://" + node.get_output_filepath()
         webbrowser.open(url)
     else:
         sys.exit(f"Error: unknown url '{arg}'.")

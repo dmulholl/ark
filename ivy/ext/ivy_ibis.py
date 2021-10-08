@@ -14,6 +14,6 @@ if ibis:
 
     # Register our template engine callback for files with a .ibis extension.
     @ivy.templates.register('ibis')
-    def callback(page, filename):
-        template = ibis.loader(filename)
-        return template.render(page)
+    def callback(page_data, template_filename):
+        template = ibis.loader(template_filename)
+        return template.render(page_data)

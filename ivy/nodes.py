@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# This module creates and caches the parse-tree of Node instances.
+# This module creates and caches the node tree.
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations
@@ -14,14 +14,16 @@ from . import events
 from . import filters
 from . import renderers
 from . import site
+from . import templates
+from . import hashes
 
 
-# Cached parse tree of Node instances.
+# Cached tree of Node instances.
 _root = None
 
 
 # Returns the site's root node. Parses the root directory and assembles the
-# node tree on first call.
+# node tree when first called.
 def root() -> Node:
     global _root
     if _root is None:
@@ -59,7 +61,7 @@ class Node():
         self.children: List[Node] = []
 
         # Stores the path to the node's source directory/file.
-        # (File path will overwrite directory path.)
+        # (The file path will overwrite the directory path if both exist.)
         self.filepath: str = ''
 
         # Stores the node's filepath stem, i.e. basename minus extension.
@@ -104,7 +106,7 @@ class Node():
         return default
 
     # Calls the specified function on the node and all its descendants.
-    def walk(self, callback: Callable[['Node'], None]):
+    def walk(self, callback):
         for node in self.children:
             node.walk(callback)
         callback(self)
@@ -151,7 +153,10 @@ class Node():
                 return child
         return None
 
-    # Returns the node's rendered HTML content.
+    # Returns the node's text content rendered into HTML. Note that the
+    # `node_text` and `node_html` filters will only fire when this property
+    # is first accessed, most likely by a {{ node.html }} reference in a
+    # template file.
     @property
     def html(self) -> str:
         if not 'html' in self.cache:
@@ -159,6 +164,79 @@ class Node():
             html = renderers.render(text, self.ext, self.filepath)
             self.cache['html'] = filters.apply('node_html', html, self)
         return self.cache['html']
+
+    # Generates a HTML page for the node and writes that page to disk.
+    def write(self):
+        output_filepath = self.get_output_filepath()
+
+        # This data dictionary gets passed to the template engine.
+        page_data = {
+            'node': self,
+            'site': site.config,
+            'inc': site.includes(),
+            'is_homepage': self.parent is None,
+            'filepath': output_filepath,
+            'classes': self.get_class_list(),
+            'templates': self.get_template_list(),
+        }
+
+        # Generate a HTML page by pouring the node's content into a template.
+        events.fire('render_page', page_data)
+        page_html = templates.render(page_data)
+        site.pages_rendered(1)
+
+        # Filter the HTML before writing it to disk.
+        page_html = filters.apply('page_html', page_html, page_data)
+
+        # Rewrite all @root/ urls.
+        page_html = utils.rewrite_urls(page_html, output_filepath)
+
+        # Write the page to disk. Avoid overwriting identical files.
+        if not hashes.match(output_filepath, page_html):
+            utils.writefile(output_filepath, page_html)
+            site.pages_written(1)
+
+    # Returns the output filepath for the node.
+    def get_output_filepath(self) -> str:
+        slugs = self.path or ['index']
+        suffix = site.config['extension']
+        if suffix == '/':
+            if slugs[-1] == 'index':
+                slugs[-1] += '.html'
+            else:
+                slugs.append('index.html')
+        else:
+            slugs[-1] += suffix
+        filepath = site.out(*slugs)
+        return filters.apply('output_filepath', filepath, self)
+
+    # Assembles an ordered list of hyphenated slugs for generating CSS classes
+    # and running template lookups.
+    # E.g. <Node @root/foo/bar//> -> ['node-foo-bar', 'node-foo', 'node'].
+    def get_slug_list(self) -> List[str]:
+        slugs = []
+        stack = ['node'] + self.path
+        while stack:
+            slugs.append('-'.join(stack))
+            stack.pop()
+        return filters.apply('slug_list', slugs, self)
+
+    # Assembles a list of potential template names for the node.
+    def get_template_list(self) -> List[str]:
+        template_list = self.get_slug_list()
+        if 'template' in self.meta:
+            template_list.insert(0, self.meta['template'])
+        return filters.apply('template_list', template_list, self)
+
+    # Assembles a list of CSS classes for the output page's <body> element.
+    def get_class_list(self) -> List[str]:
+        class_list = self.get_slug_list()
+        if self.parent is None:
+            class_list.append('homepage')
+        if 'classes' in self.meta:
+            for item in str(self.meta['classes']).split(','):
+                class_list.append(item.strip())
+        return filters.apply('class_list', class_list, self)
 
 
 # Parse a source directory.
