@@ -1,5 +1,9 @@
 # ------------------------------------------------------------------------------
-# This module creates and caches the node tree.
+# A node is a text file and/or directory stored in a site's `src` directory.
+# A node file provides content and metadata for a node; a node directory stores
+# child nodes. Ivy parses the `src` directory into a tree of nodes which it then
+# renders into a website, generating a single HTML page in the `out` directory
+# for each node in the tree.
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations
