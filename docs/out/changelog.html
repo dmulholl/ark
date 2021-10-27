@@ -74,10 +74,13 @@
 This release simplifies Ivy internally by merging <code>Page</code> objects into <code>Node</code> objects.
 </li>
 <li>
-Sites and themes should work unchanged. Plugins may need to be updated if they interacted directly with <code>Page</code> objects.
+Sites and themes should continue working unchanged from v5.x.
 </li>
 <li>
-A number of filters which passed <code>Page</code> objects have been renamed and moved to the <code>nodes.py</code> file.
+Plugins may need to be updated if they interacted directly with <code>Page</code> objects.
+</li>
+<li>
+The following filters which previously passed <code>Page</code> objects have been renamed and moved to the <code>nodes.py</code> file: <code>page_path</code>, <code>page_slugs</code>, <code>page_templates</code>, <code>page_classes</code>. These filters now pass the relevant <code>Node</code> object instead.
 </li>
 </ul>
 <h3 id="id-5-1-0">
