@@ -32,6 +32,7 @@ Ivy searches for a named theme first in the site's theme library, then (if it ex
 Ivy looks for three subdirectories within the theme directory: `resources`, `extensions`, and `templates`.
 
 (*) The content of the `resources` directory is copied to the output directory when the site is built.
+    A theme should store its static assets in this directory, e.g. CSS, JavaScript, font, and image files.
 
 (*) Themes can bundle extensions for Ivy by placing Python modules or packages in the `extensions` directory.
 
