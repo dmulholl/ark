@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 # This module is responsible for assembing and caching the parse tree of nodes.
-# Each node corresponds to a text file and/or directory from the site's `src`
+# Each node corresponds to a text file and/or directory in the site's `src`
 # directory. (A node file provides content and metadata for a node; a node
 # directory stores child nodes.) Ivy parses the `src` directory into a tree of
 # nodes which it then renders into a website, generating a single HTML page in
