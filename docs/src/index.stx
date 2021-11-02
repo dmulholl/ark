@@ -10,6 +10,7 @@ meta description: >
 [jinja]: http://jinja.pocoo.org
 [ibis]: https://github.com/dmulholl/ibis
 [syntext]: https://github.com/dmulholl/syntext
+[holly]: https://github.com/dmulholl/holly
 
 
 Ivy is a static website generator built in Python. It's small, elegant, and simple to use.
@@ -67,9 +68,9 @@ Ivy requires Python 3.8 or later.
 
 
 
-### Plugins
+### Resources
 
-* [Holly](http://www.dmulholl.com/dev/holly.html) --- this blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
+* [Holly][] --- this blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
 
 
 

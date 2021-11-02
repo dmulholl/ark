@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------------------
-# This module handles template-engine callbacks.
+# This module handles template-engine callbacks. Template engines like Jinja are
+# responsible for assembling the site's output HTML pages.
 # ------------------------------------------------------------------------------
 
 import sys
