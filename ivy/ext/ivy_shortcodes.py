@@ -17,6 +17,9 @@ parser = None
 
 # The shortcodes package is an optional dependency.
 if shortcodes:
+
+    # We process and replace shortcodes in the node's text content just before
+    # that text is rendered into HTML.
     @ivy.filters.register('node_text')
     def render(text, node):
         global parser
