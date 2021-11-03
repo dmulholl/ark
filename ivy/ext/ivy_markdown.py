@@ -1,3 +1,7 @@
+##
+# This extension adds support for Markdown files with a `.md` extension.
+##
+
 import ivy
 
 try:

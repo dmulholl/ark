@@ -1,3 +1,7 @@
+##
+# This extension adds support for shortcodes in node content.
+##
+
 import ivy
 import sys
 

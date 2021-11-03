@@ -1,3 +1,7 @@
+##
+# This extension adds support for parsing YAML file headers.
+##
+
 import ivy
 import re
 

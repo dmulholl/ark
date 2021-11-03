@@ -1,3 +1,7 @@
+##
+# This extension adds support for Jinja template files with a `.jinja` extension.
+##
+
 import ivy
 
 try:

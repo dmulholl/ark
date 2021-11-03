@@ -1,3 +1,7 @@
+##
+# This extension adds support for Ibis template files with a `.ibis` extension.
+##
+
 import ivy
 
 try:

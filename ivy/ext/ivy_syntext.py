@@ -1,3 +1,7 @@
+##
+# This extension adds support for Syntext files with a `.stx` extension.
+##
+
 import ivy
 
 try:
