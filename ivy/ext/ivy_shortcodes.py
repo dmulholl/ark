@@ -9,7 +9,9 @@ parser = None
 
 try:
     import shortcodes
-
+except ImportError:
+    pass
+else:
     @ivy.filters.register('node_text')
     def render(text, node):
         global parser
@@ -26,6 +28,3 @@ try:
             if (cause := err.__cause__):
                 msg += f"\n>> Cause: {cause.__class__.__name__}: {cause}"
             sys.exit(msg)
-
-except ImportError:
-    pass
