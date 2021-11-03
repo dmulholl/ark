@@ -1,5 +1,6 @@
 ---
 title: FAQ
+meta_title: Ivy &mdash; FAQ
 ---
 
 ::: insert toc
@@ -33,7 +34,6 @@ This file will be copied to the output directory and can be accessed in template
 Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
 
 ::: code yaml
-
     ---
     title: Page Title
     image: photo.jpg
@@ -42,7 +42,6 @@ Ivy has no special support for WordPress-style featured images but we can implem
 We can then check for the presence of a featured image in the appropriate template file:
 
 ::: code django
-
     {% if node.image %}
         <img src="@root/images/{{node.image}}">
     {% endif %}
@@ -50,7 +49,6 @@ We can then check for the presence of a featured image in the appropriate templa
 Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
 
 ::: code django
-
     {% for image in node.gallery %}
         <img src="@root/images/{{image}}">
     {% endfor %}
@@ -70,8 +68,6 @@ Quoting the url solves the problem:
     ---
     image: "@root/images/photo.jpg"
     ---
-
-And yes, I think it's ugly too.
 
 
 
@@ -114,4 +110,3 @@ You can specify a custom file extension for output files in your site configurat
     extension = ".htm"
 
 Specify a single forward slash to generate directory-style urls.
-
