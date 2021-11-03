@@ -5,13 +5,18 @@
 import ivy
 import sys
 
-parser = None
-
 try:
     import shortcodes
 except ImportError:
-    pass
-else:
+    shortcodes = None
+
+
+# We parse all shortcodes using this single Parser instance.
+parser = None
+
+
+# The shortcodes package is an optional dependency.
+if shortcodes:
     @ivy.filters.register('node_text')
     def render(text, node):
         global parser
