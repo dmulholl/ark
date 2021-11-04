@@ -68,12 +68,6 @@ Ivy requires Python 3.8 or later.
 
 
 
-### Resources
-
-* [Holly][] --- this blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
-
-
-
 ### License
 
 This work has been placed in the public domain.

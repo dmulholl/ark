@@ -1,0 +1,23 @@
+---
+title: Resources
+meta_title: Ivy &mdash; Resources
+classes: extra-deflist-vspace
+---
+
+
+[[ Holly ]]
+
+    This blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
+
+    :p .small
+        <https://github.com/dmulholl/holly>
+
+
+[[ Outline ]]
+
+    A clean, responsive, text-focused theme for Ivy.
+    This is the theme I use for my own personal website.
+
+    :p .small
+        <https://github.com/dmulholl/outline>
+

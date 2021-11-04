@@ -141,7 +141,7 @@ def _find_theme(name: str) -> str:
 
     # A raw directory path?
     if isdir(name):
-        return name
+        return os.path.abspath(name)
 
     # A bundled theme directory in the application folder?
     bundled_theme = join(os.path.dirname(__file__), 'ini', 'lib', name)
