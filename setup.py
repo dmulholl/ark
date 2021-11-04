@@ -3,7 +3,7 @@
 A static website generator for people who enjoy the simpler things in life.
 
 * `Github <https://github.com/dmulholl/ivy>`_
-* `Documentation <http://www.dmulholl.com/docs/ivy/master/>`_
+* `Documentation <http://www.dmulholl.com/docs/ivy/dev/>`_
 * `Demo <http://www.dmulholl.com/demos/ivy/>`_
 
 """
