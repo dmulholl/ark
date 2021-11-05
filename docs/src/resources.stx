@@ -21,3 +21,11 @@ classes: extra-deflist-vspace
     :p .small
         <https://github.com/dmulholl/outline>
 
+
+[[ Vanilla ]]
+
+    A simple, single-column theme for Ivy.
+    This was the original theme for Ivy's documentation.
+
+    :p .small
+        <https://github.com/dmulholl/vanilla>
