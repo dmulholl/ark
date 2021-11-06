@@ -40,6 +40,9 @@ def init():
     config['theme'] = 'graphite'
     config['extension'] = '.html'
 
+    # The Unix timestamp is useful as a cache-busting parameter.
+    config['timestamp'] = int(time.time())
+
     # Load the site configuration file.
     if home() and isfile(home('config.py')):
         with open(home('config.py'), encoding='utf-8') as file:
