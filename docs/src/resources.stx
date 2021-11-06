@@ -29,3 +29,11 @@ classes: extra-deflist-vspace
 
     :p .small
         <https://github.com/dmulholl/vanilla>
+
+
+[[ Twenty Fifteen ]]
+
+    A blog-style theme for Ivy based on the classic WordPress theme of the same name.
+
+    :p .small
+        <https://github.com/dmulholl/twentyfifteen>
