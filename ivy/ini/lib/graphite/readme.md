@@ -1,11 +1,16 @@
 # Graphite
 
-A simple Ivy theme designed for generating project documentation.
+[1]: https://github.com/dmulholl/ivy
+[2]: https://fonts.google.com/specimen/Crimson+Text
 
+A simple [Ivy][1] theme designed for generating project documentation.
 
-## Includes
+This theme will display the following attributes from the site's `config.py` file in the site header:
 
-This theme supports the following include files:
+* `title`
+* `tagline`
+
+It supports the following includes:
 
 * `menu`
 
@@ -26,8 +31,7 @@ This theme supports the following include files:
     used to add custom JavaScript to a site without directly editing the
     theme's template files.
 
+This theme is distributed under the following license:
 
-## License
-
-* All code and CSS has been placed in the public domain.
-* The bundled Crimson Text font is distributed under the Open Font License.
+* All code has been placed in the public domain.
+* The bundled [Crimson Text][2] font is distributed under the SIL Open Font License.
