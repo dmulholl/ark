@@ -5,6 +5,14 @@ classes: extra-deflist-vspace
 ---
 
 
+[[ TOML Metadata ]]
+
+    This plugin adds support for TOML file headers as an alternative to YAML.
+
+    :p .small
+        <https://github.com/dmulholl/ivy_toml>
+
+
 [[ Holly ]]
 
     This blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
@@ -37,11 +45,3 @@ classes: extra-deflist-vspace
 
     :p .small
         <https://github.com/dmulholl/twentyfifteen>
-
-
-[[ TOML Metadata ]]
-
-    This plugin adds support for TOML file headers as an alternative to YAML.
-
-    :p .small
-        <https://github.com/dmulholl/ivy_toml>
