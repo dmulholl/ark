@@ -37,3 +37,11 @@ classes: extra-deflist-vspace
 
     :p .small
         <https://github.com/dmulholl/twentyfifteen>
+
+
+[[ TOML Metadata ]]
+
+    This plugin adds support for TOML file headers as an alternative to YAML.
+
+    :p .small
+        <https://github.com/dmulholl/ivy_toml>
