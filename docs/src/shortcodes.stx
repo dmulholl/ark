@@ -116,3 +116,34 @@ To use this shortcode, just supply the `@root/` url of the target node, e.g.
 The shortcode will be replaced by the list of links.
 
 
+
+### Example --- `quote`
+
+Here's an example of a block-level shortcode wrapping a block of content. Imagine we want to add special styling to quotes with the name of the quote's author attached:
+
+::: code python
+    import ivy
+    import shortcodes
+
+    @shortcodes.register('quote', 'endquote')
+    def handler(pargs, kwargs, node, content):
+        content = content.strip()
+        output = f'<blockquote>{content}</blockquote>\n'
+        output += f'<p class="author">{pargs[0]}</p>'
+        return output
+
+The `content` argument gives us the content of the shortcode as a string.
+
+We can use this shortcode in a source file by supplying the author's name as an argument:
+
+    \[% quote "Oscar Wilde" %]
+        Work is the curse of the drinking classes.
+    \[% endquote %]
+
+The output will look like this:
+
+::: code html
+    <blockquote>Work is the curse of the drinking classes.</blockquote>
+    <p class="author">Oscar Wilde</p>
+
+We can style this output to suit with a little CSS.

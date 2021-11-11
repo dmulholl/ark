@@ -15,7 +15,7 @@ meta_title: Ivy &mdash; Extensions
 
 ## Installing Extensions
 
-An extension is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
+An extension/plugin is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
 
 (*) You can add an extensions directory named `ext` to your site's root directory. Extension modules placed in this `ext` directory will be loaded automatically by Ivy.
 
@@ -80,10 +80,11 @@ Ivy relies for most of its functionality on a suite of pluggable rendering and p
 
 
 
-### Templates
+### Template Engines
 
-Ivy has builtin support for [Jinja][] and [Ibis][] templates. Extensions can register support for additional formats using the `@templates.register()` decorator. Template-engine callbacks are registered per file-extension, e.g.
+Template-engines produce the output HTML for finished `.html` pages in the site.
 
+Ivy has builtin support for [Jinja][] and [Ibis][] templates. Extensions can register support for additional template-engines using the `@ivy.templates.register()` decorator. Template-engine callbacks are registered per template-file-extension, e.g.
 
 ::: code python
     @ivy.templates.register('jinja')
@@ -95,10 +96,11 @@ A template-engine callback should accept a dictionary of page data and a templat
 
 
 
-### Node Content
+### Rendering Engines
 
-Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Extensions can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished `.html` output page.
 
+Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Extensions can register support for additional input formats using the `@ivy.renderers.register()` decorator. Rendering-engine callbacks are registered per node-file-extension, e.g.
 
 ::: code python
     @ivy.renderers.register('md')
@@ -112,7 +114,7 @@ A rendering-engine callback should accept a single string argument containing pl
 
 ### Node Metadata
 
-Ivy has builtin support for YAML file headers. Extensions can add support for additional formats by preprocessing file content on the `file_text` filter hook.
+Ivy has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the `file_text` filter hook.
 
 ::: code python
     @ivy.filters.register('file_text')
@@ -170,4 +172,3 @@ The bundled Automenu extension automatically generates a menu containing links t
 (*) If a node has a `menu_exclude` attribute set to true it (and its children) will be omitted from the menu.
 
 Only nodes which have a `menu_title` or `title` attribute are included in the menu.
-

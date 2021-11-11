@@ -88,10 +88,10 @@
 <a href="#rendering-parsing-engines">Rendering &amp; Parsing Engines</a>
 <ul>
 <li>
-<a href="#templates">Templates</a>
+<a href="#template-engines">Template Engines</a>
 </li>
 <li>
-<a href="#node-content">Node Content</a>
+<a href="#rendering-engines">Rendering Engines</a>
 </li>
 <li>
 <a href="#node-metadata">Node Metadata</a>
@@ -120,7 +120,7 @@
 Installing Extensions
 </h2>
 <p>
-An extension is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
+An extension/plugin is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
 </p>
 <ul>
 <li>
@@ -198,11 +198,14 @@ Rendering &amp; Parsing Engines
 <p>
 Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Extensions can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
 </p>
-<h3 id="templates">
-Templates
+<h3 id="template-engines">
+Template Engines
 </h3>
 <p>
-Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Extensions can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
+Template-engines produce the output HTML for finished <code>.html</code> pages in the site.
+</p>
+<p>
+Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Extensions can register support for additional template-engines using the <code>@ivy.templates.register()</code> decorator. Template-engine callbacks are registered per template-file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
@@ -213,11 +216,14 @@ Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a hr
 <p>
 A template-engine callback should accept a dictionary of page data and a template filename and return a string of HTML.
 </p>
-<h3 id="node-content">
-Node Content
+<h3 id="rendering-engines">
+Rendering Engines
 </h3>
 <p>
-Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/master/">Syntext</a>. Extensions can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished <code>.html</code> output page.
+</p>
+<p>
+Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/master/">Syntext</a>. Extensions can register support for additional input formats using the <code>@ivy.renderers.register()</code> decorator. Rendering-engine callbacks are registered per node-file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
@@ -232,7 +238,7 @@ A rendering-engine callback should accept a single string argument containing pl
 Node Metadata
 </h3>
 <p>
-Ivy has builtin support for YAML file headers. Extensions can add support for additional formats by preprocessing file content on the <code>file_text</code> filter hook.
+Ivy has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the <code>file_text</code> filter hook.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
