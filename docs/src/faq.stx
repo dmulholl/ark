@@ -110,3 +110,14 @@ You can specify a custom file extension for output files in your site configurat
     extension = ".htm"
 
 Specify a single forward slash to generate directory-style urls.
+
+
+
+### Is Ivy fast?
+
+No. Ivy is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ivy is intended to be used for.
+
+As a rough benchmark, a clean (no-cache) build of the Ivy demo site which contains 7 output pages takes 0.15 seconds on my laptop. A clean build of the [Holly](https://github.com/dmulholl/holly) demo site which contains 951 output pages takes 1.7 seconds.
+
+If you need to build a website with tens or hundreds of thousands of pages, Ivy probably isn't the right tool for you.
+[Hugo](https://gohugo.io) is a popular static site generator with a focus on execution speed that may be a better match for large sites.
