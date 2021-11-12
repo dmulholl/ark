@@ -52,7 +52,14 @@ def node(url: str) -> Optional[Node]:
 
 
 # A Node instance represents a directory or text file (or both) in the
-# site's source directory.
+# site's source directory. You can treat a Node instance as a dictionary:
+#
+# >>> node = Node()
+# >>> node['foo'] = 123
+# >>> bar = node['foo']
+#
+# Dictionary-style reads and writes are passed through to the node's [.meta]
+# dictionary.
 class Node():
 
     def __init__(self):
