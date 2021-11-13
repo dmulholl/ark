@@ -2,7 +2,7 @@
 # Ivy: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '6.0.2'
+__version__ = '6.0.3'
 
 import sys
 if sys.version_info < (3, 8):
