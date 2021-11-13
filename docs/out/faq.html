@@ -71,6 +71,9 @@
             </header>
             <ul class="stx-toc">
 <li>
+<a href="#is-ivy-fast">Is Ivy fast?</a>
+</li>
+<li>
 <a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
 </li>
 <li>
@@ -94,10 +97,20 @@
 <li>
 <a href="#how-do-i-specify-a-custom-file-extension">How do I specify a custom file extension?</a>
 </li>
-<li>
-<a href="#is-ivy-fast">Is Ivy fast?</a>
-</li>
 </ul>
+<h3 id="is-ivy-fast">
+Is Ivy fast?
+</h3>
+<p>
+No. Ivy is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ivy is intended to be used for.
+</p>
+<p>
+As a rough benchmark, a clean (no-cache) build of the Ivy <a href="http://www.dmulholl.com/demos/ivy/">demo site</a> which contains 7 output pages takes 0.15 seconds on my laptop. A clean build of the Holly <a href="http://www.dmulholl.com/demos/holly/">demo site</a> which contains 951 output pages takes 1.7 seconds.
+</p>
+<p>
+If you need to build a website with tens or hundreds of thousands of pages, Ivy probably isn't the right tool for you.
+<a href="https://gohugo.io">Hugo</a> is a popular static site generator with a focus on execution speed that may be a better match for large sites.
+</p>
 <h3 id="can-i-build-a-blog-using-ivy">
 Can I build a blog using Ivy?
 </h3>
@@ -227,19 +240,6 @@ You can specify a custom file extension for output files in your site configurat
 </pre>
 <p>
 Specify a single forward slash to generate directory-style urls.
-</p>
-<h3 id="is-ivy-fast">
-Is Ivy fast?
-</h3>
-<p>
-No. Ivy is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ivy is intended to be used for.
-</p>
-<p>
-As a rough benchmark, a clean (no-cache) build of the Ivy demo site which contains 7 output pages takes 0.15 seconds on my laptop. A clean build of the <a href="https://github.com/dmulholl/holly">Holly</a> demo site which contains 951 output pages takes 1.7 seconds.
-</p>
-<p>
-If you need to build a website with tens or hundreds of thousands of pages, Ivy probably isn't the right tool for you.
-<a href="https://gohugo.io">Hugo</a> is a popular static site generator with a focus on execution speed that may be a better match for large sites.
 </p>
         </article>
         
