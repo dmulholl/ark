@@ -163,7 +163,7 @@ def loadfile(path):
                 meta[normalized_key] = value
         return text, meta
     except Exception as err:
-        msg = f"Error loading: {path}\n"
+        msg = f"Error loading file: {path}\n"
         msg += f">> {err.__class__.__name__}: {err}"
         if (cause := err.__cause__):
             msg += f"\n>> Cause: {cause.__class__.__name__}: {cause}"
