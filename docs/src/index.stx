@@ -6,11 +6,10 @@ meta_description: >
     It transforms a directory of text files into a self-contained website.
 ---
 
-[markdown]: http://daringfireball.net/projects/markdown/
+[markdown]: https://en.wikipedia.org/wiki/Markdown
 [jinja]: http://jinja.pocoo.org
 [ibis]: https://github.com/dmulholl/ibis
 [syntext]: https://github.com/dmulholl/syntext
-[holly]: https://github.com/dmulholl/holly
 
 
 Ivy is a static website generator built in Python. It's small, elegant, and simple to use.
