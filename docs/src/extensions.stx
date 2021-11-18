@@ -128,7 +128,7 @@ The `file_text` filter hook can be found in the `ivy/utils.py` file.
 
 
 
-## Extension Options
+## Bundled Extension Settings
 
 
 ### Markdown
