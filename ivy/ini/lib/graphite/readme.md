@@ -9,6 +9,7 @@ This theme will display the following attributes from the site's `config.py` fil
 
 * `title`
 * `tagline`
+* `version`
 
 It supports the following includes:
 
