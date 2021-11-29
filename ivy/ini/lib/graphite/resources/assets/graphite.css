@@ -675,6 +675,10 @@ body.extra-deflist-vspace dt {
         font-size: 16px;
     }
 
+    h1 code {
+        font-size: 24px;
+    }
+
     pre, code {
         font-size: 12px;
     }
