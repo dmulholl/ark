@@ -18,49 +18,51 @@ import ivy
 
 
 # We generate the menu once and cache it for future use.
-cache = None
+cached_menu = None
 
 
-# Register a callback to add an 'automenu' attribute to each Page instance.
+# Register a callback to add an 'automenu' attribute to each page-data dictionary.
 @ivy.events.register('render_page')
-def add_automenu(page):
-    global cache
-    if cache is None:
-        cache = make_menu()
-    page['automenu'] = cache
+def add_automenu(page_data):
+    global cached_menu
+    if cached_menu is None:
+        cached_menu = make_menu()
+    page_data['automenu'] = cached_menu
 
 
-# This function's arguments are experimental and may be altered at any time.
-# If `inc_func` is set, it should accept a node and return true or false.
-# If `sort_func` is set, it should accept a list of nodes and sort it in place.
-def make_menu(inc_func=None, sort_func=None):
+# This function's arguments are experimental and subject to change.
+# - If `include_func` is set, it should accept a node and return true or false.
+#   This determines whether a node is included in the menu or not.
+# - If `sort_func` is set, it should accept a list of nodes and sort it in place.
+#   This determines the ordering of nodes and subnodes in the memu.
+def make_menu(include_func=None, sort_func=None):
     menu = ['<ul>\n']
     root = ivy.nodes.root()
     title = root.get('menu_title') or root.get('title') or 'Home'
     menu.append(f'<li><a href="@root/">{title}</a></li>\n')
-    for node in sorted_children(root, inc_func, sort_func):
-        add_node_to_menu(node, menu, inc_func, sort_func)
+    for node in sorted_children(root, include_func, sort_func):
+        add_node_to_menu(node, menu, include_func, sort_func)
     menu.append('</ul>')
     return ''.join(menu)
 
 
-def add_node_to_menu(node, menu, inc_func, sort_func):
+def add_node_to_menu(node, menu, include_func, sort_func):
     title = node.get('menu_title') or node.get('title')
     menu.append('<li>')
     menu.append(f'<a href="{node.url}">{title}</a>')
-    if children := sorted_children(node, inc_func, sort_func):
+    if children := sorted_children(node, include_func, sort_func):
         menu.append('<ul>\n')
         for child in children:
-            add_node_to_menu(child, menu, inc_func, sort_func)
+            add_node_to_menu(child, menu, include_func, sort_func)
         menu.append('</ul>\n')
     menu.append('</li>\n')
 
 
-def sorted_children(node, inc_func, sort_func):
+def sorted_children(node, include_func, sort_func):
     children = []
     for child in node.children:
-        if inc_func:
-            if inc_func(child):
+        if include_func:
+            if include_func(child):
                 children.append(child)
         else:
             if child.get('menu_exclude'):
