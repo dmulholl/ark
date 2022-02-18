@@ -9,6 +9,7 @@ meta_title: Ivy &mdash; Extensions
 [syntext]: http://www.dmulholl.com/docs/syntext/master/
 [shortcodes]: https://github.com/dmulholl/shortcodes
 [mdpkg]: https://pypi.org/project/Markdown/
+[ext]: https://github.com/dmulholl/ivy/tree/dev/ivy/ext
 
 ::: insert toc
 
@@ -37,7 +38,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 
 Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 
-You can find these bundled plugins in the `ivy/ext/` directory which you can view on [Github](https://github.com/dmulholl/ivy/tree/master/ivy/ext).
+You can find these bundled plugins in the `ivy/ext/` directory which you can view on [Github][ext].
 
 
 
