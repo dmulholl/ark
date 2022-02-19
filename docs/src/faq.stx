@@ -117,6 +117,15 @@ You can specify a custom file extension for output files in your site configurat
 
 
 
+### How do I generate directory-style URLs?
+
+You can tell Ivy to generate directory-style URLs ending in a `/` by setting a custom file extension of `/` in your site configuration file:
+
+::: code python
+    extension = "/"
+
+
+
 ### How do I generate absolute or site-relative URLs?
 
 You can tell Ivy to generate absolute URLs by specifying an explicit root domain in your site configuration file, e.g.
@@ -128,12 +137,3 @@ Specify a single forward slash to generate site-relative URLs, i.e. URLs that be
 
 ::: code python
     root = "/"
-
-
-
-### How do I generate directory-style URLs?
-
-You can tell Ivy to generate directory-style URLs ending in a `/` by setting a custom file extension of `/` in your site configuration file:
-
-::: code python
-    extension = "/"
