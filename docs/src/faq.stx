@@ -40,7 +40,7 @@ As an example, assume we have a file named `photo.jpg` stored in a directory nam
         |-- images/
             |-- photo.jpg
 
-This file will be copied to the output directory and can be accessed in templates and node files via the url:
+This file will be copied to the output directory and can be accessed in templates and node files via the URL:
 
     @root/images/photo.jpg
 
@@ -72,15 +72,15 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 
 
 
-### Why do I get an error when I add a url to a Yaml header?
+### Why do I get an error when I add a URL to a Yaml header?
 
-Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get an error message if you add a bare `@root/` url to a Yaml header, e.g.
+Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get an error message if you add a bare `@root/` URL to a Yaml header, e.g.
 
     ---
     image: @root/images/photo.jpg
     ---
 
-Quoting the url solves the problem:
+Quoting the URL solves the problem:
 
     ---
     image: "@root/images/photo.jpg"
@@ -108,17 +108,6 @@ I liked the name Industrial Vellum, IV. Also, the branching tree structure of th
 
 
 
-### How do I generate absolute urls?
-
-You can tell Ivy to generate absolute urls by specifying an explicit root domain in your site configuration file, e.g.
-
-::: code python
-    root = "http://example.com/"
-
-Specify a single forward slash to generate site-relative urls.
-
-
-
 ### How do I specify a custom file extension?
 
 You can specify a custom file extension for output files in your site configuration file, e.g.
@@ -126,4 +115,25 @@ You can specify a custom file extension for output files in your site configurat
 ::: code python
     extension = ".htm"
 
-Specify a single forward slash to generate directory-style urls.
+
+
+### How do I generate absolute or site-relative URLs?
+
+You can tell Ivy to generate absolute URLs by specifying an explicit root domain in your site configuration file, e.g.
+
+::: code python
+    root = "http://example.com/"
+
+Specify a single forward slash to generate site-relative URLs, i.e. URLs that begin with `/`:
+
+::: code python
+    root = "/"
+
+
+
+### How do I generate directory-style URLs?
+
+You can tell Ivy to generate directory-style URLs ending in a `/` by setting a custom file extension of `/` in your site configuration file:
+
+::: code python
+    extension = "/"

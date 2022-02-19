@@ -83,7 +83,7 @@
 <a href="#does-ivy-support-featured-images-or-image-galleries">Does Ivy support featured images or image galleries?</a>
 </li>
 <li>
-<a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a url to a Yaml header?</a>
+<a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a URL to a Yaml header?</a>
 </li>
 <li>
 <a href="#how-do-i-deploy-a-site-built-with-ivy">How do I deploy a site built with Ivy?</a>
@@ -92,10 +92,13 @@
 <a href="#why-is-it-called-ivy">Why is it called Ivy?</a>
 </li>
 <li>
-<a href="#how-do-i-generate-absolute-urls">How do I generate absolute urls?</a>
+<a href="#how-do-i-specify-a-custom-file-extension">How do I specify a custom file extension?</a>
 </li>
 <li>
-<a href="#how-do-i-specify-a-custom-file-extension">How do I specify a custom file extension?</a>
+<a href="#how-do-i-generate-absolute-or-site-relative-urls">How do I generate absolute or site-relative URLs?</a>
+</li>
+<li>
+<a href="#how-do-i-generate-directory-style-urls">How do I generate directory-style URLs?</a>
 </li>
 </ul>
 <h3 id="is-ivy-fast">
@@ -135,7 +138,7 @@ site/
         |-- photo.jpg
 </pre>
 <p>
-This file will be copied to the output directory and can be accessed in templates and node files via the url:
+This file will be copied to the output directory and can be accessed in templates and node files via the URL:
 </p>
 <pre>
 @root/images/photo.jpg
@@ -169,10 +172,10 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 </pre>
 <h3 id="why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">
-Why do I get an error when I add a url to a Yaml header?
+Why do I get an error when I add a URL to a Yaml header?
 </h3>
 <p>
-Yaml doesn't support unquoted values that begin with an <code>@</code> symbol so you'll get an error message if you add a bare <code>@root/</code> url to a Yaml header, e.g.
+Yaml doesn't support unquoted values that begin with an <code>@</code> symbol so you'll get an error message if you add a bare <code>@root/</code> URL to a Yaml header, e.g.
 </p>
 <pre>
 ---
@@ -180,7 +183,7 @@ image: @root/images/photo.jpg
 ---
 </pre>
 <p>
-Quoting the url solves the problem:
+Quoting the URL solves the problem:
 </p>
 <pre>
 ---
@@ -219,18 +222,6 @@ Why is it called Ivy?
 <p>
 I liked the name Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.
 </p>
-<h3 id="how-do-i-generate-absolute-urls">
-How do I generate absolute urls?
-</h3>
-<p>
-You can tell Ivy to generate absolute urls by specifying an explicit root domain in your site configuration file, e.g.
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
-</pre>
-<p>
-Specify a single forward slash to generate site-relative urls.
-</p>
 <h3 id="how-do-i-specify-a-custom-file-extension">
 How do I specify a custom file extension?
 </h3>
@@ -240,9 +231,30 @@ You can specify a custom file extension for output files in your site configurat
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.htm&quot;</span>
 </pre>
+<h3 id="how-do-i-generate-absolute-or-site-relative-urls">
+How do I generate absolute or site-relative URLs?
+</h3>
 <p>
-Specify a single forward slash to generate directory-style urls.
+You can tell Ivy to generate absolute URLs by specifying an explicit root domain in your site configuration file, e.g.
 </p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
+</pre>
+<p>
+Specify a single forward slash to generate site-relative URLs, i.e. URLs that begin with <code>/</code>:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+</pre>
+<h3 id="how-do-i-generate-directory-style-urls">
+How do I generate directory-style URLs?
+</h3>
+<p>
+You can tell Ivy to generate directory-style URLs ending in a <code>/</code> by setting a custom file extension of <code>/</code> in your site configuration file:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+</pre>
         </article>
         
     </body>
