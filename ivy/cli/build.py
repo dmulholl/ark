@@ -71,9 +71,12 @@ def build_site():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Callback to handle individual nodes.
+    # Callback to handle individual nodes. The `build_node` filter can be used
+    # as a switch to decide if a node should be written to disk. A `disable`
+    # flag in a node's metadata header will also prevent Ivy from producing an
+    # output HTML page for a node.
     def build_node(node):
-        if filters.apply('build_node', True, node):
+        if filters.apply('build_node', True, node) and not node.get('disable'):
             node.write()
 
     # Walk the node tree and pass each node to the handler.
