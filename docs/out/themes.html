@@ -105,24 +105,40 @@ Structure
 <p>
 Ivy looks for three subdirectories within the theme directory: <code>resources</code>, <code>templates</code>, and <code>extensions</code>.
 </p>
-<ul>
-<li>
+<dl>
+<div>
+<dt>
+<code>resources</code>
+</dt>
+<dd>
 <p>
 The content of the <code>resources</code> directory is copied to the output directory when the site is built.
 A theme should store its static assets in this directory, e.g. CSS, JavaScript, font, and image files.
 </p>
-</li>
-<li>
+</dd>
+</div>
+<div>
+<dt>
+<code>templates</code>
+</dt>
+<dd>
 <p>
 The <code>templates</code> directory is where Ivy looks for the theme's template files.
+This directory is also where Jinja and Ibis will look for files included in templates using <code>{% include %}</code> tags.
 </p>
-</li>
-<li>
+</dd>
+</div>
+<div>
+<dt>
+<code>extensions</code>
+</dt>
+<dd>
 <p>
 Themes can bundle extensions for Ivy by placing Python modules or packages in the <code>extensions</code> directory.
 </p>
-</li>
-</ul>
+</dd>
+</div>
+</dl>
 <h3 id="template-files">
 Template Files
 </h3>
