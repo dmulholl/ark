@@ -7,6 +7,12 @@ meta_title: Ivy &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 6.1.0
+
+* This release adds support for disabling nodes --- if a node has a `disable` flag in its metadata header, Ivy will not produce an output HTML page for it. (The `disable` flag only affects the node itself, not its children.)
+
+
+
 ### 6.0.0
 
 * This release simplifies Ivy internally by merging `Page` objects into `Node` objects.

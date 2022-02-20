@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.0.0</p>
+                <p class="version">Version 6.1.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -99,6 +99,9 @@
 </li>
 <li>
 <a href="#how-do-i-generate-absolute-or-site-relative-urls">How do I generate absolute or site-relative URLs?</a>
+</li>
+<li>
+<a href="#how-do-i-disable-a-node">How do I disable a node?</a>
 </li>
 </ul>
 <h3 id="is-ivy-fast">
@@ -255,6 +258,23 @@ Specify a single forward slash to generate site-relative URLs &mdash; i.e. URLs 
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
 </pre>
+<h3 id="how-do-i-disable-a-node">
+How do I disable a node?
+</h3>
+<p>
+You can add a <code>disable</code> flag to a node's metadata header:
+</p>
+<pre>
+---
+disable: true
+---
+</pre>
+<p>
+This will stop Ivy from producing an output HTML page for the node.
+</p>
+<p>
+Note that this only affects the node itself, not its children.
+</p>
         </article>
         
     </body>

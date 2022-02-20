@@ -137,3 +137,17 @@ Specify a single forward slash to generate site-relative URLs --- i.e. URLs that
 
 ::: code python
     root = "/"
+
+
+
+### How do I disable a node?
+
+You can add a `disable` flag to a node's metadata header:
+
+    ---
+    disable: true
+    ---
+
+This will stop Ivy from producing an output HTML page for the node.
+
+Note that this only affects the node itself, not its children.
