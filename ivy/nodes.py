@@ -251,52 +251,54 @@ class Node():
         return filters.apply('class_list', class_list, self)
 
 
-# Parse a source directory.
+# Parse a source directory. The `load_node_dir` and `load_node_file` filters
+# can be used as switches to determine if a directory or file should be treated
+# as a node or ignored.
 #
 # Args:
-#   dirnode (Node): the Node instance for the directory.
-#   dirpath (str/Path): path to the directory as a string or Path instance.
-def _parse_node_directory(dirnode, dirpath):
+#   dir_node (Node): the Node instance for the directory.
+#   dir_path (str/Path): path to the directory as a string or Path instance.
+def _parse_node_directory(dir_node, dir_path):
 
     # Parse subdirectories.
-    for path in (p for p in Path(dirpath).iterdir() if p.is_dir()):
-        if filters.apply('load_node_dir', True, path):
-            childnode = Node()
-            childnode.stem = path.stem
-            childnode.parent = dirnode
-            childnode.filepath = str(path)
-            dirnode.children.append(childnode)
-            _parse_node_directory(childnode, path)
+    for subdir_path in (p for p in Path(dir_path).iterdir() if p.is_dir()):
+        if filters.apply('load_node_dir', True, subdir_path):
+            child_node = Node()
+            child_node.stem = subdir_path.stem
+            child_node.parent = dir_node
+            child_node.filepath = str(subdir_path)
+            dir_node.children.append(child_node)
+            _parse_node_directory(child_node, subdir_path)
 
     # Parse files.
-    for path in (p for p in Path(dirpath).iterdir() if p.is_file()):
-        if path.stem.startswith('.') or path.stem.endswith('~'):
+    for file_path in (p for p in Path(dir_path).iterdir() if p.is_file()):
+        if file_path.stem.startswith('.') or file_path.stem.endswith('~'):
             continue
-        if filters.apply('load_node_file', True, path):
-            _parse_node_file(dirnode, path)
+        if filters.apply('load_node_file', True, file_path):
+            _parse_node_file(dir_node, file_path)
 
 
 # Parse a source file.
 #
 # Args:
-#   dirnode (Node): the Node instance for the directory containing the file.
-#   filepath (Path): path to the file as a Path instance.
-def _parse_node_file(dirnode, filepath):
-    if filepath.stem == 'index':
-        filenode = dirnode
+#   dir_node (Node): the Node instance for the directory containing the file.
+#   file_path (Path): path to the file as a Path instance.
+def _parse_node_file(dir_node, file_path):
+    if file_path.stem == 'index':
+        file_node = dir_node
     else:
-        filenode = None
-        for child in dirnode.children:
-            if filepath.stem == child.stem:
-                filenode = child
+        file_node = None
+        for child in dir_node.children:
+            if file_path.stem == child.stem:
+                file_node = child
                 break
-        if filenode is None:
-            filenode = Node()
-            filenode.stem = filepath.stem
-            filenode.parent = dirnode
-            dirnode.children.append(filenode)
-    text, meta = utils.loadfile(filepath)
-    filenode.text = text
-    filenode.meta.update(meta)
-    filenode.filepath = str(filepath)
-    filenode.ext = filepath.suffix.strip('.')
+        if file_node is None:
+            file_node = Node()
+            file_node.stem = file_path.stem
+            file_node.parent = dir_node
+            dir_node.children.append(file_node)
+    text, meta = utils.loadfile(file_path)
+    file_node.text = text
+    file_node.meta.update(meta)
+    file_node.filepath = str(file_path)
+    file_node.ext = file_path.suffix.strip('.')
