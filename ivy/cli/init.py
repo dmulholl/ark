@@ -24,7 +24,7 @@ Flags:
 """
 
 
-@events.register('cli')
+@events.register(events.Event.CLI)
 def register_command(argparser):
     argparser.command("init", helptext, cmd_callback)
 

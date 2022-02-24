@@ -33,7 +33,7 @@ Flags:
 """
 
 
-@events.register('cli')
+@events.register(events.Event.CLI)
 def register_command(argparser):
     cmd_parser = argparser.command("build", helptext, cmd_callback)
     cmd_parser.flag("clear c")
@@ -49,14 +49,14 @@ def cmd_callback(cmd_name, cmd_parser):
         utils.cleardir(site.out())
         hashes.clear()
 
-    @events.register('main')
+    @events.register(events.Event.MAIN)
     def fire_build_events():
-        events.fire('init_build')
-        events.fire('main_build')
-        events.fire('exit_build')
+        events.fire(events.Event.INIT_BUILD)
+        events.fire(events.Event.MAIN_BUILD)
+        events.fire(events.Event.EXIT_BUILD)
 
 
-@events.register('main_build')
+@events.register(events.Event.MAIN_BUILD)
 def build_site():
     # Make sure we have a valid theme directory.
     if not site.theme():
@@ -83,7 +83,7 @@ def build_site():
     nodes.root().walk(build_node)
 
 
-@events.register('exit_build')
+@events.register(events.Event.EXIT_BUILD)
 def print_build_stats():
     report = datetime.datetime.now().strftime("[%H:%M:%S]")
     report += f"   ·   Rendered: {site.pages_rendered():5d}"

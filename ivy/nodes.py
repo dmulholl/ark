@@ -193,7 +193,7 @@ class Node():
         }
 
         # Generate a HTML page by pouring the node's content into a template.
-        events.fire('render_page', page_data)
+        events.fire(events.Event.RENDER_PAGE, page_data)
         page_html = templates.render(page_data)
         site.pages_rendered(1)
 

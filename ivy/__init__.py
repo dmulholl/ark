@@ -54,6 +54,6 @@ def main():
     extensions.load_theme_extensions()
 
     # Fire the primary sequence of event hooks.
-    events.fire('init')
-    events.fire('main')
-    events.fire('exit')
+    events.fire(events.Event.INIT)
+    events.fire(events.Event.MAIN)
+    events.fire(events.Event.EXIT)

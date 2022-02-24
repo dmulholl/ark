@@ -12,7 +12,7 @@ except ImportError:
 if ibis:
 
     # Initialize the template loader.
-    @ivy.events.register('init')
+    @ivy.events.register(ivy.events.Event.INIT)
     def init():
         ibis.loader = ibis.loaders.FileLoader(ivy.site.theme('templates'))
 

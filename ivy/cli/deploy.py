@@ -28,7 +28,7 @@ Flags:
 """
 
 
-@events.register('cli')
+@events.register(events.Event.CLI)
 def register_command(argparser):
     argparser.command("deploy", helptext, cmd_callback)
 
@@ -43,7 +43,7 @@ def cmd_callback(cmd_name, cmd_parser):
         path = os.path.join(site.home(), script)
         os.system(path)
 
-    @events.register('main')
+    @events.register(events.Event.MAIN)
     def fire_deploy_event():
-        events.fire('deploy')
+        events.fire(events.Event.DEPLOY)
 

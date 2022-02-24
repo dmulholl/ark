@@ -69,7 +69,7 @@ def _cachefile() -> str:
 
 
 # Load cached page hashes from the last build run.
-@events.register('init')
+@events.register(events.Event.INIT)
 def _load():
     if os.path.isfile(_cachefile()):
         with open(_cachefile(), 'rb') as file:
@@ -78,7 +78,7 @@ def _load():
 
 
 # Cache page hashes to disk for the next build run.
-@events.register('exit')
+@events.register(events.Event.EXIT)
 def _save():
     if _updated:
         if not os.path.isdir(os.path.dirname(_cachefile())):

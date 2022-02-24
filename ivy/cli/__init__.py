@@ -49,5 +49,5 @@ argparser = argslib.ArgParser(helptext, ivy.__version__)
 # Parse the application's command-line arguments. Plugins can use the `cli`
 # event to register their own custom commands.
 def parse_args():
-    ivy.events.fire('cli', argparser)
+    ivy.events.fire(ivy.events.Event.CLI, argparser)
     argparser.parse()

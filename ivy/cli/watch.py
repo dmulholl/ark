@@ -32,7 +32,7 @@ Flags:
 """
 
 
-@events.register('cli')
+@events.register(events.Event.CLI)
 def register_command(argparser):
     cmd_parser = argparser.command("watch", helptext, cmd_callback)
     cmd_parser.flag("clear c")

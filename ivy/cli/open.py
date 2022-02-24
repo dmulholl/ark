@@ -7,6 +7,7 @@ import sys
 import webbrowser
 import os
 
+from .. import events
 
 helptext = """
 Usage: ivy open [url]
@@ -23,7 +24,7 @@ Flags:
 """
 
 
-@ivy.events.register('cli')
+@ivy.events.register(events.Event.CLI)
 def register_command(argparser):
     argparser.command("open", helptext, cmd_callback)
 
