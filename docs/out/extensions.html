@@ -223,7 +223,7 @@ Rendering Engines
 Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished <code>.html</code> output page.
 </p>
 <p>
-Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/master/">Syntext</a>. Extensions can register support for additional input formats using the <code>@ivy.renderers.register()</code> decorator. Rendering-engine callbacks are registered per node-file-extension, e.g.
+Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/master/">Syntext</a>. Extensions can register support for additional input formats using the <code>@ivy.renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="nd">@ivy</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
@@ -233,6 +233,9 @@ Ivy has builtin support for node files written in <a href="https://en.wikipedia.
 </pre>
 <p>
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
+</p>
+<p>
+Note that if you register a custom callback for <code>.md</code> files, this will override the default Markdown renderer.
 </p>
 <h3 id="node-metadata">
 Node Metadata

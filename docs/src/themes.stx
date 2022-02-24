@@ -36,7 +36,9 @@ Ivy searches for a named theme first in the site's theme library, then (if it ex
 
 ### Structure
 
-Ivy looks for three subdirectories within the theme directory: `resources`, `templates`, and `extensions`.
+A theme is simply a directory; the theme's name is the name of the directory.
+
+When building a website, Ivy looks for three subdirectories within the theme directory: `resources`, `templates`, and `extensions`.
 
 [[ `resources` ]]
 
@@ -52,6 +54,8 @@ Ivy looks for three subdirectories within the theme directory: `resources`, `tem
 
     Themes can bundle extensions for Ivy by placing Python modules or packages in the `extensions` directory.
 
+A theme directory can contain other files and directories --- e.g. a license file, readme file, etc. --- which Ivy will simply ignore.
+
 
 
 ### Template Files
@@ -60,7 +64,7 @@ Template files provide the HTML scaffolding for constructing pages --- you can t
 
 There are countless templating languages and Ivy can use any of them, but it has builtin support for [Jinja][] and [Ibis][]. Ivy determines the language of a template file by looking at its extension --- `.jinja` for Jinja and `.ibis` for Ibis.
 
-You can add support for alternative templating languages via [plugins](@root/extensions//#templates).
+You can add support for alternative templating languages via [plugins](@root/extensions//#template-engines).
 
 
 

@@ -101,7 +101,7 @@ A template-engine callback should accept a dictionary of page data and a templat
 
 Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished `.html` output page.
 
-Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Extensions can register support for additional input formats using the `@ivy.renderers.register()` decorator. Rendering-engine callbacks are registered per node-file-extension, e.g.
+Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Extensions can register support for additional input formats using the `@ivy.renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 ::: code python
     @ivy.renderers.register('md')
@@ -110,6 +110,8 @@ Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. 
         return html
 
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
+
+Note that if you register a custom callback for `.md` files, this will override the default Markdown renderer.
 
 
 
