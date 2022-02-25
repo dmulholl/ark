@@ -20,7 +20,7 @@ if shortcodes:
 
     # We process and replace shortcodes in the node's text content just before
     # that text is rendered into HTML.
-    @ivy.filters.register('node_text')
+    @ivy.filters.register(ivy.filters.Filter.NODE_TEXT)
     def render(text, node):
         global parser
         if parser is None:
