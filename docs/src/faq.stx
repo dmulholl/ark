@@ -5,6 +5,7 @@ meta_title: Ivy &mdash; FAQ
 
 [1]: http://www.dmulholl.com/demos/ivy/
 [2]: http://www.dmulholl.com/demos/holly/
+[3]: https://pypi.org/project/Markdown/
 
 ::: insert toc
 
@@ -151,3 +152,9 @@ You can add a `disable` flag to a node's metadata header:
 This will stop Ivy from producing an output HTML page for the node.
 
 Note that this only affects the node itself, not its children.
+
+
+
+### Can I use a different Markdown library?
+
+Sure. Ivy defaults to using the [Markdown][3] library to render `.md` files but you can [register a custom handler](@root/extensions//#rendering-engines) to use any library you like.

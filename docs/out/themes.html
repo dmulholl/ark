@@ -103,7 +103,10 @@ Ivy searches for a named theme first in the site's theme library, then (if it ex
 Structure
 </h3>
 <p>
-Ivy looks for three subdirectories within the theme directory: <code>resources</code>, <code>templates</code>, and <code>extensions</code>.
+A theme is simply a directory; the theme's name is the name of the directory.
+</p>
+<p>
+When building a website, Ivy looks for three subdirectories within the theme directory: <code>resources</code>, <code>templates</code>, and <code>extensions</code>.
 </p>
 <dl>
 <div>
@@ -139,6 +142,9 @@ Themes can bundle extensions for Ivy by placing Python modules or packages in th
 </dd>
 </div>
 </dl>
+<p>
+A theme directory can contain other files and directories &mdash; e.g. a license file, readme file, etc. &mdash; which Ivy will simply ignore.
+</p>
 <h3 id="template-files">
 Template Files
 </h3>
@@ -149,7 +155,7 @@ Template files provide the HTML scaffolding for constructing pages &mdash; you c
 There are countless templating languages and Ivy can use any of them, but it has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a>. Ivy determines the language of a template file by looking at its extension &mdash; <code>.jinja</code> for Jinja and <code>.ibis</code> for Ibis.
 </p>
 <p>
-You can add support for alternative templating languages via <a href="extensions.html#templates">plugins</a>.
+You can add support for alternative templating languages via <a href="extensions.html#template-engines">plugins</a>.
 </p>
 <h3 id="template-hierarchy">
 Template Hierarchy
