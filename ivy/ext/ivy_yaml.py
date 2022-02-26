@@ -10,7 +10,7 @@ try:
 except ImportError:
     pass
 else:
-    @ivy.filters.register('file_text')
+    @ivy.filters.register(ivy.filters.Filter.FILE_TEXT)
     def parse_yaml(text, meta_dict):
         if text.startswith("---\n"):
             if match := re.match(r"^---\n(.*?\n)---\n", text, re.DOTALL):

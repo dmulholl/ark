@@ -62,7 +62,7 @@ sibi conscios nisi pollutum obstrictumque meritis suis principem passuros.
 """
 
 
-@events.register('cli')
+@events.register(events.Event.CLI)
 def register_command(argparser):
     cmd_parser = argparser.command("add", helptext, cmd_callback)
     cmd_parser.option("title t")

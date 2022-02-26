@@ -35,7 +35,7 @@ Flags:
 """
 
 
-@events.register('cli')
+@events.register(events.Event.CLI)
 def register_command(argparser):
     cmd_parser = argparser.command("tree", helptext, cmd_callback)
     cmd_parser.flag("slugs s")
@@ -46,7 +46,7 @@ def register_command(argparser):
 def cmd_callback(cmd_name, cmd_parser):
     base = 'slug' if cmd_parser.found('slugs') else 'url'
 
-    @events.register('main')
+    @events.register(events.Event.MAIN)
     def tree_callback():
         if not site.home():
             sys.exit("Error: cannot locate the site's home directory.")

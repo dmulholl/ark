@@ -2,7 +2,7 @@
 # Ivy: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '6.1.0'
+__version__ = '6.2.0-alpha'
 
 import sys
 if sys.version_info < (3, 8):
@@ -54,6 +54,6 @@ def main():
     extensions.load_theme_extensions()
 
     # Fire the primary sequence of event hooks.
-    events.fire('init')
-    events.fire('main')
-    events.fire('exit')
+    events.fire(events.Event.INIT)
+    events.fire(events.Event.MAIN)
+    events.fire(events.Event.EXIT)

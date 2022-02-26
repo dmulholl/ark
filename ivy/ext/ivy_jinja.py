@@ -19,7 +19,7 @@ if jinja2:
 
     # Initialize the Jinja environment on the 'init' event hook.
     # Check the site's config file for custom settings.
-    @ivy.events.register('init')
+    @ivy.events.register(ivy.events.Event.INIT)
     def init():
         settings = {
             'loader': jinja2.FileSystemLoader(ivy.site.theme('templates'))

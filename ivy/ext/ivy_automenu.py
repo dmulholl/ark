@@ -22,7 +22,7 @@ cached_menu = None
 
 
 # Register a callback to add an 'automenu' attribute to each page-data dictionary.
-@ivy.events.register('render_page')
+@ivy.events.register(ivy.events.Event.RENDER_PAGE)
 def add_automenu(page_data):
     global cached_menu
     if cached_menu is None:
