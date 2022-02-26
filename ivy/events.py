@@ -4,8 +4,10 @@
 
 from enum import Enum, unique
 
+
 # Dictionary mapping hook names to lists of callback functions indexed by order.
 _callbacks = {}
+
 
 # Enumeration of available events. String names are supported for backward
 # compatibility.
@@ -13,16 +15,19 @@ _callbacks = {}
 class Event(Enum):
     """All events that Ivy understands are listed here."""
     CLI = "cli"
+    DEPLOY = "deploy"
     EXIT = "exit"
     EXIT_BUILD = "exit_build"
-    INIT_BUILD = "init_build"
     INIT = "init"
+    INIT_BUILD = "init_build"
     MAIN = "main"
     MAIN_BUILD = "main_build"
     RENDER_PAGE = "render_page"
 
+
 # Name-to-value lookup table for Event to support backward compatibility.
 EVENT_NAMES = {member.value: member for member in Event}
+
 
 # Decorator function for registering event callbacks, i.e. handler functions
 # which will be called when the corresponding event hook is fired.

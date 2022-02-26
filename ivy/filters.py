@@ -4,6 +4,7 @@
 
 from enum import Enum, unique
 
+
 # Dictionary mapping hook names to lists of callback functions indexed by order.
 _callbacks = {}
 
@@ -22,12 +23,14 @@ class Filter(Enum):
     NODE_TEXT = "node_text"
     OUTPUT_FILEPATH = "output_filepath"
     PAGE_HTML = "page_html"
-    SLUG_LIST = "slug_list"
     SLUGIFY = "slugify"
+    SLUG_LIST = "slug_list"
     TEMPLATE_LIST = "template_list"
+
 
 # Name-to-value lookup table for Filter to support backward compatibility.
 FILTER_NAMES = {member.value: member for member in Filter}
+
 
 # Decorator function for registering filter callbacks, i.e. handler functions
 # which will be called when the corresponding filter hook is fired.
