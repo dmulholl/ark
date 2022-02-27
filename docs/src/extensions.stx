@@ -49,11 +49,13 @@ You can find these bundled plugins in the `ivy/ext/` directory which you can vie
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 
 ::: code python
-    @ivy.events.register('exit')
+    from ivy.events import Event
+
+    @ivy.events.register(Event.EXIT)
     def print_page_count():
         print(ivy.site.pages_written())
 
-This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` event hook can be found in the `ivy/__init__.py` file.)
+This callback is registered on the `EXIT` event hook which fires just before the application exits. (The `EXIT` event hook can be found in the `ivy/__init__.py` file.)
 
 
 
@@ -64,11 +66,13 @@ This callback is registered on the `exit` event hook which fires just before the
 Here's a simple filter callback that changes every instance of the word *foo* in node content to *bar*:
 
 ::: code python
-    @ivy.filters.register('node_text')
+    from ivy.filters import Filter
+
+    @ivy.filters.register(Filter.NODE_TEXT)
     def foo_to_bar(text, node):
         return text.replace('foo', 'bar')
 
-This callback is registered on the `node_text` filter hook which fires just before a node's text is rendered into HTML. (The `node_text` filter hook can be found in the `ivy/nodes.py` file).
+This callback is registered on the `NODE_TEXT` filter hook which fires just before a node's text is rendered into HTML. (The `NODE_TEXT` filter hook can be found in the `ivy/nodes.py` file).
 
 
 Note that this hook supplies us with the `Node` instance itself as an additional argument which in this case we ignore.
@@ -120,14 +124,16 @@ Note that if you register a custom callback for `.md` files, this will override 
 Ivy has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the `file_text` filter hook.
 
 ::: code python
-    @ivy.filters.register('file_text')
+    from ivy.filters import Filter
+
+    @ivy.filters.register(Filter.FILE_TEXT)
     def parse_toml(raw_text, meta_dict):
         ...
         return filtered_text
 
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 
-The `file_text` filter hook can be found in the `ivy/utils.py` file.
+The `FILE_TEXT` filter hook can be found in the `ivy/utils.py` file.
 
 
 
@@ -136,7 +142,7 @@ The `file_text` filter hook can be found in the `ivy/utils.py` file.
 
 ### Markdown
 
-Ivy uses the [Markdown][mdpkg] package to render node files with a `.md` extension. You can add a
+Ivy defaults to using the [Markdown][mdpkg] package to render node files with a `.md` extension. You can add a
 dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
 `markdown_settings` attribute, e.g.
 

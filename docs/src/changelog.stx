@@ -7,6 +7,14 @@ meta_title: Ivy &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 6.2.0
+
+* Event and filter hooks are now implemented as enums instead of strings.
+  This change is backwards compatible --- string hook names will continue to work as before.
+  (Thanks to [gvwilson](https://github.com/gvwilson) for the pull request.)
+
+
+
 ### 6.1.0
 
 * This release adds support for disabling nodes --- if a node has a `disable` flag in its metadata header, Ivy will not produce an output HTML page for it. (The `disable` flag only affects the node itself, not its children.)

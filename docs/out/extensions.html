@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.1.0</p>
+                <p class="version">Version 6.2.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -34,7 +34,7 @@
 <a href="quickstart.html">Quickstart</a>
 </li>
 <li>
-<a href="sites.html">Sites</a>
+<a href="sites.html">Building Sites</a>
 </li>
 <li>
 <a href="themes.html">Themes</a>
@@ -165,12 +165,14 @@ Events
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ivy.events</span> <span class="kn">import</span> <span class="n">Event</span>
+
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Event</span><span class="o">.</span><span class="n">EXIT</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_page_count</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">pages_written</span><span class="p">())</span>
 </pre>
 <p>
-This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> event hook can be found in the <code>ivy/__init__.py</code> file.)
+This callback is registered on the <code>EXIT</code> event hook which fires just before the application exits. (The <code>EXIT</code> event hook can be found in the <code>ivy/__init__.py</code> file.)
 </p>
 <h3 id="filters">
 Filters
@@ -182,12 +184,14 @@ Filters
 Here's a simple filter callback that changes every instance of the word <i>foo</i> in node content to <i>bar</i>:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;node_text&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ivy.filters</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Filter</span><span class="o">.</span><span class="n">NODE_TEXT</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
 <p>
-This callback is registered on the <code>node_text</code> filter hook which fires just before a node's text is rendered into HTML. (The <code>node_text</code> filter hook can be found in the <code>ivy/nodes.py</code> file).
+This callback is registered on the <code>NODE_TEXT</code> filter hook which fires just before a node's text is rendered into HTML. (The <code>NODE_TEXT</code> filter hook can be found in the <code>ivy/nodes.py</code> file).
 </p>
 <p>
 Note that this hook supplies us with the <code>Node</code> instance itself as an additional argument which in this case we ignore.
@@ -244,7 +248,9 @@ Node Metadata
 Ivy has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the <code>file_text</code> filter hook.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file_text&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ivy.filters</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Filter</span><span class="o">.</span><span class="n">FILE_TEXT</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">parse_toml</span><span class="p">(</span><span class="n">raw_text</span><span class="p">,</span> <span class="n">meta_dict</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">filtered_text</span>
@@ -253,7 +259,7 @@ Ivy has builtin support for YAML file headers. Extensions can add support for ad
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 </p>
 <p>
-The <code>file_text</code> filter hook can be found in the <code>ivy/utils.py</code> file.
+The <code>FILE_TEXT</code> filter hook can be found in the <code>ivy/utils.py</code> file.
 </p>
 <h2 id="bundled-extension-settings">
 Bundled Extension Settings
@@ -262,7 +268,7 @@ Bundled Extension Settings
 Markdown
 </h3>
 <p>
-Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
+Ivy defaults to using the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
 dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
 <code>markdown_settings</code> attribute, e.g.
 </p>
