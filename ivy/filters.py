@@ -42,7 +42,7 @@ FILTER_NAMES = {member.value: member for member in Filter}
 # The @register decorator accepts an optional order parameter with a default
 # integer value of 0. Callbacks with lower order fire first.
 def register(hook, order=0):
-    hook = _hook_enum("register", hook)
+    hook = _hook_enum(hook)
 
     def register_callback(callback):
         _callbacks.setdefault(hook, {}).setdefault(order, []).append(callback)
@@ -53,13 +53,13 @@ def register(hook, order=0):
 
 # Register a filter callback directly without using a decorator.
 def register_callback(hook, callback, order=0):
-    hook = _hook_enum("register_callback", hook)
+    hook = _hook_enum(hook)
     _callbacks.setdefault(hook, {}).setdefault(order, []).append(callback)
 
 
 # Fires a filter hook.
 def apply(hook, value, *args):
-    hook = _hook_enum("apply", hook)
+    hook = _hook_enum(hook)
     for order in sorted(_callbacks.get(hook, {})):
         for func in _callbacks[hook][order]:
             value = func(value, *args)
@@ -68,13 +68,13 @@ def apply(hook, value, *args):
 
 # Clear all callbacks registered on a hook.
 def clear(hook):
-    hook = _hook_enum("clear", hook)
+    hook = _hook_enum(hook)
     _callbacks[hook] = {}
 
 
 # Deregister a callback from a hook.
 def deregister(hook, callback, order=None):
-    hook = _hook_enum("deregister", hook)
+    hook = _hook_enum(hook)
     if order is None:
         for order in _callbacks.get(hook, {}):
             if callback in _callbacks[hook][order]:
@@ -84,7 +84,7 @@ def deregister(hook, callback, order=None):
 
 
 # Ensure that hook identifier is an Filter.
-def _hook_enum(caller, hook):
+def _hook_enum(hook):
     if isinstance(hook, Filter):
         return hook
     assert isinstance(hook, str), f"Hook name is not Filter or string {hook}/{type(hook)}"
