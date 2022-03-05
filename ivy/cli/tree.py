@@ -20,14 +20,14 @@ Usage: ivy tree
     $ ivy tree --root @root/foo/bar//
 
   The tree displays urls by default. Use the --slugs flag to print slugs
-  instead. Use the --attr option to append the value of an arbitrary attribute,
-  e.g.
+  instead. Use the --attr option to append the value of an arbitrary metadata
+  attribute, e.g.
 
     $ ivy tree --attr title --attr date
 
 Options:
-  -a, --attr <name>     Attribute to display.
-  -r, --root <url>      Specify the root node. (Defaults to the site root.)
+  -a, --attr <name>     Display the named metadata attribute.
+  -r, --root <url>      Set the root node. (Defaults to the site root.)
 
 Flags:
   -h, --help            Print this command's help text and exit.

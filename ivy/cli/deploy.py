@@ -12,8 +12,8 @@ from .. import events
 helptext = """
 Usage: ivy deploy
 
-  This command fires a 'deploy' event hook which plugins can use to run site
-  deployment scripts.
+  This command fires an 'Event.DEPLOY' event hook which plugins can use to
+  run site deployment scripts.
 
   Alternatively, you can add a 'deploy_script' attribute to your site's
   configuration file, e.g.
@@ -46,4 +46,3 @@ def cmd_callback(cmd_name, cmd_parser):
     @events.register(events.Event.MAIN)
     def fire_deploy_event():
         events.fire(events.Event.DEPLOY)
-
