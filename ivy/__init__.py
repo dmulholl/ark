@@ -9,7 +9,8 @@ if sys.version_info < (3, 8):
     sys.exit('Error: Ivy requires Python 3.8 or later.')
 
 
-# On Windows, use colorama to support ANSI terminal codes.
+# On Windows, use the 'colorama' package if it's available to support ANSI
+# terminal codes.
 if sys.platform == 'win32':
     try:
         import colorama

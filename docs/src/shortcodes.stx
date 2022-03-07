@@ -35,7 +35,7 @@ The handler function should accept three arguments:
 
 Positional and keyword arguments are passed as strings. The handler function itself should return a string which will replace the shortcode in the text.
 
-Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode needs to be compatible with the existing text's format (Markdown, Syntext, etc.).
+Note that shortcodes are processed *before* node text is rendered into HTML so any content injected by a shortcode should be compatible with the existing text's format (Markdown, Syntext, etc.).
 
 See the shortcode package's [documentation][docs] for further details.
 

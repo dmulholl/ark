@@ -138,6 +138,7 @@ This directory is also where Jinja and Ibis will look for files included in temp
 <dd>
 <p>
 Themes can bundle extensions for Ivy by placing Python modules or packages in the <code>extensions</code> directory.
+These will be loaded automatically by Ivy.
 </p>
 </dd>
 </div>
@@ -161,7 +162,7 @@ You can add support for alternative templating languages via <a href="extensions
 Template Hierarchy
 </h3>
 <p>
-When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity.
+When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity (most specific first, least specific last).
 </p>
 <p>
 For example, the node file:
@@ -185,7 +186,10 @@ Ivy will search for a template file for this node in the following order:
 4. node.*
 </pre>
 <p>
-A node can override this process by specifying a custom template file in its header:
+Ultimately, Ivy will always check for a template file called <code>node.*</code> &mdash; this is the default template name and the only template file actually required by a theme.
+</p>
+<p>
+A node can override this process by specifying a custom template name in its header:
 </p>
 <pre>
 ---

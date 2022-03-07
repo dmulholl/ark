@@ -127,7 +127,7 @@ Ivy has builtin support for YAML file headers. Extensions can add support for ad
     from ivy.filters import Filter
 
     @ivy.filters.register(Filter.FILE_TEXT)
-    def parse_toml(raw_text, meta_dict):
+    def parse_toml_header(raw_text, meta_dict):
         ...
         return filtered_text
 

@@ -53,6 +53,7 @@ When building a website, Ivy looks for three subdirectories within the theme dir
 [[ `extensions` ]]
 
     Themes can bundle extensions for Ivy by placing Python modules or packages in the `extensions` directory.
+    These will be loaded automatically by Ivy.
 
 A theme directory can contain other files and directories --- e.g. a license file, readme file, etc. --- which Ivy will simply ignore.
 
@@ -70,7 +71,7 @@ You can add support for alternative templating languages via [plugins](@root/ext
 
 ### Template Hierarchy
 
-When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity.
+When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity (most specific first, least specific last).
 
 For example, the node file:
 
@@ -87,8 +88,9 @@ Ivy will search for a template file for this node in the following order:
     3. node-foo.*
     4. node.*
 
+Ultimately, Ivy will always check for a template file called `node.*` --- this is the default template name and the only template file actually required by a theme.
 
-A node can override this process by specifying a custom template file in its header:
+A node can override this process by specifying a custom template name in its header:
 
     ---
     template: my-custom-template

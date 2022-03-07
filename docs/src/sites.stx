@@ -138,7 +138,7 @@ This default slug can be overridden by setting a custom slug in the header:
     slug: my-custom-slug
     ---
 
-Slugs can be customized sitewide by registering a filter callback on the `slugify` [filter hook](@root/extensions//#event-filter-hooks). (You can find this hook in the `ivy/utils.py` file.)
+Slugs can be customized sitewide by registering a filter callback on the `Filter.SLUGIFY` [filter hook](@root/extensions//#event-filter-hooks). (You can find this hook in the `ivy/utils.py` file.)
 
 
 
