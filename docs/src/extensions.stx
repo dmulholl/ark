@@ -9,7 +9,7 @@ meta_title: Ivy &mdash; Extensions
 [syntext]: http://www.dmulholl.com/docs/syntext/master/
 [shortcodes]: https://github.com/dmulholl/shortcodes
 [mdpkg]: https://pypi.org/project/Markdown/
-[ext]: https://github.com/dmulholl/ivy/tree/dev/ivy/ext
+[ext]: https://github.com/dmulholl/ivy/tree/main/ivy/ext
 
 ::: insert toc
 
