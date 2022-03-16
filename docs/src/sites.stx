@@ -38,7 +38,7 @@ Ivy assumes that a site uses the following default directory structure:
         res/        # resources directory for static assets
         src/        # source directory for node files
 
-Ivy uses the presence of either a `config.py` file or a hidden `.ivy` file to identify a site's home directory.
+Ivy uses the presence of a `config.py` file to identify a site's home directory.
 
 Static assets such as image files should be placed in the resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
 
