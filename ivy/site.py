@@ -57,9 +57,9 @@ def init():
         config['root'] += '/'
 
 
-# Attempts to determine and return the path to the site's home directory. We use
-# the presence of either a 'config.py' or '.ivy' file to identify the home
-# directory. We first test the current working directory, then its ancestor
+# Attempts to determine the path to the site's home directory. We use the
+# presence of a 'config.py' file (or, deprecated, a '.ivy' file) to identify the
+# home directory. We first test the current working directory, then its ancestor
 # directories in sequence until we reach the system root. If we make it all the
 # way to the system root without finding a home directory then we must not be
 # inside an initialized Ivy site; in this case we return an empty string.
