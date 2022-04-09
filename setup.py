@@ -51,7 +51,7 @@ setuptools.setup(
         'pygments ~= 2.0',
         'pyyaml ~= 5.0',
         'jinja2 ~= 2.0',
-        'syntext ~= 2.0',
+        'syntext ~= 3.0',
         'ibis ~= 3.0',
         'shortcodes ~= 5.1',
         'argslib ~= 2.0',
