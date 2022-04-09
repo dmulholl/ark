@@ -8,4 +8,4 @@ tagline = """
 A static website generator for people who enjoy the simpler things in life.
 """
 
-version = "Version 6.2.0"
+version = "Version 6.3.0"
