@@ -155,6 +155,16 @@ pre {
     line-height: 1.4;
 }
 
+/* Markdown renderers tend to wrap code blocks in <pre><code> ... </code></pre> blocks. */
+pre code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    border-radius: 0;
+    background-color: #f8f8f8;
+}
+
 h1 code {
     font-size: 26px;
 }

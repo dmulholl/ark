@@ -156,10 +156,10 @@ Does Ivy support featured images or image galleries?
 Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
 </p>
 <pre class="lang-yaml pygments" data-lang="yaml">
-<span class="nn">---</span>
-<span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Page Title</span>
-<span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">photo.jpg</span>
-<span class="nn">---</span>
+<span class="nn">---</span><span class="w"></span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Page Title</span><span class="w"></span>
+<span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">photo.jpg</span><span class="w"></span>
+<span class="nn">---</span><span class="w"></span>
 </pre>
 <p>
 We can then check for the presence of a featured image in the appropriate template file:

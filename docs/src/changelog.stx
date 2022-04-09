@@ -7,6 +7,11 @@ meta_title: Ivy &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 6.3.0
+
+* Update the Syntext dependency to `v3.0.0`.
+
+
 ### 6.2.0
 
 * Event and filter hooks are now implemented as enums instead of strings.
