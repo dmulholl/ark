@@ -6,6 +6,8 @@ meta_title: Ivy &mdash; FAQ
 [1]: http://www.dmulholl.com/demos/ivy/
 [2]: http://www.dmulholl.com/demos/holly/
 [3]: https://pypi.org/project/Markdown/
+[4]: https://github.com/dmulholl/ivy-katex-demo
+[5]: https://katex.org
 
 ::: insert toc
 
@@ -158,3 +160,9 @@ Note that this only affects the node itself, not its children.
 ### Can I use a different Markdown library?
 
 Sure. Ivy defaults to using the [Markdown][3] library to render `.md` files but you can [register a custom handler](@root/extensions//#rendering-engines) to use any library you like.
+
+
+
+### Can I use LaTeX markup?
+
+Here's a [simple demo][4] of an Ivy site using the [KaTeX][5] JavaScript library to render LaTeX markup.

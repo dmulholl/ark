@@ -106,6 +106,9 @@
 <li>
 <a href="#can-i-use-a-different-markdown-library">Can I use a different Markdown library?</a>
 </li>
+<li>
+<a href="#can-i-use-latex-markup">Can I use LaTeX markup?</a>
+</li>
 </ul>
 <h3 id="is-ivy-fast">
 Is Ivy fast?
@@ -193,7 +196,7 @@ Quoting the URL solves the problem:
 </p>
 <pre>
 ---
-image: &quot;@root/images/photo.jpg&quot;
+image: "images/photo.jpg"
 ---
 </pre>
 <h3 id="how-do-i-deploy-a-site-built-with-ivy">
@@ -283,6 +286,12 @@ Can I use a different Markdown library?
 </h3>
 <p>
 Sure. Ivy defaults to using the <a href="https://pypi.org/project/Markdown/">Markdown</a> library to render <code>.md</code> files but you can <a href="extensions.html#rendering-engines">register a custom handler</a> to use any library you like.
+</p>
+<h3 id="can-i-use-latex-markup">
+Can I use LaTeX markup?
+</h3>
+<p>
+Here's a <a href="https://github.com/dmulholl/ivy-katex-demo">simple demo</a> of an Ivy site using the <a href="https://katex.org">KaTeX</a> JavaScript library to render LaTeX markup.
 </p>
         </article>
         
