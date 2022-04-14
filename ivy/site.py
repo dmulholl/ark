@@ -10,7 +10,7 @@ import pathlib
 from . import renderers
 from . import utils
 
-from os.path import isdir, isfile, join
+from os.path import isdir, isfile, join, abspath
 from typing import Dict
 
 
@@ -44,8 +44,9 @@ def init():
     config['timestamp'] = int(time.time())
 
     # Load the site configuration file.
-    if home() and isfile(home('config.py')):
-        with open(home('config.py'), encoding='utf-8') as file:
+    _, site_config_file = _find_site_directory()
+    if site_config_file:
+        with open(site_config_file, encoding='utf-8') as file:
             exec(file.read(), config)
 
     # Delete the __builtins__ attribute as it pollutes variable dumps.
@@ -57,109 +58,130 @@ def init():
         config['root'] += '/'
 
 
-# Attempts to determine the path to the site's home directory. We use the
-# presence of a 'config.py' file (or, deprecated, a '.ivy' file) to identify the
-# home directory. We first test the current working directory, then its ancestor
-# directories in sequence until we reach the system root. If we make it all the
-# way to the system root without finding a home directory then we must not be
-# inside an initialized Ivy site; in this case we return an empty string.
-def _find_home() -> str:
-    path = os.path.abspath(os.getcwd())
-    while True:
-        if isfile(join(path, 'config.py')) or isfile(join(path, '.ivy')):
-            return path
-        path, tail = os.path.split(path)
-        if tail == '':
-            break
-    return ''
-
-
-# Returns the path to the site's home directory or an empty string if the
-# home directory cannot be located. Appends arguments.
-def home(*append: str) -> str:
-    path = cache.get('home') or cache.setdefault('home', _find_home())
-    return join(path, *append)
-
-
-# Caches custom directory paths. Allows standard directory names (`src`, `out`,
-# etc.) to be overridden in the config.py file.
-def _dirpath(dirname: str, config_key: str) -> str:
-    if cached := cache.get(config_key):
-        return cached
-    elif custom := config.get(config_key):
-        return cache.setdefault(config_key, join(home(), custom))
+# Returns a list of valid names for the site configuration file.
+def _get_valid_config_file_names():
+    if valid_names := os.environ.get("IVY_CONFIG_FILE"):
+        return valid_names.split(":")
     else:
-        return cache.setdefault(config_key, home(dirname))
+        return ("site.py", "config.py", ".ivy")
+
+
+# Attempts to determine the path to the site's home directory and site
+# configuration file. Tries the current working directory, then its ancestor
+# directories in sequence until it reaches the system root. Returns the tuple
+# (site_directory_path, site_config_file_path) on success, or a tuple
+# of empty strings on failure.
+def _find_site_directory() -> tuple[str, str]:
+    valid_config_file_names = _get_valid_config_file_names()
+    current_path = os.path.abspath(os.getcwd())
+    while True:
+        for name in valid_config_file_names:
+            if isfile(join(current_path, name)):
+                return current_path, join(current_path, name)
+        current_path, tail = os.path.split(current_path)
+        if tail == "":
+            break
+    return "", ""
+
+
+# Returns the path to the site's home directory if it exists, otherwise an empty
+# string. Appends arguments.
+def home(*append: str) -> str:
+    if home_path := cache.get("home_dir"):
+        return join(home_path, *append)
+    else:
+        home_path, _ = _find_site_directory()
+        cache["home_dir"] = home_path
+        return join(home_path, *append)
 
 
 # Returns the path to the source directory. Appends arguments.
 def src(*append: str) -> str:
-    path = _dirpath('src', 'src_dir')
-    return join(path, *append)
+    if src_path := cache.get("src_dir"):
+        return join(src_path, *append)
+    else:
+        src_name = config.get("src_dir") or os.environ.get("IVY_SRC_DIR") or "src"
+        src_path = cache.setdefault("src_dir", join(home(), src_name))
+        return join(src_path, *append)
 
 
 # Returns the path to the output directory. Appends arguments.
 def out(*append: str) -> str:
-    path = _dirpath('out', 'out_dir')
-    return join(path, *append)
+    if out_path := cache.get("out_dir"):
+        return join(out_path, *append)
+    else:
+        out_name = config.get("out_dir") or os.environ.get("IVY_OUT_DIR") or "out"
+        out_path = cache.setdefault("out_dir", join(home(), out_name))
+        return join(out_path, *append)
 
 
-# Returns the path to the theme-library directory. Appends arguments.
+# Returns the path to the theme library directory. Appends arguments.
 def lib(*append: str) -> str:
-    path = _dirpath('lib', 'lib_dir')
-    return join(path, *append)
+    if lib_path := cache.get("lib_dir"):
+        return join(lib_path, *append)
+    else:
+        lib_name = config.get("lib_dir") or os.environ.get("IVY_LIB_DIR") or "lib"
+        lib_path = cache.setdefault("lib_dir", join(home(), lib_name))
+        return join(lib_path, *append)
 
 
 # Returns the path to the extensions directory. Appends arguments.
 def ext(*append: str) -> str:
-    path = _dirpath('ext', 'ext_dir')
-    return join(path, *append)
+    if ext_path := cache.get("ext_dir"):
+        return join(ext_path, *append)
+    else:
+        ext_name = config.get("ext_dir") or os.environ.get("IVY_EXT_DIR") or "ext"
+        ext_path = cache.setdefault("ext_dir", join(home(), ext_name))
+        return join(ext_path, *append)
 
 
 # Returns the path to the includes directory. Appends arguments.
 def inc(*append: str) -> str:
-    path = _dirpath('inc', 'inc_dir')
-    return join(path, *append)
+    if inc_path := cache.get("inc_dir"):
+        return join(inc_path, *append)
+    else:
+        inc_name = config.get("inc_dir") or os.environ.get("IVY_INC_DIR") or "inc"
+        inc_path = cache.setdefault("inc_dir", join(home(), inc_name))
+        return join(inc_path, *append)
 
 
 # Returns the path to the resources directory. Appends arguments.
 def res(*append: str) -> str:
-    path = _dirpath('res', 'res_dir')
-    return join(path, *append)
-
-
-# Attempts to determine the path to the theme directory corresponding to
-# the specified theme name. Returns an empty string if the theme directory
-# cannot be located.
-def _find_theme(name: str) -> str:
-
-    # A directory in the site's theme library?
-    if isdir(lib(name)):
-        return lib(name)
-
-    # A directory in the global theme library?
-    if os.getenv('IVY_THEMES'):
-        if isdir(join(os.getenv('IVY_THEMES'), name)):
-            return join(os.getenv('IVY_THEMES'), name)
-
-    # A raw directory path?
-    if isdir(name):
-        return os.path.abspath(name)
-
-    # A bundled theme directory in the application folder?
-    bundled_theme = join(os.path.dirname(__file__), 'ini', 'lib', name)
-    if isdir(bundled_theme):
-        return bundled_theme
-
-    return ''
+    if res_path := cache.get("res_dir"):
+        return join(res_path, *append)
+    else:
+        res_name = config.get("res_dir") or os.environ.get("IVY_RES_DIR") or "res"
+        res_path = cache.setdefault("res_dir", join(home(), res_name))
+        return join(res_path, *append)
 
 
 # Returns the path to the theme directory or an empty string if the theme
 # directory cannot be located. Appends arguments.
 def theme(*append: str) -> str:
-    if 'themepath' not in cache:
-        cache['themepath'] = _find_theme(config['theme'])
-    return join(cache['themepath'], *append)
+    if theme_path := cache.get("theme_path"):
+        return join(theme_path, *append)
+
+    theme_name = config["theme"]
+
+    if isdir(theme_name):
+        theme_path = cache.setdefault("theme_path", abspath(theme_name))
+        return join(theme_path, *append)
+
+    if isdir(lib(theme_name)):
+        theme_path = cache.setdefault("theme_path", abspath(lib(theme_name)))
+        return join(theme_path, *append)
+
+    if os.getenv("IVY_THEMES"):
+        if isdir(join(os.getenv("IVY_THEMES"), theme_name)):
+            theme_path = cache.setdefault("theme_path", abspath(join(os.getenv("IVY_THEMES", theme_name))))
+            return join(theme_path, *append)
+
+    bundled_theme = join(os.path.dirname(__file__), 'ini', 'lib', theme_name)
+    if isdir(bundled_theme):
+        theme_path = cache.setdefault("theme_path", abspath(bundled_theme))
+        return join(theme_path, *append)
+
+    return ""
 
 
 # Returns the application runtime in seconds.
