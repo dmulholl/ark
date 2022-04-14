@@ -1,5 +1,5 @@
 ##
-# This extension adds support for parsing YAML file headers.
+## Add support for YAML file headers.
 ##
 
 import ivy
@@ -8,10 +8,11 @@ import re
 try:
     import yaml
 except ImportError:
-    pass
-else:
+    yaml = None
+
+if yaml:
     @ivy.filters.register(ivy.filters.Filter.FILE_TEXT)
-    def parse_yaml(text, meta_dict):
+    def parse_yaml_header(text, meta_dict):
         if text.startswith("---\n"):
             if match := re.match(r"^---\n(.*?\n)---\n", text, re.DOTALL):
                 text = text[match.end(0):]

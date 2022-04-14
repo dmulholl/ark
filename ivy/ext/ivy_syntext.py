@@ -1,5 +1,5 @@
 ##
-# This extension adds support for Syntext files with a `.stx` extension.
+## Add support for Syntext files with a `.stx` extension.
 ##
 
 import ivy
@@ -7,8 +7,9 @@ import ivy
 try:
     import syntext
 except ImportError:
-    pass
-else:
+    syntext = None
+
+if syntext:
     @ivy.renderers.register('stx')
-    def render(text):
+    def render_syntext(text):
         return syntext.render(text, pygmentize=True)

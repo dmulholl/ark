@@ -1,5 +1,5 @@
 ##
-# This extension adds support for shortcodes in node content.
+## Add support for shortcodes in node content.
 ##
 
 import ivy
@@ -21,7 +21,7 @@ if shortcodes:
     # We process and replace shortcodes in the node's text content just before
     # that text is rendered into HTML.
     @ivy.filters.register(ivy.filters.Filter.NODE_TEXT)
-    def render(text, node):
+    def render_shortcodes(text, node):
         global parser
         if parser is None:
             settings = ivy.site.config.get('shortcode_settings') or {}
