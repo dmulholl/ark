@@ -9,7 +9,9 @@ try:
 except ImportError:
     syntext = None
 
+settings = ivy.site.config.get('syntext_settings') or {'pygmentize': True}
+
 if syntext:
     @ivy.renderers.register('stx')
     def render_syntext(text):
-        return syntext.render(text, pygmentize=True)
+        return syntext.render(text, **settings)

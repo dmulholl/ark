@@ -3,6 +3,7 @@
 # ------------------------------------------------------------------------------
 
 import ivy
+import sys
 import argslib
 
 from . import build
@@ -17,7 +18,9 @@ from . import deploy
 
 
 helptext = """
-Usage: ivy [command]
+Usage: ivy <flag>
+       ivy <command>
+       ivy help <command>
 
   Ivy is a static website generator. It transforms a directory of text files
   into a self-contained website.
@@ -46,8 +49,12 @@ Command Help:
 argparser = argslib.ArgParser(helptext, ivy.__version__)
 
 
-# Parse the application's command-line arguments. Plugins can use the `cli`
+# Parse the application's command-line arguments. Plugins can use the `CLI`
 # event to register their own custom commands.
 def parse_args():
     ivy.events.fire(ivy.events.Event.CLI, argparser)
     argparser.parse()
+
+    if argparser.command_name is None:
+        print(helptext.strip())
+        sys.exit()
