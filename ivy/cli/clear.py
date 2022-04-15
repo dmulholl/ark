@@ -29,7 +29,10 @@ def register_command(argparser):
 def cmd_callback(cmd_name, cmd_parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
+
     if not os.path.exists(site.out()):
         sys.exit("Error: cannot locate the site's output directory.")
+
     utils.cleardir(site.out())
     hashes.clear()
+    sys.exit()

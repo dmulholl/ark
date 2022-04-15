@@ -209,9 +209,10 @@ class Node():
             site.pages_written(1)
 
     # Returns the output filepath for the node.
+    # Deprecated: site.config.get('extension'), replaced by site.config.get('file_extension').
     def get_output_filepath(self) -> str:
         slugs = self.path or ['index']
-        suffix = site.config['extension']
+        suffix = site.config.get('extension') or site.config.get('file_extension')
         if suffix == '/':
             if slugs[-1] == 'index':
                 slugs[-1] += '.html'

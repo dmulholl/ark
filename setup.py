@@ -17,8 +17,8 @@ import setuptools
 # MANIFEST.in file content.
 manifest = """\
 include license.txt readme.md
-recursive-include ivy/ext *
-recursive-include ivy/ini *
+recursive-include ivy/extensions *
+recursive-include ivy/bundle *
 """
 
 

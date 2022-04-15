@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.3.0</p>
+                <p class="version">Version 6.4.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -47,6 +47,9 @@
 </li>
 <li>
 <a href="resources.html">Resources</a>
+</li>
+<li>
+<a href="options.html">Options</a>
 </li>
 <li>
 <a href="faq.html">FAQ</a>
@@ -83,7 +86,7 @@
 <a href="#does-ivy-support-featured-images-or-image-galleries">Does Ivy support featured images or image galleries?</a>
 </li>
 <li>
-<a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a URL to a Yaml header?</a>
+<a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a URL to a YAML header?</a>
 </li>
 <li>
 <a href="#how-do-i-deploy-a-site-built-with-ivy">How do I deploy a site built with Ivy?</a>
@@ -92,16 +95,7 @@
 <a href="#why-is-it-called-ivy">Why is it called Ivy?</a>
 </li>
 <li>
-<a href="#how-do-i-specify-a-custom-file-extension">How do I specify a custom file extension?</a>
-</li>
-<li>
-<a href="#how-do-i-generate-directory-style-urls">How do I generate directory-style URLs?</a>
-</li>
-<li>
-<a href="#how-do-i-generate-absolute-or-site-relative-urls">How do I generate absolute or site-relative URLs?</a>
-</li>
-<li>
-<a href="#how-do-i-disable-a-node">How do I disable a node?</a>
+<a href="#can-i-disable-a-node">Can I disable a node?</a>
 </li>
 <li>
 <a href="#can-i-use-a-different-markdown-library">Can I use a different Markdown library?</a>
@@ -173,7 +167,7 @@ We can then check for the presence of a featured image in the appropriate templa
 <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
 </pre>
 <p>
-Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
+YAML supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
 </p>
 <pre class="lang-django pygments" data-lang="django">
 <span class="cp">{%</span> <span class="k">for</span> <span class="nv">image</span> <span class="k">in</span> <span class="nv">node.gallery</span> <span class="cp">%}</span><span class="x"></span>
@@ -181,10 +175,10 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 </pre>
 <h3 id="why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">
-Why do I get an error when I add a URL to a Yaml header?
+Why do I get an error when I add a URL to a YAML header?
 </h3>
 <p>
-Yaml doesn't support unquoted values that begin with an <code>@</code> symbol so you'll get an error message if you add a bare <code>@root/</code> URL to a Yaml header, e.g.
+YAML doesn't support unquoted values that begin with an <code>@</code> symbol so you'll get an error message if you add a bare <code>@root/</code> URL to a YAML header, e.g.
 </p>
 <pre>
 ---
@@ -203,7 +197,7 @@ image: "images/photo.jpg"
 How do I deploy a site built with Ivy?
 </h3>
 <p>
-One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like &mdash; in the simplest case you can 'deploy' it simply by double-clicking on the .html files to view them locally in your browser.
+One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like &mdash; in the simplest case you can 'deploy' it simply by double-clicking on the <code>.html</code> files to view them locally in your browser.
 </p>
 <p>
 To make your website available on the public internet you have lots of options. Here's some of the most common, in order of increasing difficulty and expense.
@@ -231,41 +225,8 @@ Why is it called Ivy?
 <p>
 I liked the name Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.
 </p>
-<h3 id="how-do-i-specify-a-custom-file-extension">
-How do I specify a custom file extension?
-</h3>
-<p>
-You can specify a custom file extension for output files in your site configuration file, e.g.
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.htm&quot;</span>
-</pre>
-<h3 id="how-do-i-generate-directory-style-urls">
-How do I generate directory-style URLs?
-</h3>
-<p>
-You can tell Ivy to generate directory-style URLs &mdash; i.e. URLs ending in a forward slash <code>/</code> &mdash; by setting a custom file extension of <code>/</code> in your site configuration file:
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
-</pre>
-<h3 id="how-do-i-generate-absolute-or-site-relative-urls">
-How do I generate absolute or site-relative URLs?
-</h3>
-<p>
-You can tell Ivy to generate absolute URLs by specifying an explicit root domain in your site configuration file, e.g.
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
-</pre>
-<p>
-Specify a single forward slash to generate site-relative URLs &mdash; i.e. URLs that begin with <code>/</code>:
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
-</pre>
-<h3 id="how-do-i-disable-a-node">
-How do I disable a node?
+<h3 id="can-i-disable-a-node">
+Can I disable a node?
 </h3>
 <p>
 You can add a <code>disable</code> flag to a node's metadata header:

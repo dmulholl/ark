@@ -88,3 +88,5 @@ def cmd_callback(cmd_name, cmd_parser):
         utils.writefile(filepath, template2.format(**values))
     else:
         utils.writefile(filepath, template1.format(**values))
+
+    sys.exit()

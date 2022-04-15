@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ivy &mdash; Configuration Options</title>
+        <link rel="stylesheet" href="assets/fonts.css">
+        <link rel="stylesheet" href="assets/graphite.css">
+        <link rel="stylesheet" href="assets/pygments.css">
+        
+        
+    </head>
+    <body class="node-options node">
+        <header class="masthead">
+            <h1><a href="index.html">Ivy</a></h1>
+            
+                <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
+            
+            
+                <p class="version">Version 6.4.0</p>
+            
+            <nav class="menu">
+                <input id="menu-check" type="checkbox"/>
+                <label id="menu-label" for="menu-check" class="unselectable">
+                    <span class="icon close-icon">✕</span>
+                    <span class="icon open-icon">☰</span>
+                    <span class="text">Menu</span>
+                </label>
+                <ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="sites.html">Building Sites</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="extensions.html">Extensions</a>
+</li>
+<li>
+<a href="shortcodes.html">Shortcodes</a>
+</li>
+<li>
+<a href="resources.html">Resources</a>
+</li>
+<li>
+<a href="options.html">Options</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+<li>
+<a href="changelog.html">Changelog</a>
+</li>
+<li>
+<a href="license.html">License</a>
+</li>
+<li>
+<a href="https://github.com/dmulholl/ivy">Github</a>
+</li>
+</ul>
+            </nav>
+        </header>
+        <article class="main">
+            <header class="title">
+                <h1>Configuring Ivy</h1>
+                
+                <hr>
+            </header>
+            <ul class="stx-toc">
+<li>
+<a href="#site-configuration-file">Site Configuration File</a>
+</li>
+<li>
+<a href="#directory-names">Directory Names</a>
+</li>
+<li>
+<a href="#custom-file-extensions">Custom File Extensions</a>
+</li>
+<li>
+<a href="#directory-style-urls">Directory-Style URLs</a>
+</li>
+<li>
+<a href="#absolute-urls">Absolute URLs</a>
+</li>
+<li>
+<a href="#site-relative-urls">Site-Relative URLs</a>
+</li>
+</ul>
+<h3 id="site-configuration-file">
+Site Configuration File
+</h3>
+<p>
+By default, Ivy searches for a site configuration file called either <code>site.py</code> or <code>config.py</code>.
+You can specify a custom filename for the site configuration file using the <code>IVY_CONFIG_FILE</code> environment variable, e.g.
+</p>
+<pre class="lang-bash pygments" data-lang="bash">
+<span class="nv">IVY_CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;site_config.py&quot;</span>
+</pre>
+<p>
+This variable takes a colon-separated list of filenames.
+</p>
+<h3 id="directory-names">
+Directory Names
+</h3>
+<p>
+By default, Ivy uses directories named <code>ext</code>, <code>int</code>, <code>lib</code>, <code>out</code>, <code>res</code>, and <code>src</code>.
+</p>
+<p>
+You can customize these default directory names using environment variables, e.g.
+</p>
+<pre class="lang-bash pygments" data-lang="bash">
+<span class="nv">IVY_EXT_DIR</span><span class="o">=</span><span class="s2">&quot;plugins&quot;</span>
+<span class="nv">IVY_INC_DIR</span><span class="o">=</span><span class="s2">&quot;includes&quot;</span>
+<span class="nv">IVY_LIB_DIR</span><span class="o">=</span><span class="s2">&quot;themes&quot;</span>
+<span class="nv">IVY_OUT_DIR</span><span class="o">=</span><span class="s2">&quot;output&quot;</span>
+<span class="nv">IVY_RES_DIR</span><span class="o">=</span><span class="s2">&quot;resources&quot;</span>
+<span class="nv">IVY_SRC_DIR</span><span class="o">=</span><span class="s2">&quot;source&quot;</span>
+</pre>
+<p>
+Alternatively, you can customize directory names on a per-site basis by specifying alternate names in your site configuration file, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">ext_dir</span> <span class="o">=</span> <span class="s2">&quot;plugins&quot;</span>
+<span class="n">inc_dir</span> <span class="o">=</span> <span class="s2">&quot;includes&quot;</span>
+<span class="n">lib_dir</span> <span class="o">=</span> <span class="s2">&quot;themes&quot;</span>
+<span class="n">out_dir</span> <span class="o">=</span> <span class="s2">&quot;output&quot;</span>
+<span class="n">res_dir</span> <span class="o">=</span> <span class="s2">&quot;resources&quot;</span>
+<span class="n">src_dir</span> <span class="o">=</span> <span class="s2">&quot;source&quot;</span>
+</pre>
+<h3 id="custom-file-extensions">
+Custom File Extensions
+</h3>
+<p>
+You can specify a custom file extension for output files in your site configuration file, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">file_extension</span> <span class="o">=</span> <span class="s2">&quot;.txt&quot;</span>
+</pre>
+<h3 id="directory-style-urls">
+Directory-Style URLs
+</h3>
+<p>
+You can generate directory-style URLs &mdash; i.e. URLs ending in a forward slash &mdash; by setting a custom file extension of <code>&quot;/&quot;</code> in your site configuration file:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">file_extension</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+</pre>
+<h3 id="absolute-urls">
+Absolute URLs
+</h3>
+<p>
+Ivy generates page-relative URLs by default.
+</p>
+<p>
+You can generate absolute URLs by specifying an explicit root URL in your site configuration file, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">root_url</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
+</pre>
+<h3 id="site-relative-urls">
+Site-Relative URLs
+</h3>
+<p>
+Ivy generates page-relative URLs by default.
+</p>
+<p>
+You can generate site-relative URLs &mdash; i.e. URLs that begin with a <code>/</code> &mdash; by specifying a root URL of <code>&quot;/&quot;</code> in your site configuration file:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">root_url</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+</pre>
+        </article>
+        
+    </body>
+</html>

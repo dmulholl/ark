@@ -1,0 +1,83 @@
+---
+title: Configuring Ivy
+meta_title: Ivy &mdash; Configuration Options
+---
+
+::: insert toc
+
+
+### Site Configuration File
+
+By default, Ivy searches for a site configuration file called either `site.py` or `config.py`.
+You can specify a custom filename for the site configuration file using the `IVY_CONFIG_FILE` environment variable, e.g.
+
+::: code bash
+    IVY_CONFIG_FILE="site_config.py"
+
+This variable takes a colon-separated list of filenames.
+
+
+
+### Directory Names
+
+By default, Ivy uses directories named `ext`, `int`, `lib`, `out`, `res`, and `src`.
+
+You can customize these default directory names using environment variables, e.g.
+
+::: code bash
+    IVY_EXT_DIR="plugins"
+    IVY_INC_DIR="includes"
+    IVY_LIB_DIR="themes"
+    IVY_OUT_DIR="output"
+    IVY_RES_DIR="resources"
+    IVY_SRC_DIR="source"
+
+Alternatively, you can customize directory names on a per-site basis by specifying alternate names in your site configuration file, e.g.
+
+::: code python
+    ext_dir = "plugins"
+    inc_dir = "includes"
+    lib_dir = "themes"
+    out_dir = "output"
+    res_dir = "resources"
+    src_dir = "source"
+
+
+
+### Custom File Extensions
+
+You can specify a custom file extension for output files in your site configuration file, e.g.
+
+::: code python
+    file_extension = ".txt"
+
+
+
+### Directory-Style URLs
+
+You can generate directory-style URLs --- i.e. URLs ending in a forward slash --- by setting a custom file extension of `"/"` in your site configuration file:
+
+::: code python
+    file_extension = "/"
+
+
+
+### Absolute URLs
+
+Ivy generates page-relative URLs by default.
+
+You can generate absolute URLs by specifying an explicit root URL in your site configuration file, e.g.
+
+::: code python
+    root_url = "http://example.com/"
+
+
+
+### Site-Relative URLs
+
+Ivy generates page-relative URLs by default.
+
+You can generate site-relative URLs --- i.e. URLs that begin with a `/` --- by specifying a root URL of `"/"` in your site configuration file:
+
+::: code python
+    root_url = "/"

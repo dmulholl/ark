@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.3.0</p>
+                <p class="version">Version 6.4.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -47,6 +47,9 @@
 </li>
 <li>
 <a href="resources.html">Resources</a>
+</li>
+<li>
+<a href="options.html">Options</a>
 </li>
 <li>
 <a href="faq.html">FAQ</a>
@@ -93,10 +96,10 @@ Ivy will create the following directory structure for your site:
 </p>
 <pre>
 mysite/
-    config.py    # site configuration file
-    inc/         # includes directory for menus, etc.
-    lib/         # library directory for themes
-    src/         # source directory for text files
+|-- inc/         # includes directory for menus, etc.
+|-- lib/         # library directory for themes
+|-- src/         # source directory for text files
+|-- site.py      # site configuration file
 </pre>
 <p>
 Ivy initializes your <code>src</code> directory with a simple skeleton site which you can build immediately using the <code>build</code> command:

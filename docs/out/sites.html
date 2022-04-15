@@ -17,7 +17,7 @@
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.3.0</p>
+                <p class="version">Version 6.4.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -47,6 +47,9 @@
 </li>
 <li>
 <a href="resources.html">Resources</a>
+</li>
+<li>
+<a href="options.html">Options</a>
 </li>
 <li>
 <a href="faq.html">FAQ</a>
@@ -124,28 +127,19 @@ Ivy assumes that a site uses the following default directory structure:
 </p>
 <pre>
 site/
-    config.py   # site configuration file
-    ext/        # extensions directory for plugins
-    inc/        # includes directory for menus, etc.
-    lib/        # library directory for themes
-    out/        # output directory for html files
-    res/        # resources directory for static assets
-    src/        # source directory for node files
+|-- ext/         # extensions directory for plugins
+|-- inc/         # includes directory for menus, etc.
+|-- lib/         # library directory for themes
+|-- out/         # output directory for html files
+|-- res/         # resources directory for static assets
+|-- src/         # source directory for text files
+|-- site.py      # site configuration file
 </pre>
 <p>
-Ivy uses the presence of a <code>config.py</code> file to identify a site's home directory.
+Ivy uses the presence of a <code>site.py</code> file (alternatively, a <code>config.py</code> file) to identify a site's home directory.
 </p>
 <p>
-Static assets such as image files should be placed in the resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
-</p>
-<p>
-Default directories can be overridden by adding a <code>*_dir</code> attribute to the <code>config.py</code> file, e.g.
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="n">out_dir</span> <span class="o">=</span> <span class="s2">&quot;custom_name&quot;</span>
-</pre>
-<p>
-The value will be treated as a directory path relative to the site directory.
+Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
 </p>
 <h3 id="nodes">
 Nodes

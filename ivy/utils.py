@@ -109,11 +109,13 @@ regex_url = re.compile(r"""
 
 
 # Rewrite all @root/ urls in the HTML document to their final form.
+# Deprecated: site.config.get('extension'), replaced by site.config.get('file_extension').
+# Deprecated: site.config.get('root'), replaced by site.config.get('root_url').
 def rewrite_urls(html: str, filepath: str):
     relpath = os.path.relpath(filepath, site.out())
     depth = len(relpath.replace('\\', '/').split('/'))
-    prefix = site.config.get('root') or '../' * (depth - 1)
-    suffix = site.config.get('extension')
+    prefix = site.config.get('root') or site.config.get('root_url') or '../' * (depth - 1)
+    suffix = site.config.get('extension') or site.config.get('file_extension')
 
     # Each matched url is replaced with the output of this callback.
     def callback(match):

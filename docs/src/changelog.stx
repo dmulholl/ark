@@ -7,9 +7,18 @@ meta_title: Ivy &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 6.4.0
+
+* Accept both `site.py` and `config.py` as valid names for the site configuration file.
+
+* Add support for customizing the site configuration file name and site directory names using environment variables.
+
+
+
 ### 6.3.0
 
 * Update the Syntext dependency to `v3.0.0`.
+
 
 
 ### 6.2.0

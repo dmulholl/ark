@@ -30,24 +30,17 @@ Use the `ivy --help` flag to view the full command-line help text.
 Ivy assumes that a site uses the following default directory structure:
 
     site/
-        config.py   # site configuration file
-        ext/        # extensions directory for plugins
-        inc/        # includes directory for menus, etc.
-        lib/        # library directory for themes
-        out/        # output directory for html files
-        res/        # resources directory for static assets
-        src/        # source directory for node files
+    |-- ext/         # extensions directory for plugins
+    |-- inc/         # includes directory for menus, etc.
+    |-- lib/         # library directory for themes
+    |-- out/         # output directory for html files
+    |-- res/         # resources directory for static assets
+    |-- src/         # source directory for text files
+    |-- site.py      # site configuration file
 
-Ivy uses the presence of a `config.py` file to identify a site's home directory.
+Ivy uses the presence of a `site.py` file (alternatively, a `config.py` file) to identify a site's home directory.
 
-Static assets such as image files should be placed in the resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
-
-Default directories can be overridden by adding a `*_dir` attribute to the `config.py` file, e.g.
-
-::: code python
-    out_dir = "custom_name"
-
-The value will be treated as a directory path relative to the site directory.
+Static assets such as image files should be placed in the site's resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
 
 
 

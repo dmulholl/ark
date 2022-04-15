@@ -32,7 +32,7 @@ def load_directory(dirpath: str):
 
 # Load Ivy's default set of bundled extensions.
 def load_bundled_extensions():
-    load_directory(os.path.join(os.path.dirname(__file__), 'ext'))
+    load_directory(os.path.join(os.path.dirname(__file__), 'extensions'))
 
 
 # Load extensions from the site directory.

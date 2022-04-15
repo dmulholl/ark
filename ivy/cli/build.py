@@ -43,8 +43,10 @@ def register_command(argparser):
 def cmd_callback(cmd_name, cmd_parser):
     if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
+
     if cmd_parser.found('theme'):
         site.config['theme'] = cmd_parser.value('theme')
+
     if cmd_parser.found('clear'):
         utils.cleardir(site.out())
         hashes.clear()

@@ -66,7 +66,7 @@ We can then check for the presence of a featured image in the appropriate templa
         <img src="@root/images/{{node.image}}">
     {% endif %}
 
-Yaml supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
+YAML supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
 
 ::: code django
     {% for image in node.gallery %}
@@ -75,9 +75,9 @@ Yaml supports lists so we can implement galleries in a similar manner by adding 
 
 
 
-### Why do I get an error when I add a URL to a Yaml header?
+### Why do I get an error when I add a URL to a YAML header?
 
-Yaml doesn't support unquoted values that begin with an `@` symbol so you'll get an error message if you add a bare `@root/` URL to a Yaml header, e.g.
+YAML doesn't support unquoted values that begin with an `@` symbol so you'll get an error message if you add a bare `@root/` URL to a YAML header, e.g.
 
     ---
     image: @root/images/photo.jpg
@@ -93,7 +93,7 @@ Quoting the URL solves the problem:
 
 ### How do I deploy a site built with Ivy?
 
-One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like --- in the simplest case you can 'deploy' it simply by double-clicking on the .html files to view them locally in your browser.
+One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like --- in the simplest case you can 'deploy' it simply by double-clicking on the `.html` files to view them locally in your browser.
 
 To make your website available on the public internet you have lots of options. Here's some of the most common, in order of increasing difficulty and expense.
 
@@ -111,39 +111,8 @@ I liked the name Industrial Vellum, IV. Also, the branching tree structure of th
 
 
 
-### How do I specify a custom file extension?
 
-You can specify a custom file extension for output files in your site configuration file, e.g.
-
-::: code python
-    extension = ".htm"
-
-
-
-### How do I generate directory-style URLs?
-
-You can tell Ivy to generate directory-style URLs --- i.e. URLs ending in a forward slash `/` --- by setting a custom file extension of `/` in your site configuration file:
-
-::: code python
-    extension = "/"
-
-
-
-### How do I generate absolute or site-relative URLs?
-
-You can tell Ivy to generate absolute URLs by specifying an explicit root domain in your site configuration file, e.g.
-
-::: code python
-    root = "http://example.com/"
-
-Specify a single forward slash to generate site-relative URLs --- i.e. URLs that begin with `/`:
-
-::: code python
-    root = "/"
-
-
-
-### How do I disable a node?
+### Can I disable a node?
 
 You can add a `disable` flag to a node's metadata header:
 

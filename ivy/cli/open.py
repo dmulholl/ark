@@ -32,6 +32,7 @@ def register_command(argparser):
 def cmd_callback(cmd_name, cmd_parser):
     if not ivy.site.home():
         sys.exit("Error: cannot locate the site's home directory.")
+
     if not os.path.isdir(ivy.site.out()):
         sys.exit("Error: cannot locate the site's output directory.")
 
@@ -42,3 +43,4 @@ def cmd_callback(cmd_name, cmd_parser):
     else:
         sys.exit(f"Error: unknown url '{arg}'.")
 
+    sys.exit()

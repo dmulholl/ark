@@ -19,10 +19,10 @@ Initialize the site directory using the `init` command:
 Ivy will create the following directory structure for your site:
 
     mysite/
-        config.py    # site configuration file
-        inc/         # includes directory for menus, etc.
-        lib/         # library directory for themes
-        src/         # source directory for text files
+    |-- inc/         # includes directory for menus, etc.
+    |-- lib/         # library directory for themes
+    |-- src/         # source directory for text files
+    |-- site.py      # site configuration file
 
 Ivy initializes your `src` directory with a simple skeleton site which you can build immediately using the `build` command:
 

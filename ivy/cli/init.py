@@ -31,10 +31,14 @@ def register_command(argparser):
 
 def cmd_callback(cmd_name, cmd_parser):
     ivy_dir = os.path.dirname(os.path.dirname(__file__))
-    src_dir = os.path.join(ivy_dir, 'ini')
+    src_dir = os.path.join(ivy_dir, 'bundle')
     dst_dir = cmd_parser.args[0] if cmd_parser.args else '.'
+
     os.makedirs(dst_dir, exist_ok=True)
     os.chdir(dst_dir)
+
     for name in ('inc', 'lib', 'src'):
         os.makedirs(name, exist_ok=True)
+
     utils.copydir(src_dir, '.', noclobber=True)
+    sys.exit()

@@ -27,35 +27,35 @@ cache = {}
 def init():
 
     # Record the start time.
-    cache['start_time'] = time.time()
+    cache["start_time"] = time.time()
 
     # Initialize a count of the number of pages rendered.
-    cache['pages_rendered'] = 0
+    cache["pages_rendered"] = 0
 
     # Initialize a count of the number of pages written to disk.
-    cache['pages_written'] = 0
+    cache["pages_written"] = 0
 
     # Default site configuration settings.
-    config['root'] = ''
-    config['theme'] = 'graphite'
-    config['extension'] = '.html'
+    config["theme"] = "graphite"
+    config["root_url"] = ""
+    config["file_extension"] = ".html"
 
     # The Unix timestamp is useful as a cache-busting parameter.
-    config['timestamp'] = int(time.time())
+    config["timestamp"] = int(time.time())
 
     # Load the site configuration file.
     _, site_config_file = _find_site_directory()
     if site_config_file:
-        with open(site_config_file, encoding='utf-8') as file:
+        with open(site_config_file, encoding="utf-8") as file:
             exec(file.read(), config)
 
     # Delete the __builtins__ attribute as it pollutes variable dumps.
-    if '__builtins__' in config:
-        del config['__builtins__']
+    if "__builtins__" in config:
+        del config["__builtins__"]
 
-    # If 'root' isn't an empty string, make sure it ends in a slash.
-    if config['root'] and not config['root'].endswith('/'):
-        config['root'] += '/'
+    # If "root_url" isn't an empty string, make sure it ends in a slash.
+    if config["root_url"] and not config["root_url"].endswith("/"):
+        config["root_url"] += "/"
 
 
 # Returns a list of valid names for the site configuration file.
@@ -176,7 +176,7 @@ def theme(*append: str) -> str:
             theme_path = cache.setdefault("theme_path", abspath(join(os.getenv("IVY_THEMES", theme_name))))
             return join(theme_path, *append)
 
-    bundled_theme = join(os.path.dirname(__file__), 'ini', 'lib', theme_name)
+    bundled_theme = join(os.path.dirname(__file__), "bundle", "lib", theme_name)
     if isdir(bundled_theme):
         theme_path = cache.setdefault("theme_path", abspath(bundled_theme))
         return join(theme_path, *append)
@@ -186,34 +186,34 @@ def theme(*append: str) -> str:
 
 # Returns the application runtime in seconds.
 def runtime() -> float:
-    return time.time() - cache['start_time']
+    return time.time() - cache["start_time"]
 
 
 # Increments the count of pages rendered by n and returns the new value.
 def pages_rendered(n: int = 0) -> int:
-    cache['pages_rendered'] += n
-    return cache['pages_rendered']
+    cache["pages_rendered"] += n
+    return cache["pages_rendered"]
 
 
 # Increments the count of pages written by n and returns the new value.
 def pages_written(n: int = 0) -> int:
-    cache['pages_written'] += n
-    return cache['pages_written']
+    cache["pages_written"] += n
+    return cache["pages_written"]
 
 
 # Returns a cached dictionary of rendered files from the `inc` directory.
 # The dictionary's keys are the original filenames converted to lowercase
 # with spaces and hyphens replaced by underscores.
 def includes() -> Dict[str, str]:
-    if not 'includes' in cache:
-        cache['includes'] = {}
+    if not "includes" in cache:
+        cache["includes"] = {}
         if isdir(inc()):
             for path in pathlib.Path(inc()).iterdir():
                 text, _ = utils.loadfile(path)
-                ext = path.suffix.strip('.')
-                key = path.stem.lower().replace(' ', '_').replace('-', '_')
-                cache['includes'][key] = renderers.render(text, ext, str(path))
-    return cache['includes']
+                ext = path.suffix.strip(".")
+                key = path.stem.lower().replace(" ", "_").replace("-", "_")
+                cache["includes"][key] = renderers.render(text, ext, str(path))
+    return cache["includes"]
 
 
 # Deprecated aliases.
