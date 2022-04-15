@@ -9,9 +9,13 @@ meta_title: Ivy &mdash; Changelog
 
 ### 6.4.0
 
-* Accept both `site.py` and `config.py` as valid names for the site configuration file.
+* Ivy now accepts both `site.py` and `config.py` as valid names for the site configuration file.
 
-* Add support for customizing the site configuration file name and site directory names using environment variables.
+* This release adds support for customizing the site configuration file name and site directory names using environment variables. See the [options](@root/options//) page for details.
+
+* The `extension` option in the site configuraton file has been renamed to `file_extension`. The old name is deprecated but will continue to work in all `v6.x` releases.
+
+* The `root` option in the site configuraton file has been renamed to `root_url`. The old name is deprecated but will continue to work in all `v6.x` releases.
 
 
 

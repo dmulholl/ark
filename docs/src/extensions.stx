@@ -3,13 +3,14 @@ title: Extensions
 meta_title: Ivy &mdash; Extensions
 ---
 
-[jinja]: http://jinja.pocoo.org
-[ibis]: https://github.com/dmulholl/ibis
-[markdown]: https://en.wikipedia.org/wiki/Markdown
-[syntext]: http://www.dmulholl.com/docs/syntext/master/
-[shortcodes]: https://github.com/dmulholl/shortcodes
-[mdpkg]: https://pypi.org/project/Markdown/
-[ext]: https://github.com/dmulholl/ivy/tree/main/ivy/ext
+[1]: https://github.com/dmulholl/ivy/tree/main/ivy/extensions
+[2]: http://jinja.pocoo.org
+[3]: https://github.com/dmulholl/ibis
+[4]: https://en.wikipedia.org/wiki/Markdown
+[5]: https://pypi.org/project/Markdown/
+[6]: http://www.dmulholl.com/docs/syntext/master/
+[7]: https://pypi.org/project/syntext/
+[8]: https://github.com/dmulholl/shortcodes
 
 ::: insert toc
 
@@ -38,7 +39,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 
 Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 
-You can find these bundled plugins in the `ivy/ext/` directory which you can view on [Github][ext].
+You can find these bundled plugins in the `ivy/ext/` directory which you can view on [Github][1].
 
 
 
@@ -81,7 +82,7 @@ Note that this hook supplies us with the `Node` instance itself as an additional
 
 ## Rendering & Parsing Engines
 
-Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][] template-engine for handling `.jinja` template files. Extensions can register support for additional rendering and parsing engines using a system of `@register` decorators.
+Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][2] template-engine for handling `.jinja` template files. Extensions can register support for additional rendering and parsing engines using a system of `@register` decorators.
 
 
 
@@ -89,7 +90,7 @@ Ivy relies for most of its functionality on a suite of pluggable rendering and p
 
 Template-engines produce the output HTML for finished `.html` pages in the site.
 
-Ivy has builtin support for [Jinja][] and [Ibis][] templates. Extensions can register support for additional template-engines using the `@ivy.templates.register()` decorator. Template-engine callbacks are registered per template-file-extension, e.g.
+Ivy has builtin support for [Jinja][2] and [Ibis][3] templates. Extensions can register support for additional template-engines using the `@ivy.templates.register()` decorator. Template-engine callbacks are registered per template-file-extension, e.g.
 
 ::: code python
     @ivy.templates.register('jinja')
@@ -105,7 +106,7 @@ A template-engine callback should accept a dictionary of page data and a templat
 
 Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished `.html` output page.
 
-Ivy has builtin support for node files written in [Markdown][] and [Syntext][]. Extensions can register support for additional input formats using the `@ivy.renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ivy has builtin support for node files written in [Markdown][4] and [Syntext][6]. Extensions can register support for additional input formats using the `@ivy.renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 ::: code python
     @ivy.renderers.register('md')
@@ -142,7 +143,7 @@ The `FILE_TEXT` filter hook can be found in the `ivy/utils.py` file.
 
 ### Markdown
 
-Ivy defaults to using the [Markdown][mdpkg] package to render node files with a `.md` extension. You can add a
+Ivy uses the [Markdown][5] package to render node files with a `.md` extension. You can add a
 dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
 `markdown_settings` attribute, e.g.
 
@@ -151,15 +152,26 @@ dictionary of keyword arguments for the Markdown renderer to your site configura
         'extensions': ['markdown.extensions.extra']
     }
 
-See the [Markdown][mdpkg] package's documentation for details of the available options.
+See the [Markdown][5] package's documentation for details of the available options.
 
 Note that you can register a custom handler for `.md` files to use an alternative Markdown library of your choice.
 
 
 
+### Syntext
+
+Ivy uses the [Syntext][7] package to render node files with a `.stx` extension. You can add a dictionary of keyword arguments for the Syntext renderer to your site configuration file via a `syntext_settings` attribute, e.g.
+
+::: code python
+    syntext_settings = {
+        'pygmentize': False,
+    }
+
+
+
 ### Jinja
 
-Ivy uses the [Jinja][] package to render template files with a `.jinja` extension. You can add a
+Ivy uses the [Jinja][2] package to render template files with a `.jinja` extension. You can add a
 dictionary of keyword arguments for the Jinja environment to your site configuration file via a
 `jinja_settings` attribute.
 
@@ -167,7 +179,7 @@ dictionary of keyword arguments for the Jinja environment to your site configura
 
 ### Shortcodes
 
-Ivy uses the [Shortcodes][] package to process shortcodes in node files. You can add a dictionary of
+Ivy uses the [Shortcodes][8] package to process shortcodes in node files. You can add a dictionary of
 keyword arguments for the shortcode parser to your site configuration file via a `shortcode_settings` attribute.
 
 

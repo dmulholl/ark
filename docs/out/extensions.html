@@ -108,6 +108,9 @@
 <a href="#markdown">Markdown</a>
 </li>
 <li>
+<a href="#syntext">Syntext</a>
+</li>
+<li>
 <a href="#jinja">Jinja</a>
 </li>
 <li>
@@ -156,7 +159,7 @@ Ivy exports a flexible framework of event and filter hooks. Plugins can extend I
 Most of Ivy's default functionality &mdash; e.g. support for Jinja templates or Markdown files &mdash; is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
 </p>
 <p>
-You can find these bundled plugins in the <code>ivy/ext/</code> directory which you can view on <a href="https://github.com/dmulholl/ivy/tree/main/ivy/ext">Github</a>.
+You can find these bundled plugins in the <code>ivy/ext/</code> directory which you can view on <a href="https://github.com/dmulholl/ivy/tree/main/ivy/extensions">Github</a>.
 </p>
 <h3 id="events">
 Events
@@ -271,7 +274,7 @@ Bundled Extension Settings
 Markdown
 </h3>
 <p>
-Ivy defaults to using the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
+Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
 dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
 <code>markdown_settings</code> attribute, e.g.
 </p>
@@ -286,6 +289,17 @@ See the <a href="https://pypi.org/project/Markdown/">Markdown</a> package's docu
 <p>
 Note that you can register a custom handler for <code>.md</code> files to use an alternative Markdown library of your choice.
 </p>
+<h3 id="syntext">
+Syntext
+</h3>
+<p>
+Ivy uses the <a href="https://pypi.org/project/syntext/">Syntext</a> package to render node files with a <code>.stx</code> extension. You can add a dictionary of keyword arguments for the Syntext renderer to your site configuration file via a <code>syntext_settings</code> attribute, e.g.
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">syntext_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pygmentize&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">}</span>
+</pre>
 <h3 id="jinja">
 Jinja
 </h3>

@@ -46,6 +46,8 @@ Alternatively, you can customize directory names on a per-site basis by specifyi
 
 ### Custom File Extensions
 
+Ivy generates output pages with a `.html` file extension by default.
+
 You can specify a custom file extension for output files in your site configuration file, e.g.
 
 ::: code python
