@@ -20,7 +20,7 @@ This variable takes a colon-separated list of filenames.
 
 ### Directory Names
 
-By default, Ivy uses directories named `ext`, `int`, `lib`, `out`, `res`, and `src`.
+By default, Ivy uses directories named `ext`, `inc`, `lib`, `out`, `res`, and `src`.
 
 You can customize these default directory names using environment variables, e.g.
 
