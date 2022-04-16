@@ -17,13 +17,16 @@ from . import open
 from . import deploy
 
 
-helptext = """
-Usage: ivy <flag>
-       ivy <command>
-       ivy help <command>
+helptext = f"""
+Ivy v{ivy.__version__}
 
   Ivy is a static website generator. It transforms a directory of text files
   into a self-contained website.
+
+Usage:
+  ivy <flag>
+  ivy <command>
+  ivy help <command>
 
 Flags:
   -h, --help          Print the application's help text and exit.
