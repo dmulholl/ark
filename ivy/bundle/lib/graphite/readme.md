@@ -5,7 +5,8 @@
 
 A simple [Ivy][1] theme designed for generating project documentation.
 
-This theme will display the following attributes from the site's `config.py` file in the site header:
+This theme will display the following attributes from the site's configuration
+file in the site header:
 
 * `title`
 * `tagline`
@@ -34,5 +35,6 @@ It supports the following includes:
 
 This theme is distributed under the following license:
 
-* All code has been placed in the public domain.
-* The bundled [Crimson Text][2] font is distributed under the SIL Open Font License.
+* All code is released under the Zero-Clause BSD license (0BSD).
+* The bundled [Crimson Text][2] font is distributed under the SIL Open Font
+  License.
