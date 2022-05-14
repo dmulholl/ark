@@ -219,6 +219,11 @@ sup a {
     border-bottom: none;
 }
 
+dt a {
+    padding-bottom: 0;
+}
+
+
 /**
  * Miscellanea
  */
