@@ -2,11 +2,11 @@
 # Ivy: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '6.4.2'
+__version__ = '6.5.0'
 
 import sys
-if sys.version_info < (3, 8):
-    sys.exit('Error: Ivy requires Python 3.8 or later.')
+if sys.version_info < (3, 10):
+    sys.exit('Error: Ivy requires Python 3.10 or later.')
 
 
 # On Windows, use the 'colorama' package if it's available to support ANSI
