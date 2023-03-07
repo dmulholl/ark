@@ -8,7 +8,7 @@
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations
-from typing import Dict, List, Callable, Any, Union, Optional
+from typing import Any
 from pathlib import Path
 
 import os
@@ -41,7 +41,7 @@ def root() -> Node:
 
 # Returns the node corresponding to the specified @root/ url if it exists,
 # otherwise returns None.
-def node(url: str) -> Optional[Node]:
+def node(url: str) -> Node|None:
     if url.startswith('@root/'):
         node = root()
         for slug in url.rstrip('/').split('/')[1:]:
@@ -64,13 +64,13 @@ class Node():
 
     def __init__(self):
         # Stores the node's metadata (title, author, date, etc.).
-        self.meta: Dict[str, Any] = {}
+        self.meta: dict[str, Any] = {}
 
         # Stores a reference to the node's parent node.
-        self.parent: Optional[Node] = None
+        self.parent: Node|None = None
 
         # Stores child nodes.
-        self.children: List[Node] = []
+        self.children: list[Node] = []
 
         # Stores the path to the node's source directory/file.
         # (The file path will overwrite the directory path if both exist.)
@@ -86,7 +86,7 @@ class Node():
         self.text: str = ''
 
         # Internal cache for generated data.
-        self.cache: Dict[str, Any] = {}
+        self.cache: dict[str, Any] = {}
 
     # Identifying nodes by their @root/ url is useful for debugging.
     def __repr__(self) -> str:
@@ -126,7 +126,7 @@ class Node():
     # Returns the node's path, i.e. the list of slugs which determines the node's
     # output filepath and url. (Returns a disposable copy of the cached list.)
     @property
-    def path(self) -> List[str]:
+    def path(self) -> list[str]:
         if not 'path' in self.cache:
             self.cache['path'] = []
             current = self
@@ -159,7 +159,7 @@ class Node():
         return self.cache['slug']
 
     # Returns the child node with the specified slug if it exists, otherwise None.
-    def child(self, slug: str) -> Optional[Node]:
+    def child(self, slug: str) -> Node|None:
         for child in self.children:
             if child.slug == slug:
                 return child
@@ -226,7 +226,7 @@ class Node():
     # Assembles an ordered list of hyphenated slugs for generating CSS classes
     # and running template lookups.
     # E.g. <Node @root/foo/bar//> -> ['node-foo-bar', 'node-foo', 'node'].
-    def get_slug_list(self) -> List[str]:
+    def get_slug_list(self) -> list[str]:
         slugs = []
         stack = ['node'] + self.path
         while stack:
@@ -235,14 +235,14 @@ class Node():
         return filters.apply('slug_list', slugs, self)
 
     # Assembles a list of potential template names for the node.
-    def get_template_list(self) -> List[str]:
+    def get_template_list(self) -> list[str]:
         template_list = self.get_slug_list()
         if 'template' in self.meta:
             template_list.insert(0, self.meta['template'])
         return filters.apply('template_list', template_list, self)
 
     # Assembles a list of CSS classes for the output page's <body> element.
-    def get_class_list(self) -> List[str]:
+    def get_class_list(self) -> list[str]:
         class_list = self.get_slug_list()
         if self.parent is None:
             class_list.append('homepage')

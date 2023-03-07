@@ -11,7 +11,6 @@ from . import renderers
 from . import utils
 
 from os.path import isdir, isfile, join, abspath
-from typing import Dict
 
 
 # This dictionary contains the content of the site's `config.py` file. It can
@@ -204,7 +203,7 @@ def pages_written(n: int = 0) -> int:
 # Returns a cached dictionary of rendered files from the `inc` directory.
 # The dictionary's keys are the original filenames converted to lowercase
 # with spaces and hyphens replaced by underscores.
-def includes() -> Dict[str, str]:
+def includes() -> dict[str, str]:
     if not "includes" in cache:
         cache["includes"] = {}
         if isdir(inc()):
