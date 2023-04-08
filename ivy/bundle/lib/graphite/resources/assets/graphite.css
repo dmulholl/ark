@@ -169,6 +169,14 @@ h1 code {
     font-size: 26px;
 }
 
+dt pre {
+    margin: 0 2px;
+    padding: 1px 5px;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
 /**
  * Lists
  */
