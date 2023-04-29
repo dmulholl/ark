@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ivy &mdash; FAQ</title>
+        <title>Ark &mdash; FAQ</title>
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -12,12 +12,12 @@
     </head>
     <body class="node-faq node">
         <header class="masthead">
-            <h1><a href="index.html">Ivy</a></h1>
+            <h1><a href="index.html">Ark</a></h1>
             
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.5.0</p>
+                <p class="version">Version 7.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -61,7 +61,7 @@
 <a href="license.html">License</a>
 </li>
 <li>
-<a href="https://github.com/dmulholl/ivy">Github</a>
+<a href="https://github.com/dmulholl/ark">Github</a>
 </li>
 </ul>
             </nav>
@@ -74,25 +74,22 @@
             </header>
             <ul class="stx-toc">
 <li>
-<a href="#is-ivy-fast">Is Ivy fast?</a>
+<a href="#is-ark-fast">Is Ark fast?</a>
 </li>
 <li>
-<a href="#can-i-build-a-blog-using-ivy">Can I build a blog using Ivy?</a>
+<a href="#can-i-build-a-blog-using-ark">Can I build a blog using Ark?</a>
 </li>
 <li>
 <a href="#where-do-i-put-my-image-files">Where do I put my image files?</a>
 </li>
 <li>
-<a href="#does-ivy-support-featured-images-or-image-galleries">Does Ivy support featured images or image galleries?</a>
+<a href="#does-ark-support-featured-images-or-image-galleries">Does Ark support featured images or image galleries?</a>
 </li>
 <li>
 <a href="#why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">Why do I get an error when I add a URL to a YAML header?</a>
 </li>
 <li>
-<a href="#how-do-i-deploy-a-site-built-with-ivy">How do I deploy a site built with Ivy?</a>
-</li>
-<li>
-<a href="#why-is-it-called-ivy">Why is it called Ivy?</a>
+<a href="#how-do-i-deploy-a-site-built-with-ark">How do I deploy a site built with Ark?</a>
 </li>
 <li>
 <a href="#can-i-disable-a-node">Can I disable a node?</a>
@@ -104,26 +101,26 @@
 <a href="#can-i-use-latex-markup">Can I use LaTeX markup?</a>
 </li>
 </ul>
-<h3 id="is-ivy-fast">
-Is Ivy fast?
+<h3 id="is-ark-fast">
+Is Ark fast?
 </h3>
 <p>
-No. Ivy is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ivy is intended to be used for.
+No. Ark is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ark is intended to be used for.
 </p>
 <p>
-As a rough benchmark, a clean (no-cache) build of the Ivy <a href="http://www.dmulholl.com/demos/ivy/">demo site</a> which contains 7 output pages takes 0.15 seconds on my laptop.
+As a rough benchmark, a clean (no-cache) build of the Ark <a href="http://www.dmulholl.com/demos/ark/">demo site</a> which contains 7 output pages takes 0.15 seconds on my laptop.
 A clean build of the Holly <a href="http://www.dmulholl.com/demos/holly/">demo site</a> which contains 951 output pages takes 1.7 seconds.
 This means that on my particular hardware I can expect a throughput of roughly 500 pages per second.
 </p>
 <p>
-If you need to build a website with tens or hundreds of thousands of pages, Ivy probably isn't the right tool for you.
+If you need to build a website with tens or hundreds of thousands of pages, Ark probably isn't the right tool for you.
 <a href="https://gohugo.io">Hugo</a> is a popular static site generator with a focus on execution speed that may be a better match for large sites.
 </p>
-<h3 id="can-i-build-a-blog-using-ivy">
-Can I build a blog using Ivy?
+<h3 id="can-i-build-a-blog-using-ark">
+Can I build a blog using Ark?
 </h3>
 <p>
-<a href="https://github.com/dmulholl/holly">Holly</a> is a blog-engine plugin for Ivy. It adds support for WordPress-style post and tag indexes.
+<a href="https://github.com/dmulholl/holly">Holly</a> is a blog-engine plugin for Ark. It adds support for WordPress-style post and tag indexes.
 </p>
 <h3 id="where-do-i-put-my-image-files">
 Where do I put my image files?
@@ -146,33 +143,33 @@ This file will be copied to the output directory and can be accessed in template
 <pre>
 @root/images/photo.jpg
 </pre>
-<h3 id="does-ivy-support-featured-images-or-image-galleries">
-Does Ivy support featured images or image galleries?
+<h3 id="does-ark-support-featured-images-or-image-galleries">
+Does Ark support featured images or image galleries?
 </h3>
 <p>
-Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
+Ark has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
 </p>
 <pre class="lang-yaml pygments" data-lang="yaml">
-<span class="nn">---</span><span class="w"></span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Page Title</span><span class="w"></span>
-<span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">photo.jpg</span><span class="w"></span>
-<span class="nn">---</span><span class="w"></span>
+<span class="nn">---</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Page Title</span>
+<span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">photo.jpg</span>
+<span class="nn">---</span>
 </pre>
 <p>
 We can then check for the presence of a featured image in the appropriate template file:
 </p>
 <pre class="lang-django pygments" data-lang="django">
-<span class="cp">{%</span> <span class="k">if</span> <span class="nv">node.image</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">node.image</span> <span class="cp">%}</span>
 <span class="x">    &lt;img src=&quot;@root/images/</span><span class="cp">{{</span><span class="nv">node.image</span><span class="cp">}}</span><span class="x">&quot;&gt;</span>
-<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
 </pre>
 <p>
 YAML supports lists so we can implement galleries in a similar manner by adding a list of image names to the header and then iterating over the list in the template file:
 </p>
 <pre class="lang-django pygments" data-lang="django">
-<span class="cp">{%</span> <span class="k">for</span> <span class="nv">image</span> <span class="k">in</span> <span class="nv">node.gallery</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">image</span> <span class="k">in</span> <span class="nv">node.gallery</span> <span class="cp">%}</span>
 <span class="x">    &lt;img src=&quot;@root/images/</span><span class="cp">{{</span><span class="nv">image</span><span class="cp">}}</span><span class="x">&quot;&gt;</span>
-<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 </pre>
 <h3 id="why-do-i-get-an-error-when-i-add-a-url-to-a-yaml-header">
 Why do I get an error when I add a URL to a YAML header?
@@ -186,15 +183,10 @@ image: @root/images/photo.jpg
 ---
 </pre>
 <p>
-Quoting the URL solves the problem:
+Wrapping the URL in double quotes solves the problem.
 </p>
-<pre>
----
-image: "images/photo.jpg"
----
-</pre>
-<h3 id="how-do-i-deploy-a-site-built-with-ivy">
-How do I deploy a site built with Ivy?
+<h3 id="how-do-i-deploy-a-site-built-with-ark">
+How do I deploy a site built with Ark?
 </h3>
 <p>
 One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like &mdash; in the simplest case you can 'deploy' it simply by double-clicking on the <code>.html</code> files to view them locally in your browser.
@@ -219,12 +211,6 @@ If you need more control over your hosting environment you can run your own webs
 </p>
 </li>
 </ul>
-<h3 id="why-is-it-called-ivy">
-Why is it called Ivy?
-</h3>
-<p>
-I liked the name Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.
-</p>
 <h3 id="can-i-disable-a-node">
 Can I disable a node?
 </h3>
@@ -237,7 +223,7 @@ disable: true
 ---
 </pre>
 <p>
-This will stop Ivy from producing an output HTML page for the node.
+This will stop Ark from producing an output HTML page for the node.
 </p>
 <p>
 Note that this only affects the node itself, not its children.
@@ -246,13 +232,13 @@ Note that this only affects the node itself, not its children.
 Can I use a different Markdown library?
 </h3>
 <p>
-Sure. Ivy defaults to using the <a href="https://pypi.org/project/Markdown/">Markdown</a> library to render <code>.md</code> files but you can <a href="extensions.html#rendering-engines">register a custom handler</a> to use any library you like.
+Sure. Ark defaults to using the <a href="https://pypi.org/project/Markdown/">Markdown</a> library to render <code>.md</code> files but you can <a href="extensions.html#rendering-engines">register a custom handler</a> to use any library you like.
 </p>
 <h3 id="can-i-use-latex-markup">
 Can I use LaTeX markup?
 </h3>
 <p>
-Here's a <a href="https://github.com/dmulholl/ivy-katex-demo">simple demo</a> of an Ivy site using the <a href="https://katex.org">KaTeX</a> JavaScript library to render LaTeX markup.
+Here's a <a href="https://github.com/dmulholl/ark-katex-demo">simple demo</a> of an Ark site using the <a href="https://katex.org">KaTeX</a> JavaScript library to render LaTeX markup.
 </p>
         </article>
         

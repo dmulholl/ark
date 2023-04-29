@@ -169,6 +169,14 @@ h1 code {
     font-size: 26px;
 }
 
+dt pre {
+    margin: 0 2px;
+    padding: 1px 5px;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
 /**
  * Lists
  */
@@ -339,6 +347,9 @@ body {
 .main .title .subtitle {
     font-style: italic;
     text-align: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main .title hr {
@@ -520,7 +531,6 @@ body.extra-deflist-vspace dt {
 /* Tablet screens and smaller. */
 
 @media screen and (max-width: 960px) {
-
     body {
         width: auto;
         max-width: 680px;
@@ -672,7 +682,6 @@ body.extra-deflist-vspace dt {
 /* Portrait phone screens. */
 
 @media screen and (max-width: 480px) {
-
     body {
         font-size: 16px;
         padding-top: 40px;
@@ -700,5 +709,9 @@ body.extra-deflist-vspace dt {
 
     .small {
         font-size: 15px;
+    }
+
+    .main .title .subtitle {
+        width: auto;
     }
 }

@@ -1,6 +1,6 @@
 ---
 title: Resources
-meta_title: Ivy &mdash; Resources
+meta_title: Ark &mdash; Resources
 classes: extra-deflist-vspace
 ---
 
@@ -15,7 +15,7 @@ classes: extra-deflist-vspace
 
 [[ Holly ]]
 
-    This blog-engine plugin turns Ivy into a WordPress-style blog generator with support for post and tag indexes.
+    This blog-engine plugin turns Ark into a WordPress-style blog generator with support for post and tag indexes.
 
     :p .small
         <https://github.com/dmulholl/holly>
@@ -23,7 +23,7 @@ classes: extra-deflist-vspace
 
 [[ Outline ]]
 
-    A clean, responsive, text-focused theme for Ivy.
+    A clean, responsive, text-focused theme for Ark.
     This is the theme I use for my own personal website.
 
     :p .small
@@ -32,8 +32,8 @@ classes: extra-deflist-vspace
 
 [[ Vanilla ]]
 
-    A simple, single-column theme for Ivy.
-    This was the original theme for Ivy's documentation.
+    A simple, single-column theme for Ark.
+    This was the original theme for Ark's documentation.
 
     :p .small
         <https://github.com/dmulholl/vanilla>
@@ -41,7 +41,7 @@ classes: extra-deflist-vspace
 
 [[ Twenty Fifteen ]]
 
-    A blog-style theme for Ivy based on the classic WordPress theme of the same name.
+    A blog-style theme for Ark based on the classic WordPress theme of the same name.
 
     :p .small
         <https://github.com/dmulholl/twentyfifteen>

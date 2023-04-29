@@ -12,9 +12,9 @@
     </head>
     <body class="node-code node">
         <header class="masthead">
-            <h1><a href="index.html">Ivy Demo</a></h1>
+            <h1><a href="index.html">Ark Demo</a></h1>
             
-                <p class="tagline">Ivy is a static website generator built in Python. It transforms a directory of
+                <p class="tagline">Ark is a static website generator built in Python. It transforms a directory of
 text files into a self-contained website.</p>
             
             
@@ -52,7 +52,7 @@ Code without syntax-highlighting:
 
 // This is a comment.
 int main(int argc, char *argv[]) {
-    printf(&quot;hello world\n&quot;);
+    printf("hello world\n");
     return 0;
 }
 </pre>
@@ -60,12 +60,12 @@ int main(int argc, char *argv[]) {
 C with syntax-highlighting:
 </p>
 <pre class="lang-c pygments" data-lang="c">
-<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 
 <span class="c1">// This is a comment.</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
 <p>
@@ -103,10 +103,10 @@ HTML with syntax-highlighting:
 Django template syntax with syntax-highlighting:
 </p>
 <pre class="lang-django pygments" data-lang="django">
-<span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">posts</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">posts</span> <span class="cp">%}</span>
 <span class="x">    &lt;h1&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/h1&gt;</span>
 <span class="x">    &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">post.content</span><span class="o">|</span><span class="nf">striptags</span><span class="o">|</span><span class="nf">truncatewords</span><span class="o">:</span><span class="m">50</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
-<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 </pre>
         </article>
         

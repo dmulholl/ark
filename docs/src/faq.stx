@@ -1,34 +1,34 @@
 ---
 title: FAQ
-meta_title: Ivy &mdash; FAQ
+meta_title: Ark &mdash; FAQ
 ---
 
-[1]: http://www.dmulholl.com/demos/ivy/
+[1]: http://www.dmulholl.com/demos/ark/
 [2]: http://www.dmulholl.com/demos/holly/
 [3]: https://pypi.org/project/Markdown/
-[4]: https://github.com/dmulholl/ivy-katex-demo
+[4]: https://github.com/dmulholl/ark-katex-demo
 [5]: https://katex.org
 
 ::: insert toc
 
 
 
-### Is Ivy fast?
+### Is Ark fast?
 
-No. Ivy is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ivy is intended to be used for.
+No. Ark is designed to be easy to use, with lots of flexibility under the hood if you're prepared to write a little extension code. Execution speed isn't a significant design goal as it's simply irrelevant for the kind of small personal or project websites Ark is intended to be used for.
 
-As a rough benchmark, a clean (no-cache) build of the Ivy [demo site][1] which contains 7 output pages takes 0.15 seconds on my laptop.
+As a rough benchmark, a clean (no-cache) build of the Ark [demo site][1] which contains 7 output pages takes 0.15 seconds on my laptop.
 A clean build of the Holly [demo site][2] which contains 951 output pages takes 1.7 seconds.
 This means that on my particular hardware I can expect a throughput of roughly 500 pages per second.
 
-If you need to build a website with tens or hundreds of thousands of pages, Ivy probably isn't the right tool for you.
+If you need to build a website with tens or hundreds of thousands of pages, Ark probably isn't the right tool for you.
 [Hugo](https://gohugo.io) is a popular static site generator with a focus on execution speed that may be a better match for large sites.
 
 
 
-### Can I build a blog using Ivy?
+### Can I build a blog using Ark?
 
-[Holly](https://github.com/dmulholl/holly) is a blog-engine plugin for Ivy. It adds support for WordPress-style post and tag indexes.
+[Holly](https://github.com/dmulholl/holly) is a blog-engine plugin for Ark. It adds support for WordPress-style post and tag indexes.
 
 
 
@@ -49,9 +49,9 @@ This file will be copied to the output directory and can be accessed in template
 
 
 
-### Does Ivy support featured images or image galleries?
+### Does Ark support featured images or image galleries?
 
-Ivy has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
+Ark has no special support for WordPress-style featured images but we can implement similar functionality simply by adding the image name as an attribute to the page header, e.g.
 
 ::: code yaml
     ---
@@ -79,19 +79,16 @@ YAML supports lists so we can implement galleries in a similar manner by adding 
 
 YAML doesn't support unquoted values that begin with an `@` symbol so you'll get an error message if you add a bare `@root/` URL to a YAML header, e.g.
 
+::: code
     ---
     image: @root/images/photo.jpg
     ---
 
-Quoting the URL solves the problem:
-
-    ---
-    image: "@root/images/photo.jpg"
-    ---
+Wrapping the URL in double quotes solves the problem.
 
 
 
-### How do I deploy a site built with Ivy?
+### How do I deploy a site built with Ark?
 
 One of the nicest things about a static website is that it's completely independent of the tool used to build it. You can host your website anywhere you like --- in the simplest case you can 'deploy' it simply by double-clicking on the `.html` files to view them locally in your browser.
 
@@ -105,13 +102,6 @@ To make your website available on the public internet you have lots of options. 
 
 
 
-### Why is it called Ivy?
-
-I liked the name Industrial Vellum, IV. Also, the branching tree structure of the nodes reminded me of ivy.
-
-
-
-
 ### Can I disable a node?
 
 You can add a `disable` flag to a node's metadata header:
@@ -120,7 +110,7 @@ You can add a `disable` flag to a node's metadata header:
     disable: true
     ---
 
-This will stop Ivy from producing an output HTML page for the node.
+This will stop Ark from producing an output HTML page for the node.
 
 Note that this only affects the node itself, not its children.
 
@@ -128,10 +118,10 @@ Note that this only affects the node itself, not its children.
 
 ### Can I use a different Markdown library?
 
-Sure. Ivy defaults to using the [Markdown][3] library to render `.md` files but you can [register a custom handler](@root/extensions//#rendering-engines) to use any library you like.
+Sure. Ark defaults to using the [Markdown][3] library to render `.md` files but you can [register a custom handler](@root/extensions//#rendering-engines) to use any library you like.
 
 
 
 ### Can I use LaTeX markup?
 
-Here's a [simple demo][4] of an Ivy site using the [KaTeX][5] JavaScript library to render LaTeX markup.
+Here's a [simple demo][4] of an Ark site using the [KaTeX][5] JavaScript library to render LaTeX markup.

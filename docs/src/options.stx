@@ -1,6 +1,6 @@
 ---
-title: Configuring Ivy
-meta_title: Ivy &mdash; Configuration Options
+title: Configuring Ark
+meta_title: Ark &mdash; Configuration Options
 ---
 
 ::: insert toc
@@ -8,11 +8,11 @@ meta_title: Ivy &mdash; Configuration Options
 
 ### Site Configuration File
 
-By default, Ivy searches for a site configuration file called either `site.py` or `config.py`.
-You can specify a custom filename for the site configuration file using the `IVY_CONFIG_FILE` environment variable, e.g.
+By default, Ark searches for a site configuration file called either `site.py` or `config.py`.
+You can specify a custom filename for the site configuration file using the `ARK_CONFIG_FILE` environment variable, e.g.
 
 ::: code bash
-    IVY_CONFIG_FILE="site_config.py"
+    ARK_CONFIG_FILE="site_config.py"
 
 This variable takes a colon-separated list of filenames.
 
@@ -20,17 +20,17 @@ This variable takes a colon-separated list of filenames.
 
 ### Directory Names
 
-By default, Ivy uses directories named `ext`, `inc`, `lib`, `out`, `res`, and `src`.
+By default, Ark uses directories named `ext`, `inc`, `lib`, `out`, `res`, and `src`.
 
 You can customize these default directory names using environment variables, e.g.
 
 ::: code bash
-    IVY_EXT_DIR="plugins"
-    IVY_INC_DIR="includes"
-    IVY_LIB_DIR="themes"
-    IVY_OUT_DIR="output"
-    IVY_RES_DIR="resources"
-    IVY_SRC_DIR="source"
+    ARK_EXT_DIR="plugins"
+    ARK_INC_DIR="includes"
+    ARK_LIB_DIR="themes"
+    ARK_OUT_DIR="output"
+    ARK_RES_DIR="resources"
+    ARK_SRC_DIR="source"
 
 Alternatively, you can customize directory names on a per-site basis by specifying alternate names in your site configuration file, e.g.
 
@@ -46,7 +46,7 @@ Alternatively, you can customize directory names on a per-site basis by specifyi
 
 ### Custom File Extensions
 
-Ivy generates output pages with a `.html` file extension by default.
+Ark generates output pages with a `.html` file extension by default.
 
 You can specify a custom file extension for output files in your site configuration file, e.g.
 
@@ -66,7 +66,7 @@ You can generate directory-style URLs --- i.e. URLs ending in a forward slash --
 
 ### Absolute URLs
 
-Ivy generates page-relative URLs by default.
+Ark generates page-relative URLs by default.
 
 You can generate absolute URLs by specifying an explicit root URL in your site configuration file, e.g.
 
@@ -77,7 +77,7 @@ You can generate absolute URLs by specifying an explicit root URL in your site c
 
 ### Site-Relative URLs
 
-Ivy generates page-relative URLs by default.
+Ark generates page-relative URLs by default.
 
 You can generate site-relative URLs --- i.e. URLs that begin with a `/` --- by specifying a root URL of `"/"` in your site configuration file:
 

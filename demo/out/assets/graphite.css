@@ -155,8 +155,26 @@ pre {
     line-height: 1.4;
 }
 
+/* Markdown renderers tend to wrap code blocks in <pre><code> ... </code></pre> blocks. */
+pre code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    border-radius: 0;
+    background-color: #f8f8f8;
+}
+
 h1 code {
-    font-size: 28px;
+    font-size: 26px;
+}
+
+dt pre {
+    margin: 0 2px;
+    padding: 1px 5px;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    background-color: #f8f8f8;
 }
 
 /**
@@ -208,6 +226,11 @@ a {
 sup a {
     border-bottom: none;
 }
+
+dt a {
+    padding-bottom: 0;
+}
+
 
 /**
  * Miscellanea
@@ -324,6 +347,9 @@ body {
 .main .title .subtitle {
     font-style: italic;
     text-align: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main .title hr {
@@ -505,7 +531,6 @@ body.extra-deflist-vspace dt {
 /* Tablet screens and smaller. */
 
 @media screen and (max-width: 960px) {
-
     body {
         width: auto;
         max-width: 680px;
@@ -657,7 +682,6 @@ body.extra-deflist-vspace dt {
 /* Portrait phone screens. */
 
 @media screen and (max-width: 480px) {
-
     body {
         font-size: 16px;
         padding-top: 40px;
@@ -675,11 +699,19 @@ body.extra-deflist-vspace dt {
         font-size: 16px;
     }
 
+    h1 code {
+        font-size: 24px;
+    }
+
     pre, code {
         font-size: 12px;
     }
 
     .small {
         font-size: 15px;
+    }
+
+    .main .title .subtitle {
+        width: auto;
     }
 }

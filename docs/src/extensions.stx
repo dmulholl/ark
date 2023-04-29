@@ -1,9 +1,9 @@
 ---
 title: Extensions
-meta_title: Ivy &mdash; Extensions
+meta_title: Ark &mdash; Extensions
 ---
 
-[1]: https://github.com/dmulholl/ivy/tree/main/ivy/extensions
+[1]: https://github.com/dmulholl/ark/tree/main/ark/extensions
 [2]: http://jinja.pocoo.org
 [3]: https://github.com/dmulholl/ibis
 [4]: https://en.wikipedia.org/wiki/Markdown
@@ -17,9 +17,9 @@ meta_title: Ivy &mdash; Extensions
 
 ## Installing Extensions
 
-An extension (also known as a plugin) is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
+An extension (also known as a plugin) is a Python module or package that extends Ark's functionality. You can install extensions for a site in one of two ways.
 
-(*) You can add an extensions directory named `ext` to your site's root directory. Extension modules placed in this `ext` directory will be loaded automatically by Ivy.
+(*) You can add an extensions directory named `ext` to your site's root directory. Extension modules placed in this `ext` directory will be loaded automatically by Ark.
 
 (*) If an extension module has been installed on Python's standard import path you can activate it for a particular site by adding its name to an `extensions` list in the site's configuration file:
 
@@ -35,11 +35,11 @@ This second method can be used to enable extensions installed from the Python pa
 
 ## Event & Filter Hooks
 
-Ivy exports a flexible framework of event and filter hooks. Plugins can extend Ivy by registering callback functions on these hooks.
+Ark exports a flexible framework of event and filter hooks. Plugins can extend Ark by registering callback functions on these hooks.
 
-Most of Ivy's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
+Most of Ark's default functionality --- e.g. support for Jinja templates or Markdown files --- is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ark yourself you'll probably want to start by taking at look at how they work.
 
-You can find these bundled plugins in the `ivy/ext/` directory which you can view on [Github][1].
+You can find these bundled plugins in the `ark/ext/` directory which you can view on [Github][1].
 
 
 
@@ -50,13 +50,13 @@ You can find these bundled plugins in the `ivy/ext/` directory which you can vie
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 
 ::: code python
-    from ivy.events import Event
+    from ark.events import Event
 
-    @ivy.events.register(Event.EXIT)
+    @ark.events.register(Event.EXIT)
     def print_page_count():
-        print(ivy.site.pages_written())
+        print(ark.site.pages_written())
 
-This callback is registered on the `EXIT` event hook which fires just before the application exits. (The `EXIT` event hook can be found in the `ivy/__init__.py` file.)
+This callback is registered on the `EXIT` event hook which fires just before the application exits. (The `EXIT` event hook can be found in the `ark/__init__.py` file.)
 
 
 
@@ -67,13 +67,13 @@ This callback is registered on the `EXIT` event hook which fires just before the
 Here's a simple filter callback that changes every instance of the word *foo* in node content to *bar*:
 
 ::: code python
-    from ivy.filters import Filter
+    from ark.filters import Filter
 
-    @ivy.filters.register(Filter.NODE_TEXT)
+    @ark.filters.register(Filter.NODE_TEXT)
     def foo_to_bar(text, node):
         return text.replace('foo', 'bar')
 
-This callback is registered on the `NODE_TEXT` filter hook which fires just before a node's text is rendered into HTML. (The `NODE_TEXT` filter hook can be found in the `ivy/nodes.py` file).
+This callback is registered on the `NODE_TEXT` filter hook which fires just before a node's text is rendered into HTML. (The `NODE_TEXT` filter hook can be found in the `ark/nodes.py` file).
 
 
 Note that this hook supplies us with the `Node` instance itself as an additional argument which in this case we ignore.
@@ -82,7 +82,7 @@ Note that this hook supplies us with the `Node` instance itself as an additional
 
 ## Rendering & Parsing Engines
 
-Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][2] template-engine for handling `.jinja` template files. Extensions can register support for additional rendering and parsing engines using a system of `@register` decorators.
+Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][2] template-engine for handling `.jinja` template files. Extensions can register support for additional rendering and parsing engines using a system of `@register` decorators.
 
 
 
@@ -90,10 +90,10 @@ Ivy relies for most of its functionality on a suite of pluggable rendering and p
 
 Template-engines produce the output HTML for finished `.html` pages in the site.
 
-Ivy has builtin support for [Jinja][2] and [Ibis][3] templates. Extensions can register support for additional template-engines using the `@ivy.templates.register()` decorator. Template-engine callbacks are registered per template-file-extension, e.g.
+Ark has builtin support for [Jinja][2] and [Ibis][3] templates. Extensions can register support for additional template-engines using the `@ark.templates.register()` decorator. Template-engine callbacks are registered per template-file-extension, e.g.
 
 ::: code python
-    @ivy.templates.register('jinja')
+    @ark.templates.register('jinja')
     def jinja_callback(page_data, template_filename):
         ...
         return html
@@ -106,10 +106,10 @@ A template-engine callback should accept a dictionary of page data and a templat
 
 Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished `.html` output page.
 
-Ivy has builtin support for node files written in [Markdown][4] and [Syntext][6]. Extensions can register support for additional input formats using the `@ivy.renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ark has builtin support for node files written in [Markdown][4] and [Syntext][6]. Extensions can register support for additional input formats using the `@ark.renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 
 ::: code python
-    @ivy.renderers.register('md')
+    @ark.renderers.register('md')
     def markdown_callback(text):
         ...
         return html
@@ -122,19 +122,19 @@ Note that if you register a custom callback for `.md` files, this will override 
 
 ### Node Metadata
 
-Ivy has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the `file_text` filter hook.
+Ark has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the `file_text` filter hook.
 
 ::: code python
-    from ivy.filters import Filter
+    from ark.filters import Filter
 
-    @ivy.filters.register(Filter.FILE_TEXT)
+    @ark.filters.register(Filter.FILE_TEXT)
     def parse_toml_header(raw_text, meta_dict):
         ...
         return filtered_text
 
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 
-The `FILE_TEXT` filter hook can be found in the `ivy/utils.py` file.
+The `FILE_TEXT` filter hook can be found in the `ark/utils.py` file.
 
 
 
@@ -143,7 +143,7 @@ The `FILE_TEXT` filter hook can be found in the `ivy/utils.py` file.
 
 ### Markdown
 
-Ivy uses the [Markdown][5] package to render node files with a `.md` extension. You can add a
+Ark uses the [Markdown][5] package to render node files with a `.md` extension. You can add a
 dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
 `markdown_settings` attribute, e.g.
 
@@ -160,7 +160,7 @@ Note that you can register a custom handler for `.md` files to use an alternativ
 
 ### Syntext
 
-Ivy uses the [Syntext][7] package to render node files with a `.stx` extension. You can add a dictionary of keyword arguments for the Syntext renderer to your site configuration file via a `syntext_settings` attribute, e.g.
+Ark uses the [Syntext][7] package to render node files with a `.stx` extension. You can add a dictionary of keyword arguments for the Syntext renderer to your site configuration file via a `syntext_settings` attribute, e.g.
 
 ::: code python
     syntext_settings = {
@@ -171,7 +171,7 @@ Ivy uses the [Syntext][7] package to render node files with a `.stx` extension. 
 
 ### Jinja
 
-Ivy uses the [Jinja][2] package to render template files with a `.jinja` extension. You can add a
+Ark uses the [Jinja][2] package to render template files with a `.jinja` extension. You can add a
 dictionary of keyword arguments for the Jinja environment to your site configuration file via a
 `jinja_settings` attribute.
 
@@ -179,7 +179,7 @@ dictionary of keyword arguments for the Jinja environment to your site configura
 
 ### Shortcodes
 
-Ivy uses the [Shortcodes][8] package to process shortcodes in node files. You can add a dictionary of
+Ark uses the [Shortcodes][8] package to process shortcodes in node files. You can add a dictionary of
 keyword arguments for the shortcode parser to your site configuration file via a `shortcode_settings` attribute.
 
 

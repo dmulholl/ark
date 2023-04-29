@@ -1,6 +1,6 @@
 ---
 title: Themes
-meta_title: Ivy &mdash; Themes
+meta_title: Ark &mdash; Themes
 ---
 
 [jinja]: http://jinja.pocoo.org
@@ -8,7 +8,7 @@ meta_title: Ivy &mdash; Themes
 [wordpress]: http://www.wordpress.org/
 
 
-Ivy borrows its idea of themes from [WordPress][] where a theme is a directory of templates, styles, and scripts that together provide the look and feel for a site.
+Ark borrows its idea of themes from [WordPress][] where a theme is a directory of templates, styles, and scripts that together provide the look and feel for a site.
 
 :p .center
     *A site's theme is completely independent of its content.*
@@ -24,13 +24,13 @@ Themes should be placed in the site's `lib` directory, and the name of the activ
 ::: code python
     theme = "graphite"
 
-Ivy ships with a small collection of bundled themes including `graphite`, the default theme you're looking at right now, and `debug`, a diagnostic theme useful when designing themes or debugging sites.
+Ark ships with a small collection of bundled themes including `graphite`, the default theme you're looking at right now, and `debug`, a diagnostic theme useful when designing themes or debugging sites.
 
 Note that you can override the currently active theme with the `build` command's `--theme` flag:
 
-    $ ivy build --theme debug
+    $ ark build --theme debug
 
-Ivy searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the `$IVY_THEMES` environment variable. Finally it searches among the default themes bundled with Ivy itself.
+Ark searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with Ark itself.
 
 
 
@@ -38,7 +38,7 @@ Ivy searches for a named theme first in the site's theme library, then (if it ex
 
 A theme is simply a directory; the theme's name is the name of the directory.
 
-When building a website, Ivy looks for three subdirectories within the theme directory: `resources`, `templates`, and `extensions`.
+When building a website, Ark looks for three subdirectories within the theme directory: `resources`, `templates`, and `extensions`.
 
 [[ `resources` ]]
 
@@ -47,15 +47,15 @@ When building a website, Ivy looks for three subdirectories within the theme dir
 
 [[ `templates` ]]
 
-    The `templates` directory is where Ivy looks for the theme's template files.
+    The `templates` directory is where Ark looks for the theme's template files.
     This directory is also where Jinja and Ibis will look for files included in templates using `{% include %}` tags.
 
 [[ `extensions` ]]
 
-    Themes can bundle extensions for Ivy by placing Python modules or packages in the `extensions` directory.
-    These will be loaded automatically by Ivy.
+    Themes can bundle extensions for Ark by placing Python modules or packages in the `extensions` directory.
+    These will be loaded automatically by Ark.
 
-A theme directory can contain other files and directories --- e.g. a license file, readme file, etc. --- which Ivy will simply ignore.
+A theme directory can contain other files and directories --- e.g. a license file, readme file, etc. --- which Ark will simply ignore.
 
 
 
@@ -63,7 +63,7 @@ A theme directory can contain other files and directories --- e.g. a license fil
 
 Template files provide the HTML scaffolding for constructing pages --- you can think of a template file as the mould into which your content will be poured.
 
-There are countless templating languages and Ivy can use any of them, but it has builtin support for [Jinja][] and [Ibis][]. Ivy determines the language of a template file by looking at its extension --- `.jinja` for Jinja and `.ibis` for Ibis.
+There are countless templating languages and Ark can use any of them, but it has builtin support for [Jinja][] and [Ibis][]. Ark determines the language of a template file by looking at its extension --- `.jinja` for Jinja and `.ibis` for Ibis.
 
 You can add support for alternative templating languages via [plugins](@root/extensions//#template-engines).
 
@@ -71,7 +71,7 @@ You can add support for alternative templating languages via [plugins](@root/ext
 
 ### Template Hierarchy
 
-When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity (most specific first, least specific last).
+When Ark generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity (most specific first, least specific last).
 
 For example, the node file:
 
@@ -81,14 +81,14 @@ corresponds to the node:
 
     <Node @root/foo/bar/baz//>
 
-Ivy will search for a template file for this node in the following order:
+Ark will search for a template file for this node in the following order:
 
     1. node-foo-bar-baz.*
     2. node-foo-bar.*
     3. node-foo.*
     4. node.*
 
-Ultimately, Ivy will always check for a template file called `node.*` --- this is the default template name and the only template file actually required by a theme.
+Ultimately, Ark will always check for a template file called `node.*` --- this is the default template name and the only template file actually required by a theme.
 
 A node can override this process by specifying a custom template name in its header:
 

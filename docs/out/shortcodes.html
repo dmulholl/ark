@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ivy &mdash; Shortcodes</title>
+        <title>Ark &mdash; Shortcodes</title>
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -12,12 +12,12 @@
     </head>
     <body class="node-shortcodes node">
         <header class="masthead">
-            <h1><a href="index.html">Ivy</a></h1>
+            <h1><a href="index.html">Ark</a></h1>
             
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.5.0</p>
+                <p class="version">Version 7.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -61,7 +61,7 @@
 <a href="license.html">License</a>
 </li>
 <li>
-<a href="https://github.com/dmulholl/ivy">Github</a>
+<a href="https://github.com/dmulholl/ark">Github</a>
 </li>
 </ul>
             </nav>
@@ -73,7 +73,7 @@
                 <hr>
             </header>
             <p>
-Ivy has builtin support for WordPress-style <a href="http://www.dmulholl.com/dev/shortcodes.html">shortcodes</a> in node content. These shortcodes can have space-separated positional and keyword arguments:
+Ark has builtin support for WordPress-style <a href="http://www.dmulholl.com/dev/shortcodes.html">shortcodes</a> in node content. These shortcodes can have space-separated positional and keyword arguments:
 </p>
 <pre>
 [% tag arg1 key=arg2 %]
@@ -86,7 +86,7 @@ Registering Shortcodes
 </h3>
 <p>
 Shortcodes are implemented by the <a href="https://github.com/dmulholl/shortcodes">shortcodes</a> package, an external library.
-An Ivy extension can register a new shortcode tag using the shortcode package's <code>@register()</code> decorator:
+An Ark extension can register a new shortcode tag using the shortcode package's <code>@register()</code> decorator:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">shortcodes</span>
@@ -134,12 +134,12 @@ Example &mdash; <code>include_raw</code>
 Here's a sample shortcode you could use to inject the raw content of a file from the site's includes directory, <code>inc</code>, directly into a node file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">ark</span>
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_raw&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">inc</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">inc</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre>
@@ -156,15 +156,15 @@ The shortcode will be replaced by the content of the file.
 Example &mdash; <code>include_rendered</code>
 </h3>
 <p>
-Ivy already loads and renders the content of files from the includes directory to make it available in template files. What if you want to include this pre-rendered content in a node file?
+Ark already loads and renders the content of files from the includes directory to make it available in template files. What if you want to include this pre-rendered content in a node file?
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">ark</span>
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;include_rendered&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
-    <span class="n">includes</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">includes</span><span class="p">()</span>
+    <span class="n">includes</span> <span class="o">=</span> <span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">includes</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">includes</span><span class="p">[</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 </pre>
 <p>
@@ -183,13 +183,13 @@ Example &mdash; <code>list_children</code>
 This is a handy shortcode for building sitemaps &mdash; it assembles a list of links to all the children of a target node:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">ark</span>
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;list_children&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">target_node</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">target_node</span> <span class="o">=</span> <span class="n">ark</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">pargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">target_node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;Missing Title&#39;</span>
         <span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;* [</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">](</span><span class="si">{</span><span class="n">child</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
@@ -211,7 +211,7 @@ Example &mdash; <code>quote</code>
 Here's an example of a block-level shortcode wrapping a block of content. Imagine we want to add special styling to quotes with the name of the quote's author attached:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">import</span> <span class="nn">ark</span>
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
 <span class="nd">@shortcodes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;quote&#39;</span><span class="p">,</span> <span class="s1">&#39;endquote&#39;</span><span class="p">)</span>

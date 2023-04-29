@@ -1,10 +1,16 @@
 ---
 title: Changelog
-meta_title: Ivy &mdash; Changelog
+meta_title: Ark &mdash; Changelog
 ---
 
 [docs:ibis]: http://www.dmulholl.com/docs/ibis/master/
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
+
+
+### 7.0.0
+
+* Name change! The application's name, formerly Ivy, has reverted to its original name, Ark.
+
 
 
 ### 6.4.0

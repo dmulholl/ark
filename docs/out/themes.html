@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ivy &mdash; Themes</title>
+        <title>Ark &mdash; Themes</title>
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -12,12 +12,12 @@
     </head>
     <body class="node-themes node">
         <header class="masthead">
-            <h1><a href="index.html">Ivy</a></h1>
+            <h1><a href="index.html">Ark</a></h1>
             
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.5.0</p>
+                <p class="version">Version 7.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -61,7 +61,7 @@
 <a href="license.html">License</a>
 </li>
 <li>
-<a href="https://github.com/dmulholl/ivy">Github</a>
+<a href="https://github.com/dmulholl/ark">Github</a>
 </li>
 </ul>
             </nav>
@@ -73,7 +73,7 @@
                 <hr>
             </header>
             <p>
-Ivy borrows its idea of themes from <a href="http://www.wordpress.org/">WordPress</a> where a theme is a directory of templates, styles, and scripts that together provide the look and feel for a site.
+Ark borrows its idea of themes from <a href="http://www.wordpress.org/">WordPress</a> where a theme is a directory of templates, styles, and scripts that together provide the look and feel for a site.
 </p>
 <p class="center">
 <i>A site's theme is completely independent of its content.</i>
@@ -91,16 +91,16 @@ Themes should be placed in the site's <code>lib</code> directory, and the name o
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;graphite&quot;</span>
 </pre>
 <p>
-Ivy ships with a small collection of bundled themes including <code>graphite</code>, the default theme you're looking at right now, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
+Ark ships with a small collection of bundled themes including <code>graphite</code>, the default theme you're looking at right now, and <code>debug</code>, a diagnostic theme useful when designing themes or debugging sites.
 </p>
 <p>
 Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:
 </p>
 <pre>
-$ ivy build --theme debug
+$ ark build --theme debug
 </pre>
 <p>
-Ivy searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the <code>$IVY_THEMES</code> environment variable. Finally it searches among the default themes bundled with Ivy itself.
+Ark searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the <code>$ARK_THEMES</code> environment variable. Finally it searches among the default themes bundled with Ark itself.
 </p>
 <h3 id="structure">
 Structure
@@ -109,7 +109,7 @@ Structure
 A theme is simply a directory; the theme's name is the name of the directory.
 </p>
 <p>
-When building a website, Ivy looks for three subdirectories within the theme directory: <code>resources</code>, <code>templates</code>, and <code>extensions</code>.
+When building a website, Ark looks for three subdirectories within the theme directory: <code>resources</code>, <code>templates</code>, and <code>extensions</code>.
 </p>
 <dl>
 <div>
@@ -129,7 +129,7 @@ A theme should store its static assets in this directory, e.g. CSS, JavaScript, 
 </dt>
 <dd>
 <p>
-The <code>templates</code> directory is where Ivy looks for the theme's template files.
+The <code>templates</code> directory is where Ark looks for the theme's template files.
 This directory is also where Jinja and Ibis will look for files included in templates using <code>{% include %}</code> tags.
 </p>
 </dd>
@@ -140,14 +140,14 @@ This directory is also where Jinja and Ibis will look for files included in temp
 </dt>
 <dd>
 <p>
-Themes can bundle extensions for Ivy by placing Python modules or packages in the <code>extensions</code> directory.
-These will be loaded automatically by Ivy.
+Themes can bundle extensions for Ark by placing Python modules or packages in the <code>extensions</code> directory.
+These will be loaded automatically by Ark.
 </p>
 </dd>
 </div>
 </dl>
 <p>
-A theme directory can contain other files and directories &mdash; e.g. a license file, readme file, etc. &mdash; which Ivy will simply ignore.
+A theme directory can contain other files and directories &mdash; e.g. a license file, readme file, etc. &mdash; which Ark will simply ignore.
 </p>
 <h3 id="template-files">
 Template Files
@@ -156,7 +156,7 @@ Template Files
 Template files provide the HTML scaffolding for constructing pages &mdash; you can think of a template file as the mould into which your content will be poured.
 </p>
 <p>
-There are countless templating languages and Ivy can use any of them, but it has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a>. Ivy determines the language of a template file by looking at its extension &mdash; <code>.jinja</code> for Jinja and <code>.ibis</code> for Ibis.
+There are countless templating languages and Ark can use any of them, but it has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a>. Ark determines the language of a template file by looking at its extension &mdash; <code>.jinja</code> for Jinja and <code>.ibis</code> for Ibis.
 </p>
 <p>
 You can add support for alternative templating languages via <a href="extensions.html#template-engines">plugins</a>.
@@ -165,7 +165,7 @@ You can add support for alternative templating languages via <a href="extensions
 Template Hierarchy
 </h3>
 <p>
-When Ivy generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity (most specific first, least specific last).
+When Ark generates a HTML page for a node it searches for the appropriate template file to use in reverse order of specificity (most specific first, least specific last).
 </p>
 <p>
 For example, the node file:
@@ -180,7 +180,7 @@ corresponds to the node:
 &lt;Node @root/foo/bar/baz//&gt;
 </pre>
 <p>
-Ivy will search for a template file for this node in the following order:
+Ark will search for a template file for this node in the following order:
 </p>
 <pre>
 1. node-foo-bar-baz.*
@@ -189,7 +189,7 @@ Ivy will search for a template file for this node in the following order:
 4. node.*
 </pre>
 <p>
-Ultimately, Ivy will always check for a template file called <code>node.*</code> &mdash; this is the default template name and the only template file actually required by a theme.
+Ultimately, Ark will always check for a template file called <code>node.*</code> &mdash; this is the default template name and the only template file actually required by a theme.
 </p>
 <p>
 A node can override this process by specifying a custom template name in its header:

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ivy &mdash; Configuration Options</title>
+        <title>Ark &mdash; Configuration Options</title>
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -12,12 +12,12 @@
     </head>
     <body class="node-options node">
         <header class="masthead">
-            <h1><a href="index.html">Ivy</a></h1>
+            <h1><a href="index.html">Ark</a></h1>
             
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.5.0</p>
+                <p class="version">Version 7.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -61,14 +61,14 @@
 <a href="license.html">License</a>
 </li>
 <li>
-<a href="https://github.com/dmulholl/ivy">Github</a>
+<a href="https://github.com/dmulholl/ark">Github</a>
 </li>
 </ul>
             </nav>
         </header>
         <article class="main">
             <header class="title">
-                <h1>Configuring Ivy</h1>
+                <h1>Configuring Ark</h1>
                 
                 <hr>
             </header>
@@ -96,11 +96,11 @@
 Site Configuration File
 </h3>
 <p>
-By default, Ivy searches for a site configuration file called either <code>site.py</code> or <code>config.py</code>.
-You can specify a custom filename for the site configuration file using the <code>IVY_CONFIG_FILE</code> environment variable, e.g.
+By default, Ark searches for a site configuration file called either <code>site.py</code> or <code>config.py</code>.
+You can specify a custom filename for the site configuration file using the <code>ARK_CONFIG_FILE</code> environment variable, e.g.
 </p>
 <pre class="lang-bash pygments" data-lang="bash">
-<span class="nv">IVY_CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;site_config.py&quot;</span>
+<span class="nv">ARK_CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;site_config.py&quot;</span>
 </pre>
 <p>
 This variable takes a colon-separated list of filenames.
@@ -109,18 +109,18 @@ This variable takes a colon-separated list of filenames.
 Directory Names
 </h3>
 <p>
-By default, Ivy uses directories named <code>ext</code>, <code>inc</code>, <code>lib</code>, <code>out</code>, <code>res</code>, and <code>src</code>.
+By default, Ark uses directories named <code>ext</code>, <code>inc</code>, <code>lib</code>, <code>out</code>, <code>res</code>, and <code>src</code>.
 </p>
 <p>
 You can customize these default directory names using environment variables, e.g.
 </p>
 <pre class="lang-bash pygments" data-lang="bash">
-<span class="nv">IVY_EXT_DIR</span><span class="o">=</span><span class="s2">&quot;plugins&quot;</span>
-<span class="nv">IVY_INC_DIR</span><span class="o">=</span><span class="s2">&quot;includes&quot;</span>
-<span class="nv">IVY_LIB_DIR</span><span class="o">=</span><span class="s2">&quot;themes&quot;</span>
-<span class="nv">IVY_OUT_DIR</span><span class="o">=</span><span class="s2">&quot;output&quot;</span>
-<span class="nv">IVY_RES_DIR</span><span class="o">=</span><span class="s2">&quot;resources&quot;</span>
-<span class="nv">IVY_SRC_DIR</span><span class="o">=</span><span class="s2">&quot;source&quot;</span>
+<span class="nv">ARK_EXT_DIR</span><span class="o">=</span><span class="s2">&quot;plugins&quot;</span>
+<span class="nv">ARK_INC_DIR</span><span class="o">=</span><span class="s2">&quot;includes&quot;</span>
+<span class="nv">ARK_LIB_DIR</span><span class="o">=</span><span class="s2">&quot;themes&quot;</span>
+<span class="nv">ARK_OUT_DIR</span><span class="o">=</span><span class="s2">&quot;output&quot;</span>
+<span class="nv">ARK_RES_DIR</span><span class="o">=</span><span class="s2">&quot;resources&quot;</span>
+<span class="nv">ARK_SRC_DIR</span><span class="o">=</span><span class="s2">&quot;source&quot;</span>
 </pre>
 <p>
 Alternatively, you can customize directory names on a per-site basis by specifying alternate names in your site configuration file, e.g.
@@ -137,7 +137,7 @@ Alternatively, you can customize directory names on a per-site basis by specifyi
 Custom File Extensions
 </h3>
 <p>
-Ivy generates output pages with a <code>.html</code> file extension by default.
+Ark generates output pages with a <code>.html</code> file extension by default.
 </p>
 <p>
 You can specify a custom file extension for output files in your site configuration file, e.g.
@@ -158,7 +158,7 @@ You can generate directory-style URLs &mdash; i.e. URLs ending in a forward slas
 Absolute URLs
 </h3>
 <p>
-Ivy generates page-relative URLs by default.
+Ark generates page-relative URLs by default.
 </p>
 <p>
 You can generate absolute URLs by specifying an explicit root URL in your site configuration file, e.g.
@@ -170,7 +170,7 @@ You can generate absolute URLs by specifying an explicit root URL in your site c
 Site-Relative URLs
 </h3>
 <p>
-Ivy generates page-relative URLs by default.
+Ark generates page-relative URLs by default.
 </p>
 <p>
 You can generate site-relative URLs &mdash; i.e. URLs that begin with a <code>/</code> &mdash; by specifying a root URL of <code>&quot;/&quot;</code> in your site configuration file:

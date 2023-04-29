@@ -1,12 +1,12 @@
 ---
 title: Shortcodes
-meta_title: Ivy &mdash; Shortcodes
+meta_title: Ark &mdash; Shortcodes
 ---
 
 [github]: https://github.com/dmulholl/shortcodes
 [docs]: http://www.dmulholl.com/dev/shortcodes.html
 
-Ivy has builtin support for WordPress-style [shortcodes][docs] in node content. These shortcodes can have space-separated positional and keyword arguments:
+Ark has builtin support for WordPress-style [shortcodes][docs] in node content. These shortcodes can have space-separated positional and keyword arguments:
 
     \[% tag arg1 key=arg2 %]
 
@@ -17,7 +17,7 @@ Shortcodes are powerful --- you can use them to inject content into a node's tex
 ### Registering Shortcodes
 
 Shortcodes are implemented by the [shortcodes][github] package, an external library.
-An Ivy extension can register a new shortcode tag using the shortcode package's `@register()` decorator:
+An Ark extension can register a new shortcode tag using the shortcode package's `@register()` decorator:
 
 ::: code python
     import shortcodes
@@ -54,12 +54,12 @@ shortcode parser.
 Here's a sample shortcode you could use to inject the raw content of a file from the site's includes directory, `inc`, directly into a node file:
 
 ::: code python
-    import ivy
+    import ark
     import shortcodes
 
     @shortcodes.register('include_raw')
     def handler(pargs, kwargs, node):
-        path = ivy.site.inc(pargs[0])
+        path = ark.site.inc(pargs[0])
         with open(path) as file:
             return file.read()
 
@@ -73,15 +73,15 @@ The shortcode will be replaced by the content of the file.
 
 ### Example --- `include_rendered`
 
-Ivy already loads and renders the content of files from the includes directory to make it available in template files. What if you want to include this pre-rendered content in a node file?
+Ark already loads and renders the content of files from the includes directory to make it available in template files. What if you want to include this pre-rendered content in a node file?
 
 ::: code python
-    import ivy
+    import ark
     import shortcodes
 
     @shortcodes.register('include_rendered')
     def handler(pargs, kwargs, node):
-        includes = ivy.site.includes()
+        includes = ark.site.includes()
         return includes[pargs[0]]
 
 To use this shortcode, just supply the name of the file you want to include, leaving off the file extension, e.g.
@@ -97,13 +97,13 @@ The shortcode will be replaced by the rendered content of the file.
 This is a handy shortcode for building sitemaps --- it assembles a list of links to all the children of a target node:
 
 ::: code python
-    import ivy
+    import ark
     import shortcodes
 
     @shortcodes.register('list_children')
     def handler(pargs, kwargs, node):
         links = []
-        target_node = ivy.nodes.node(pargs[0])
+        target_node = ark.nodes.node(pargs[0])
         for child in target_node.children:
             title = child.get('title') or 'Missing Title'
             links.append(f'* [{title}]({child.url})')
@@ -122,7 +122,7 @@ The shortcode will be replaced by the list of links.
 Here's an example of a block-level shortcode wrapping a block of content. Imagine we want to add special styling to quotes with the name of the quote's author attached:
 
 ::: code python
-    import ivy
+    import ark
     import shortcodes
 
     @shortcodes.register('quote', 'endquote')

@@ -2,9 +2,9 @@
 """
 A static website generator for people who enjoy the simpler things in life.
 
-* `Github <https://github.com/dmulholl/ivy>`_
-* `Documentation <http://www.dmulholl.com/docs/ivy/dev/>`_
-* `Demo <http://www.dmulholl.com/demos/ivy/>`_
+* `Github <https://github.com/dmulholl/ark>`_
+* `Documentation <http://www.dmulholl.com/docs/ark/main/>`_
+* `Demo <http://www.dmulholl.com/demos/ark/>`_
 
 """
 
@@ -17,8 +17,8 @@ import setuptools
 # MANIFEST.in file content.
 manifest = """\
 include license.txt readme.md
-recursive-include ivy/extensions *
-recursive-include ivy/bundle *
+recursive-include ark/extensions *
+recursive-include ark/bundle *
 """
 
 
@@ -29,7 +29,7 @@ with io.open(manpath, 'w', encoding='utf-8') as manfile:
 
 
 # Load the package's metadata into the meta dict.
-metapath = os.path.join(os.path.dirname(__file__), 'ivy', '__init__.py')
+metapath = os.path.join(os.path.dirname(__file__), 'ark', '__init__.py')
 with io.open(metapath, encoding='utf-8') as metafile:
     regex = r'''^__([a-z]+)__ = ["'](.*)["']'''
     meta = dict(re.findall(regex, metafile.read(), flags=re.MULTILINE))
@@ -37,13 +37,13 @@ with io.open(metapath, encoding='utf-8') as metafile:
 
 # Standard setup routine.
 setuptools.setup(
-    name = 'ivy',
+    name = 'ark',
     version = meta['version'],
     packages = setuptools.find_packages(),
     include_package_data = True,
     entry_points = {
         'console_scripts': [
-            'ivy = ivy:main',
+            'ark = ark:main',
         ],
     },
     install_requires = [
@@ -59,7 +59,7 @@ setuptools.setup(
     ],
     python_requires = ">=3.8",
     author = 'Darren Mulholland',
-    url='https://github.com/dmulholl/ivy',
+    url='https://github.com/dmulholl/ark',
     license = 'Public Domain',
     description = 'A static website generator for people who enjoy the simpler things in life.',
     long_description = __doc__,

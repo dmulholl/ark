@@ -1,8 +1,8 @@
 ---
 title: Home
-meta_title: Ivy &mdash; a static website generator in Python
+meta_title: Ark &mdash; a static website generator in Python
 meta_description: >
-    Ivy is a static website generator built in Python.
+    Ark is a static website generator built in Python.
     It transforms a directory of text files into a self-contained website.
 ---
 
@@ -12,13 +12,13 @@ meta_description: >
 [syntext]: https://github.com/dmulholl/syntext
 
 
-Ivy is a static website generator built in Python. It's small, elegant, and simple to use.
+Ark is a static website generator built in Python. It's small, elegant, and simple to use.
 
-    $ ivy --help
+    $ ark --help
 
-    Usage: ivy [command]
+    Usage: ark [command]
 
-      Ivy is a static website generator. It transforms a
+      Ark is a static website generator. It transforms a
       directory of text files into a self-contained website.
 
     Flags:
@@ -37,33 +37,33 @@ Ivy is a static website generator built in Python. It's small, elegant, and simp
     Command Help:
       help <command>    Print the command's help text.
 
-You can build many different kinds of website using Ivy but it's particularly suited to building project documentation like the documentation you're looking at right now.
+You can build many different kinds of website using Ark but it's particularly suited to building project documentation like the documentation you're looking at right now.
 
 
 
 ### Formats
 
-Ivy has builtin support for content written in [Markdown][], [Syntext][], or plain HTML, but Ivy itself is format-agnostic --- you can write your content in any format with a suitable Python library.
+Ark has builtin support for content written in [Markdown][], [Syntext][], or plain HTML, but Ark itself is format-agnostic --- you can write your content in any format with a suitable Python library.
 
-Similarly, Ivy has builtin support for [Jinja][] and [Ibis][] templates but can use any template language with a suitable Python library.
+Similarly, Ark has builtin support for [Jinja][] and [Ibis][] templates but can use any template language with a suitable Python library.
 
 
 
 ### Installation
 
-Install Ivy from the Python Package Index using `pip`:
+Install Ark from the Python Package Index using `pip`:
 
-    $ pip install ivy
+    $ pip install ark
 
-Ivy requires Python 3.10 or later.
+Ark requires Python 3.10 or later.
 
 
 
 ### Links
 
-* [Demo Site](http://www.dmulholl.com/demos/ivy/)
-* [Package Index](https://pypi.python.org/pypi/ivy/)
-* [Github](https://github.com/dmulholl/ivy)
+* [Demo Site](http://www.dmulholl.com/demos/ark/)
+* [Package Index](https://pypi.python.org/pypi/ark/)
+* [Github](https://github.com/dmulholl/ark)
 
 
 

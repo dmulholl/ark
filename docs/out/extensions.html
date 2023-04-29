@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ivy &mdash; Extensions</title>
+        <title>Ark &mdash; Extensions</title>
         <link rel="stylesheet" href="assets/fonts.css">
         <link rel="stylesheet" href="assets/graphite.css">
         <link rel="stylesheet" href="assets/pygments.css">
@@ -12,12 +12,12 @@
     </head>
     <body class="node-extensions node">
         <header class="masthead">
-            <h1><a href="index.html">Ivy</a></h1>
+            <h1><a href="index.html">Ark</a></h1>
             
                 <p class="tagline">A static website generator for people who enjoy the simpler things in life.</p>
             
             
-                <p class="version">Version 6.5.0</p>
+                <p class="version">Version 7.0.0</p>
             
             <nav class="menu">
                 <input id="menu-check" type="checkbox"/>
@@ -61,7 +61,7 @@
 <a href="license.html">License</a>
 </li>
 <li>
-<a href="https://github.com/dmulholl/ivy">Github</a>
+<a href="https://github.com/dmulholl/ark">Github</a>
 </li>
 </ul>
             </nav>
@@ -126,12 +126,12 @@
 Installing Extensions
 </h2>
 <p>
-An extension (also known as a plugin) is a Python module or package that extends Ivy's functionality. You can install extensions for a site in one of two ways.
+An extension (also known as a plugin) is a Python module or package that extends Ark's functionality. You can install extensions for a site in one of two ways.
 </p>
 <ul>
 <li>
 <p>
-You can add an extensions directory named <code>ext</code> to your site's root directory. Extension modules placed in this <code>ext</code> directory will be loaded automatically by Ivy.
+You can add an extensions directory named <code>ext</code> to your site's root directory. Extension modules placed in this <code>ext</code> directory will be loaded automatically by Ark.
 </p>
 </li>
 <li>
@@ -153,13 +153,13 @@ This second method can be used to enable extensions installed from the Python pa
 Event &amp; Filter Hooks
 </h2>
 <p>
-Ivy exports a flexible framework of event and filter hooks. Plugins can extend Ivy by registering callback functions on these hooks.
+Ark exports a flexible framework of event and filter hooks. Plugins can extend Ark by registering callback functions on these hooks.
 </p>
 <p>
-Most of Ivy's default functionality &mdash; e.g. support for Jinja templates or Markdown files &mdash; is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ivy yourself you'll probably want to start by taking at look at how they work.
+Most of Ark's default functionality &mdash; e.g. support for Jinja templates or Markdown files &mdash; is implemented by a set of bundled plugins which make use of this hook system. If you want to extend Ark yourself you'll probably want to start by taking at look at how they work.
 </p>
 <p>
-You can find these bundled plugins in the <code>ivy/ext/</code> directory which you can view on <a href="https://github.com/dmulholl/ivy/tree/main/ivy/extensions">Github</a>.
+You can find these bundled plugins in the <code>ark/ext/</code> directory which you can view on <a href="https://github.com/dmulholl/ark/tree/main/ark/extensions">Github</a>.
 </p>
 <h3 id="events">
 Events
@@ -171,14 +171,14 @@ Events
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">from</span> <span class="nn">ivy.events</span> <span class="kn">import</span> <span class="n">Event</span>
+<span class="kn">from</span> <span class="nn">ark.events</span> <span class="kn">import</span> <span class="n">Event</span>
 
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Event</span><span class="o">.</span><span class="n">EXIT</span><span class="p">)</span>
+<span class="nd">@ark</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Event</span><span class="o">.</span><span class="n">EXIT</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_page_count</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">pages_written</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">pages_written</span><span class="p">())</span>
 </pre>
 <p>
-This callback is registered on the <code>EXIT</code> event hook which fires just before the application exits. (The <code>EXIT</code> event hook can be found in the <code>ivy/__init__.py</code> file.)
+This callback is registered on the <code>EXIT</code> event hook which fires just before the application exits. (The <code>EXIT</code> event hook can be found in the <code>ark/__init__.py</code> file.)
 </p>
 <h3 id="filters">
 Filters
@@ -190,14 +190,14 @@ Filters
 Here's a simple filter callback that changes every instance of the word <i>foo</i> in node content to <i>bar</i>:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">from</span> <span class="nn">ivy.filters</span> <span class="kn">import</span> <span class="n">Filter</span>
+<span class="kn">from</span> <span class="nn">ark.filters</span> <span class="kn">import</span> <span class="n">Filter</span>
 
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Filter</span><span class="o">.</span><span class="n">NODE_TEXT</span><span class="p">)</span>
+<span class="nd">@ark</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Filter</span><span class="o">.</span><span class="n">NODE_TEXT</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
 <p>
-This callback is registered on the <code>NODE_TEXT</code> filter hook which fires just before a node's text is rendered into HTML. (The <code>NODE_TEXT</code> filter hook can be found in the <code>ivy/nodes.py</code> file).
+This callback is registered on the <code>NODE_TEXT</code> filter hook which fires just before a node's text is rendered into HTML. (The <code>NODE_TEXT</code> filter hook can be found in the <code>ark/nodes.py</code> file).
 </p>
 <p>
 Note that this hook supplies us with the <code>Node</code> instance itself as an additional argument which in this case we ignore.
@@ -206,7 +206,7 @@ Note that this hook supplies us with the <code>Node</code> instance itself as an
 Rendering &amp; Parsing Engines
 </h2>
 <p>
-Ivy relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Extensions can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
+Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Extensions can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
 </p>
 <h3 id="template-engines">
 Template Engines
@@ -215,10 +215,10 @@ Template Engines
 Template-engines produce the output HTML for finished <code>.html</code> pages in the site.
 </p>
 <p>
-Ivy has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Extensions can register support for additional template-engines using the <code>@ivy.templates.register()</code> decorator. Template-engine callbacks are registered per template-file-extension, e.g.
+Ark has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholl/ibis">Ibis</a> templates. Extensions can register support for additional template-engines using the <code>@ark.templates.register()</code> decorator. Template-engine callbacks are registered per template-file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
+<span class="nd">@ark</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page_data</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
@@ -233,10 +233,10 @@ Rendering Engines
 Rendering-engines convert node content into HTML which can then be poured into a template to produce the finished <code>.html</code> output page.
 </p>
 <p>
-Ivy has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/master/">Syntext</a>. Extensions can register support for additional input formats using the <code>@ivy.renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Ark has builtin support for node files written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="http://www.dmulholl.com/docs/syntext/master/">Syntext</a>. Extensions can register support for additional input formats using the <code>@ark.renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
+<span class="nd">@ark</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">markdown_callback</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
@@ -251,12 +251,12 @@ Note that if you register a custom callback for <code>.md</code> files, this wil
 Node Metadata
 </h3>
 <p>
-Ivy has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the <code>file_text</code> filter hook.
+Ark has builtin support for YAML file headers. Extensions can add support for additional metadata formats by preprocessing file content on the <code>file_text</code> filter hook.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">from</span> <span class="nn">ivy.filters</span> <span class="kn">import</span> <span class="n">Filter</span>
+<span class="kn">from</span> <span class="nn">ark.filters</span> <span class="kn">import</span> <span class="n">Filter</span>
 
-<span class="nd">@ivy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Filter</span><span class="o">.</span><span class="n">FILE_TEXT</span><span class="p">)</span>
+<span class="nd">@ark</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Filter</span><span class="o">.</span><span class="n">FILE_TEXT</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">parse_toml_header</span><span class="p">(</span><span class="n">raw_text</span><span class="p">,</span> <span class="n">meta_dict</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">filtered_text</span>
@@ -265,7 +265,7 @@ Ivy has builtin support for YAML file headers. Extensions can add support for ad
 This filter fires each time a node file is loaded from disk; it passes the raw file text along with a metadata dictionary. Callbacks can check the text for an appropriate header marker, process the header if found, and update the dictionary. They should return the text with the header stripped.
 </p>
 <p>
-The <code>FILE_TEXT</code> filter hook can be found in the <code>ivy/utils.py</code> file.
+The <code>FILE_TEXT</code> filter hook can be found in the <code>ark/utils.py</code> file.
 </p>
 <h2 id="bundled-extension-settings">
 Bundled Extension Settings
@@ -274,7 +274,7 @@ Bundled Extension Settings
 Markdown
 </h3>
 <p>
-Ivy uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
+Ark uses the <a href="https://pypi.org/project/Markdown/">Markdown</a> package to render node files with a <code>.md</code> extension. You can add a
 dictionary of keyword arguments for the Markdown renderer to your site configuration file via a
 <code>markdown_settings</code> attribute, e.g.
 </p>
@@ -293,7 +293,7 @@ Note that you can register a custom handler for <code>.md</code> files to use an
 Syntext
 </h3>
 <p>
-Ivy uses the <a href="https://pypi.org/project/syntext/">Syntext</a> package to render node files with a <code>.stx</code> extension. You can add a dictionary of keyword arguments for the Syntext renderer to your site configuration file via a <code>syntext_settings</code> attribute, e.g.
+Ark uses the <a href="https://pypi.org/project/syntext/">Syntext</a> package to render node files with a <code>.stx</code> extension. You can add a dictionary of keyword arguments for the Syntext renderer to your site configuration file via a <code>syntext_settings</code> attribute, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">syntext_settings</span> <span class="o">=</span> <span class="p">{</span>
@@ -304,7 +304,7 @@ Ivy uses the <a href="https://pypi.org/project/syntext/">Syntext</a> package to 
 Jinja
 </h3>
 <p>
-Ivy uses the <a href="http://jinja.pocoo.org">Jinja</a> package to render template files with a <code>.jinja</code> extension. You can add a
+Ark uses the <a href="http://jinja.pocoo.org">Jinja</a> package to render template files with a <code>.jinja</code> extension. You can add a
 dictionary of keyword arguments for the Jinja environment to your site configuration file via a
 <code>jinja_settings</code> attribute.
 </p>
@@ -312,7 +312,7 @@ dictionary of keyword arguments for the Jinja environment to your site configura
 Shortcodes
 </h3>
 <p>
-Ivy uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> package to process shortcodes in node files. You can add a dictionary of
+Ark uses the <a href="https://github.com/dmulholl/shortcodes">Shortcodes</a> package to process shortcodes in node files. You can add a dictionary of
 keyword arguments for the shortcode parser to your site configuration file via a <code>shortcode_settings</code> attribute.
 </p>
 <h3 id="automenu">

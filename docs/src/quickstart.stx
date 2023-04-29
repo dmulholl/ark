@@ -1,22 +1,22 @@
 ---
 title: Quickstart Tutorial
-meta_title: Ivy &mdash; Quickstart Tutorial
+meta_title: Ark &mdash; Quickstart Tutorial
 ---
 
-Install Ivy from the Python Package Index using `pip`:
+Install Ark from the Python Package Index using `pip`:
 
-    $ pip install ivy
+    $ pip install ark
 
-Once Ivy is installed, create a new directory for your site and `cd` into it:
+Once Ark is installed, create a new directory for your site and `cd` into it:
 
     $ mkdir mysite
     $ cd mysite
 
 Initialize the site directory using the `init` command:
 
-    $ ivy init
+    $ ark init
 
-Ivy will create the following directory structure for your site:
+Ark will create the following directory structure for your site:
 
     mysite/
     |-- inc/         # includes directory for menus, etc.
@@ -24,24 +24,24 @@ Ivy will create the following directory structure for your site:
     |-- src/         # source directory for text files
     |-- site.py      # site configuration file
 
-Ivy initializes your `src` directory with a simple skeleton site which you can build immediately using the `build` command:
+Ark initializes your `src` directory with a simple skeleton site which you can build immediately using the `build` command:
 
-    $ ivy build
+    $ ark build
 
-You can run the `build` command from the site directory itself or from any of its subdirectories. It tells Ivy to render the text files in the `src` directory into HTML and place the output in an `out` directory.
+You can run the `build` command from the site directory itself or from any of its subdirectories. It tells Ark to render the text files in the `src` directory into HTML and place the output in an `out` directory.
 
-Run the `build` command and take a look at the output. You can open the HTML files directly in your browser or use Ivy's builtin test server to serve the contents of the `out` directory:
+Run the `build` command and take a look at the output. You can open the HTML files directly in your browser or use Ark's builtin test server to serve the contents of the `out` directory:
 
-    $ ivy serve
+    $ ark serve
 
 This command will start the test server and automatically launch the default web browser to view the site. Hit Ctrl-C when you want to shut the server down.
 
-Ivy will build the site using its default `graphite` theme, which you can find in the `lib` folder. Try rebuilding the site using the `debug` theme which is less pretty but provides a lot of useful information that can help you when building or customizing your own themes:
+Ark will build the site using its default `graphite` theme, which you can find in the `lib` folder. Try rebuilding the site using the `debug` theme which is less pretty but provides a lot of useful information that can help you when building or customizing your own themes:
 
-    $ ivy build --theme debug
+    $ ark build --theme debug
 
-You can run `ivy --help` to see a list of all the available commands. Note that you can get help for a specific command by running
+You can run `ark --help` to see a list of all the available commands. Note that you can get help for a specific command by running
 
-    $ ivy help <command>
+    $ ark help <command>
 
 replacing `<command>` with the command name.
