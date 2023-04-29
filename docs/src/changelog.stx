@@ -9,7 +9,9 @@ meta_title: Ark &mdash; Changelog
 
 ### 7.0.0
 
-* Name change! The application's name, formerly Ivy, has reverted to its original name, Ark.
+* Name change! The application, formerly Ivy, has reverted to its original name, Ark.
+
+* You can find the last version of the code under the old name in the `v6` branch of the repository.
 
 
 
