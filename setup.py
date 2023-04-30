@@ -49,8 +49,8 @@ setuptools.setup(
     install_requires = [
         'markdown ~= 3.0',
         'pygments ~= 2.0',
-        'pyyaml ~= 5.0',
-        'jinja2 ~= 2.0',
+        'pyyaml ~= 6.0',
+        'jinja2 ~= 3.0',
         'syntext ~= 3.0',
         'ibis ~= 3.0',
         'shortcodes ~= 5.1',
