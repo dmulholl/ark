@@ -7,11 +7,21 @@ meta_title: Ark &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 7.1.0
+
+* The Jinja2 dependency version has been updated from `2.x` to `3.x`.
+
+* The PyYAML dependency version has been updated from `5.x` to `6.x`.
+
+
+
 ### 7.0.0
 
 * Name change! The application, formerly Ivy, has reverted to its original name, Ark.
 
-* You can find the last version of the code under the old name in the `v6` branch of the repository.
+* Aside from the name change, there are no breaking changes in this release.
+
+* You can find the last version of the code under the old Ivy name in the `v6` branch of the repository.
 
 
 
@@ -29,7 +39,7 @@ meta_title: Ark &mdash; Changelog
 
 ### 6.3.0
 
-* Update the Syntext dependency to `v3.0.0`.
+* Update the Syntext dependency version to `3.x`.
 
 
 
