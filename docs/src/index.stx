@@ -37,7 +37,7 @@ Ark is a static website generator built in Python. It's small, elegant, and simp
     Command Help:
       help <command>    Print the command's help text.
 
-You can build many different kinds of website using Ark but it's particularly suited to building project documentation like the documentation you're looking at right now.
+You can build many different kinds of websites using Ark but it's particularly suited to building project documentation like the documentation you're looking at right now.
 
 
 
