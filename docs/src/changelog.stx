@@ -7,11 +7,17 @@ meta_title: Ark &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 7.2.0
+
+* Add support for an automatic copy button to `<pre>` tags in the `graphite` theme.
+
+
+
 ### 7.1.0
 
-* The Jinja2 dependency version has been updated from `2.x` to `3.x`.
+* Update the Jinja2 dependency version from `2.x` to `3.x`.
 
-* The PyYAML dependency version has been updated from `5.x` to `6.x`.
+* Update the PyYAML dependency version from `5.x` to `6.x`.
 
 
 

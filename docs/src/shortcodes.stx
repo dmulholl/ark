@@ -142,7 +142,7 @@ We can use this shortcode in a source file by supplying the author's name as an 
 
 The output will look like this:
 
-::: code html
+::: code html .no-copy
     <blockquote>Work is the curse of the drinking classes.</blockquote>
     <p class="author">Oscar Wilde</p>
 

@@ -14,6 +14,7 @@ meta_description: >
 
 Ark is a static website generator built in Python. It's small, elegant, and simple to use.
 
+::: code .no-copy
     $ ark --help
 
     Usage: ark [command]
@@ -53,7 +54,7 @@ Similarly, Ark has builtin support for [Jinja][] and [Ibis][] templates but can 
 
 Install Ark from the Python Package Index using `pip`:
 
-    $ pip install ark
+    pip install ark
 
 Ark requires Python 3.10 or later.
 
