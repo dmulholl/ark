@@ -12,7 +12,10 @@ file in the site header:
 * `tagline`
 * `version`
 
-It supports the following includes:
+
+## Includes
+
+This theme supports the following includes:
 
 * `menu`
 
@@ -32,6 +35,34 @@ It supports the following includes:
     be included at the end of each page's `<body>` section. This file can be
     used to add custom JavaScript to a site without directly editing the
     theme's template files.
+
+
+## Copy Buttons
+
+All `<pre>` blocks get an automatically-generated 'copy' button for copying the
+content to the clipboard.
+
+To disable this button for an individual `<pre>` block, add a `no-copy` classs
+to the `<pre>` tag, e.g. in HTML:
+
+    <pre class="no-copy">
+        No copy button.
+    </pre>
+
+Or in Syntext:
+
+    ::: code .no-copy
+        No copy button.
+
+To disable the copy button completely, add the following setting to your site
+configuration file:
+
+    graphite = {
+        "disable_copy_button": True,
+    }
+
+
+## License
 
 This theme is distributed under the following license:
 

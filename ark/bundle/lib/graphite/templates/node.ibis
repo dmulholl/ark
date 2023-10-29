@@ -4,12 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ node.meta_title || node.title || site.title }}</title>
-        <link rel="stylesheet" href="@root/assets/fonts.css">
-        <link rel="stylesheet" href="@root/assets/graphite.css">
-        <link rel="stylesheet" href="@root/assets/pygments.css">
+
         {% if node.meta_description %}
             <meta name="description" content="{$ node.meta_description.strip() $}">
         {% endif %}
+
+        <link rel="stylesheet" href="@root/assets/fonts.css">
+        <link rel="stylesheet" href="@root/assets/graphite.css">
+        <link rel="stylesheet" href="@root/assets/pygments.css">
+
+        {% if not site.graphite.disable_copy_button %}
+            <script src="@root/assets/code.js"></script>
+        {% endif %}
+
         {{ inc.head }}
     </head>
     <body class="{$ classes|join(' ') $}">
@@ -31,6 +38,7 @@
                 {{ inc.menu || automenu }}
             </nav>
         </header>
+
         <article class="main">
             <header class="title">
                 <h1>{{ node.title }}</h1>
@@ -41,6 +49,7 @@
             </header>
             {{ node.html }}
         </article>
+
         {{ inc.foot }}
     </body>
 </html>

@@ -2,7 +2,7 @@
 # Ark: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '7.1.0'
+__version__ = '7.2.0'
 
 import sys
 if sys.version_info < (3, 10):
