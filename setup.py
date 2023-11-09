@@ -57,7 +57,7 @@ setuptools.setup(
         'argslib ~= 2.0',
         'colorama ~= 0.4',
     ],
-    python_requires = ">=3.8",
+    python_requires = ">=3.10",
     author = 'Darren Mulholland',
     url='https://github.com/dmulholl/ark',
     license = 'Public Domain',
