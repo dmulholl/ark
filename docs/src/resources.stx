@@ -9,7 +9,6 @@ classes: extra-deflist-vspace
 
 ## Themes
 
-
 [[ Outline ]]
 
     A clean, responsive, text-focused theme for Ark.
@@ -26,16 +25,7 @@ classes: extra-deflist-vspace
         <https://github.com/dmulholl/vanilla>
 
 
-[[ Twenty Fifteen ]]
-
-    A blog-style theme for Ark based on the classic WordPress theme of the same name.
-
-    :p .small
-        <https://github.com/dmulholl/twentyfifteen>
-
-
 ## Plugins
-
 
 [[ TOML Metadata ]]
 
@@ -51,5 +41,3 @@ classes: extra-deflist-vspace
 
     :p .small
         <https://github.com/dmulholl/holly>
-
-
