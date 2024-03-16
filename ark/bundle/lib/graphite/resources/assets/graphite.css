@@ -193,11 +193,17 @@ dt pre {
     color: black;
     font-size: 12px;
     font-family: Consolas, monospace;
+    display: none;
+}
+
+.pre-copy-wrapper:hover button {
+    display: block;;
 }
 
 .pre-copy-wrapper button:hover {
-    opacity: 0.5;
+    opacity: 0.6;
 }
+
 
 /**
  * Lists
