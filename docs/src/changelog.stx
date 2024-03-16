@@ -7,6 +7,12 @@ meta_title: Ark &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 7.3.0
+
+* In the `graphite` theme, only show the copy button on hover.
+
+
+
 ### 7.2.0
 
 * Add support for an automatic copy button to `<pre>` tags in the `graphite` theme.
