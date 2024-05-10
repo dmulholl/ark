@@ -133,7 +133,7 @@ sub {
 
 pre, code {
     font-size: 13px;
-    font-family: Consolas, monospace;
+    font-family: Menlo, Monaco, Consolas, monospace;
 }
 
 code {
@@ -176,6 +176,34 @@ dt pre {
     border-radius: 3px;
     background-color: #f8f8f8;
 }
+
+.pre-copy-wrapper {
+    position: relative;
+}
+
+.pre-copy-wrapper button {
+    padding: 6px;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.3;
+    cursor: pointer;
+    color: black;
+    font-size: 12px;
+    font-family: Consolas, monospace;
+    display: none;
+}
+
+.pre-copy-wrapper:hover button {
+    display: block;;
+}
+
+.pre-copy-wrapper button:hover {
+    opacity: 0.6;
+}
+
 
 /**
  * Lists
@@ -705,6 +733,10 @@ body.extra-deflist-vspace dt {
 
     pre, code {
         font-size: 12px;
+    }
+
+    .pre-copy-wrapper button {
+        font-size: 11px;
     }
 
     .small {
