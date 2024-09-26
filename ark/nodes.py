@@ -179,6 +179,9 @@ class Node():
 
     # Generates a HTML page for the node and writes that page to disk.
     def write(self):
+        if not _generate_html(self):
+            return
+
         output_filepath = self.get_output_filepath()
 
         # This data dictionary gets passed to the template engine.
@@ -250,6 +253,11 @@ class Node():
             for item in str(self.meta['classes']).split(','):
                 class_list.append(item.strip())
         return filters.apply('class_list', class_list, self)
+
+
+# Should we generate HTML for this node?
+def _generate_html(node):
+    return os.path.isfile(node.filepath) or site.config.get("emit_no_file_directory_nodes", True)
 
 
 # Parse a source directory. The `load_node_dir` and `load_node_file` filters
