@@ -73,8 +73,8 @@ def build_site():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Callback to handle individual nodes.
-    def build_node(node):
+    # This callback writes an individual node to disk.
+    def write_node(node):
         # A `disable` flag in a node's metadata header will prevent Ark from
         # producing an output HTML page for the node.
         if node.get('disable'):
@@ -86,7 +86,7 @@ def build_site():
             node.write()
 
     # Walk the node tree and pass each node to the handler.
-    nodes.root().walk(build_node)
+    nodes.root().walk(write_node)
 
 
 @events.register(events.Event.EXIT_BUILD)
