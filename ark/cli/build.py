@@ -76,7 +76,7 @@ def build_site():
     # Callback to handle individual nodes.
     def build_node(node):
         # A `disable` flag in a node's metadata header will prevent Ark from
-        # producing an output HTML page for a node.
+        # producing an output HTML page for the node.
         if node.get('disable'):
             return
 
