@@ -7,6 +7,14 @@ meta_title: Ark &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 7.5.0
+
+* The source code license has been changed from the "Unlicense" to the "Zero-Clause BSD" license.
+
+* The default `graphite` theme now supports page-level redirects.
+
+
+
 ### 7.3.0
 
 * In the `graphite` theme, only show the copy button on hover.
