@@ -62,6 +62,17 @@ configuration file:
     }
 
 
+## Redirects
+
+This theme supports page-level redirects. To redirect a page, add a `redirect` field to the node file's YAML header, e.g.
+
+    redirect: http://example.com/foo-bar/baz.html
+
+To redirect a page to an `@root/` URL in a YAML file header, enclose the URL in quotes, e.g.
+
+    redirect: "@root/foo-bar/baz//"
+
+
 ## License
 
 This theme is distributed under the following license:

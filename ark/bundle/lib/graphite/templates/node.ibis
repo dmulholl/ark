@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ node.meta_title || node.title || site.title }}</title>
 
+        {% if node.redirect %}
+            <meta http-equiv="refresh" content="0;url='{$ node.redirect.strip() $}'">
+        {% endif %}
+
         {% if node.meta_description %}
             <meta name="description" content="{$ node.meta_description.strip() $}">
         {% endif %}
