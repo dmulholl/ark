@@ -1,9 +1,14 @@
 # Ark
 
+[1]: https://www.dmulholl.com/docs/ark/master/
+[2]: https://www.dmulholl.com/demos/ark/
+[3]: https://www.dmulholl.com/docs/ark/master/quickstart.html
+
+
 Ark is a static website generator built in Python. It's small, elegant, and simple to use.
 
-* [Documentation](http://www.dmulholl.com/docs/ark/master/)
-* [Demo Site](http://www.dmulholl.com/demos/ark/)
+* [Documentation][1]
+* [Demo Site][2]
 
 
 ## Installation
@@ -39,6 +44,8 @@ Ark is a command-line tool. To view its helptext, run `ark --help`:
 
     Command Help:
       help <command>    Print the command's help text.
+
+See the [quickstart tutorial][3] for a guide to getting started with Ark.
 
 
 ## License
