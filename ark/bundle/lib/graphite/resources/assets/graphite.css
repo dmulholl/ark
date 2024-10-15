@@ -133,7 +133,7 @@ sub {
 
 pre, code {
     font-size: 13px;
-    font-family: monospace;
+    font-family: Courier, monospace;
 }
 
 code {
