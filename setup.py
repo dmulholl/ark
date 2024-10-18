@@ -3,7 +3,7 @@
 A static website generator for people who enjoy the simpler things in life.
 
 * `Github <https://github.com/dmulholl/ark>`_
-* `Documentation <http://www.dmulholl.com/docs/ark/main/>`_
+* `Documentation <http://www.dmulholl.com/docs/ark/master/>`_
 * `Demo <http://www.dmulholl.com/demos/ark/>`_
 
 """
