@@ -7,6 +7,18 @@ meta_title: Ark &mdash; Changelog
 [docs:shortcodes]: http://www.dmulholl.com/dev/shortcodes.html
 
 
+### 7.7.0
+
+* Ark now handles exceptions raised by extensions and prints a simple error message for users.
+
+
+
+### 7.6.0
+
+* The default monospace font for the `graphite` theme has been changed to Courier to provide more consistency between browsers.
+
+
+
 ### 7.5.0
 
 * The source code license has been changed from the "Unlicense" to the "Zero-Clause BSD" license.
