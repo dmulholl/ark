@@ -12,9 +12,13 @@ from . import site
 # Load the named Python module from the specified directory.
 def load_module(dirpath: str, name: str):
     sys.path.insert(0, dirpath)
-    importlib.import_module(name)
-    sys.path.pop(0)
 
+    try:
+        importlib.import_module(name)
+    except Exception as e:
+        raise Exception(f"Failed to load extension {name}: {e}") from e
+
+    sys.path.pop(0)
 
 # Load a directory of Python modules.
 def load_directory(dirpath: str):

@@ -2,7 +2,7 @@
 # Ark: a static website generator.
 # ------------------------------------------------------------------------------
 
-__version__ = '7.6.1'
+__version__ = '7.7.0'
 
 import sys
 if sys.version_info < (3, 10):
@@ -34,11 +34,7 @@ from . import site
 from . import utils
 
 
-# Application entry point. Calling main() initializes the site model, loads
-# the site's plugins, then fires a sequence of event hooks. All of Ark's
-# functionality is handled by callbacks registered on these hooks.
-def main():
-
+def ark():
     # Initialize the site model.
     site.init()
 
@@ -54,7 +50,15 @@ def main():
     # Load any plugins bundled with the active theme.
     extensions.load_theme_extensions()
 
-    # Fire the primary sequence of event hooks.
+    # Fire the primary sequence of event hooks. All of Ark's functionality is
+    # handled by callbacks registered on these hooks.
     events.fire(events.Event.INIT)
     events.fire(events.Event.MAIN)
     events.fire(events.Event.EXIT)
+
+
+def main():
+    try:
+        ark()
+    except Exception as e:
+        sys.exit(f"Error: {e}")
