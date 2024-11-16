@@ -51,7 +51,7 @@ Ark generates output pages with a `.html` file extension by default.
 You can specify a custom file extension for output files in your site configuration file, e.g.
 
 ::: code python
-    file_extension = ".txt"
+    file_extension = ".htm"
 
 
 
